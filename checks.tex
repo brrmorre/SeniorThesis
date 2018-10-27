@@ -1,0 +1,40 @@
+I also placed the user defined types into data structures in order to perform several checks to make sure that the user did not have errors when creating types. Then the data structures will be transformed into a form that will be used for type inferencing.
+Section 4 of the Haskell 2010 report specifies the haskell type system.
+%https://www.haskell.org/onlinereport/haskell2010/haskellch4.html#x10-620004
+In the topdecl sort, there are three typecons that are used to create user defined datatypes. Data, type, and newtype. The end goal is to put the user defined types into a data structure which I can use to perform type inferencing. These three typecons are used to create user defined types.
+The first one is type,
+type simpletype = type 
+This is used in a haskell program to declare a new type as a single type. In effect, it renames the type where both names now can be used to refer to the type.
+type Username = String
+Is one such example usage of type, it creates a new type Username, which is defined as just a string. Now the programmer can refer to Username or String to make a string.
+	The second one is data,
+data [context =>] simpletype [= constrs] [deriving]
+This allows a user to declare a new type that may include many fields, and polymorphic types. For instance:
+data Date = Date Int Int Int
+This is a new type that includes the typecon ‘Date’ followed by three integers.
+data Poly a = Number a
+This is a new polymorphic type with polymorphic parameter a, that has the typecon ‘Number’.
+	The third one is newtype,
+newtype [context =>] simpletype = newconstr [deriving]
+This is very similar to data except it only parses when the newtype has only one typecon and one field.
+
+I perform several checks here, 
+1. The programmer should not be able to make two user defined datatypes with the same name, even if one is created using ‘data’ and another is created using ‘type’ for instance.
+2. The programmer should not be able to use the same typecons when making different options for their types or use the same typecons for different types.
+3. There should be no cycles in type renaming using ‘type’, and the type renaming chains using ‘type’ should terminate with a type defined with ‘data’ or ‘newtype’.
+4. The argument sorts for types defined using ‘data’ or ‘newtype’ should be types that exist.
+5. The polymorphic parameters that appear on the right hand side of a ‘data’ declaration need to appear on the left hand side as well.
+6. The polymorphic parameters that appear on the left hand side of a ‘data’ declaration need to be unique.
+I implemented a map, called alpha, of new type names as the keys and their declared types as the entries. I then collected all appearances of the typecon ‘type’ in the program, and put simpletype -> type in the alpha map. However, one of the things I needed to check for in the program was whether a user declared multiple definitions with ‘type’, so I could not use a map in K because they only allow unique keys with unique entries. So I initially used a set of tuples, and then changed it to a map after checking for multiple type declarations.
+
+
+The second data structure I made is called T. T holds the user defined types created using ‘data’ and ‘newtype’.
+syntax KItem ::= TList(K) 
+//list of T objects for every new type introduced by data and newtype
+syntax KItem ::= TObject(K,K,K)
+//(type name, entire list of poly type vars, list of inner T pieces)
+syntax KItem ::= InnerTPiece(K,K,K,K,K)
+//(type constructor, poly type vars, argument sorts, entire constr block, type name)
+T is a list of TObjects, each TObject represents a single user defined datatype. It holds the name, the list of polymorphic parameters, and a list of inner T pieces.
+An inner T piece represents an option of what a type could be. It consists of a type constructor, a list of polymorphic parameters required for this option, the fields for this option, the entire subtree of the AST for this option unedited, and the type name again.
+I then used these data structures to perform these checks, and afterwards will transform them into a new data structure to perform type inferencing.

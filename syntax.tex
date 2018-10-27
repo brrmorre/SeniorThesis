@@ -1,0 +1,30 @@
+The Haskell 2010 report is the current official specification of the Haskell language. %https://www.haskell.org/onlinereport/haskell2010/
+The grammar specified in section 10.5 of the Haskell 2010 report is a specification of the expanded syntax of haskell.
+%https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-210002.7
+As specified in section 2.7, the expanded syntax of haskell specifies haskell programs when written using semicolons and braces. However, these can be omitted in a real haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3
+%https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17800010.3
+The parser that I have written in K does not implement these layout rules and instead only can parse the expanded, layout insensitive syntax of haskell. It would require another script to convert a program written using the layout sensitive syntax into the expanded syntax in order to parse the program.
+Haskell has a context free grammar.
+%https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-18000010.5
+	Section 10.1 specifies the notation used in the grammar.
+%https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17600010.1
+The notation of 10.1 are always in bold in the grammar. So
+qvarid -> [ modid . ] varid
+Means that ‘modid .’ is optional, and the brackets ‘[ ]’ are not part of the haskell code, but the period ‘.’ is part of the haskell code. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
+There are a lot of parts of the grammar that were tricky for me to implement in K. For instance, a sort definition with an optional part could be just written using a ‘|’ in the K syntax. So 
+qvarid -> [ modid . ] varid
+Is written in my K syntax as
+syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
+However, an issue arises when you have something written like
+data [context =>] simpletype [= constrs] [deriving]
+As an option for the definition of the topdecl sort. What I did was, for each optional part, replace the optional part with a new sort. For instance, I replaced [ context => ] with a new sort called OptContext. Then I just specified
+syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
+I ran into an issue where floats and integers did not parse correctly. They caused parsing errors due to ambiguity of parsing. For example the number 123.45 had ambiguity where the parser did not know if 1, 12, or 123 where integers, and if 5 was an integer, or if the entire thing was one float. Normally in K, different tokens are separated with whitespaces. However, for some reason the parser had difficulty here. Initially, I added a workaround by requiring parentheses around each function application and pattern. So for functions f, y, and z, if we were to write f applied to y applied to z applied to 2, we would normally write...
+f y z 2
+With the parentheses notation it looked like
+f (y (z (2)))
+This caused the programs to quickly look unreadable. So I instead opted to only require that integers and floats have parentheses surrounding them.
+f y z (2)
+This fixed the issue.
+I ran into another issue where a program with a variable called ‘size’ did not parse. I found out that this is because ‘size’ is a k keyword. So I just specified that a variable could be a variable token, or “size”.
+syntax VarId ::= Token{[a-z\_][a-z A-Z\_0-9\']*} [onlyLabel] | "size" [onlyLabel]

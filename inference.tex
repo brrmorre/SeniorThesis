@@ -1,0 +1,14 @@
+The next step is the actual type inferencing algorithm.
+	I needed to create a syntax for polymorphic types that may contain monomorphic type variables and polymorphic type variables.
+	Then I made a map from type constructor names to arities, called Delta.
+	Then I made a map from data constructors and term identifiers to their most general polymorphic types, called beta.
+	The first part was converting the T data structure into beta, which is more suited for type inferencing.
+	Something to note is that for GHC:
+f x = y x
+y x = f x
+This set of functions is allowed. When run, the function just simply runs forever.
+	Another thing to note is that the
+[context =>]
+part of the syntax for the types is deprecated.
+https://stackoverflow.com/questions/9345589/guards-vs-if-then-else-vs-cases-in-haskell
+For functions, function guards, cases, and if-then-else are all equivalent.
