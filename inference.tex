@@ -44,6 +44,10 @@ For functions, function guards, cases, and if-then-else are all equivalent.
 
 Haskell is a strong and static type system.
 
+This means that type inferencing can be ran before compilation or running the code. used to ensure that fun
+
+Type inferencing 
+
 Haskell's type system is a Hindley-Milner polymorphic type system that has been extended with type classes to account for overloaded function
 %[haskell 2010 report] 
 
@@ -79,17 +83,18 @@ Type theory was created by Bertrand Russell to prevent Russell's Paradox for set
 \end{prooftree}
 
 \begin{prooftree}
-\AxiomC{}
-\AxiomC{}
+\AxiomC{$\Gamma \vdash e_1 : \text{bool} \, | \, \sigma_1$}
+\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau) \, | \, \sigma_2$}
+\AxiomC{$\sigma_2 \circ \sigma_1(\Gamma) \vdash e_3 : \sigma_2 \circ \sigma_1(\tau) \, | \, \sigma_3$}
 \RightLabel{IfThenElse}
-\BinaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
+\TrinaryInfC{$\Gamma \vdash \text{if} \, e_1 \, \text{then} \, e_2 \, \text{else} \, e_3 : \tau \, | \, \sigma_3 \circ \sigma_2 \circ \sigma_1$}
 \end{prooftree}
 
 \begin{prooftree}
 \AxiomC{$\Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
 \AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau_1) \, | \, \sigma_2$}
 \RightLabel{Application}
-\BinaryInfC{$\Gamma \vdash c : \tau \, | \, \sigma_2 \circ \sigma_1$}
+\BinaryInfC{$\Gamma \vdash e_1 e_2 : \tau \, | \, \sigma_2 \circ \sigma_1$}
 \end{prooftree}
 
 \begin{prooftree}
@@ -98,37 +103,40 @@ Type theory was created by Bertrand Russell to prevent Russell's Paradox for set
 \UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
 \end{prooftree}
 
+[cs 421 gather exp ty substitution mp]
+
 \subsection{Unification Algorithm}
 
-Let S = {(s 1 , t 1 ), (s 2 , t 2 ), ..., (s n , t n )} be a
+Let $S = \{(s_1 , t_1), (s_2 , t_2), \cdots, (s_n , t_n)\}$ be a
 unification problem.
-Case S = { }: Unif(S) = Identity function (ie
-no substitution)
-Case S = {(s, t)} ∪ S’): Four main steps
 
-Delete: if s = t (they are the same term)
-then Unif(S) = Unif(S’)
-Decompose: if s = f(q 1 , ... , q m ) and
-t
-=f(r 1 , ... , r m ) (same f, same m!), then
-Unif(S) = Unif({(q 1 , r 1 ), ..., (q m , r m )} ∪ S’)
-Orient: if t = x is a variable, and s is not a
-variable, Unif(S) = Unif ({(x,s)} ∪ S’)
+Case $S = \{ \} : \text{Unif}(S) = \text{Identity function}$ (ie
+no substitution)
+
+Case $S = {(s, t)} \cup S')$: Four main steps
+
+Delete: if $s = t$ (they are the same term)
+then $Unif(S) = Unif(S')$
+
+Decompose: if $s = f(q_1, \cdots, q_m )$ and
+$t = f(r_1, \cdots, r_m )$ (same f, same m!), then
+$\text{Unif}(S) = \text{Unif}(\{(q_1 , r_1 ), ..., (q_m , r_m )\} \cup S')$
+
+Orient: if $t = x$ is a variable, and s is not a
+variable, $\text{Unif}(S) = \text{Unif} (\{(x,s)\} \cup S')$
 
 Eliminate: if s = x is a variable, and
 x does not occur in t (the occurs
 check), then
-Let φ = x |→ t
-Let ψ = Unif(φ(S’))
-Unif(S) = {x |→ ψ(t)} o ψ
+
+Let $\phi = x \mapsto t$
+
+Let $\psi = \text{Unif}(\phi(S'))$
+
+$\text{Unif}(S) = \{x \mapsto \psi(t) \} \circ \psi$
+
 Note: {x |→ a} o {y |→ b} =
 {y |→ ({x |→ a}(b)} o {x |→ a} if y not
 in a
 
 [cs 421 class notes]
-
-
-
-This means that type inferencing can be ran before compilation or running the code. used to ensure that fun
-
-Type inferencing 
