@@ -1,14 +1,134 @@
+\chapter{Inferencing}
+\section{Data Structures}
 The next step is the actual type inferencing algorithm.
 	I needed to create a syntax for polymorphic types that may contain monomorphic type variables and polymorphic type variables.
 	Then I made a map from type constructor names to arities, called Delta.
 	Then I made a map from data constructors and term identifiers to their most general polymorphic types, called beta.
 	The first part was converting the T data structure into beta, which is more suited for type inferencing.
 	Something to note is that for GHC:
+	$$
 f x = y x
+$$
+$$
 y x = f x
+$$
 This set of functions is allowed. When run, the function just simply runs forever.
 	Another thing to note is that the
+\begin{lstlisting}
 [context =>]
+\end{lstlisting}
 part of the syntax for the types is deprecated.
 https://stackoverflow.com/questions/9345589/guards-vs-if-then-else-vs-cases-in-haskell
 For functions, function guards, cases, and if-then-else are all equivalent.
+
+\subsection{Inferencing Rules}
+
+\begin{prooftree}
+\AxiomC{Hyp}
+\UnaryInfC{$\{A \land B\} \vdash A \land B$}
+\AxiomC{Hyp}
+\UnaryInfC{$\{A \land B\} \cup \{B\} \vdash B$}
+\RightLabel{And$_R$ E}
+\BinaryInfC{$\{A \land B\} \vdash B$}
+\AxiomC{Hyp}
+\UnaryInfC{$\{A \land B\} \vdash A \land B$}
+\AxiomC{Hyp}
+\UnaryInfC{$\{A \land B\} \cup \{A\} \vdash A$}
+\RightLabel{And$_L$ E}
+\BinaryInfC{$\{A \land B\} \vdash A$}
+\RightLabel{And I}
+\BinaryInfC{$\{A \land B\} \vdash B \land A$}
+\RightLabel{Imp I}
+\UnaryInfC{$\{\} \vdash A \land B \Rightarrow B \land A$}
+\end{prooftree}
+
+Haskell is a strong and static type system.
+
+Haskell's type system is a Hindley-Milner polymorphic type system that has been extended with type classes to account for overloaded function
+%[haskell 2010 report] 
+
+A type system is a set of rules that assign a property to various constructs in a programming language called type. A type is a property that allows the programmer to add constraints to programs.
+%[https://en.wikipedia.org/wiki/Type_system]
+
+\section{Lambda Calculus}
+
+\section{Type theory}
+Type theory was created by Bertrand Russell to prevent Russell's Paradox for set theory, introduced by Georg Cantor. The issue was that not specifying a certain property for sets allowed sets to contain themselves in Naive Set Theory. So Bertrand Russell prevented this problem by specifying a property called type for objects, and objects cannot contain their own type.
+%[https://plato.stanford.edu/entries/type-theory/]
+
+\section{Hindley-Milner}
+
+\section{Inferencing Algorithm}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{Constant}
+\UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{Variable}
+\UnaryInfC{$\Gamma \vdash x : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\Gamma(x)))\}$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$[x : \tau_1] + \Gamma \vdash e : \tau_2 \, | \, \sigma$}
+\RightLabel{Lambda}
+\UnaryInfC{$\Gamma \vdash \text{\textbackslash \, x \textrightarrow \, e}: \tau \, | \, \text{unify}\{ ( \sigma(\tau) , \sigma(\tau_1 \rightarrow \tau_2)) \} \circ \sigma$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\AxiomC{}
+\RightLabel{IfThenElse}
+\BinaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
+\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau_1) \, | \, \sigma_2$}
+\RightLabel{Application}
+\BinaryInfC{$\Gamma \vdash c : \tau \, | \, \sigma_2 \circ \sigma_1$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{LetIn}
+\UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
+\end{prooftree}
+
+\subsection{Unification Algorithm}
+
+Let S = {(s 1 , t 1 ), (s 2 , t 2 ), ..., (s n , t n )} be a
+unification problem.
+Case S = { }: Unif(S) = Identity function (ie
+no substitution)
+Case S = {(s, t)} ∪ S’): Four main steps
+
+Delete: if s = t (they are the same term)
+then Unif(S) = Unif(S’)
+Decompose: if s = f(q 1 , ... , q m ) and
+t
+=f(r 1 , ... , r m ) (same f, same m!), then
+Unif(S) = Unif({(q 1 , r 1 ), ..., (q m , r m )} ∪ S’)
+Orient: if t = x is a variable, and s is not a
+variable, Unif(S) = Unif ({(x,s)} ∪ S’)
+
+Eliminate: if s = x is a variable, and
+x does not occur in t (the occurs
+check), then
+Let φ = x |→ t
+Let ψ = Unif(φ(S’))
+Unif(S) = {x |→ ψ(t)} o ψ
+Note: {x |→ a} o {y |→ b} =
+{y |→ ({x |→ a}(b)} o {x |→ a} if y not
+in a
+
+[cs 421 class notes]
+
+
+
+This means that type inferencing can be ran before compilation or running the code. used to ensure that fun
+
+Type inferencing 

@@ -1,3 +1,4 @@
+\chapter{Context Sensitive Checks}
 I also placed the user defined types into data structures in order to perform several checks to make sure that the user did not have errors when creating types. Then the data structures will be transformed into a form that will be used for type inferencing.
 Section 4 of the Haskell 2010 report specifies the haskell type system.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch4.html#x10-620004
@@ -8,14 +9,18 @@ This is used in a haskell program to declare a new type as a single type. In eff
 type Username = String
 Is one such example usage of type, it creates a new type Username, which is defined as just a string. Now the programmer can refer to Username or String to make a string.
 	The second one is data,
+	\begin{lstlisting}
 data [context =>] simpletype [= constrs] [deriving]
+	\end{lstlisting}
 This allows a user to declare a new type that may include many fields, and polymorphic types. For instance:
 data Date = Date Int Int Int
 This is a new type that includes the typecon ‘Date’ followed by three integers.
 data Poly a = Number a
 This is a new polymorphic type with polymorphic parameter a, that has the typecon ‘Number’.
 	The third one is newtype,
+	\begin{lstlisting}
 newtype [context =>] simpletype = newconstr [deriving]
+\end{lstlisting}
 This is very similar to data except it only parses when the newtype has only one typecon and one field.
 
 I perform several checks here, 
@@ -29,12 +34,14 @@ I implemented a map, called alpha, of new type names as the keys and their decla
 
 
 The second data structure I made is called T. T holds the user defined types created using ‘data’ and ‘newtype’.
+\begin{lstlisting}
 syntax KItem ::= TList(K) 
 //list of T objects for every new type introduced by data and newtype
 syntax KItem ::= TObject(K,K,K)
 //(type name, entire list of poly type vars, list of inner T pieces)
 syntax KItem ::= InnerTPiece(K,K,K,K,K)
 //(type constructor, poly type vars, argument sorts, entire constr block, type name)
+\end{lstlisting}
 T is a list of TObjects, each TObject represents a single user defined datatype. It holds the name, the list of polymorphic parameters, and a list of inner T pieces.
 An inner T piece represents an option of what a type could be. It consists of a type constructor, a list of polymorphic parameters required for this option, the fields for this option, the entire subtree of the AST for this option unedited, and the type name again.
 I then used these data structures to perform these checks, and afterwards will transform them into a new data structure to perform type inferencing.

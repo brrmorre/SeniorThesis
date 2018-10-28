@@ -1,3 +1,4 @@
+\chapter{Multiple Module Support}
 The next step is to implement multiple modules into the Haskell semantics. Similar to including files or objects in other programming languages, Haskell modules can include other modules and use functions, types, and typeclasses declared in the module.
 There are a several considerations and additional checks that need to be made.
 Modules need to include other modules
@@ -7,6 +8,7 @@ When referencing types from other modules, there is a scope where
 if the user makes another type of the same name in the current module
 then when the user references the type, it refers to the type from the current module.
 For instance:
+\begin{lstlisting}
 File 1:
 module File1 where
 {data A = B
@@ -16,9 +18,11 @@ module File2 where
 {data A = B
 ;data C = B A
 }
+\end{lstlisting}
 	This will compile. The A used in data C is File2.A
 However, If there are multiple types with the same name declared outside of the current module. If you try to refer to the type without the parent module, there will be a compiler error because there is ambiguity.
 For instance:
+\begin{lstlisting}
 File 1:
 module File1 where
 {data A = B
@@ -33,6 +37,8 @@ module File3 where
 ;import File2
 ;data C = B A
 }
+\end{lstlisting}
+
 	This will not compile because in File 3, type A is ambiguous and can mean File1.A or File2.A
 Type synonyms need to include polymorphism
 For instance:

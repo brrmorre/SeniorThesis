@@ -1,3 +1,4 @@
+\chapter{Context Free Syntax}
 The Haskell 2010 report is the current official specification of the Haskell language. %https://www.haskell.org/onlinereport/haskell2010/
 The grammar specified in section 10.5 of the Haskell 2010 report is a specification of the expanded syntax of haskell.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-210002.7
@@ -9,16 +10,26 @@ Haskell has a context free grammar.
 	Section 10.1 specifies the notation used in the grammar.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17600010.1
 The notation of 10.1 are always in bold in the grammar. So
+\begin{lstlisting}
 qvarid -> [ modid . ] varid
+\end{lstlisting}
 Means that ‘modid .’ is optional, and the brackets ‘[ ]’ are not part of the haskell code, but the period ‘.’ is part of the haskell code. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
 There are a lot of parts of the grammar that were tricky for me to implement in K. For instance, a sort definition with an optional part could be just written using a ‘|’ in the K syntax. So 
+\begin{lstlisting}
 qvarid -> [ modid . ] varid
+\end{lstlisting}
 Is written in my K syntax as
+\begin{lstlisting}
 syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
+\end{lstlisting}
 However, an issue arises when you have something written like
+\begin{lstlisting}
 data [context =>] simpletype [= constrs] [deriving]
+\end{lstlisting}
 As an option for the definition of the topdecl sort. What I did was, for each optional part, replace the optional part with a new sort. For instance, I replaced [ context => ] with a new sort called OptContext. Then I just specified
+\begin{lstlisting}
 syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
+\end{lstlisting}
 I ran into an issue where floats and integers did not parse correctly. They caused parsing errors due to ambiguity of parsing. For example the number 123.45 had ambiguity where the parser did not know if 1, 12, or 123 where integers, and if 5 was an integer, or if the entire thing was one float. Normally in K, different tokens are separated with whitespaces. However, for some reason the parser had difficulty here. Initially, I added a workaround by requiring parentheses around each function application and pattern. So for functions f, y, and z, if we were to write f applied to y applied to z applied to 2, we would normally write...
 f y z 2
 With the parentheses notation it looked like
@@ -27,4 +38,6 @@ This caused the programs to quickly look unreadable. So I instead opted to only 
 f y z (2)
 This fixed the issue.
 I ran into another issue where a program with a variable called ‘size’ did not parse. I found out that this is because ‘size’ is a k keyword. So I just specified that a variable could be a variable token, or “size”.
+\begin{lstlisting}
 syntax VarId ::= Token{[a-z\_][a-z A-Z\_0-9\']*} [onlyLabel] | "size" [onlyLabel]
+\end{lstlisting}
