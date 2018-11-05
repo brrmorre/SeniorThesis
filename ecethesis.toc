@@ -3,14 +3,17 @@
 \contentsline {chapter}{\MakeUppercase {LIST OF ABBREVIATIONS}}{vii}
 \contentsline {chapter}{CHAPTER\ 1\hskip 1em\relax \MakeUppercase {Introduction}}{1}
 \contentsline {chapter}{CHAPTER\ 2\hskip 1em\relax \MakeUppercase {Context Free Syntax}}{3}
-\contentsline {chapter}{CHAPTER\ 3\hskip 1em\relax \MakeUppercase {Context Sensitive Checks}}{5}
-\contentsline {chapter}{CHAPTER\ 4\hskip 1em\relax \MakeUppercase {Multiple Module Support}}{7}
-\contentsline {chapter}{CHAPTER\ 5\hskip 1em\relax \MakeUppercase {Inferencing}}{9}
-\contentsline {section}{\numberline {5.1}Data Structures}{9}
-\contentsline {subsection}{\numberline {5.1.1}Inferencing Rules}{10}
-\contentsline {section}{\numberline {5.2}Lambda Calculus}{10}
-\contentsline {section}{\numberline {5.3}Type theory}{10}
-\contentsline {section}{\numberline {5.4}Hindley-Milner}{10}
-\contentsline {section}{\numberline {5.5}Inferencing Algorithm}{10}
-\contentsline {subsection}{\numberline {5.5.1}Unification Algorithm}{11}
-\contentsline {chapter}{CHAPTER\ 6\hskip 1em\relax \MakeUppercase {Conclusion}}{12}
+\contentsline {chapter}{CHAPTER\ 3\hskip 1em\relax \MakeUppercase {Configuration}}{10}
+\contentsline {chapter}{CHAPTER\ 4\hskip 1em\relax \MakeUppercase {Context Sensitive Checks}}{11}
+\contentsline {chapter}{CHAPTER\ 5\hskip 1em\relax \MakeUppercase {Multiple Module Support}}{22}
+\contentsline {chapter}{CHAPTER\ 6\hskip 1em\relax \MakeUppercase {Inferencing}}{24}
+\contentsline {section}{\numberline {6.1}Data Structures}{24}
+\contentsline {subsection}{\numberline {6.1.1}Inferencing Rules}{25}
+\contentsline {section}{\numberline {6.2}Type theory}{25}
+\contentsline {section}{\numberline {6.3}Lambda Calculus}{25}
+\contentsline {section}{\numberline {6.4}Hindley-Milner}{26}
+\contentsline {section}{\numberline {6.5}Definition of Substitution}{26}
+\contentsline {section}{\numberline {6.6}Composition of Substitutions}{26}
+\contentsline {section}{\numberline {6.7}Inferencing Algorithm}{26}
+\contentsline {subsection}{\numberline {6.7.1}Unification Algorithm}{30}
+\contentsline {chapter}{CHAPTER\ 7\hskip 1em\relax \MakeUppercase {Conclusion}}{32}

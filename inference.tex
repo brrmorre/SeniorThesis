@@ -56,13 +56,21 @@ Haskell's type system is a Hindley-Milner polymorphic type system that has been 
 A type system is a set of rules that assign a property to various constructs in a programming language called type. A type is a property that allows the programmer to add constraints to programs.
 %[https://en.wikipedia.org/wiki/Type_system]
 
-\section{Lambda Calculus}
-
 \section{Type theory}
 Type theory was created by Bertrand Russell to prevent Russell's Paradox for set theory, introduced by Georg Cantor. The issue was that not specifying a certain property for sets allowed sets to contain themselves in Naive Set Theory. So Bertrand Russell prevented this problem by specifying a property called type for objects, and objects cannot contain their own type.
 %[https://plato.stanford.edu/entries/type-theory/]
 
+\section{Lambda Calculus}
+The Lambda Calculus was created to
+
 \section{Hindley-Milner}
+
+\section{Definition of Substitution}
+A substitution is a set of variables and their replacements. Applying a substitution to an expression means to simultaneously replace each variable in the expression with the replacement term.
+
+[http://www.mathcs.duq.edu/simon/Fall04/notes-7-4/node3.html]
+
+\section{Composition of Substitutions}
 
 \section{Inferencing Algorithm}
 
@@ -107,6 +115,293 @@ Type theory was created by Bertrand Russell to prevent Russell's Paradox for set
 
 [cs 421 gather exp ty substitution mp]
 
+\begin{lstlisting}
+requires "haskell-syntax.k"
+requires "haskell-configuration.k"
+requires "haskell-preprocessing.k"
+
+module HASKELL-TYPE-INFERENCING
+    imports HASKELL-SYNTAX
+    imports HASKELL-CONFIGURATION
+    imports HASKELL-PREPROCESSING
+
+    syntax KItem ::= "Bool" //Boolean
+
+    // STEP 4 Type Inferencing
+    syntax KItem ::= inferenceShell(K) [function]//Input, AlphaMap, Beta, Delta, Gamma
+    //syntax KItem ::= typeInferenceFun(K,Map,Map,Map,Map,K,K) [function]//Input, Alpha, Beta, Delta, Gamma
+    //syntax KItem ::= typeInferenceFun(Map,K,K) //Gamma, Expression, Guessed Type
+    syntax Map ::= genGamma(K,Map,K) [function] //Apatlist, Gamma Type
+    syntax KItem ::= genLambda(K,K) [function]
+    syntax KItem ::= guessType(Int)
+//    syntax KItem ::= lambdaReturn(K,K,K)
+    syntax KItem ::= freshInstance(K, Int) [function]
+    syntax Int ::= paramSize(K) [function]
+
+
+    syntax KItem ::= mapBag(Map)
+    syntax KResult ::= mapBagResult(Map)
+
+    syntax Map ::= gammaSub(Map,Map,Map) [function]//substitution, gamma
+
+    rule <k> performIndividualInferencing => inferenceShell(Code) ...</k>
+         <tempModule> Mod:KItem </tempModule>
+
+         <moduleName> 'moduleName(Mod) </moduleName>
+         <moduleTempCode> Code:KItem </moduleTempCode>
+
+    rule inferenceShell('topdeclslist('type(A:K,, B:K),, Rest:K)) =>
+         inferenceShell(Rest) //constructalpha
+    rule inferenceShell('topdeclslist('data(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('newtype(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('class(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('instance(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('default(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('foreign(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+
+    rule inferenceShell('topdeclslist('topdecldecl(A:K),, Rest:K)) =>
+         typeInferenceFun(.ElemList, .Map,A,guessType(0)) ~> inferenceShell(Rest)
+
+
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'declFunLhsRhs(Fn:K,, Lhsrhs:K), Guess:K) =>
+         typeInferenceFun(.ElemList, Gamma, Lhsrhs, Guess) ...</k>
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'eqExpOptDecls(Ex:K,, Optdecls:K), Guess:K) =>
+         typeInferenceFun(.ElemList, Gamma, Ex, Guess) ...</k>
+
+    //T-App
+    //rule typeInferenceFun('aexpQVar(Var:K), Alpha:Map, Beta:Map, Delta:Map, (Var |-> Sigma:K) Gamma:Map,.K,.K) => Sigma
+    //Gamma Proves x:phi(tau) if Gamma(x) = \forall alpha_1, ..., alpha_n . tau
+    //where phi replaces all occurrences of alpha_1, ..., alpha_n by monotypes tau_1, ..., tau_n
+
+    rule <k> typeInferenceFun(.ElemList, (Var |-> Type:K) Gamma:Map, 'aexpQVar(Var:K), Guess:KItem)
+          => mapBagResult(uniFun(ListItem(uniPair(Guess,freshInstance(Type, TypeIt))))) ...</k> //Variable rule
+         <typeIterator> TypeIt:Int => TypeIt +Int paramSize(Type) </typeIterator>
+\end{lstlisting}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{Constant}
+\UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
+\end{prooftree}
+
+\begin{lstlisting}
+
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'aexpGCon('conTyCon(Mid:K,, Gcon:K)), Guess:KItem)
+          => mapBagResult(uniFun(ListItem(uniPair(Guess,freshInstance(Type, TypeIt))))) ...</k> //Constant rule
+         <tempBeta> (ModPlusType(Mid,Gcon) |-> Type:K) Beta:Map </tempBeta>
+         <typeIterator> TypeIt:Int => TypeIt +Int paramSize(Type) </typeIterator>
+         
+\end{lstlisting}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{Variable}
+\UnaryInfC{$\Gamma \vdash x : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\Gamma(x)))\}$}
+\end{prooftree}
+
+\begin{lstlisting}
+
+   syntax KItem ::= typeInferenceFun(ElemList, Map, K, K) [strict(1)]
+   syntax KItem ::= typeInferenceFunLambda(ElemList, K, K, K) [strict(1)]
+/* automatically generated by the strict(1) in typeInferenceFun or typeInferenceFunAux
+   rule typeInferenceFunAux(Es:ElemList, C:K, A:K, B:K) => Es ~> typeInferenceFun(HOLE, C, A, B)
+        requires notBool isKResult(Es)
+   rule Es:KResult ~> typeInferenceFunAux(HOLE, C:K,A:K, B:K) => typeInferenceFun(Es, C, A, B)
+*/     
+
+    //lambda rule
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'lambdaFun(Apatlist:K,, Ex:K), Guess:KItem)
+          => typeInferenceFunLambda(val(typeInferenceFun(.ElemList, genGamma(Apatlist,Gamma,guessType(TypeIt)), genLambda(Apatlist,Ex), guessType(TypeIt +Int 1))), .ElemList, Guess, guessType(TypeIt),guessType(TypeIt +Int 1)) ...</k>
+         <typeIterator> TypeIt:Int => TypeIt +Int 2 </typeIterator>
+
+    rule <k> typeInferenceFunLambda(valValue(mapBagResult(Sigma:Map)), .ElemList, Tau:K, Tauone:K, Tautwo:K)
+         => mapBagResult(compose(uniFun(ListItem(uniPair(typeSub(Sigma,Tau),typeSub(Sigma,funtype(Tauone,Tautwo))))),Sigma)) ...</k>
+    
+\end{lstlisting}
+
+\begin{prooftree}
+\AxiomC{$[x : \tau_1] + \Gamma \vdash e : \tau_2 \, | \, \sigma$}
+\RightLabel{Lambda}
+\UnaryInfC{$\Gamma \vdash \text{\textbackslash \, x \textrightarrow \, e}: \tau \, | \, \text{unify}\{ ( \sigma(\tau) , \sigma(\tau_1 \rightarrow \tau_2)) \} \circ \sigma$}
+\end{prooftree}
+
+\begin{lstlisting}
+
+    syntax KItem ::= typeInferenceFunAppli(ElemList, Map, K, K, Map) [strict(1)]
+
+    //application rule
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'funApp(Eone:K,, Etwo:K), Guess:KItem)
+          => typeInferenceFunAppli(val(typeInferenceFun(.ElemList, Gamma, Eone, funtype(guessType(TypeIt),Guess))), .ElemList, Gamma, Etwo, guessType(TypeIt), .Map) ...</k>
+         <typeIterator> TypeIt:Int => TypeIt +Int 1 </typeIterator>
+
+    rule <k> typeInferenceFunAppli(valValue(mapBagResult(Sigmaone:Map)), .ElemList, Gamma:Map, Etwo:KItem, guessType(TypeIt:Int), .Map)
+          => typeInferenceFunAppli(val(typeInferenceFun(.ElemList, gammaSub(Sigmaone, Gamma, .Map), Etwo, typeSub(Sigmaone, guessType(TypeIt)))), .ElemList, .Map, .K, .K, Sigmaone) ...</k>
+
+    rule <k> typeInferenceFunAppli(valValue(mapBagResult(Sigmatwo:Map)), .ElemList, .Map, .K, .K, Sigmaone:Map)
+          => mapBagResult(compose(Sigmatwo, Sigmaone)) ...</k>
+
+\end{lstlisting}
+
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
+\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau_1) \, | \, \sigma_2$}
+\RightLabel{Application}
+\BinaryInfC{$\Gamma \vdash e_1 e_2 : \tau \, | \, \sigma_2 \circ \sigma_1$}
+\end{prooftree}
+
+\begin{lstlisting}
+
+    syntax KItem ::= typeInferenceFunIfThen(ElemList, Map, K, K, K, Map, Map) [strict(1)]
+
+    //if_then_else rule
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'ifThenElse(Eone:K,, Optsem:K,, Etwo:K,, Optsemtwo:K,, Ethree:K), Guess:KItem)
+          => typeInferenceFunIfThen(val(typeInferenceFun(.ElemList, Gamma, Eone, Bool)), .ElemList, Gamma, Etwo, Ethree, Guess, .Map, .Map) ...</k>
+
+    rule <k> typeInferenceFunIfThen(valValue(mapBagResult(Sigmaone:Map)), .ElemList, Gamma:Map, Etwo:KItem, Ethree:KItem, Guess:KItem, .Map, .Map)
+          => typeInferenceFunIfThen(val(typeInferenceFun(.ElemList, gammaSub(Sigmaone, Gamma, .Map), Etwo, typeSub(Sigmaone, Guess))), .ElemList, Gamma, .K, Ethree, Guess, Sigmaone, .Map) ...</k>
+
+    rule <k> typeInferenceFunIfThen(valValue(mapBagResult(Sigmatwo:Map)), .ElemList, Gamma:Map, .K, Ethree:KItem, Guess:KItem, Sigmaone:Map, .Map)
+          => typeInferenceFunIfThen(val(typeInferenceFun(.ElemList, gammaSub(compose(Sigmatwo, Sigmaone), Gamma, .Map), Ethree, typeSub(compose(Sigmatwo, Sigmaone), Guess))), .ElemList, .Map, .K, .K, .K, Sigmaone, Sigmatwo) ...</k>
+
+    rule <k> typeInferenceFunIfThen(valValue(mapBagResult(Sigmathree:Map)), .ElemList, .Map, .K, .K, .K, Sigmaone:Map, Sigmatwo:Map)
+          => mapBagResult(compose(compose(Sigmathree, Sigmatwo), Sigmaone)) ...</k>
+          
+\end{lstlisting}
+
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash e_1 : \text{bool} \, | \, \sigma_1$}
+\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau) \, | \, \sigma_2$}
+\AxiomC{$\sigma_2 \circ \sigma_1(\Gamma) \vdash e_3 : \sigma_2 \circ \sigma_1(\tau) \, | \, \sigma_3$}
+\RightLabel{IfThenElse}
+\TrinaryInfC{$\Gamma \vdash \text{if} \, e_1 \, \text{then} \, e_2 \, \text{else} \, e_3 : \tau \, | \, \sigma_3 \circ \sigma_2 \circ \sigma_1$}
+\end{prooftree}
+
+\begin{lstlisting}
+
+    syntax KItem ::= typeInferenceFunLetIn(ElemList, Map, Map, K, K, K, Int, Int, Map, Map) [strict(1)]
+    syntax KItem ::= grabLetDeclName(K, Int) [function]
+    syntax KItem ::= grabLetDeclExp(K, Int) [function]
+    syntax KItem ::= mapLookup(Map, K) [function]
+    syntax Map ::= makeDeclMap(K, Int, Map) [function]
+    syntax Map ::= applyGEN(Map, Map, Map, Map) [function]
+
+    //Haskell let in rule (let rec in exp + let in rule combined)
+    //gamma |- let rec f1 = e1 and f2 = e2 and f3 = e3 .... in e =>
+    //beta, [f1 -> tau1, f2 -> tau2, f3 -> tau3,....] + gamma |- e1 : tau1 | sigma1,  [f1 -> simga1(tau1), f2 -> sigma1(tau2), f3 -> sigma1(tau3),....] + sigma1(gamma) |- e2 : sigma1(tau2) | sigma2  [f1 -> sigma2 o sigma1(tau1), f2 -> sigma2 o sigma1(tau2), f3 -> sigma2 o sigma1(tau3),....] + sigma2 o sigma1(gamma) |- e3 : sigma2 o sigma1(tau3) .....  [f1 -> gen(sigma_n o sigma2 o sigma1(tau1), sigma_n o sigma2 o sigma1(Gamma)), f2 -> gen(tau2), f3 -> gen(tau3),....] + gamma |- e : something
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'letIn(D:K,, E:K), Guess:KItem)
+          => typeInferenceFunLetIn(.ElemList, Gamma, makeDeclMap(D, TypeIt, .Map), D, E, Guess, 0, TypeIt, .Map, Beta) ...</k>
+         <typeIterator> TypeIt:Int => TypeIt +Int size(makeDeclMap(D, TypeIt, .Map)) </typeIterator>
+         <tempBeta> Beta:Map </tempBeta>
+
+    rule <k> typeInferenceFunLetIn(.ElemList, Gamma:Map, DeclMap:Map, D:KItem, E:KItem, Guess:KItem, Iter:Int, TypeIt:Int, OldSigma:Map, Beta:Map)
+           => typeInferenceFunLetIn(val(typeInferenceFun(.ElemList, Gamma DeclMap, grabLetDeclExp(D, Iter), mapLookup(DeclMap, grabLetDeclName(D, Iter)))), .ElemList, Gamma, DeclMap, D, E, Guess, Iter, TypeIt, OldSigma, Beta) ...</k>
+          //=> typeInferenceFunLetIn(val(typeInferenceFun(DeclMap, grabLetDeclExp(D, Iter +Int TypeIt), Guess)), .ElemList, Gamma, DeclMap, D, E, Guess, Iter, TypeIt, OldSigma) ...</k>
+          requires Iter <Int (size(DeclMap))
+
+    rule <k> typeInferenceFunLetIn(valValue(mapBagResult(Sigma:Map)), .ElemList, Gamma:Map, DeclMap:Map, D:KItem, E:KItem, Guess:KItem, Iter:Int, TypeIt:Int, OldSigma:Map, Beta:Map)
+          => typeInferenceFunLetIn(.ElemList, gammaSub(Sigma,Gamma,.Map), gammaSub(Sigma, DeclMap,.Map), D, E, typeSub(Sigma, Guess), Iter +Int 1, TypeIt, compose(Sigma,OldSigma), Beta) ...</k>
+          requires Iter <Int (size(DeclMap))
+
+    rule <k> typeInferenceFunLetIn(.ElemList, Gamma:Map, DeclMap:Map, D:KItem, E:KItem, Guess:KItem, Iter:Int, TypeIt:Int, OldSigma:Map, Beta:Map)
+          => typeInferenceFunLetIn(val(typeInferenceFun(.ElemList, Gamma applyGEN(Gamma, DeclMap, .Map, Beta), E, Guess)), .ElemList, Gamma, DeclMap, D, E, Guess, Iter, TypeIt, OldSigma, Beta) ...</k>
+          requires Iter >=Int (size(DeclMap))
+
+    rule <k> typeInferenceFunLetIn(valValue(mapBagResult(Sigma:Map)), .ElemList, Gamma:Map, DeclMap:Map, D:KItem, E:KItem, Guess:KItem, Iter:Int, TypeIt:Int, OldSigma:Map, Beta:Map)
+          => mapBagResult(compose(Sigma, OldSigma))...</k>
+          requires Iter >=Int (size(DeclMap))
+          
+          
+\end{lstlisting}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{LetIn}
+\UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
+\end{prooftree}
+
+\begin{lstlisting}
+
+    rule mapLookup((Name |-> Type:KItem) DeclMap:Map, Name:KItem) => Type
+    rule mapLookup(DeclMap:Map, Name:KItem) => Name
+         requires notBool(Name in keys(DeclMap))
+
+    rule makeDeclMap('decls(Dec:K), TypeIt:Int, NewMap:Map) => makeDeclMap(Dec, TypeIt, NewMap)
+    rule makeDeclMap('declsList('declPatRhs('apatVar(Var:K),, Righthand:K),, Rest:K), TypeIt:Int, NewMap:Map) => makeDeclMap('decls(Rest), TypeIt +Int 1, NewMap[Var <- guessType(TypeIt)])
+    rule makeDeclMap(.DeclsList, TypeIt:Int, NewMap:Map) => NewMap
+
+    rule grabLetDeclName('decls(Dec:K), Iter:Int) => grabLetDeclName(Dec, Iter)
+    rule grabLetDeclName('declsList(Dec:K,, Rest:K), Iter:Int) => grabLetDeclName(Rest, Iter -Int 1)
+         requires Iter >Int 0
+    rule grabLetDeclName('declsList('declPatRhs('apatVar(Var:K),, Righthand:K),, Rest:K), Iter:Int) => Var
+         requires Iter <=Int 0
+
+
+    rule grabLetDeclExp('decls(Dec:K), Iter:Int) => grabLetDeclExp(Dec, Iter)
+    rule grabLetDeclExp('declsList(Dec:K,, Rest:K), Iter:Int) => grabLetDeclExp(Rest, Iter -Int 1)
+         requires Iter >Int 0
+    rule grabLetDeclExp('declsList('declPatRhs('apatVar(Var:K),, Righthand:K),, Rest:K), Iter:Int) => grabLetDeclExp(Righthand, Iter)
+         requires Iter <=Int 0
+    rule grabLetDeclExp('eqExpOptDecls(Righthand:K,, Opt:K), Iter:Int) => 'eqExpOptDecls(Righthand,, Opt)
+
+    rule genGamma('apatVar(Vari:K), Gamma:Map, Guess:K) => Gamma[Vari <- Guess]
+    rule genGamma('apatCon(Vari:K,, Pattwo:K), Gamma:Map, Guess:K) => Gamma[Vari <- Guess]
+
+    rule genLambda('apatVar(Vari:K), Ex:K) => Ex
+    rule genLambda('apatCon(Vari:K,, Pattwo:K), Ex:K) => 'lambdaFun(Pattwo,, Ex)
+
+
+    rule gammaSub(Sigma:Map, (Key:KItem |-> Type:KItem) Gamma:Map, Newgamma:Map)
+        => gammaSub(Sigma, Gamma, Newgamma[Key <- typeSub(Sigma, Type) ] )
+
+    rule gammaSub(Sigma:Map, .Map, Newgamma:Map)
+      => Newgamma
+
+    rule freshInstance(guessType(TypeIt:Int), Iter:Int) => guessType(TypeIt)
+    rule freshInstance(forAll(.Set, B:K), Iter:Int) => B
+    rule freshInstance(forAll(SetItem(C:KItem) A:Set, B:K), Iter:Int) => freshInstance(forAll(A, freshInstanceInner(C, B, Iter)), Iter +Int 1)
+
+    syntax KItem ::= freshInstanceInner(K,K,Int) [function]
+
+    rule freshInstanceInner(Repl:KItem, funtype(A:K, B:K), Iter:Int) => funtype(freshInstanceInner(Repl,A,Iter),freshInstanceInner(Repl,B,Iter))
+    rule freshInstanceInner(Repl:KItem, Repl, Iter:Int) => guessType(Iter)
+    rule freshInstanceInner(Repl:KItem, Target:KItem, Iter:Int) => Target [owise]
+
+    rule paramSize(forAll(A:Set, B:K)) => size(A)
+    rule paramSize(A:K) => 0 [owise]
+
+
+     rule applyGEN(Gamma:Map, (Key:KItem |-> Type:KItem) DeclMap:Map, NewMap:Map, Beta:Map)
+       => applyGEN(Gamma, DeclMap, NewMap[Key <- gen(Gamma, Type, Beta)], Beta)
+
+     rule applyGEN(Gamma:Map, .Map, NewMap:Map, Beta:Map)
+       => NewMap
+
+    //GEN
+    //GEN(Gamma, Tau) => Forall alpha
+
+    syntax KItem ::= gen(Map, K, Map) [function]
+    syntax Set ::= freeVarsTy(K, Map) [function]
+    syntax Set ::= freeVarsEnv(Map, Map) [function]
+
+
+    rule gen(Gamma:Map, forAll(Para:Set, Tau:KItem), Beta:Map) => forAll(freeVarsTy(forAll(Para:Set, Tau), Beta) -Set freeVarsEnv(Gamma, Beta), Tau)
+    rule gen(Gamma:Map, Tau:KItem, Beta:Map) => forAll(freeVarsTy(Tau, Beta) -Set freeVarsEnv(Gamma, Beta), Tau) [owise]
+
+    //rule gen(Gamma:Map, forAll(Para:Set, Tau:KItem), Beta:Map) => forAll(freeVarsTy(forAll(Para:Set, Tau), Beta) -Set freeVarsEnv(Gamma, Beta), Tau)
+
+    rule freeVarsTy(guessType(TypeIt:Int), Beta:Map) => SetItem(guessType(TypeIt:Int))
+    rule freeVarsTy(funtype(Tauone:KItem, Tautwo:KItem), Beta:Map) => freeVarsTy(Tauone, Beta) freeVarsTy(Tautwo, Beta)
+    rule freeVarsTy(Tau:KItem, Beta:Map) => .Set
+         requires (forAll(.Set, Tau)) in values(Beta)
+    rule freeVarsTy(forAll(Para:Set, Tau:KItem), Beta:Map) => freeVarsTy(Tau, Beta) -Set Para
+    rule freeVarsEnv(Gamma:Map, Beta:Map) => listToSet(values(Beta), .Set)
+\end{lstlisting}
 \subsection{Unification Algorithm}
 
 Let $S = \{(s_1 , t_1), (s_2 , t_2), \cdots, (s_n , t_n)\}$ be a
@@ -142,3 +437,61 @@ Note: {x |→ a} o {y |→ b} =
 in a
 
 [cs 421 class notes]
+\begin{lstlisting}
+    //Unification
+
+    syntax Map ::= uniFun(List) [function]
+    syntax Bool ::= isVarType(K) [function]
+    syntax Bool ::= notChildVar(K,K) [function]
+    syntax KItem ::= uniPair(K,K)
+
+    syntax List ::= uniSub(Map,K) [function] //apply substitution to unification
+
+    syntax KItem ::= typeSub(Map,K) [function] //apply substitution to type
+    syntax Map ::= compose(Map,Map) [function]
+
+    rule uniFun(.List) => .Map //substi(.K,.K) is id substitution
+
+    rule uniFun(ListItem(uniPair(S:K,S)) Rest:List) => uniFun(Rest)  //delete rule
+
+    rule uniFun(ListItem(uniPair(S:K,T:K)) Rest:List) => uniFun(ListItem(uniPair(T,S)) Rest) //orient rule
+         requires isVarType(T) andBool (notBool isVarType(S))
+
+    rule uniFun(ListItem(uniPair(funtype(A:K, B:K), funtype(C:K, D:K))) Rest:List) => uniFun(ListItem(uniPair(A, C)) ListItem(uniPair(B, D)) Rest:List) //decompose rule function type
+
+    rule uniFun(ListItem(uniPair(S:K,T:K)) Rest:List) 
+      => compose((S |-> typeSub(uniFun(uniSub((S |-> T),Rest)),T)),uniFun(uniSub((S |-> T),Rest))) //eliminate rule
+    //  => compose(uniFun(uniSub((S |-> T),Rest)),(S |-> typeSub(uniFun(uniSub((S |-> T),Rest)),T))) //eliminate rule
+         requires isVarType(S) andBool notChildVar(S,T)
+
+    rule isVarType(S:K) => true
+         requires getKLabel(S) ==KLabel 'guessType
+    rule isVarType(S:K) => false [owise]
+
+    rule notChildVar(S:K,T:K) => true
+
+    rule uniSub(Sigma:Map,.List) => .List
+    rule uniSub(.Map,L:List) => L
+    rule uniSub(Sigma:Map, Rest:List ListItem(uniPair(A:K, B:K))) => uniSub(Sigma, Rest) ListItem(uniPair(typeSub(Sigma, A), typeSub(Sigma, B)))
+
+    //rule typeSub(substi(.Map),Tau:KItem) => Tau
+    rule typeSub(Sigma:Map (Tau |-> Newtau:KItem),Tau:KItem) => typeSub(Sigma (Tau |-> Newtau),Newtau)
+    rule typeSub(Sigma:Map,funtype(Tauone:KItem,Tautwo:KItem)) => funtype(typeSub(Sigma,Tauone),typeSub(Sigma,Tautwo))
+    rule typeSub(Sigma:Map,Tau:KItem) => Tau [owise]
+
+    syntax Map ::= composeIn(Map, Map, Map, K, K) [function]
+
+    rule compose(Sigmaone:Map, Sigmatwo:Map) => composeIn(Sigmaone, Sigmatwo, .Map, .K, .K)
+
+    rule composeIn(Sigmaone:Map, (Key:KItem |-> Type:KItem) Sigmatwo:Map, NewMap:Map, .K, .K) => composeIn(Sigmaone, Sigmatwo, NewMap, Key, Type)
+
+    rule composeIn((Keyone |-> Typetwo:KItem) Sigmaone:Map, Sigmatwo:Map, NewMap:Map, Keyone:KItem, Typeone:KItem) => composeIn(Sigmaone, Sigmatwo, NewMap, Keyone, Typeone)
+
+    rule composeIn((Typeone |-> Typetwo:KItem) Sigmaone:Map, Sigmatwo:Map, NewMap:Map, Keyone:KItem, Typeone:KItem) => composeIn((Typeone |-> Typetwo) Sigmaone, Sigmatwo, NewMap[Keyone <- Typetwo], .K, .K)
+         requires notBool(Keyone in keys(Sigmaone))
+
+    rule composeIn(Sigmaone:Map, Sigmatwo:Map, NewMap:Map, Keyone:KItem, Typeone:KItem) => composeIn(Sigmaone, Sigmatwo, NewMap[Keyone <- Typeone], .K, .K) [owise]
+
+    rule composeIn(Sigmaone:Map, .Map, NewMap:Map, .K, .K) => Sigmaone NewMap
+endmodule
+\end{lstlisting}

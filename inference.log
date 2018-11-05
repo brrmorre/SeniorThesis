@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  27 OCT 2018 20:26
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.1.9)  28 OCT 2018 19:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -830,8 +830,71 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no . in font nullfont!
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.24 A
+       polymorphic data type looks like $\forall a b c, (a \rightarrow b) \r...
+
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no A in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 24--25
+[]
+ []
+
+
+Overfull \hbox (45.8576pt too wide) in paragraph at lines 24--25
+\OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 abc; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 a \OM
+S/cmsy/m/n/10 !
+ []
+
+
+Overfull \hbox (20.95828pt too wide) in paragraph at lines 24--25
+\OML/cmm/m/it/10 b\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 !
+ []
+
+
+Overfull \hbox (4.32756pt too wide) in paragraph at lines 24--25
+\OML/cmm/m/it/10 c$ 
+ []
+
 ! Undefined control sequence.
-l.24 \subsection
+l.26 \subsection
                 {Inferencing Rules}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -846,7 +909,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.24 \subsection{I
+l.26 \subsection{I
                   nferencing Rules}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -868,7 +931,7 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no s in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 24--25
+Overfull \hbox (20.0pt too wide) in paragraph at lines 26--27
 []
  []
 
@@ -879,14 +942,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.26 \begin{prooftree}
+l.28 \begin{prooftree}
                       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.27 \AxiomC
+l.29 \AxiomC
             {Hyp}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -901,7 +964,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.27 \AxiomC{H
+l.29 \AxiomC{H
               yp}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -910,7 +973,7 @@ Missing character: There is no H in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no p in font nullfont!
 ! Undefined control sequence.
-l.28 \UnaryInfC
+l.30 \UnaryInfC
                {$\{A \land B\} \vdash A \land B$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -919,7 +982,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.29 \AxiomC
+l.31 \AxiomC
             {Hyp}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -931,7 +994,7 @@ Missing character: There is no H in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no p in font nullfont!
 ! Undefined control sequence.
-l.30 \UnaryInfC
+l.32 \UnaryInfC
                {$\{A \land B\} \cup \{B\} \vdash B$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -940,7 +1003,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.31 \RightLabel
+l.33 \RightLabel
                 {And$_R$ E}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -953,29 +1016,8 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no E in font nullfont!
 ! Undefined control sequence.
-l.32 \BinaryInfC
+l.34 \BinaryInfC
                 {$\{A \land B\} \vdash B$}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-l.33 \AxiomC
-            {Hyp}
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-Missing character: There is no H in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no p in font nullfont!
-! Undefined control sequence.
-l.34 \UnaryInfC
-               {$\{A \land B\} \vdash A \land B$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -996,6 +1038,27 @@ Missing character: There is no y in font nullfont!
 Missing character: There is no p in font nullfont!
 ! Undefined control sequence.
 l.36 \UnaryInfC
+               {$\{A \land B\} \vdash A \land B$}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.37 \AxiomC
+            {Hyp}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no H in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
+! Undefined control sequence.
+l.38 \UnaryInfC
                {$\{A \land B\} \cup \{A\} \vdash A$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1004,7 +1067,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.37 \RightLabel
+l.39 \RightLabel
                 {And$_L$ E}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1017,7 +1080,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no E in font nullfont!
 ! Undefined control sequence.
-l.38 \BinaryInfC
+l.40 \BinaryInfC
                 {$\{A \land B\} \vdash A$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1026,7 +1089,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.39 \RightLabel
+l.41 \RightLabel
                 {And I}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1039,7 +1102,7 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no I in font nullfont!
 ! Undefined control sequence.
-l.40 \BinaryInfC
+l.42 \BinaryInfC
                 {$\{A \land B\} \vdash B \land A$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1048,7 +1111,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.41 \RightLabel
+l.43 \RightLabel
                 {Imp I}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1061,7 +1124,7 @@ Missing character: There is no m in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no I in font nullfont!
 ! Undefined control sequence.
-l.42 \UnaryInfC
+l.44 \UnaryInfC
                {$\{\} \vdash A \land B \Rightarrow B \land A$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1076,179 +1139,179 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.43 \end{prooftree}
+l.45 \end{prooftree}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 27--44
+Overfull \hbox (20.0pt too wide) in paragraph at lines 29--46
 []
  []
 
 
-Overfull \hbox (19.16672pt too wide) in paragraph at lines 27--44
+Overfull \hbox (19.16672pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (21.97565pt too wide) in paragraph at lines 27--44
+Overfull \hbox (21.97565pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 g `
  []
 
 
-Overfull \hbox (14.1667pt too wide) in paragraph at lines 27--44
+Overfull \hbox (14.1667pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (8.0868pt too wide) in paragraph at lines 27--44
+Overfull \hbox (8.0868pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B$
  []
 
 
-Overfull \hbox (19.16672pt too wide) in paragraph at lines 27--44
+Overfull \hbox (19.16672pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (19.75351pt too wide) in paragraph at lines 27--44
+Overfull \hbox (19.75351pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 g [
  []
 
 
-Overfull \hbox (26.97566pt too wide) in paragraph at lines 27--44
+Overfull \hbox (26.97566pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 g `
  []
 
 
-Overfull \hbox (8.0868pt too wide) in paragraph at lines 27--44
+Overfull \hbox (8.0868pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B$
  []
 
 
-Overfull \hbox (6.56009pt too wide) in paragraph at lines 27--44
+Overfull \hbox (6.56009pt too wide) in paragraph at lines 29--46
 []$
  []
 
 
-Overfull \hbox (19.16672pt too wide) in paragraph at lines 27--44
+Overfull \hbox (19.16672pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (21.97565pt too wide) in paragraph at lines 27--44
+Overfull \hbox (21.97565pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 g `
  []
 
 
-Overfull \hbox (8.0868pt too wide) in paragraph at lines 27--44
+Overfull \hbox (8.0868pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B$
  []
 
 
-Overfull \hbox (19.16672pt too wide) in paragraph at lines 27--44
+Overfull \hbox (19.16672pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (21.97565pt too wide) in paragraph at lines 27--44
+Overfull \hbox (21.97565pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 g `
  []
 
 
-Overfull \hbox (14.1667pt too wide) in paragraph at lines 27--44
+Overfull \hbox (14.1667pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (8.0868pt too wide) in paragraph at lines 27--44
+Overfull \hbox (8.0868pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B$
  []
 
 
-Overfull \hbox (19.16672pt too wide) in paragraph at lines 27--44
+Overfull \hbox (19.16672pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (19.75351pt too wide) in paragraph at lines 27--44
+Overfull \hbox (19.75351pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 g [
  []
 
 
-Overfull \hbox (26.38887pt too wide) in paragraph at lines 27--44
+Overfull \hbox (26.38887pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 A\OMS/cmsy/m/n/10 g `
  []
 
 
-Overfull \hbox (7.50002pt too wide) in paragraph at lines 27--44
+Overfull \hbox (7.50002pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 A$
  []
 
 
-Overfull \hbox (5.98615pt too wide) in paragraph at lines 27--44
+Overfull \hbox (5.98615pt too wide) in paragraph at lines 29--46
 []$
  []
 
 
-Overfull \hbox (19.16672pt too wide) in paragraph at lines 27--44
+Overfull \hbox (19.16672pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (21.97565pt too wide) in paragraph at lines 27--44
+Overfull \hbox (21.97565pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 g `
  []
 
 
-Overfull \hbox (7.50002pt too wide) in paragraph at lines 27--44
+Overfull \hbox (7.50002pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 A$
  []
 
 
-Overfull \hbox (19.16672pt too wide) in paragraph at lines 27--44
+Overfull \hbox (19.16672pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (21.97565pt too wide) in paragraph at lines 27--44
+Overfull \hbox (21.97565pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B\OMS/cmsy/m/n/10 g `
  []
 
 
-Overfull \hbox (14.7535pt too wide) in paragraph at lines 27--44
+Overfull \hbox (14.7535pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (7.50002pt too wide) in paragraph at lines 27--44
+Overfull \hbox (7.50002pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 A$
  []
 
 
-Overfull \hbox (18.88885pt too wide) in paragraph at lines 27--44
+Overfull \hbox (18.88885pt too wide) in paragraph at lines 29--46
 \OMS/cmsy/m/n/10 fg `
  []
 
 
-Overfull \hbox (14.1667pt too wide) in paragraph at lines 27--44
+Overfull \hbox (14.1667pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (20.86453pt too wide) in paragraph at lines 27--44
+Overfull \hbox (20.86453pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 )
  []
 
 
-Overfull \hbox (14.7535pt too wide) in paragraph at lines 27--44
+Overfull \hbox (14.7535pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 B \OMS/cmsy/m/n/10 ^
  []
 
 
-Overfull \hbox (7.50002pt too wide) in paragraph at lines 27--44
+Overfull \hbox (7.50002pt too wide) in paragraph at lines 29--46
 \OML/cmm/m/it/10 A$
  []
 
@@ -1259,7 +1322,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.45 H
+l.47 H
       askell is a strong and static type system.
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1301,7 +1364,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 45--46
+Overfull \hbox (20.0pt too wide) in paragraph at lines 47--48
 []
  []
 
@@ -1312,7 +1375,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.47 T
+l.49 T
       his means that type inferencing can be ran before compilation or runni...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -1408,7 +1471,7 @@ Missing character: There is no f in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no n in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 47--48
+Overfull \hbox (20.0pt too wide) in paragraph at lines 49--50
 []
  []
 
@@ -1419,7 +1482,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.49 T
+l.51 T
       ype inferencing
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1440,7 +1503,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no g in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 49--50
+Overfull \hbox (20.0pt too wide) in paragraph at lines 51--52
 []
  []
 
@@ -1451,7 +1514,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.51 H
+l.53 H
       askell's type system is a Hindley-Milner polymorphic type system that ...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -1579,7 +1642,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 51--53
+Overfull \hbox (20.0pt too wide) in paragraph at lines 53--55
 []
  []
 
@@ -1590,7 +1653,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.54 A
+l.56 A
        type system is a set of rules that assign a property to various const...
 
 You're in trouble here.  Try typing  <return>  to proceed.
@@ -1758,12 +1821,12 @@ Missing character: There is no m in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 54--56
+Overfull \hbox (20.0pt too wide) in paragraph at lines 56--58
 []
  []
 
 ! Undefined control sequence.
-l.57 \section
+l.59 \section
              {Lambda Calculus}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1778,7 +1841,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.57 \section{L
+l.59 \section{L
                ambda Calculus}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -1798,12 +1861,12 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no u in font nullfont!
 Missing character: There is no s in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 57--58
+Overfull \hbox (20.0pt too wide) in paragraph at lines 59--60
 []
  []
 
 ! Undefined control sequence.
-l.59 \section
+l.61 \section
              {Type theory}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1818,7 +1881,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.59 \section{T
+l.61 \section{T
                ype theory}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2146,12 +2209,12 @@ Missing character: There is no p in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 59--62
+Overfull \hbox (20.0pt too wide) in paragraph at lines 61--64
 []
  []
 
 ! Undefined control sequence.
-l.63 \section
+l.65 \section
              {Hindley-Milner}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2166,7 +2229,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.63 \section{H
+l.65 \section{H
                indley-Milner}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2186,12 +2249,12 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no r in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 63--64
+Overfull \hbox (20.0pt too wide) in paragraph at lines 65--66
 [] 
  []
 
 ! Undefined control sequence.
-l.65 \section
+l.67 \section
              {Inferencing Algorithm}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2206,7 +2269,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.65 \section{I
+l.67 \section{I
                nferencing Algorithm}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2232,7 +2295,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no m in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 65--66
+Overfull \hbox (20.0pt too wide) in paragraph at lines 67--68
 []
  []
 
@@ -2243,14 +2306,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.67 \begin{prooftree}
+l.69 \begin{prooftree}
                       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.68 \AxiomC
+l.70 \AxiomC
             {}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2259,7 +2322,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.69 \RightLabel
+l.71 \RightLabel
                 {Constant}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2274,7 +2337,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.69 \RightLabel{C
+l.71 \RightLabel{C
                   onstant}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2288,7 +2351,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
-l.70 \UnaryInfC
+l.72 \UnaryInfC
                {$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \tex...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2297,7 +2360,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.70 ...InfC{$\Gamma \vdash c : \tau \, | \, \text
+l.72 ...InfC{$\Gamma \vdash c : \tau \, | \, \text
                                                   {unify}\{ ( \tau , \text{f...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2306,7 +2369,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.70 ...\tau \, | \, \text{unify}\{ ( \tau , \text
+l.72 ...\tau \, | \, \text{unify}\{ ( \tau , \text
                                                   {freshInstance}(\tau))\}$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2321,29 +2384,29 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.71 \end{prooftree}
+l.73 \end{prooftree}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 69--72
+Overfull \hbox (20.0pt too wide) in paragraph at lines 71--74
 []
  []
 
 
-Overfull \hbox (15.13884pt too wide) in paragraph at lines 69--72
+Overfull \hbox (15.13884pt too wide) in paragraph at lines 71--74
 \OT1/cmr/m/n/10 ^^@ \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (9.88306pt too wide) in paragraph at lines 69--72
+Overfull \hbox (9.88306pt too wide) in paragraph at lines 71--74
 \OML/cmm/m/it/10 c \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (144.09242pt too wide) in paragraph at lines 69--72
+Overfull \hbox (144.09242pt too wide) in paragraph at lines 71--74
 \OML/cmm/m/it/10 ^^\ \OMS/cmsy/m/n/10 j []f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^
 \; []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^\\OT1/cmr/m/n/10 ))\OMS/cmsy/m/n/10 g$
 
@@ -2356,14 +2419,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.73 \begin{prooftree}
+l.75 \begin{prooftree}
                       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.74 \AxiomC
+l.76 \AxiomC
             {}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2372,7 +2435,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.75 \RightLabel
+l.77 \RightLabel
                 {Variable}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2387,7 +2450,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.75 \RightLabel{V
+l.77 \RightLabel{V
                   ariable}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -2401,7 +2464,7 @@ Missing character: There is no b in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
-l.76 \UnaryInfC
+l.78 \UnaryInfC
                {$\Gamma \vdash x : \tau \, | \, \text{unify}\{ ( \tau , \tex...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2410,7 +2473,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.76 ...InfC{$\Gamma \vdash x : \tau \, | \, \text
+l.78 ...InfC{$\Gamma \vdash x : \tau \, | \, \text
                                                   {unify}\{ ( \tau , \text{f...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2419,7 +2482,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.76 ...\tau \, | \, \text{unify}\{ ( \tau , \text
+l.78 ...\tau \, | \, \text{unify}\{ ( \tau , \text
                                                   {freshInstance}(\Gamma(x))...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2434,29 +2497,29 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.77 \end{prooftree}
+l.79 \end{prooftree}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 75--78
+Overfull \hbox (20.0pt too wide) in paragraph at lines 77--80
 []
  []
 
 
-Overfull \hbox (15.13884pt too wide) in paragraph at lines 75--78
+Overfull \hbox (15.13884pt too wide) in paragraph at lines 77--80
 \OT1/cmr/m/n/10 ^^@ \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (11.27077pt too wide) in paragraph at lines 75--78
+Overfull \hbox (11.27077pt too wide) in paragraph at lines 77--80
 \OML/cmm/m/it/10 x \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (158.33203pt too wide) in paragraph at lines 75--78
+Overfull \hbox (158.33203pt too wide) in paragraph at lines 77--80
 \OML/cmm/m/it/10 ^^\ \OMS/cmsy/m/n/10 j []f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^
 \; []\OT1/cmr/m/n/10 (^^@(\OML/cmm/m/it/10 x\OT1/cmr/m/n/10 )))\OMS/cmsy/m/n/10
  g$
@@ -2469,14 +2532,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.79 \begin{prooftree}
+l.81 \begin{prooftree}
                       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.80 \AxiomC
+l.82 \AxiomC
             {$[x : \tau_1] + \Gamma \vdash e : \tau_2 \, | \, \sigma$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2491,13 +2554,13 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.80 \AxiomC{$
+l.82 \AxiomC{$
               [x : \tau_1] + \Gamma \vdash e : \tau_2 \, | \, \sigma$}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 ! Undefined control sequence.
-l.81 \RightLabel
+l.83 \RightLabel
                 {Lambda}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2512,7 +2575,7 @@ Missing character: There is no b in font nullfont!
 Missing character: There is no d in font nullfont!
 Missing character: There is no a in font nullfont!
 ! Undefined control sequence.
-l.82 \UnaryInfC
+l.84 \UnaryInfC
                {$\Gamma \vdash \text{\textbackslash \, x \textrightarrow \, ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2521,7 +2584,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.82 \UnaryInfC{$\Gamma \vdash \text
+l.84 \UnaryInfC{$\Gamma \vdash \text
                                     {\textbackslash \, x \textrightarrow \, ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2530,20 +2593,20 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 82.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 84.
 
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 82.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 84.
 (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 82.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 84.
 
 
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 82.
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 84.
 
 ! Undefined control sequence.
-l.82 ... \text{\textbackslash \, x \textrightarrow
+l.84 ... \text{\textbackslash \, x \textrightarrow
                                                    \, e}: \tau \, | \, \text...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2552,7 +2615,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.82 ... \textrightarrow \, e}: \tau \, | \, \text
+l.84 ... \textrightarrow \, e}: \tau \, | \, \text
                                                   {unify}\{ ( \sigma(\tau) ,...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2567,61 +2630,61 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.83 \end{prooftree}
+l.85 \end{prooftree}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (34.04855pt too wide) in paragraph at lines 80--84
+Overfull \hbox (34.04855pt too wide) in paragraph at lines 82--86
 []$\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 x \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (19.41325pt too wide) in paragraph at lines 80--84
+Overfull \hbox (19.41325pt too wide) in paragraph at lines 82--86
 \OML/cmm/m/it/10 ^^\[]\OT1/cmr/m/n/10 ] +
  []
 
 
-Overfull \hbox (15.13884pt too wide) in paragraph at lines 80--84
+Overfull \hbox (15.13884pt too wide) in paragraph at lines 82--86
 \OT1/cmr/m/n/10 ^^@ \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (10.21176pt too wide) in paragraph at lines 80--84
+Overfull \hbox (10.21176pt too wide) in paragraph at lines 82--86
 \OML/cmm/m/it/10 e \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (21.04161pt too wide) in paragraph at lines 80--84
+Overfull \hbox (21.04161pt too wide) in paragraph at lines 82--86
 \OML/cmm/m/it/10 ^^\[] \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^[$
  []
 
 
-Overfull \hbox (15.13884pt too wide) in paragraph at lines 80--84
+Overfull \hbox (15.13884pt too wide) in paragraph at lines 82--86
 \OT1/cmr/m/n/10 ^^@ \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (25.26263pt too wide) in paragraph at lines 80--84
+Overfull \hbox (25.26263pt too wide) in paragraph at lines 82--86
 [] \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (102.30515pt too wide) in paragraph at lines 80--84
+Overfull \hbox (102.30515pt too wide) in paragraph at lines 82--86
 \OML/cmm/m/it/10 ^^\ \OMS/cmsy/m/n/10 j []f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^
 [\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^\\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; ^^[\O
 T1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^\[] \OMS/cmsy/m/n/10 !
  []
 
 
-Overfull \hbox (26.6355pt too wide) in paragraph at lines 80--84
+Overfull \hbox (26.6355pt too wide) in paragraph at lines 82--86
 \OML/cmm/m/it/10 ^^\[]\OT1/cmr/m/n/10 ))\OMS/cmsy/m/n/10 g ^^N
  []
 
 
-Overfull \hbox (6.0729pt too wide) in paragraph at lines 80--84
+Overfull \hbox (6.0729pt too wide) in paragraph at lines 82--86
 \OML/cmm/m/it/10 ^^[$
  []
 
@@ -2632,14 +2695,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.85 \begin{prooftree}
+l.87 \begin{prooftree}
                       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.86 \AxiomC
+l.88 \AxiomC
             {$\Gamma \vdash e_1 : \text{bool} \, | \, \sigma_1$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2654,13 +2717,13 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.86 \AxiomC{$
+l.88 \AxiomC{$
               \Gamma \vdash e_1 : \text{bool} \, | \, \sigma_1$}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 ! Undefined control sequence.
-l.86 \AxiomC{$\Gamma \vdash e_1 : \text
+l.88 \AxiomC{$\Gamma \vdash e_1 : \text
                                        {bool} \, | \, \sigma_1$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2669,7 +2732,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.87 \AxiomC
+l.89 \AxiomC
             {$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau) \, | \, \sigma_2$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2678,7 +2741,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.88 \AxiomC
+l.90 \AxiomC
             {$\sigma_2 \circ \sigma_1(\Gamma) \vdash e_3 : \sigma_2 \circ \s...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2687,7 +2750,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.89 \RightLabel
+l.91 \RightLabel
                 {IfThenElse}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2706,7 +2769,7 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
-l.90 \TrinaryInfC
+l.92 \TrinaryInfC
                  {$\Gamma \vdash \text{if} \, e_1 \, \text{then} \, e_2 \, \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2715,7 +2778,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.90 \TrinaryInfC{$\Gamma \vdash \text
+l.92 \TrinaryInfC{$\Gamma \vdash \text
                                       {if} \, e_1 \, \text{then} \, e_2 \, \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2724,7 +2787,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.90 ...C{$\Gamma \vdash \text{if} \, e_1 \, \text
+l.92 ...C{$\Gamma \vdash \text{if} \, e_1 \, \text
                                                   {then} \, e_2 \, \text{els...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2733,7 +2796,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.90 ...{if} \, e_1 \, \text{then} \, e_2 \, \text
+l.92 ...{if} \, e_1 \, \text{then} \, e_2 \, \text
                                                   {else} \, e_3 : \tau \, | ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2748,92 +2811,92 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.91 \end{prooftree}
+l.93 \end{prooftree}
                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (35.13884pt too wide) in paragraph at lines 86--92
+Overfull \hbox (35.13884pt too wide) in paragraph at lines 88--94
 []$\OT1/cmr/m/n/10 ^^@ \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (14.69789pt too wide) in paragraph at lines 86--92
+Overfull \hbox (14.69789pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (33.47798pt too wide) in paragraph at lines 86--92
+Overfull \hbox (33.47798pt too wide) in paragraph at lines 88--94
 [] \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^[[]$
  []
 
 
-Overfull \hbox (33.1169pt too wide) in paragraph at lines 86--92
+Overfull \hbox (33.1169pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (^^@) \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (14.69789pt too wide) in paragraph at lines 86--92
+Overfull \hbox (14.69789pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (39.79283pt too wide) in paragraph at lines 86--92
+Overfull \hbox (39.79283pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^\\OT1/cmr/m/n/10 ) \O
 MS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^[[]$
  []
 
 
-Overfull \hbox (15.20027pt too wide) in paragraph at lines 86--92
+Overfull \hbox (15.20027pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 ^^[[] \OMS/cmsy/m/n/10 ^^N
  []
 
 
-Overfull \hbox (33.1169pt too wide) in paragraph at lines 86--92
+Overfull \hbox (33.1169pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (^^@) \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (14.69789pt too wide) in paragraph at lines 86--92
+Overfull \hbox (14.69789pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (15.20027pt too wide) in paragraph at lines 86--92
+Overfull \hbox (15.20027pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 ^^[[] \OMS/cmsy/m/n/10 ^^N
  []
 
 
-Overfull \hbox (39.79283pt too wide) in paragraph at lines 86--92
+Overfull \hbox (39.79283pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^\\OT1/cmr/m/n/10 ) \O
 MS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^[[]$
  []
 
 
-Overfull \hbox (15.13884pt too wide) in paragraph at lines 86--92
+Overfull \hbox (15.13884pt too wide) in paragraph at lines 88--94
 \OT1/cmr/m/n/10 ^^@ \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (87.94511pt too wide) in paragraph at lines 86--92
+Overfull \hbox (87.94511pt too wide) in paragraph at lines 88--94
 [] \OML/cmm/m/it/10 e[] [] e[] [] e[] \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (26.81479pt too wide) in paragraph at lines 86--92
+Overfull \hbox (26.81479pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 ^^\ \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^[[] \OMS/cmsy/m/n/10
  ^^N
  []
 
 
-Overfull \hbox (15.20027pt too wide) in paragraph at lines 86--92
+Overfull \hbox (15.20027pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 ^^[[] \OMS/cmsy/m/n/10 ^^N
  []
 
 
-Overfull \hbox (10.20026pt too wide) in paragraph at lines 86--92
+Overfull \hbox (10.20026pt too wide) in paragraph at lines 88--94
 \OML/cmm/m/it/10 ^^[[]$
  []
 
@@ -2844,14 +2907,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.93 \begin{prooftree}
+l.95 \begin{prooftree}
                       
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.94 \AxiomC
+l.96 \AxiomC
             {$\Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2866,13 +2929,13 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.94 \AxiomC{$
+l.96 \AxiomC{$
               \Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 ! Undefined control sequence.
-l.95 \AxiomC
+l.97 \AxiomC
             {$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau_1) \, | \, \sigma_2$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2881,7 +2944,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.96 \RightLabel
+l.98 \RightLabel
                 {Application}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2901,7 +2964,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 ! Undefined control sequence.
-l.97 \BinaryInfC
+l.99 \BinaryInfC
                 {$\Gamma \vdash e_1 e_2 : \tau \, | \, \sigma_2 \circ \sigma...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2916,66 +2979,66 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.98 \end{prooftree}
-                    
+l.100 \end{prooftree}
+                     
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (35.13884pt too wide) in paragraph at lines 94--99
+Overfull \hbox (35.13884pt too wide) in paragraph at lines 96--101
 []$\OT1/cmr/m/n/10 ^^@ \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (14.69789pt too wide) in paragraph at lines 94--99
+Overfull \hbox (14.69789pt too wide) in paragraph at lines 96--101
 \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (21.63539pt too wide) in paragraph at lines 94--99
+Overfull \hbox (21.63539pt too wide) in paragraph at lines 96--101
 \OML/cmm/m/it/10 ^^\[] \OMS/cmsy/m/n/10 !
  []
 
 
-Overfull \hbox (21.81477pt too wide) in paragraph at lines 94--99
+Overfull \hbox (21.81477pt too wide) in paragraph at lines 96--101
 \OML/cmm/m/it/10 ^^\ \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^[[]$
  []
 
 
-Overfull \hbox (33.1169pt too wide) in paragraph at lines 94--99
+Overfull \hbox (33.1169pt too wide) in paragraph at lines 96--101
 \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (^^@) \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (14.69789pt too wide) in paragraph at lines 94--99
+Overfull \hbox (14.69789pt too wide) in paragraph at lines 96--101
 \OML/cmm/m/it/10 e[] \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (43.14702pt too wide) in paragraph at lines 94--99
+Overfull \hbox (43.14702pt too wide) in paragraph at lines 96--101
 \OML/cmm/m/it/10 ^^[[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^\[]\OT1/cmr/m/n/10 ) 
 \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^[[]$
  []
 
 
-Overfull \hbox (15.13884pt too wide) in paragraph at lines 94--99
+Overfull \hbox (15.13884pt too wide) in paragraph at lines 96--101
 \OT1/cmr/m/n/10 ^^@ \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (23.84029pt too wide) in paragraph at lines 94--99
+Overfull \hbox (23.84029pt too wide) in paragraph at lines 96--101
 \OML/cmm/m/it/10 e[]e[] \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (26.81479pt too wide) in paragraph at lines 94--99
+Overfull \hbox (26.81479pt too wide) in paragraph at lines 96--101
 \OML/cmm/m/it/10 ^^\ \OMS/cmsy/m/n/10 j \OML/cmm/m/it/10 ^^[[] \OMS/cmsy/m/n/10
  ^^N
  []
 
 
-Overfull \hbox (10.20026pt too wide) in paragraph at lines 94--99
+Overfull \hbox (10.20026pt too wide) in paragraph at lines 96--101
 \OML/cmm/m/it/10 ^^[[]$
  []
 
@@ -2986,14 +3049,14 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.100 \begin{prooftree}
+l.102 \begin{prooftree}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ! Undefined control sequence.
-l.101 \AxiomC
+l.103 \AxiomC
              {}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3002,7 +3065,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.102 \RightLabel
+l.104 \RightLabel
                  {LetIn}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3017,7 +3080,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.102 \RightLabel{L
+l.104 \RightLabel{L
                    etIn}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3028,7 +3091,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no I in font nullfont!
 Missing character: There is no n in font nullfont!
 ! Undefined control sequence.
-l.103 \UnaryInfC
+l.105 \UnaryInfC
                 {$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \te...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3037,7 +3100,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.103 ...nfC{$\Gamma \vdash c : \tau \, | \, \text
+l.105 ...nfC{$\Gamma \vdash c : \tau \, | \, \text
                                                   {unify}\{ ( \tau , \text{f...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3046,7 +3109,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.103 ...tau \, | \, \text{unify}\{ ( \tau , \text
+l.105 ...tau \, | \, \text{unify}\{ ( \tau , \text
                                                   {freshInstance}(\tau))\}$}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3061,29 +3124,29 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.104 \end{prooftree}
+l.106 \end{prooftree}
                      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 102--105
+Overfull \hbox (20.0pt too wide) in paragraph at lines 104--107
 []
  []
 
 
-Overfull \hbox (15.13884pt too wide) in paragraph at lines 102--105
+Overfull \hbox (15.13884pt too wide) in paragraph at lines 104--107
 \OT1/cmr/m/n/10 ^^@ \OMS/cmsy/m/n/10 `
  []
 
 
-Overfull \hbox (9.88306pt too wide) in paragraph at lines 102--105
+Overfull \hbox (9.88306pt too wide) in paragraph at lines 104--107
 \OML/cmm/m/it/10 c \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (144.09242pt too wide) in paragraph at lines 102--105
+Overfull \hbox (144.09242pt too wide) in paragraph at lines 104--107
 \OML/cmm/m/it/10 ^^\ \OMS/cmsy/m/n/10 j []f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^
 \; []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^\\OT1/cmr/m/n/10 ))\OMS/cmsy/m/n/10 g$
 
@@ -3096,7 +3159,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.106 [
+l.108 [
        cs 421 gather exp ty substitution mp]
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3134,12 +3197,12 @@ Missing character: There is no m in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no ] in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 106--107
+Overfull \hbox (20.0pt too wide) in paragraph at lines 108--109
 []
  []
 
 ! Undefined control sequence.
-l.108 \subsection
+l.110 \subsection
                  {Unification Algorithm}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3154,7 +3217,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.108 \subsection{U
+l.110 \subsection{U
                    nification Algorithm}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3180,7 +3243,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no m in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 108--109
+Overfull \hbox (20.0pt too wide) in paragraph at lines 110--111
 []
  []
 
@@ -3191,7 +3254,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.110 L
+l.112 L
        et $S = \{(s_1 , t_1), (s_2 , t_2), \cdots, (s_n , t_n)\}$ be a
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3222,17 +3285,17 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 110--112
+Overfull \hbox (20.0pt too wide) in paragraph at lines 112--114
 []
  []
 
 
-Overfull \hbox (17.26382pt too wide) in paragraph at lines 110--112
+Overfull \hbox (17.26382pt too wide) in paragraph at lines 112--114
 \OML/cmm/m/it/10 S \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (127.06017pt too wide) in paragraph at lines 110--112
+Overfull \hbox (127.06017pt too wide) in paragraph at lines 112--114
 \OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; t[]\OT1/cmr/m/n/10 )\O
 ML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; t[]\OT1/cmr/m/n/10 )\OM
 L/cmm/m/it/10 ; [] ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 s[]; t[]\OT1/cmr/m/n/10 
@@ -3246,7 +3309,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.113 C
+l.115 C
        ase $S = \{ \} : \text{Unif}(S) = \text{Identity function}$ (ie
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3256,7 +3319,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
 ! Undefined control sequence.
-l.113 Case $S = \{ \} : \text
+l.115 Case $S = \{ \} : \text
                              {Unif}(S) = \text{Identity function}$ (ie
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3265,7 +3328,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.113 Case $S = \{ \} : \text{Unif}(S) = \text
+l.115 Case $S = \{ \} : \text{Unif}(S) = \text
                                               {Identity function}$ (ie
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3292,27 +3355,27 @@ Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no ) in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 113--115
+Overfull \hbox (20.0pt too wide) in paragraph at lines 115--117
 []
  []
 
 
-Overfull \hbox (17.26382pt too wide) in paragraph at lines 113--115
+Overfull \hbox (17.26382pt too wide) in paragraph at lines 115--117
 \OML/cmm/m/it/10 S \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (15.55553pt too wide) in paragraph at lines 113--115
+Overfull \hbox (15.55553pt too wide) in paragraph at lines 115--117
 \OMS/cmsy/m/n/10 fg \OT1/cmr/m/n/10 :
  []
 
 
-Overfull \hbox (48.3794pt too wide) in paragraph at lines 113--115
+Overfull \hbox (48.3794pt too wide) in paragraph at lines 115--117
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S\OT1/cmr/m/n/10 ) =
  []
 
 
-Overfull \hbox (76.90555pt too wide) in paragraph at lines 113--115
+Overfull \hbox (76.90555pt too wide) in paragraph at lines 115--117
 []$
  []
 
@@ -3323,7 +3386,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.116 C
+l.118 C
        ase $S = {(s, t)} \cup S')$: Four main steps
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3347,22 +3410,22 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no p in font nullfont!
 Missing character: There is no s in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 116--117
+Overfull \hbox (20.0pt too wide) in paragraph at lines 118--119
 []
  []
 
 
-Overfull \hbox (17.26382pt too wide) in paragraph at lines 116--117
+Overfull \hbox (17.26382pt too wide) in paragraph at lines 118--119
 \OML/cmm/m/it/10 S \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (27.18752pt too wide) in paragraph at lines 116--117
+Overfull \hbox (27.18752pt too wide) in paragraph at lines 118--119
 [] \OMS/cmsy/m/n/10 [
  []
 
 
-Overfull \hbox (13.40277pt too wide) in paragraph at lines 116--117
+Overfull \hbox (13.40277pt too wide) in paragraph at lines 118--119
 \OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 )$
  []
 
@@ -3373,7 +3436,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.118 D
+l.120 D
        elete: if $s = t$ (they are the same term)
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3412,27 +3475,27 @@ Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 118--120
+Overfull \hbox (20.0pt too wide) in paragraph at lines 120--122
 []
  []
 
 
-Overfull \hbox (15.24301pt too wide) in paragraph at lines 118--120
+Overfull \hbox (15.24301pt too wide) in paragraph at lines 120--122
 \OML/cmm/m/it/10 s \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (3.61111pt too wide) in paragraph at lines 118--120
+Overfull \hbox (3.61111pt too wide) in paragraph at lines 120--122
 \OML/cmm/m/it/10 t$
  []
 
 
-Overfull \hbox (48.3794pt too wide) in paragraph at lines 118--120
+Overfull \hbox (48.3794pt too wide) in paragraph at lines 120--122
 \OML/cmm/m/it/10 Unif\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S\OT1/cmr/m/n/10 ) =
  []
 
 
-Overfull \hbox (40.62944pt too wide) in paragraph at lines 118--120
+Overfull \hbox (40.62944pt too wide) in paragraph at lines 120--122
 \OML/cmm/m/it/10 Unif\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 )$ 
  []
 
@@ -3443,7 +3506,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.121 D
+l.123 D
        ecompose: if $s = f(q_1, \cdots, q_m )$ and
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3485,7 +3548,7 @@ Missing character: There is no n in font nullfont!
 ! Undefined control sequence.
 <recently read> \text 
                       
-l.123 $\text
+l.125 $\text
             {Unif}(S) = \text{Unif}(\{(q_1 , r_1 ), ..., (q_m , r_m )\} \cup...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3494,7 +3557,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.123 $\text{Unif}(S) = \text
+l.125 $\text{Unif}(S) = \text
                              {Unif}(\{(q_1 , r_1 ), ..., (q_m , r_m )\} \cup...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3503,46 +3566,46 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 121--124
+Overfull \hbox (20.0pt too wide) in paragraph at lines 123--126
 []
  []
 
 
-Overfull \hbox (15.24301pt too wide) in paragraph at lines 121--124
+Overfull \hbox (15.24301pt too wide) in paragraph at lines 123--126
 \OML/cmm/m/it/10 s \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (56.98262pt too wide) in paragraph at lines 121--124
+Overfull \hbox (56.98262pt too wide) in paragraph at lines 123--126
 \OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 q[]; [] ; q[]\OT1/cmr/m/n/1
 0 )$
  []
 
 
-Overfull \hbox (14.16663pt too wide) in paragraph at lines 121--124
+Overfull \hbox (14.16663pt too wide) in paragraph at lines 123--126
 \OML/cmm/m/it/10 t \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (57.07753pt too wide) in paragraph at lines 121--124
+Overfull \hbox (57.07753pt too wide) in paragraph at lines 123--126
 \OML/cmm/m/it/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 r[]; [] ; r[]\OT1/cmr/m/n/1
 0 )$
  []
 
 
-Overfull \hbox (48.3794pt too wide) in paragraph at lines 121--124
+Overfull \hbox (48.3794pt too wide) in paragraph at lines 123--126
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S\OT1/cmr/m/n/10 ) =
  []
 
 
-Overfull \hbox (127.6759pt too wide) in paragraph at lines 121--124
+Overfull \hbox (127.6759pt too wide) in paragraph at lines 123--126
 []\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 q[]; r[]
 \OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; :::; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 q[];
  r[]\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g [
  []
 
 
-Overfull \hbox (13.40277pt too wide) in paragraph at lines 121--124
+Overfull \hbox (13.40277pt too wide) in paragraph at lines 123--126
 \OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 )$ 
  []
 
@@ -3553,7 +3616,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.125 O
+l.127 O
        rient: if $t = x$ is a variable, and s is not a
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3601,7 +3664,7 @@ Missing character: There is no , in font nullfont!
 ! Undefined control sequence.
 <recently read> \text 
                       
-l.126 variable, $\text
+l.128 variable, $\text
                       {Unif}(S) = \text{Unif} (\{(x,s)\} \cup S')$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3610,7 +3673,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.126 variable, $\text{Unif}(S) = \text
+l.128 variable, $\text{Unif}(S) = \text
                                        {Unif} (\{(x,s)\} \cup S')$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3619,33 +3682,33 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 125--127
+Overfull \hbox (20.0pt too wide) in paragraph at lines 127--129
 []
  []
 
 
-Overfull \hbox (14.16663pt too wide) in paragraph at lines 125--127
+Overfull \hbox (14.16663pt too wide) in paragraph at lines 127--129
 \OML/cmm/m/it/10 t \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (5.71527pt too wide) in paragraph at lines 125--127
+Overfull \hbox (5.71527pt too wide) in paragraph at lines 127--129
 \OML/cmm/m/it/10 x$
  []
 
 
-Overfull \hbox (48.3794pt too wide) in paragraph at lines 125--127
+Overfull \hbox (48.3794pt too wide) in paragraph at lines 127--129
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S\OT1/cmr/m/n/10 ) =
  []
 
 
-Overfull \hbox (66.51837pt too wide) in paragraph at lines 125--127
+Overfull \hbox (66.51837pt too wide) in paragraph at lines 127--129
 []\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 f\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 x; s\OT1
 /cmr/m/n/10 )\OMS/cmsy/m/n/10 g [
  []
 
 
-Overfull \hbox (13.40277pt too wide) in paragraph at lines 125--127
+Overfull \hbox (13.40277pt too wide) in paragraph at lines 127--129
 \OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 )$ 
  []
 
@@ -3656,7 +3719,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.128 E
+l.130 E
        liminate: if s = x is a variable, and
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3729,43 +3792,8 @@ Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no n in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 128--131
+Overfull \hbox (20.0pt too wide) in paragraph at lines 130--133
 []
- []
-
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.132 L
-       et $\phi = x \mapsto t$
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-Missing character: There is no L in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no t in font nullfont!
-
-Overfull \hbox (20.0pt too wide) in paragraph at lines 132--133
-[]
- []
-
-
-Overfull \hbox (16.51385pt too wide) in paragraph at lines 132--133
-\OML/cmm/m/it/10 ^^^ \OT1/cmr/m/n/10 =
- []
-
-
-Overfull \hbox (18.493pt too wide) in paragraph at lines 132--133
-\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 7!
- []
-
-
-Overfull \hbox (3.61111pt too wide) in paragraph at lines 132--133
-\OML/cmm/m/it/10 t$ 
  []
 
 
@@ -3776,6 +3804,41 @@ Type  H <return>  for immediate help.
  ...                                              
                                                   
 l.134 L
+       et $\phi = x \mapsto t$
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no L in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 134--135
+[]
+ []
+
+
+Overfull \hbox (16.51385pt too wide) in paragraph at lines 134--135
+\OML/cmm/m/it/10 ^^^ \OT1/cmr/m/n/10 =
+ []
+
+
+Overfull \hbox (18.493pt too wide) in paragraph at lines 134--135
+\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 7!
+ []
+
+
+Overfull \hbox (3.61111pt too wide) in paragraph at lines 134--135
+\OML/cmm/m/it/10 t$ 
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.136 L
        et $\psi = \text{Unif}(\phi(S'))$
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3784,7 +3847,7 @@ Missing character: There is no L in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no t in font nullfont!
 ! Undefined control sequence.
-l.134 Let $\psi = \text
+l.136 Let $\psi = \text
                        {Unif}(\phi(S'))$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3793,17 +3856,17 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 134--135
+Overfull \hbox (20.0pt too wide) in paragraph at lines 136--137
 []
  []
 
 
-Overfull \hbox (17.4282pt too wide) in paragraph at lines 134--135
+Overfull \hbox (17.4282pt too wide) in paragraph at lines 136--137
 \OML/cmm/m/it/10   \OT1/cmr/m/n/10 =
  []
 
 
-Overfull \hbox (54.36559pt too wide) in paragraph at lines 134--135
+Overfull \hbox (54.36559pt too wide) in paragraph at lines 136--137
 []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 ^^^\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]\OT
 1/cmr/m/n/10 ))$ 
  []
@@ -3815,7 +3878,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.136 $
+l.138 $
        \text{Unif}(S) = \{x \mapsto \psi(t) \} \circ \psi$
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3823,7 +3886,7 @@ If that doesn't work, type  X <return>  to quit.
 ! Undefined control sequence.
 <recently read> \text 
                       
-l.136 $\text
+l.138 $\text
             {Unif}(S) = \{x \mapsto \psi(t) \} \circ \psi$
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3832,23 +3895,23 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Overfull \hbox (68.3794pt too wide) in paragraph at lines 136--137
+Overfull \hbox (68.3794pt too wide) in paragraph at lines 138--139
 []$[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S\OT1/cmr/m/n/10 ) =
  []
 
 
-Overfull \hbox (23.49301pt too wide) in paragraph at lines 136--137
+Overfull \hbox (23.49301pt too wide) in paragraph at lines 138--139
 \OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 x \OMS/cmsy/m/n/10 7!
  []
 
 
-Overfull \hbox (28.26164pt too wide) in paragraph at lines 136--137
+Overfull \hbox (28.26164pt too wide) in paragraph at lines 138--139
 \OML/cmm/m/it/10  \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )\OMS/cmsy
 /m/n/10 g ^^N
  []
 
 
-Overfull \hbox (6.8727pt too wide) in paragraph at lines 136--137
+Overfull \hbox (6.8727pt too wide) in paragraph at lines 138--139
 \OML/cmm/m/it/10  $ 
  []
 
@@ -3859,7 +3922,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.138 N
+l.140 N
        ote: {x |→ a} o {y |→ b} =
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3915,7 +3978,7 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no a in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 138--141
+Overfull \hbox (20.0pt too wide) in paragraph at lines 140--143
 []
  []
 
@@ -3926,7 +3989,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.142 [
+l.144 [
        cs 421 class notes]
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3957,7 +4020,7 @@ Missing character: There is no ] in font nullfont!
  
 Here is how much of TeX's memory you used:
  30 strings out of 495063
- 506 string characters out of 3182201
+ 506 string characters out of 3182202
  52057 words of memory out of 3000000
  3310 multiletter control sequences out of 15000+200000
  3640 words of font info for 14 fonts, out of 3000000 for 9000

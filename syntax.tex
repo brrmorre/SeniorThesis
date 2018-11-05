@@ -30,14 +30,409 @@ As an option for the definition of the topdecl sort. What I did was, for each op
 \begin{lstlisting}
 syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
 \end{lstlisting}
-I ran into an issue where floats and integers did not parse correctly. They caused parsing errors due to ambiguity of parsing. For example the number 123.45 had ambiguity where the parser did not know if 1, 12, or 123 where integers, and if 5 was an integer, or if the entire thing was one float. Normally in K, different tokens are separated with whitespaces. However, for some reason the parser had difficulty here. Initially, I added a workaround by requiring parentheses around each function application and pattern. So for functions f, y, and z, if we were to write f applied to y applied to z applied to 2, we would normally write...
-f y z 2
-With the parentheses notation it looked like
-f (y (z (2)))
-This caused the programs to quickly look unreadable. So I instead opted to only require that integers and floats have parentheses surrounding them.
-f y z (2)
-This fixed the issue.
+\begin{lstlisting}
+// Syntax from haskell 2010 Report
+// https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17500010
+
+module HASKELL-SYNTAX
+
+    syntax Integer ::= Token{([0-9]+)
+                | (([0][o]|[0][O])[0-7]+) 
+                | (([0][x] | [0][X])[0-9a-fA-F]+)}   [onlyLabel]
+
+    syntax CusFloat ::= Token{([0-9]+[\.][0-9]+([e E][\+\-]?[0-9]+)?)
+                                 |([0-9]+[e E][\+\-]?[0-9]+)} [onlyLabel]
+    syntax CusChar ::= Token{[\'](~[\'\\\&])[\']} [onlyLabel]
+    syntax CusString ::= Token{[\"](~[\"\\]*)[\"]} [onlyLabel]
+\end{lstlisting}
+\begin{lstlisting}
+    syntax VarId ::= Token{[a-z\_][a-z A-Z\_0-9\']*} [onlyLabel] | "size" [onlyLabel]
+\end{lstlisting}
 I ran into another issue where a program with a variable called ‘size’ did not parse. I found out that this is because ‘size’ is a k keyword. So I just specified that a variable could be a variable token, or “size”.
 \begin{lstlisting}
-syntax VarId ::= Token{[a-z\_][a-z A-Z\_0-9\']*} [onlyLabel] | "size" [onlyLabel]
+    syntax ConId ::= Token{[A-Z][a-zA-Z \_0-9\']*} [onlyLabel]
+    syntax VarSym ::= Token{
+   ([\! \# \$ \% \& \* \+ \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)
+  |[\-] | [\.]
+  |([\.][\! \# \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)
+  | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \? \@ \\ \^ \| \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \~ \:]*)
+  | ([\@][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]+)
+  | ([\~][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]+)
+  | ([\\][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]+)
+  | ([\|][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]+)
+  | ([\:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)
+  | ([\<][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)
+  | ([\=][\! \# \$ \% \& \* \+ \. \/ \< \= \? \@ \\ \^ \| \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)} [onlyLabel]
+    syntax ConSym ::= Token{[\:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*}   [onlyLabel]
+
+    syntax IntFloat ::= "(" Integer ")"  [bracket] //NOT OFFICIAL SYNTAX
+                      | "(" CusFloat ")" [bracket]
+\end{lstlisting}
+I ran into an issue where floats and integers did not parse correctly. They caused parsing errors due to ambiguity of parsing. For example the number 123.45 had ambiguity where the parser did not know if 1, 12, or 123 where integers, and if 5 was an integer, or if the entire thing was one float. Normally in K, different tokens are separated with whitespaces. However, for some reason the parser had difficulty here. Initially, I added a workaround by requiring parentheses around each integer and floating point.
+f y z (2)
+This fixed the issue.
+\begin{lstlisting}
+    syntax Literal ::= IntFloat | CusChar | CusString
+    syntax TyCon ::= ConId
+    syntax ModId ::= ConId | ConId "." ModId  [klabel('conModId)]
+    syntax QTyCon ::= TyCon | ModId "." TyCon [klabel('conTyCon)]
+    syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
+    syntax QVarSym ::= VarSym | ModId "." VarSym  [klabel('qVarSymCon)]
+    syntax QConSym ::= ConSym | ModId "." ConSym  [klabel('qConSymCon)]
+/*    syntax QTyCls ::= QTyCon
+    syntax TyCls ::= ConId
+*/
+    syntax TyVars ::= List{TyVar, ""} [klabel('typeVars)] //used in SimpleType syntax
+    syntax TyVar ::= VarId
+    syntax TyVarTuple ::= TyVar "," TyVar      [klabel('twoTypeVarTuple)]
+                        | TyVar "," TyVarTuple [klabel('typeVarTupleCon)]
+
+    syntax Con ::= ConId | "(" ConSym ")"   [klabel('conSymBracket)]
+    syntax Var ::= VarId | "(" VarSym ")"   [klabel('varSymBracket)]
+    syntax QVar ::= QVarId | "(" QConSym ")" [klabel('qVarBracket)]
+    syntax QCon ::= QTyCon | "(" GConSym ")"  [klabel('gConBracket)]
+
+    syntax QConOp ::= GConSym | "`" QTyCon "`"    [klabel('qTyConQuote)]
+    syntax QVarOp ::= QVarSym | "`" QVarId "`"    [klabel('qVarIdQuote)]
+    syntax VarOp ::= VarSym   | "`" VarId "`"     [klabel('varIdQuote)]
+    syntax ConOp ::= ConSym   | "`" ConId "`"     [klabel('conIdQuote)]
+
+    syntax GConSym ::= ":" | QConSym
+    syntax Vars ::= Var
+                  | Var "," Vars  [klabel('varCon)]
+    syntax VarsType ::= Vars "::" Type  [klabel('varAssign)]
+    syntax Ops ::= Op
+                 | Op "," Ops  [klabel('opCon)]
+    syntax Fixity ::= "infixl" | "infixr" | "infix"
+    syntax Op ::= VarOp | ConOp
+    syntax CQName ::= Var | Con | QVar
+
+    /* syntax QConId ::= ConId | ModId "." ConId */
+
+    syntax QOp ::= QVarOp | QConOp
+\end{lstlisting}
+\begin{lstlisting}
+
+    syntax ModuleName ::= "module" ModId [klabel('moduleName)]
+
+    syntax Module ::= ModuleName "where" Body          [klabel('module)]
+                    | ModuleName Exports "where" Body  [klabel('moduleExp)]
+                    | Body                             [klabel('moduleBody)]
+
+    syntax Body ::= "{" ImpDecls ";" TopDecls "}" [klabel('bodyimpandtop)]
+                  | "{" ImpDecls "}" [klabel('bodyimpdecls)]
+                  | "{" TopDecls "}" [klabel('bodytopdecls)]
+
+    syntax ImpDecls ::= List{ImpDecl, ";"} [klabel('impDecls)]
+\end{lstlisting}
+
+The sort that contains all the other sorts is a module. A module represents one complete Haskell program. It can have either a name and a body, a name and a body with exports, or just a body.
+
+\begin{lstlisting}
+module Foo where
+{import Bar
+}
+\end{lstlisting}
+
+This example program has a Module with only ImpDecls. It has one ImpDecl.
+
+\begin{lstlisting}
+import Bar
+\end{lstlisting}
+
+This example program has a Module with no name and only ImpDecls. It has one ImpDecl.
+
+\begin{lstlisting}
+    syntax Exports ::= "(" ExportList OptComma ")"
+    syntax ExportList ::= List{Export, ","}
+
+    syntax Export ::= QVar 
+                    | QTyCon OptCQList
+                    | ModuleName
+
+    //optional cname list
+    syntax OptCQList ::= "(..)"
+                       | "(" CQList ")"   [klabel('cqListBracket)]
+                          //Liyi: a check needs to place in preprocessing to check
+                          //if the CQList is a cname list or a qvar list.
+                       | "" [onlyLabel, klabel('emptyOptCNameList)]
+    syntax CQList ::= List{CQName, ","}
+
+    syntax ImpDecl ::= "import" OptQualified ModId OptAsModId OptImpSpec [klabel('impDecl)]
+                     | "" [onlyLabel, klabel('emptyImpDecl)]
+    syntax OptQualified ::= "qualified"
+                          | ""  [onlyLabel, klabel('emptyQualified)]
+    syntax OptAsModId ::= "as" ModId
+                        | ""    [onlyLabel, klabel('emptyOptAsModId)]
+
+    syntax OptImpSpec ::= ImpSpec
+                        | ""    [onlyLabel, klabel('emptyOptImpSpec)]
+
+    syntax ImpSpecKey ::= "(" ImportList OptComma ")"
+    syntax ImpSpec ::= ImpSpecKey
+                     | "hiding" ImpSpecKey
+
+    syntax ImportList ::= List{Import, ","}
+
+    syntax Import ::= Var
+                    | TyCon CQList
+\end{lstlisting}
+
+\begin{lstlisting}
+    syntax TopDecls ::= List{TopDecl, ";"} [klabel('topdeclslist)]
+
+    syntax TopDecl ::= Decl [klabel('topdecldecl)]
+                     > "type" SimpleType "=" Type [klabel('type)]
+                     | "data" OptContext SimpleType OptConstrs OptDeriving  [klabel('data)]
+                     | "newtype" OptContext SimpleType "=" NewConstr OptDeriving [klabel('newtype)]
+                     | "class" OptContext ConId TyVar OptCDecls [klabel('class)]
+                     | "instance" OptContext QTyCon Inst OptIDecls [klabel('instance)]
+                     | "default" Types [klabel('default)]
+                     | "foreign" FDecl [klabel('foreign)]
+\end{lstlisting}
+
+The main types of expressions in Haskell are TopDecls - Top Declarations. A top declaration can either be a type, a data, a newtype, a class, an instance, a default, a foreign, or an arbitrary declaration.
+
+\begin{lstlisting}
+    syntax FDecl ::= "import" CallConv CusString Var "::" FType
+                   | "import" CallConv Safety CusString Var "::" FType
+                   | "export" CallConv Safety CusString Var "::" FType
+    //Liyi: fdecl needs to use special function in preprocessing
+    // to get the actually elements from the impent and expent from the CusString
+    //did string analysis
+    
+    syntax Safety ::= "unsafe" | "safe"
+                   
+    syntax CallConv ::= "ccall" | "stdcall" | "cplusplus" | "jvm" | "dotnet"
+    syntax FType ::= FrType
+                   | FaType "->" FType // unsure about this one syntax is ambiguous UNFINISHED
+    
+    syntax FrType ::= FaType
+                    | "()"
+                    
+    syntax FaType ::= QTyCon ATypeList
+
+    //define declaration.
+    syntax OptDecls ::= "where" Decls | "" [onlyLabel, klabel('emptyOptDecls)]
+    syntax Decls ::= "{" DeclsList "}" [klabel('decls)]
+    syntax DeclsList ::= List{Decl, ";"} [klabel('declsList)]
+
+    syntax Decl ::= GenDecl
+                  | FunLhs Rhs [klabel('declFunLhsRhs)]
+                  | Pat Rhs [klabel('declPatRhs)]
+
+    syntax OptCDecls ::= "where" CDecls | "" [onlyLabel, klabel('emptyOptCDecls)]
+    syntax CDecls ::= "{" CDeclsList "}"
+    syntax CDeclsList ::= List{CDecl, ";"}
+
+    syntax CDecl ::= GenDecl
+                   | FunLhs Rhs
+                   | Var Rhs
+
+    syntax OptIDecls ::= "where" IDecls | "" [onlyLabel, klabel('emptyOptIDecls)]
+    syntax IDecls ::= "{" IDeclsList "}"
+    syntax IDeclsList ::= List{IDecl, ";"} [klabel('ideclslist)]
+
+    syntax IDecl ::= FunLhs Rhs [klabel('cdeclFunLhsRhs)]
+                   | Var Rhs [klabel('cdeclVarRhs)]
+                   | "" [onlyLabel, klabel('emptyIDecl)]
+
+    syntax GenDecl ::= VarsType
+                     | Vars "::" Context "=>" Type   [klabel('genAssignContext)]
+                     | Fixity Ops
+                     | Fixity Integer Ops
+                     | "" [onlyLabel, klabel('emptyGenDecl)]
+
+    //three optional data type for the TopDecl data operator. 
+    //deriving data type
+    syntax OptDeriving ::= Deriving | "" [onlyLabel, klabel('emptyDeriving)]
+    syntax Deriving ::= "deriving" DClass
+                      | "deriving" "(" DClassList ")"
+    syntax DClassList ::= List{DClass, ","}
+    syntax DClass ::= QTyCon
+
+    syntax FunLhs ::= Var APatList [klabel('varApatList)]
+                    | Pat VarOp Pat [klabel('patVarOpPat)]
+                    | "(" FunLhs ")" APatList [klabel('funlhsApatList)]
+
+    syntax Rhs ::= "=" Exp OptDecls [klabel('eqExpOptDecls)]
+                 | GdRhs OptDecls [klabel('gdRhsOptDecls)]
+
+    syntax GdRhs ::= Guards "=" Exp
+                   | Guards "=" Exp GdRhs
+    syntax Guards ::= "|" GuardList
+    syntax GuardList ::= Guard | Guard "," GuardList  [klabel('guardListCon)]
+    syntax Guard ::= Pat "<-" InfixExp
+                   | "let" Decls
+                   | InfixExp
+
+    //definition of exp
+    syntax Exp ::= InfixExp
+                 > InfixExp "::" Type  [klabel('expAssign)]
+                 | InfixExp "::" Context "=>" Type  [klabel('expAssignContext)]
+
+    syntax InfixExp ::= LExp
+                      > "-" InfixExp   [klabel('minusInfix)]
+                      > LExp QOp InfixExp
+
+    syntax LExp ::= AExp
+                  > "\\" APatList "->" Exp [klabel('lambdaFun)]
+                  | "let" Decls "in" Exp [klabel('letIn)]
+                  | "if" Exp OptSemicolon "then" Exp OptSemicolon "else" Exp [klabel('ifThenElse)]
+                  | "case" Exp "of" "{" Alts "}" [klabel('caseOf)]
+                  | "do" "{" Stmts "}" [klabel('doBlock)]
+                  //| FExp
+
+    //syntax FExp ::= AExp | FExp AExp
+
+    syntax OptSemicolon ::= ";" | "" [onlyLabel, klabel('emptySemicolon)]
+    syntax OptComma ::= "," | ""     [onlyLabel, klabel('emptyComma)]
+
+//    syntax OptWhereDecls ::= "where" Decls | ""
+
+    syntax AExp ::= QVar [klabel('aexpQVar)]
+                  | GCon [klabel('aexpGCon)]
+                  | Literal [klabel('aexpLiteral)]
+                  > AExp AExp [left, klabel('funApp)]
+                  > QCon "{" FBindList "}"
+                  | AExp "{" FBindList "}" //aexp cannot be qcon UNFINISHED
+                          //Liyi: first, does not understand the syntax, it is the Qcon {FBindlist}
+                          //or QCon? Second, place a check in preprosssing.
+                          //and also check the Fbindlist here must be at least one argument
+                  > "(" Exp ")"             [bracket]
+                  | "(" ExpTuple ")"
+                  | "[" ExpList "]"
+                  | "[" Exp OptExpComma ".." OptExp "]"
+                  | "[" Exp "|" Quals "]"
+                  | "(" InfixExp QOp ")"
+                  | "(" QOp InfixExp ")" //qop cannot be - (minus) UNFINISHED
+                           //Liyi: place a check here to check if QOp is a minus
+
+    syntax OptExpComma ::= "," Exp | "" [onlyLabel, klabel('emptyExpComma)]
+    syntax OptExp ::= Exp | "" [onlyLabel, klabel('emptyExp)]
+
+    syntax ExpList ::= Exp | Exp "," ExpList  [right]
+    syntax ExpTuple ::= Exp "," Exp           [right, klabel('twoExpTuple)]
+                      | Exp "," ExpTuple      [right, klabel('expTupleCon)]
+
+    //constr datatypes
+    syntax OptConstrs  ::= "=" Constrs [klabel('nonemptyConstrs)] | "" [onlyLabel, klabel('emptyConstrs)]
+    syntax Constrs     ::= Constr [klabel('singleConstr)] | Constr "|" Constrs [klabel('multConstr)]
+    syntax Constr      ::= Con OptBangATypes [klabel('constrCon)] // (arity con  =  k, k ≥ 0) UNFINISHED
+                         | SubConstr ConOp SubConstr
+                         | Con "{" FieldDeclList "}"
+
+    syntax NewConstr   ::= Con AType [klabel('newConstrCon)]
+                         | Con "{" Var "::" Type "}"
+
+    syntax SubConstr   ::= BType | "!" AType
+    syntax FieldDeclList ::= List{FieldDecl, ","}
+    syntax FieldDecl ::= VarsType
+                       | Vars "::" "!" AType
+
+
+    syntax OptBangATypes ::= List{OptBangAType, " "} [klabel('optBangATypes)]
+    syntax OptBangAType ::= OptBang AType [klabel('optBangAType)]
+    syntax OptBang ::= "!" | "" [onlyLabel, klabel('emptyBang)]
+
+    syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
+    syntax Context ::= Class
+                     | "(" Classes ")"
+
+    syntax Classes ::= List{Class, ","}
+
+    syntax SimpleClass ::= QTyCon TyVar  [klabel('classCon)]
+
+    syntax Class       ::= SimpleClass
+                         | QTyCon "(" TyVar ATypeList ")"
+                              //Liyi: a check in preprossing to check if the Atype list is empty
+                              //it must have at least one item
+
+    //define type and simple type
+    syntax SimpleType  ::= TyCon TyVars  [klabel('simpleTypeCon)]
+    syntax Type ::= BType
+                  | BType "->" Type  [klabel('typeArrow)]
+    syntax BType ::= AType
+                   | BType AType [klabel('baTypeCon)]
+
+    syntax ATypeList ::= List{AType, ""} [klabel('atypeList)]
+
+    syntax AType ::= GTyCon                     [klabel('atypeGTyCon)]
+                   | TyVar                      [klabel('atypeTyVar)]
+                   | "(" TypeTuple ")"          [klabel('atypeTuple)]
+                   | "[" Type "]"               [klabel('tyList)]
+                   | "(" Type ")"               [bracket]
+    syntax TypeTuple ::= Type "," Type          [right,klabel('twoTypeTuple)]
+                       | Type "," TypeTuple     [klabel('typeTupleCon)]
+    syntax Types ::= List{Type, ","}
+
+    syntax GConCommas ::= "," | "," GConCommas
+    syntax GConCommon ::= "()" | "[]" | "(" GConCommas ")" //was incorrect syntax
+    syntax GTyCon ::= QTyCon
+                    | GConCommon
+                    | "(->)"
+
+    syntax GCon ::= GConCommon
+                  | QCon
+
+    //inst definition
+    syntax Inst  ::= GTyCon
+                   | "(" GTyCon TyVars ")" //TyVars must be distinct UNFINISHED
+                   | "(" TyVarTuple ")" //TyVars must be distinct
+                   | "[" TyVar "]"  [klabel('tyVarList)]
+                   | "(" TyVar "->" TyVar ")" //TyVars must be distinct
+    //pat definition
+    syntax Pat ::= LPat QConOp Pat
+                 | LPat
+
+    syntax LPat ::= APat
+                  | "-" IntFloat    [klabel('minusPat)]
+                  | GCon APatList  [klabel('lpatCon)]//arity gcon = k UNFINISHED
+
+    syntax APatList ::= APat | APat APatList [klabel('apatCon)]
+
+    syntax APat ::= Var [klabel('apatVar)]
+                  | Var "@" APat
+                  | GCon
+                  | QCon "{" FPats "}"
+                  | Literal [klabel('apatLiteral)]
+                  | "_"
+                  | "(" Pat ")"   [bracket]
+                  | "(" PatTuple ")"
+                  | "[" PatList "]"
+                  | "~" APat
+
+    syntax PatTuple ::= Pat "," Pat         [klabel('twoPatTuple)]
+                      | Pat "," PatTuple    [klabel('patTupleCon)]
+    syntax PatList ::= Pat
+                      | Pat "," PatList     [klabel('patListCon)]
+
+    syntax FPats ::= List{FPat, ","}
+    syntax FPat ::= QVar "=" Pat
+
+    //definition of quals
+    syntax Quals ::= Qual | Qual "," Quals  [klabel('qualCon)]
+
+    syntax Qual ::= Pat "<-" Exp
+                  | "let" Decls
+                  | Exp
+
+    //definition of alts
+    syntax Alts ::= Alt | Alt ";" Alts
+
+    syntax Alt ::= Pat "->" Exp  [klabel('altArrow)]
+                 | Pat "->" Exp "where" Decls
+                 | "" [onlyLabel, klabel('emptyAlt)]
+
+    //definition of stmts
+    syntax Stmts ::= StmtList Exp OptSemicolon
+    syntax StmtList ::= List{Stmt, ""}
+    syntax Stmt ::= Exp ";"
+                  | Pat "<-" Exp ";"
+                  | "let" Decls ";"
+                  | ";"
+
+     //definition of fbind
+    syntax FBindList ::= List{FBind, ","}
+    syntax FBind ::= QVar "=" Exp
 \end{lstlisting}

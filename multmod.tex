@@ -54,8 +54,11 @@ The plan for the algorithm is as follows
 Where alpha is the map of type synonyms declared in the current module and alpha* is the map of type synonyms declared in the current module and all the included modules. Beta is the set of user defined types from using data and newtype declared in the current module. Beta* is the set of user defined types from using data and newtype declared in the current module and all the included modules. 
 Desugar the scope means that when the user references a type, desugar the reference to also include the parent module at all times.
 The syntax also needed to be changed to allow for multiple modules. The new syntax added is
+\begin{lstlisting}
+//  CUSTOM SYNTAX NOT PART OF OFFICAL HASKELL
 
     syntax ModuleList ::= Module [klabel('modListSingle)] | Module "<NEXTMODULE>" ModuleList [klabel('modList)]
+\end{lstlisting}
 
 This is because K cannot read mutiple files. So instead all the included modules for a program are dumped into one file and are seperated by the keyword <NEXTMODULE>
 This creates a list of modules called ModuleList.
