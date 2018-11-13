@@ -25,25 +25,6 @@ A polymorphic data type looks like $\forall a b c, (a \rightarrow b) \rightarrow
 
 \subsection{Inferencing Rules}
 
-\begin{prooftree}
-\AxiomC{Hyp}
-\UnaryInfC{$\{A \land B\} \vdash A \land B$}
-\AxiomC{Hyp}
-\UnaryInfC{$\{A \land B\} \cup \{B\} \vdash B$}
-\RightLabel{And$_R$ E}
-\BinaryInfC{$\{A \land B\} \vdash B$}
-\AxiomC{Hyp}
-\UnaryInfC{$\{A \land B\} \vdash A \land B$}
-\AxiomC{Hyp}
-\UnaryInfC{$\{A \land B\} \cup \{A\} \vdash A$}
-\RightLabel{And$_L$ E}
-\BinaryInfC{$\{A \land B\} \vdash A$}
-\RightLabel{And I}
-\BinaryInfC{$\{A \land B\} \vdash B \land A$}
-\RightLabel{Imp I}
-\UnaryInfC{$\{\} \vdash A \land B \Rightarrow B \land A$}
-\end{prooftree}
-
 Haskell is a strong and static type system.
 
 This means that type inferencing can be ran before compilation or running the code. used to ensure that fun

@@ -4,7 +4,7 @@ The grammar specified in section 10.5 of the Haskell 2010 report is a specificat
 %https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-210002.7
 As specified in section 2.7, the expanded syntax of haskell specifies haskell programs when written using semicolons and braces. However, these can be omitted in a real haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3
 %https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17800010.3
-The parser that I have written in K does not implement these layout rules and instead only can parse the expanded, layout insensitive syntax of haskell. It would require another script to convert a program written using the layout sensitive syntax into the expanded syntax in order to parse the program.
+The parser for this project does not implement these layout rules and instead only can parse the expanded, layout insensitive syntax of haskell. It would require another script to convert a program written using the layout sensitive syntax into the expanded syntax in order to parse the program.
 Haskell has a context free grammar.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-18000010.5
 	Section 10.1 specifies the notation used in the grammar.

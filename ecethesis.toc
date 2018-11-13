@@ -8,12 +8,12 @@
 \contentsline {chapter}{CHAPTER\ 5\hskip 1em\relax \MakeUppercase {Multiple Module Support}}{22}
 \contentsline {chapter}{CHAPTER\ 6\hskip 1em\relax \MakeUppercase {Inferencing}}{24}
 \contentsline {section}{\numberline {6.1}Data Structures}{24}
-\contentsline {subsection}{\numberline {6.1.1}Inferencing Rules}{25}
+\contentsline {subsection}{\numberline {6.1.1}Inferencing Rules}{24}
 \contentsline {section}{\numberline {6.2}Type theory}{25}
 \contentsline {section}{\numberline {6.3}Lambda Calculus}{25}
-\contentsline {section}{\numberline {6.4}Hindley-Milner}{26}
-\contentsline {section}{\numberline {6.5}Definition of Substitution}{26}
-\contentsline {section}{\numberline {6.6}Composition of Substitutions}{26}
-\contentsline {section}{\numberline {6.7}Inferencing Algorithm}{26}
+\contentsline {section}{\numberline {6.4}Hindley-Milner}{25}
+\contentsline {section}{\numberline {6.5}Definition of Substitution}{25}
+\contentsline {section}{\numberline {6.6}Composition of Substitutions}{25}
+\contentsline {section}{\numberline {6.7}Inferencing Algorithm}{25}
 \contentsline {subsection}{\numberline {6.7.1}Unification Algorithm}{30}
 \contentsline {chapter}{CHAPTER\ 7\hskip 1em\relax \MakeUppercase {Conclusion}}{32}
