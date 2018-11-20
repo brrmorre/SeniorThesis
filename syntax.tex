@@ -13,8 +13,24 @@ The notation of 10.1 are always in bold in the grammar. So
 \begin{lstlisting}
 qvarid -> [ modid . ] varid
 \end{lstlisting}
-Means that ‘modid .’ is optional, and the brackets ‘[ ]’ are not part of the haskell code, but the period ‘.’ is part of the haskell code. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
-There are a lot of parts of the grammar that were tricky for me to implement in K. For instance, a sort definition with an optional part could be just written using a ‘|’ in the K syntax. So 
+Means that 
+\begin{lstlisting}
+modid .
+\end{lstlisting}
+is optional, and the brackets 
+\begin{lstlisting}
+[ ]
+\end{lstlisting}
+are not part of the haskell code, but the period 
+\begin{lstlisting}
+.
+\end{lstlisting}
+is part of the haskell code. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
+There are a lot of parts of the grammar that were tricky for me to implement in K. For instance, a sort definition with an optional part could be just written using a pipe
+\begin{lstlisting}
+|
+\end{lstlisting}
+in the K syntax. So 
 \begin{lstlisting}
 qvarid -> [ modid . ] varid
 \end{lstlisting}
@@ -26,7 +42,11 @@ However, an issue arises when you have something written like
 \begin{lstlisting}
 data [context =>] simpletype [= constrs] [deriving]
 \end{lstlisting}
-As an option for the definition of the topdecl sort. What I did was, for each optional part, replace the optional part with a new sort. For instance, I replaced [ context => ] with a new sort called OptContext. Then I just specified
+As an option for the definition of the topdecl sort. What I did was, for each optional part, replace the optional part with a new sort. For instance, I replaced
+\begin{lstlisting}
+[ context => ]
+\end{lstlisting}
+with a new sort called OptContext. Then I just specified
 \begin{lstlisting}
 syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
 \end{lstlisting}
@@ -177,7 +197,7 @@ This example program has a Module with no name and only ImpDecls. It has one Imp
     syntax Import ::= Var
                     | TyCon CQList
 \end{lstlisting}
-
+An import is another module that this module depends on.
 \begin{lstlisting}
     syntax TopDecls ::= List{TopDecl, ";"} [klabel('topdeclslist)]
 
@@ -220,6 +240,19 @@ The main types of expressions in Haskell are TopDecls - Top Declarations. A top 
     syntax Decl ::= GenDecl
                   | FunLhs Rhs [klabel('declFunLhsRhs)]
                   | Pat Rhs [klabel('declPatRhs)]
+\end{lstlisting}
+
+Any sort that starts with 'Opt' means that this is optional. In K something can be made optional by declaring the necessary constructors or nothing.
+
+A Decl is any general declaration. So something like
+
+\begin{lstlisting}
+f x = x + 2
+\end{lstlisting}
+
+is a Decl.
+
+\begin{lstlisting}
 
     syntax OptCDecls ::= "where" CDecls | "" [onlyLabel, klabel('emptyOptCDecls)]
     syntax CDecls ::= "{" CDeclsList "}"
@@ -281,14 +314,15 @@ The main types of expressions in Haskell are TopDecls - Top Declarations. A top 
                   | "if" Exp OptSemicolon "then" Exp OptSemicolon "else" Exp [klabel('ifThenElse)]
                   | "case" Exp "of" "{" Alts "}" [klabel('caseOf)]
                   | "do" "{" Stmts "}" [klabel('doBlock)]
-                  //| FExp
 
-    //syntax FExp ::= AExp | FExp AExp
+\end{lstlisting}
+
+LExp is an important sort for the inference function. This is because LExp defines the different expression types which the inference function has specific rules for.
+
+\begin{lstlisting}
 
     syntax OptSemicolon ::= ";" | "" [onlyLabel, klabel('emptySemicolon)]
     syntax OptComma ::= "," | ""     [onlyLabel, klabel('emptyComma)]
-
-//    syntax OptWhereDecls ::= "where" Decls | ""
 
     syntax AExp ::= QVar [klabel('aexpQVar)]
                   | GCon [klabel('aexpGCon)]
@@ -307,6 +341,12 @@ The main types of expressions in Haskell are TopDecls - Top Declarations. A top 
                   | "(" InfixExp QOp ")"
                   | "(" QOp InfixExp ")" //qop cannot be - (minus) UNFINISHED
                            //Liyi: place a check here to check if QOp is a minus
+                           
+\end{lstlisting}
+
+AExp is also an import sort for the inference function. The main parts of AExp that the inference function cares about is QVar and GCon.
+
+\begin{lstlisting}
 
     syntax OptExpComma ::= "," Exp | "" [onlyLabel, klabel('emptyExpComma)]
     syntax OptExp ::= Exp | "" [onlyLabel, klabel('emptyExp)]

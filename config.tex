@@ -15,9 +15,31 @@ module HASKELL-CONFIGURATION
             <k> $PGM:ModuleList ~> startImportRecursion </k>
             <tempModule> .K </tempModule>
             <tempCode> .K </tempCode>
+\end{lstlisting}
+
+The k cell is the cell that computation takes place in. tempModule is the name of the current module.
+
+\begin{lstlisting}
             <typeIterator> 1 </typeIterator>
+\end{lstlisting}
+
+typeIterator is used for creating a fresh type variable. It has the current count of how many fresh type variables that were created.
+
+\begin{lstlisting}
             <tempAlpha> .K </tempAlpha>
             <tempAlphaMap> .Map </tempAlphaMap>
+\end{lstlisting}
+
+Alpha is a map of type renamings. So if a user declares
+
+\begin{lstlisting}
+data MyBool = TTrue
+;type MyBooltwo = MyBool
+\end{lstlisting}
+
+Then MyBooltwo is a renaming of MyBool. In tempAlpha, an AObject is made. An AObject is a KItem with two children. One can be thought of as a Key and the other is the Value for a map. So MyBool -> MyBooltwo. However, we want to check and reject programs that have multiple renamings, so we cannot use a K Map which has idempotence. However, once we make this check, we can then use a K Map. This is what tempAlphaMap is.
+
+\begin{lstlisting}
             <tempBeta> .Map </tempBeta>
             <tempT> .K </tempT>
             <tempDelta> .Map </tempDelta>

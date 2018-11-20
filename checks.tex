@@ -4,18 +4,26 @@ Section 4 of the Haskell 2010 report specifies the haskell type system.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch4.html#x10-620004
 In the topdecl sort, there are three typecons that are used to create user defined datatypes. Data, type, and newtype. The end goal is to put the user defined types into a data structure which I can use to perform type inferencing. These three typecons are used to create user defined types.
 The first one is type,
+	\begin{lstlisting}
 type simpletype = type 
+	\end{lstlisting}
 This is used in a haskell program to declare a new type as a single type. In effect, it renames the type where both names now can be used to refer to the type.
+	\begin{lstlisting}
 type Username = String
+	\end{lstlisting}
 Is one such example usage of type, it creates a new type Username, which is defined as just a string. Now the programmer can refer to Username or String to make a string.
 	The second one is data,
 	\begin{lstlisting}
 data [context =>] simpletype [= constrs] [deriving]
 	\end{lstlisting}
 This allows a user to declare a new type that may include many fields, and polymorphic types. For instance:
+	\begin{lstlisting}
 data Date = Date Int Int Int
+	\end{lstlisting}
 This is a new type that includes the typecon ‘Date’ followed by three integers.
+	\begin{lstlisting}
 data Poly a = Number a
+	\end{lstlisting}
 This is a new polymorphic type with polymorphic parameter a, that has the typecon ‘Number’.
 	The third one is newtype,
 	\begin{lstlisting}
