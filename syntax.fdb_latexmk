@@ -1,0 +1,9 @@
+# Fdb version 3
+["pdflatex"] 1543115991 "syntax.tex" "syntax.pdf" "syntax" 1543115991
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1525040116 33301 a3134070eacafb10b1f371612ce2650d ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1529181020 7906416 ed80b6ef13ca31a8bf9d4c3d26f1c383 ""
+  "syntax.aux" 1543115897 195 3b717a1dc6743ee453c3e54827c357c5 ""
+  "syntax.tex" 1543115990 21257 f9ba7875cebd919e39f7a710a2b3a118 ""
+  (generated)
+  "syntax.log"
+  "syntax.pdf"

@@ -17,3 +17,4 @@
 \contentsline {section}{\numberline {6.7}Inferencing Algorithm}{27}
 \contentsline {subsection}{\numberline {6.7.1}Unification Algorithm}{32}
 \contentsline {chapter}{CHAPTER\ 7\hskip 1em\relax \MakeUppercase {Conclusion}}{34}
+\contentsline {chapter}{\MakeUppercase {REFERENCES}}{35}
