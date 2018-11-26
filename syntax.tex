@@ -5,51 +5,45 @@ Some difficulties with implementing a grammar into K is that the grammar origina
 The Haskell 2010 report is the current official specification of the Haskell language. %https://www.haskell.org/onlinereport/haskell2010/
 The grammar specified in section 10.5 of the Haskell 2010 report is a specification of the expanded syntax of Haskell.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-210002.7
-As specified in section 2.7, the expanded syntax of Haskell specifies Haskell programs when written using semicolons and braces. However, these can be omitted in a real Haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3
+As specified in section 2.7, the expanded syntax of Haskell specifies Haskell programs when written using semicolons and braces. However, these can be omitted in a real Haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17800010.3
 The parser for this project does not implement these layout rules and instead only can parse the expanded, layout insensitive syntax of Haskell. It would require another script to convert a program written using the layout sensitive syntax into the expanded syntax in order to parse the program.
-Haskell has a context free grammar.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-18000010.5
-	Section 10.1 specifies the notation used in the grammar.
+Section 10.1 specifies the notation used in the grammar.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17600010.1
-The notation of 10.1 are always in bold in the grammar. So
-\begin{lstlisting}
-qvarid -> [ modid . ] varid
-\end{lstlisting}
+The notation of 10.1 are always in bold in the grammar.
+So in the grammar
+
+\texttt{qvarid -> \textbf{[} modid . \textbf{]} varid}
+
 Means that 
 \begin{lstlisting}
 modid .
 \end{lstlisting}
-is optional, and the brackets 
-\begin{lstlisting}
-[ ]
-\end{lstlisting}
-are not part of the Haskell code, but the period 
-\begin{lstlisting}
-.
-\end{lstlisting}
-is part of the Haskell code. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
+is optional, and the brackets are not terminals, but the period is a terminal. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
+
+\section{Syntax Explanation}
 There are a lot of parts of the grammar that were tricky for me to implement in K. For instance, a sort definition with an optional part could be just written using a pipe
 in the K syntax.
 
-So the example production 
-\begin{lstlisting}
-qvarid -> [ modid . ] varid
-\end{lstlisting}
+So the example production
+
+\texttt{qvarid -> \textbf{[} modid . \textbf{]} varid}
+
 Is written in my K syntax as split into two options.
 \begin{lstlisting}
 syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
 \end{lstlisting}
 However, an issue arises when you have something written on the right hand side of the production like
-\begin{lstlisting}
-data [context =>] simpletype [= constrs] [deriving]
-\end{lstlisting}
+
+\texttt{data \textbf{[} context => \textbf{]} simpletype \textbf{[} = constrs \textbf{]} \textbf{[} deriving \textbf{]}}
+
 for the topdecl sort. If each optional sort were split into two options, then a production that includes $n$ optional sorts would require $2^n$ options. This would create an unnecessarily large syntax in K.
 
 Instead, for each optional sort in the original grammar, I replaced the optional sort with a new sort. For instance, I replaced
-\begin{lstlisting}
-[ context => ]
-\end{lstlisting}
+
+\texttt{ \textbf{[} context => \textbf{]} }
+
 in the original grammar with a new sort called OptContext. Then I just specified
 \begin{lstlisting}
 syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
@@ -63,7 +57,7 @@ In K,
 means that in the abstract syntax tree created by K, a term can be referred to using that klabel in a K rule.
 
 \section{Implementation of Section 10.2}
-The following introduces the syntax for the keywords, constants, special symbols, and variables that comprise the terminals for the remaining context free grammar as presented in section 10.1 of the Haskell manual.
+The following introduces the syntax for the keywords, constants, special symbols, and variables that comprise the terminals for the remaining context free grammar as presented in section 10.2 of the 2010 Haskell report.
 
 \begin{lstlisting}
 // Syntax from haskell 2010 Report
@@ -80,10 +74,10 @@ module HASKELL-SYNTAX
     syntax CusChar ::= Token{[\'](~[\'\\\&])[\']} [onlyLabel]
     syntax CusString ::= Token{[\"](~[\"\\]*)[\"]} [onlyLabel]
 \end{lstlisting}
+I ran into issue where a program with a variable called ‘size’ did not parse. I found out that this is because ‘size’ is a k keyword. So I just specified that a variable could be a variable token, or “size”.
 \begin{lstlisting}
     syntax VarId ::= Token{[a-z\_][a-z A-Z\_0-9\']*} [onlyLabel] | "size" [onlyLabel]
 \end{lstlisting}
-I ran into another issue where a program with a variable called ‘size’ did not parse. I found out that this is because ‘size’ is a k keyword. So I just specified that a variable could be a variable token, or “size”.
 \begin{lstlisting}
     syntax ConId ::= Token{[A-Z][a-zA-Z \_0-9\']*} [onlyLabel]
     syntax VarSym ::= Token{
@@ -99,13 +93,15 @@ I ran into another issue where a program with a variable called ‘size’ did n
   | ([\<][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)
   | ([\=][\! \# \$ \% \& \* \+ \. \/ \< \= \? \@ \\ \^ \| \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)} [onlyLabel]
     syntax ConSym ::= Token{[\:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*}   [onlyLabel]
-
-    syntax IntFloat ::= "(" Integer ")"  [bracket] //NOT OFFICIAL SYNTAX
-                      | "(" CusFloat ")" [bracket]
 \end{lstlisting}
 I ran into an issue where floats and integers did not parse correctly. They caused parsing errors due to ambiguity of parsing. For example the number 123.45 had ambiguity where the parser did not know if 1, 12, or 123 where integers, and if 5 was an integer, or if the entire thing was one float. Normally in K, different tokens are separated with whitespaces. However, for some reason the parser had difficulty here. Initially, I added a workaround by requiring parentheses around each integer and floating point.
 f y z (2)
 This fixed the issue.
+\begin{lstlisting}
+
+    syntax IntFloat ::= "(" Integer ")"  [bracket] //NOT OFFICIAL SYNTAX
+                      | "(" CusFloat ")" [bracket]
+\end{lstlisting}
 \begin{lstlisting}
     syntax Literal ::= IntFloat | CusChar | CusString
     syntax TyCon ::= ConId
@@ -150,6 +146,7 @@ This fixed the issue.
 \section{Implementation of Section 10.5}
 The following introduces the sorts of the context free grammar of the Haskell extended syntax.
 
+\subsection{Modules}
 We start with modules.
 \begin{lstlisting}
     syntax ModuleName ::= "module" ModId [klabel('moduleName)]
@@ -161,8 +158,6 @@ We start with modules.
     syntax Body ::= "{" ImpDecls ";" TopDecls "}" [klabel('bodyimpandtop)]
                   | "{" ImpDecls "}" [klabel('bodyimpdecls)]
                   | "{" TopDecls "}" [klabel('bodytopdecls)]
-
-    syntax ImpDecls ::= List{ImpDecl, ";"} [klabel('impDecls)]
 \end{lstlisting}
 
 The sort that contains all the other sorts is a module. A module represents one complete Haskell program. It can have either a name and a body, a name and a body with exports, or just a body.
@@ -181,8 +176,11 @@ The following example program has a Module with no name and only ImpDecls. It ha
 import Bar
 \end{lstlisting}
 
+\subsection{ImpDecls}
+An import is another module that this module depends on.
 The definition of ImpDecl is the following
 \begin{lstlisting}
+    syntax ImpDecls ::= List{ImpDecl, ";"} [klabel('impDecls)]
     syntax ImpDecl ::= "import" OptQualified ModId OptAsModId OptImpSpec [klabel('impDecl)]
                      | "" [onlyLabel, klabel('emptyImpDecl)]
     syntax OptQualified ::= "qualified"
@@ -202,7 +200,12 @@ The definition of ImpDecl is the following
     syntax Import ::= Var
                     | TyCon CQList
 \end{lstlisting}
-An import is another module that this module depends on.
+
+\subsection{TopDecls}
+The main types of expressions in Haskell are TopDecls - Top Declarations. A top declaration can either be a type, a data, a newtype, a class, an instance, a default, a foreign, or an arbitrary declaration.
+
+Any sort that starts with 'Opt' means that this is optional. In K something can be made optional by declaring the necessary constructors or nothing.
+
 \begin{lstlisting}
     syntax TopDecls ::= List{TopDecl, ";"} [klabel('topdeclslist)]
 
@@ -216,7 +219,15 @@ An import is another module that this module depends on.
                      | "foreign" FDecl [klabel('foreign)]
 \end{lstlisting}
 
-The main types of expressions in Haskell are TopDecls - Top Declarations. A top declaration can either be a type, a data, a newtype, a class, an instance, a default, a foreign, or an arbitrary declaration.
+\subsection{Decls}
+
+A Decl is any general declaration. So something like
+
+\begin{lstlisting}
+f x = x + 2
+\end{lstlisting}
+
+is a Decl.
 
 \begin{lstlisting}
     syntax OptDecls ::= "where" Decls | "" [onlyLabel, klabel('emptyOptDecls)]
@@ -227,16 +238,6 @@ The main types of expressions in Haskell are TopDecls - Top Declarations. A top 
                   | FunLhs Rhs [klabel('declFunLhsRhs)]
                   | Pat Rhs [klabel('declPatRhs)]
 \end{lstlisting}
-
-Any sort that starts with 'Opt' means that this is optional. In K something can be made optional by declaring the necessary constructors or nothing.
-
-A Decl is any general declaration. So something like
-
-\begin{lstlisting}
-f x = x + 2
-\end{lstlisting}
-
-is a Decl.
 
 \begin{lstlisting}
     syntax GenDecl ::= VarsType
@@ -268,7 +269,12 @@ is a Decl.
     syntax InfixExp ::= LExp
                       > "-" InfixExp   [klabel('minusInfix)]
                       > LExp QOp InfixExp
+\end{lstlisting}
 
+\subsection{LExp}
+LExp is an important sort for the inference function. This is because LExp defines the different expression types which the inference function has specific rules for.
+
+\begin{lstlisting}
     syntax LExp ::= AExp
                   > "\\" APatList "->" Exp [klabel('lambdaFun)]
                   | "let" Decls "in" Exp [klabel('letIn)]
@@ -278,7 +284,8 @@ is a Decl.
 
 \end{lstlisting}
 
-LExp is an important sort for the inference function. This is because LExp defines the different expression types which the inference function has specific rules for.
+\subsection{AExp}
+AExp is also an import sort for the inference function. The main parts of AExp that the inference function cares about is QVar and GCon.
 
 \begin{lstlisting}
 
@@ -304,8 +311,6 @@ LExp is an important sort for the inference function. This is because LExp defin
                            //Liyi: place a check here to check if QOp is a minus
                            
 \end{lstlisting}
-
-AExp is also an import sort for the inference function. The main parts of AExp that the inference function cares about is QVar and GCon.
 
 \begin{lstlisting}
 
