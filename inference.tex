@@ -1,18 +1,20 @@
 \chapter{Inferencing}
 \section{Data Structures}
-The next step is the actual type inferencing algorithm.
+The next step is the actual type inference algorithm.
 	I needed to create a syntax for polymorphic types that may contain monomorphic type variables and polymorphic type variables.
 	Then I made a map from type constructor names to arities, called Delta.
 	Then I made a map from data constructors and term identifiers to their most general polymorphic types, called beta.
 	The first part was converting the T data structure into beta, which is more suited for type inferencing.
-	Something to note is that for GHC:
+	Something to note is that mutually recursive functions are allowed in Haskell.
+	For example:
 	$$
 f x = y x
 $$
 $$
 y x = f x
 $$
-This set of functions is allowed. When run, the function just simply runs forever.
+This set of functions is allowed to compile. When run, the function just simply runs forever. This is unlike the OCaml semantics, which does not allow for mutually recursive functions.
+
 	Another thing to note is that the
 \begin{lstlisting}
 [context =>]
@@ -154,7 +156,17 @@ module HASKELL-TYPE-INFERENCING
          typeInferenceFun(.ElemList, Gamma, Lhsrhs, Guess) ...</k>
     rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'eqExpOptDecls(Ex:K,, Optdecls:K), Guess:K) =>
          typeInferenceFun(.ElemList, Gamma, Ex, Guess) ...</k>
+\end{lstlisting}
 
+\subsection{Variable Rule}
+
+\begin{prooftree}
+\AxiomC{}
+\RightLabel{Variable}
+\UnaryInfC{$\Gamma \vdash x : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\Gamma(x)))\}$}
+\end{prooftree}
+
+\begin{lstlisting}
     //T-App
     //rule typeInferenceFun('aexpQVar(Var:K), Alpha:Map, Beta:Map, Delta:Map, (Var |-> Sigma:K) Gamma:Map,.K,.K) => Sigma
     //Gamma Proves x:phi(tau) if Gamma(x) = \forall alpha_1, ..., alpha_n . tau
@@ -164,6 +176,7 @@ module HASKELL-TYPE-INFERENCING
           => mapBagResult(uniFun(ListItem(uniPair(Guess,freshInstance(Type, TypeIt))))) ...</k> //Variable rule
          <typeIterator> TypeIt:Int => TypeIt +Int paramSize(Type) </typeIterator>
 \end{lstlisting}
+\subsection{Constant Rule}
 
 \begin{prooftree}
 \AxiomC{}
@@ -180,10 +193,12 @@ module HASKELL-TYPE-INFERENCING
          
 \end{lstlisting}
 
+\subsection{Lambda Rule}
+
 \begin{prooftree}
-\AxiomC{}
-\RightLabel{Variable}
-\UnaryInfC{$\Gamma \vdash x : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\Gamma(x)))\}$}
+\AxiomC{$[x : \tau_1] + \Gamma \vdash e : \tau_2 \, | \, \sigma$}
+\RightLabel{Lambda}
+\UnaryInfC{$\Gamma \vdash \text{\textbackslash \, x \textrightarrow \, e}: \tau \, | \, \text{unify}\{ ( \sigma(\tau) , \sigma(\tau_1 \rightarrow \tau_2)) \} \circ \sigma$}
 \end{prooftree}
 
 \begin{lstlisting}
@@ -206,10 +221,13 @@ module HASKELL-TYPE-INFERENCING
     
 \end{lstlisting}
 
+\subsection{Application Rule}
+
 \begin{prooftree}
-\AxiomC{$[x : \tau_1] + \Gamma \vdash e : \tau_2 \, | \, \sigma$}
-\RightLabel{Lambda}
-\UnaryInfC{$\Gamma \vdash \text{\textbackslash \, x \textrightarrow \, e}: \tau \, | \, \text{unify}\{ ( \sigma(\tau) , \sigma(\tau_1 \rightarrow \tau_2)) \} \circ \sigma$}
+\AxiomC{$\Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
+\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau_1) \, | \, \sigma_2$}
+\RightLabel{Application}
+\BinaryInfC{$\Gamma \vdash e_1 e_2 : \tau \, | \, \sigma_2 \circ \sigma_1$}
 \end{prooftree}
 
 \begin{lstlisting}
@@ -229,15 +247,17 @@ module HASKELL-TYPE-INFERENCING
 
 \end{lstlisting}
 
+\subsection{IfThenElse Rule}
+
 \begin{prooftree}
-\AxiomC{$\Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
-\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau_1) \, | \, \sigma_2$}
-\RightLabel{Application}
-\BinaryInfC{$\Gamma \vdash e_1 e_2 : \tau \, | \, \sigma_2 \circ \sigma_1$}
+\AxiomC{$\Gamma \vdash e_1 : \text{bool} \, | \, \sigma_1$}
+\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau) \, | \, \sigma_2$}
+\AxiomC{$\sigma_2 \circ \sigma_1(\Gamma) \vdash e_3 : \sigma_2 \circ \sigma_1(\tau) \, | \, \sigma_3$}
+\RightLabel{IfThenElse}
+\TrinaryInfC{$\Gamma \vdash \text{if} \, e_1 \, \text{then} \, e_2 \, \text{else} \, e_3 : \tau \, | \, \sigma_3 \circ \sigma_2 \circ \sigma_1$}
 \end{prooftree}
 
 \begin{lstlisting}
-
     syntax KItem ::= typeInferenceFunIfThen(ElemList, Map, K, K, K, Map, Map) [strict(1)]
 
     //if_then_else rule
@@ -255,12 +275,20 @@ module HASKELL-TYPE-INFERENCING
           
 \end{lstlisting}
 
+\subsection{LetIn Rule}
+
+The LetIn Rule must allow for mutual recursion. This means that an example program that must be inferred is
+
+\begin{lstlisting}
+let {f = \x -> y x; y = \x -> f x} in (f 2)
+\end{lstlisting}
+
+In this example, the f is an expression that refers to y and y is an expression that refers to f.
+
 \begin{prooftree}
-\AxiomC{$\Gamma \vdash e_1 : \text{bool} \, | \, \sigma_1$}
-\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau) \, | \, \sigma_2$}
-\AxiomC{$\sigma_2 \circ \sigma_1(\Gamma) \vdash e_3 : \sigma_2 \circ \sigma_1(\tau) \, | \, \sigma_3$}
-\RightLabel{IfThenElse}
-\TrinaryInfC{$\Gamma \vdash \text{if} \, e_1 \, \text{then} \, e_2 \, \text{else} \, e_3 : \tau \, | \, \sigma_3 \circ \sigma_2 \circ \sigma_1$}
+\AxiomC{}
+\RightLabel{LetIn}
+\UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
 \end{prooftree}
 
 \begin{lstlisting}
@@ -299,12 +327,6 @@ module HASKELL-TYPE-INFERENCING
           
           
 \end{lstlisting}
-
-\begin{prooftree}
-\AxiomC{}
-\RightLabel{LetIn}
-\UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
-\end{prooftree}
 
 \begin{lstlisting}
 
@@ -383,7 +405,7 @@ module HASKELL-TYPE-INFERENCING
     rule freeVarsTy(forAll(Para:Set, Tau:KItem), Beta:Map) => freeVarsTy(Tau, Beta) -Set Para
     rule freeVarsEnv(Gamma:Map, Beta:Map) => listToSet(values(Beta), .Set)
 \end{lstlisting}
-\subsection{Unification Algorithm}
+\section{Unification Algorithm}
 
 Let $S = \{(s_1 , t_1), (s_2 , t_2), \cdots, (s_n , t_n)\}$ be a
 unification problem.

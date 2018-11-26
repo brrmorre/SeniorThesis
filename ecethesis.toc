@@ -1,20 +1,33 @@
-\contentsline {chapter}{\MakeUppercase {List of Tables}}{v}
-\contentsline {chapter}{\MakeUppercase {List of Figures}}{vi}
-\contentsline {chapter}{\MakeUppercase {LIST OF ABBREVIATIONS}}{vii}
+\contentsline {chapter}{\MakeUppercase {List of Tables}}{vi}
+\contentsline {chapter}{\MakeUppercase {List of Figures}}{vii}
+\contentsline {chapter}{\MakeUppercase {LIST OF ABBREVIATIONS}}{viii}
 \contentsline {chapter}{CHAPTER\ 1\hskip 1em\relax \MakeUppercase {Introduction}}{1}
 \contentsline {chapter}{CHAPTER\ 2\hskip 1em\relax \MakeUppercase {Context Free Syntax}}{3}
-\contentsline {chapter}{CHAPTER\ 3\hskip 1em\relax \MakeUppercase {Configuration}}{11}
-\contentsline {chapter}{CHAPTER\ 4\hskip 1em\relax \MakeUppercase {Context Sensitive Checks}}{13}
-\contentsline {chapter}{CHAPTER\ 5\hskip 1em\relax \MakeUppercase {Multiple Module Support}}{24}
-\contentsline {chapter}{CHAPTER\ 6\hskip 1em\relax \MakeUppercase {Inferencing}}{26}
-\contentsline {section}{\numberline {6.1}Data Structures}{26}
-\contentsline {subsection}{\numberline {6.1.1}Inferencing Rules}{26}
-\contentsline {section}{\numberline {6.2}Type theory}{27}
-\contentsline {section}{\numberline {6.3}Lambda Calculus}{27}
-\contentsline {section}{\numberline {6.4}Hindley-Milner}{27}
-\contentsline {section}{\numberline {6.5}Definition of Substitution}{27}
-\contentsline {section}{\numberline {6.6}Composition of Substitutions}{27}
-\contentsline {section}{\numberline {6.7}Inferencing Algorithm}{27}
-\contentsline {subsection}{\numberline {6.7.1}Unification Algorithm}{32}
-\contentsline {chapter}{CHAPTER\ 7\hskip 1em\relax \MakeUppercase {Conclusion}}{34}
-\contentsline {chapter}{\MakeUppercase {REFERENCES}}{35}
+\contentsline {section}{\numberline {2.1}Implementation of Section 10.2}{5}
+\contentsline {section}{\numberline {2.2}Implementation of Section 10.5}{8}
+\contentsline {section}{\numberline {2.3}Example Test Programs}{16}
+\contentsline {chapter}{CHAPTER\ 3\hskip 1em\relax \MakeUppercase {Configuration}}{17}
+\contentsline {chapter}{CHAPTER\ 4\hskip 1em\relax \MakeUppercase {Context Sensitive Checks}}{19}
+\contentsline {chapter}{CHAPTER\ 5\hskip 1em\relax \MakeUppercase {Multiple Module Support}}{41}
+\contentsline {chapter}{CHAPTER\ 6\hskip 1em\relax \MakeUppercase {Inferencing}}{43}
+\contentsline {section}{\numberline {6.1}Data Structures}{43}
+\contentsline {subsection}{\numberline {6.1.1}Inferencing Rules}{44}
+\contentsline {section}{\numberline {6.2}Type theory}{44}
+\contentsline {section}{\numberline {6.3}Lambda Calculus}{44}
+\contentsline {section}{\numberline {6.4}Hindley-Milner}{44}
+\contentsline {section}{\numberline {6.5}Definition of Substitution}{44}
+\contentsline {section}{\numberline {6.6}Composition of Substitutions}{45}
+\contentsline {section}{\numberline {6.7}Inferencing Algorithm}{45}
+\contentsline {subsection}{\numberline {6.7.1}Variable Rule}{47}
+\contentsline {subsection}{\numberline {6.7.2}Constant Rule}{47}
+\contentsline {subsection}{\numberline {6.7.3}Lambda Rule}{48}
+\contentsline {subsection}{\numberline {6.7.4}Application Rule}{49}
+\contentsline {subsection}{\numberline {6.7.5}IfThenElse Rule}{50}
+\contentsline {subsection}{\numberline {6.7.6}LetIn Rule}{51}
+\contentsline {section}{\numberline {6.8}Unification Algorithm}{55}
+\contentsline {chapter}{CHAPTER\ 7\hskip 1em\relax \MakeUppercase {Conclusion}}{58}
+\contentsline {chapter}{APPENDIX\ A\hskip 1em\relax \MakeUppercase {haskell-syntax.k}}{59}
+\contentsline {chapter}{APPENDIX\ B\hskip 1em\relax \MakeUppercase {haskell-configuration.k}}{71}
+\contentsline {chapter}{APPENDIX\ C\hskip 1em\relax \MakeUppercase {haskell-preprocessing.k}}{73}
+\contentsline {chapter}{APPENDIX\ D\hskip 1em\relax \MakeUppercase {haskell-type-inferencing.k}}{94}
+\contentsline {chapter}{\MakeUppercase {REFERENCES}}{109}

@@ -1,3 +1,4 @@
+\chapter{haskell-syntax.k}
 \begin{lstlisting}
 // Syntax from haskell 2010 Report
 // https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17500010
@@ -234,11 +235,6 @@ LExp is an important sort for the inference function. This is because LExp defin
                   | "(" QOp InfixExp ")" //qop cannot be - (minus) UNFINISHED
                            //Liyi: place a check here to check if QOp is a minus
                            
-\end{lstlisting}
-
-AExp is also an import sort for the inference function. The main parts of AExp that the inference function cares about is QVar and GCon.
-
-\begin{lstlisting}
 
     syntax OptExpComma ::= "," Exp | "" [onlyLabel, klabel('emptyExpComma)]
     syntax OptExp ::= Exp | "" [onlyLabel, klabel('emptyExp)]
@@ -367,3 +363,1064 @@ AExp is also an import sort for the inference function. The main parts of AExp t
      //definition of fbind
     syntax FBindList ::= List{FBind, ","}
     syntax FBind ::= QVar "=" Exp
+\end{lstlisting}
+
+\chapter{haskell-configuration.k}
+\begin{lstlisting}
+requires "haskell-syntax.k"
+
+module HASKELL-CONFIGURATION
+    imports HASKELL-SYNTAX
+
+    syntax KItem ::= "startImportRecursion"
+    syntax KItem ::= callInit(K)
+    //syntax KItem ::= initPreModule(K) [function]
+    //syntax KItem ::= tChecker(K) [function]
+
+    configuration 
+        <T>
+            <k> $PGM:ModuleList ~> startImportRecursion </k>
+            <tempModule> .K </tempModule>
+            <tempCode> .K </tempCode>
+            <typeIterator> 1 </typeIterator>
+            <tempAlpha> .K </tempAlpha>
+            <tempAlphaMap> .Map </tempAlphaMap>
+            <tempBeta> .Map </tempBeta>
+            <tempT> .K </tempT>
+            <tempDelta> .Map </tempDelta>
+            <tempAlphaStar> .K </tempAlphaStar>
+            <tempBetaStar> .K </tempBetaStar>
+            <importTree> .List </importTree>
+            <recurImportTree> .List </recurImportTree>
+            <impTreeVMap> .Map </impTreeVMap>
+            <modules> //static information about a module
+                <module multiplicity="*">
+                    <moduleName> .K </moduleName>
+                    <moduleAlphaStar> .K </moduleAlphaStar>
+                    <moduleBetaStar> .K </moduleBetaStar>
+                    <moduleImpAlphas> .List </moduleImpAlphas>
+                    <moduleImpBetas> .List </moduleImpBetas>
+                    <moduleCompCode> .K </moduleCompCode>
+                    <moduleTempCode> .K </moduleTempCode>
+                    <imports> .Set </imports>
+                    <classes> //static information about a module
+                        <class multiplicity="*">
+                            <className> .K </className>
+                        </class>
+                    </classes>
+                </module>
+            </modules>
+        </T>
+
+endmodule
+\end{lstlisting}
+
+\chapter{haskell-preprocessing.k}
+\begin{lstlisting}
+//
+requires "haskell-syntax.k"
+requires "haskell-configuration.k"
+
+module HASKELL-PREPROCESSING
+    imports HASKELL-SYNTAX
+    imports HASKELL-CONFIGURATION
+
+    //USER DEFINED LIST
+    //definition of ElemList
+
+    //syntax KItem ::= ElemList
+    syntax ElemList ::= List{Element,","} [strict]
+//    syntax Int ::= lengthOfList(ElemList) [function]
+
+//    rule lengthOfList(.ElemList) => 0
+//    rule lengthOfList(val(K:K),L:ElemList) => 1 +Int lengthOfList(L)
+//    rule lengthOfList(valValue(K:K),L:ElemList) => 1 +Int lengthOfList(L)
+
+    syntax Element ::= val(K) [strict]
+    syntax ElementResult ::= valValue(K)
+    syntax Element ::= ElementResult
+    syntax KResult ::= ElementResult
+    rule val(K:KResult) => valValue(K) [structural]
+
+    //form ElemList
+//    syntax ElemList ::= formElemList(K) [function]
+
+    //CONVERT ~> TO List
+    //list convert
+//    syntax List ::= convertToList(K)  [function]
+//    rule convertToList(.K) => .List
+//    rule convertToList(A:KItem ~> B:K) => ListItem(A) convertToList(B)
+
+
+    syntax KItem ::= dealWithImports(K,K)
+
+    rule <k> 'modListSingle('module(A:K,, B:K)) => dealWithImports(A,B) ...</k>
+
+    (.Bag =>
+          <module>...   //DOT DOT DOT MEANS OVERWRITE ONLY SOME OF THE DEFAULTS
+    	    <moduleName> A </moduleName>
+       ...</module>
+    )
+
+    rule <k> 'modList('module(A:K,, B:K),, C:K) => dealWithImports(A,B) ~> C ...</k>
+
+    (.Bag =>
+          <module>...   //DOT DOT DOT MEANS OVERWRITE ONLY SOME OF THE DEFAULTS
+    	    <moduleName> A </moduleName>
+       ...</module>
+    )
+
+//    rule dealWithImports(Mod:K, A:K) => callInit(A)
+
+//    rule <k> dealWithImports(Mod:K, A:K) => callInit(A) ...</k>
+
+    rule <k> dealWithImports(Mod:K, 'bodyimpandtop(A:K,, B:K)) => .K ...</k>
+        <importTree> L:List => L importListConvert(Mod, A) </importTree>
+        <recurImportTree> L:List => L importListConvert(Mod, A) </recurImportTree>
+
+        <moduleName> Mod </moduleName>
+        <imports> S:Set (.Set => SetItem(A)) </imports>
+        <moduleTempCode> OldTemp:K => B </moduleTempCode>
+
+    rule <k> dealWithImports(Mod:K, 'bodyimpdecls(A:K)) => .K ...</k>
+        <importTree> L:List => L importListConvert(Mod, A) </importTree>
+        <recurImportTree> L:List => L importListConvert(Mod, A) </recurImportTree>
+
+        <moduleName> Mod </moduleName>
+        <imports> S:Set (.Set => SetItem(A)) </imports>
+
+//    rule <k> dealWithImports(Mod:K, 'bodytopdecls(A:K)) => callInit(A) ...</k>
+    rule <k> dealWithImports(Mod:K, 'bodytopdecls(B:K)) => .K ...</k>
+
+        <moduleName> Mod </moduleName>
+        <moduleTempCode> OldTemp:K => B </moduleTempCode>
+
+    //importlist convert
+    syntax List ::= importListConvert(K,K) [function]
+    syntax KItem ::= impObject(K,K)
+
+    rule importListConvert(Name:K, 'impDecls(A:K,, Rest:K)) => importListConvert(Name, A) importListConvert(Name, Rest)
+    rule importListConvert('moduleName(Name:K), 'impDecl(A:K,, Modid:K,, C:K,, D:K)) => ListItem(impObject(Name, Modid))
+    rule importListConvert(Name:K, .ImpDecls) => .List
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /*NEW TODO ALGORITHM
+1. Construct tree for module inclusion
+2. Check tree for cycles
+3. Go to each leaf and recursively go up the tree and build alpha* and beta* for the types of the module and the children
+(and specify scoping) (desugar the scope so that each type specifies the scope) */
+
+    syntax KItem ::= "checkImportCycle"
+    syntax KItem ::= "recurseImportTree"
+
+/*    rule <k> performNextChecks
+             => checkUseVars
+                ~> (checkLabelUses
+                ~> (checkBlockAddress(.K)
+                ~> (checkNoNormalBlocksHavingLandingpad(.K, TNS -Set TES)
+                ~> (checkAllExpBlocksHavingLandingpad(.K, TES)
+                ~> (checkAllExpInFromInvoke(.K, TES)
+                ~> (checkLandingpad
+                ~> checkLandingDomResumes)))))) ...</k> */
+
+    rule <k> startImportRecursion => checkImportCycle 
+                                     ~> (recurseImportTree)...</k>
+
+    syntax KItem ::= cycleCheck(K,Map,List,List) [function] //current node, map of all nodes to visited or not, stack, graph
+    syntax Map ::= createVisitMap(List,Map) [function] //graph, visitmap
+    syntax KItem ::= getUnvisitedNode(K,K, Map) [function] //visitmap
+    syntax List ::= getNodeNeighbors(K,List) [function] //visitmap
+
+    rule <k> checkImportCycle
+             => cycleCheck(.K,createVisitMap(I, .Map),.List,I) ...</k>
+         <importTree> I:List </importTree>
+         <impTreeVMap> .Map => createVisitMap(I, .Map) </impTreeVMap>
+
+    syntax KItem ::= "visited"
+    syntax KItem ::= "unvisited"
+    syntax KItem ::= "none"
+
+    rule createVisitMap(ListItem(impObject(A:K,B:K)) Rest:List, M:Map) 
+             => createVisitMap(Rest, M[A <- unvisited][B <- unvisited])
+    rule createVisitMap(.List, M:Map) => M
+
+    rule getUnvisitedNode(.K, .K, .Map) => none
+    rule getUnvisitedNode(.K, .K, (A:K |-> B:K) M:Map)
+           => getUnvisitedNode(A, B, M)
+    rule getUnvisitedNode(A:KItem, unvisited, M:Map) => A
+    rule getUnvisitedNode(A:KItem, visited, M:Map)
+            =>  getUnvisitedNode(.K, .K, M)
+
+
+
+    rule getNodeNeighbors(Node:K,.List) => .List
+    rule getNodeNeighbors(.K,Rest:List) => .List
+
+    rule getNodeNeighbors(Node:KItem,ListItem(impObject(Node,B:KItem)) Rest:List) => getNodeNeighbors(Node, Rest) ListItem(B)
+    rule getNodeNeighbors(Node:KItem,ListItem(impObject(A:KItem,B:KItem)) Rest:List) => getNodeNeighbors(Node, Rest)
+         requires Node =/=K A
+
+
+    rule cycleCheck(none, M:Map, .List, L:List) => .K
+    rule cycleCheck(.K, M:Map, .List, I:List) => cycleCheck(getUnvisitedNode(.K, .K, M), M, .List, I)
+    rule cycleCheck(.K, M:Map, ListItem(Node:K) S:List, I:List) => cycleCheck(Node, M, S, I)
+    rule cycleCheck(Node:K, M:Map, S:List, I:List)
+                 => cycleCheck(.K, M[Node <- visited], getNodeNeighbors(Node,I) S, I)
+         requires Node =/=K .K andBool Node =/=K none
+    rule cycleCheck(.K, M:Map, ListItem(Node:K) S:List, I:K) => cycleCheck(Node, M, S, I)
+         requires S =/=K .List
+
+/*
+    rule cycleCheck(A:K,.K,.K,I:K) => cycleCheck(A,createVisitMap(I,.Map),.List,I)
+
+
+
+    rule cycleCheck(Node:K, M:Map, S:List, I:K) => cycleCheck(.K, M[Node <- visited], getNodeNeighbors(Node,I) S, I)
+
+    rule cycleCheck(.K, M:Map, ListItem(Node:K) S:List, I:K) => cycleCheck(Node, M, S, I)
+    //rule cycleCheck(.K, M:Map, .K, ListItem(impObject(A:K,B:K)) Rest:List) => cycleCheck(ListItem(impObject(A:K,B:K)) Rest:List)
+*/
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//COPY IMPORT GRAPH, NEED SECOND GRAPH FOR RECURSING, ADDITIONAL GRAPH FOR SELECTING IMPORTS FOR ALPHA* AND BETA*
+//DFS for leaf
+//acquire alpha and beta for leaf
+//merge alpha and beta with imports to produce alpha* and beta*
+//perform checks
+//perform inferencing
+//insert alpha* and beta* into importing modules
+//remove all edges pointing to leaf
+
+    syntax KItem ::= "leafDFS"
+    syntax KItem ::= "getAlphaAndBeta"
+    syntax KItem ::= "getAlphaBetaStar"
+    syntax KItem ::= "performIndividualChecks"
+    syntax KItem ::= "performIndividualInferencing"
+    syntax KItem ::= "insertAlphaBetaStar"
+    syntax KItem ::= "removeAllEdges"
+    syntax KItem ::= "seeIfFinished"
+
+    rule <k> recurseImportTree => leafDFS 
+                                  ~> (getAlphaAndBeta
+                                  //~> (getAlphaBetaStar
+                                  ~> (performIndividualInferencing))...</k>
+
+//rule <k> dealWithImports(Mod:K, 'bodytopdecls(A:K)) => callInit(A) ...</k>
+
+//    rule <k> leaf
+//             => cycleCheck(.K,createVisitMap(I, .Map),.List,I) ...</k>
+//         <importTree> I:List </importTree>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    syntax KItem ::= returnLeafDFS(K,List,Map) [function] //current node, map of all nodes to visited or not, stack, graph
+    syntax KItem ::= innerLeafDFS(K,List) [function]
+    syntax KItem ::= loadModule(K)
+
+    rule <k> leafDFS
+             => returnLeafDFS(.K,I,M) ...</k>
+         <recurImportTree> I:List </recurImportTree>
+         <impTreeVMap> M:Map </impTreeVMap>
+
+    rule returnLeafDFS(.K,ListItem(impObject(Node:KItem,B:KItem)) I:List,M:Map) => returnLeafDFS(B,I,M)
+    rule returnLeafDFS(Node:KItem,I:List,M:Map) => returnLeafDFS(innerLeafDFS(Node,I),I,M)
+         requires innerLeafDFS(Node,I) =/=K none
+    rule returnLeafDFS(Node:KItem,I:List,M:Map) => loadModule(Node)
+         requires innerLeafDFS(Node,I) ==K none
+
+    rule innerLeafDFS(Node:KItem,ListItem(impObject(Node,B:KItem)) I:List) => B
+    rule innerLeafDFS(Node:KItem,ListItem(impObject(A:KItem,B:KItem)) I:List) => innerLeafDFS(Node,I)
+         requires Node =/=K A
+    rule innerLeafDFS(Node:KItem,.List) => none
+//    returnLeafDFS(Node:KItem,ListItem(impObject(Node,B:KItem)) I:List,M:Map) => returnLeafDFS(B,I,M)
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //call before Checker Code
+//    rule <k> callInit(S:K) => initPreModule(S) ...</k>
+//         <tempModule> A:K => S </tempModule>
+
+    rule <k> loadModule(S:KItem) => .K ...</k>
+         <tempModule> A:K => S </tempModule>
+
+    rule <k> getAlphaAndBeta => initPreModule(Code) ...</k>
+         <tempModule> Mod:KItem </tempModule>
+
+         <moduleName> 'moduleName(Mod) </moduleName>
+         <moduleTempCode> Code:KItem </moduleTempCode>
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //get alpha and beta
+    syntax KItem ::= Module(K, K)
+    syntax KItem ::= preModule(K,K) //(alpha, T)
+
+    // STEP 1 CONSTRUCT T AND ALPHA
+    // alpha = type
+    // T = newtype and data, temporary data structure
+
+    syntax KItem ::= initPreModule(K) [function]
+    syntax KItem ::= getPreModule(K, K) [function] //(Current term, premodule)
+    syntax KItem ::= makeT (K,K,K,K)
+
+    syntax KItem ::= fetchTypes (K,K,K,K)
+
+    syntax List ::= makeInnerT (K,K,K) [function] //LIST
+    syntax List ::= getTypeVars(K) [function] //LIST
+
+    syntax KItem ::= getCon(K) [function]
+    syntax List ::= getArgSorts(K) [function] //LIST
+
+    syntax KItem ::= AList(K)
+    syntax KItem ::= AObject(K,K) //(1st -> 2nd) map without idempotency
+    syntax KItem ::= ModPlusType(K,K)
+
+    syntax KItem ::= TList(K) //list of T objects for every new type introduced by data and newtype
+    syntax KItem ::= TObject(K,K,K,K) //(module name, type name, entire list of poly type vars, list of inner T pieces)
+    syntax KItem ::= InnerTPiece(K,K,K,K,K) //(type constructor, poly type vars, argument sorts, entire constr block, type name)
+
+//    rule initPreModule('module(I:ModuleName,, J:K)) => getPreModule(J,preModule(AList(.List),TList(.List)))
+//    rule initPreModule('moduleExp(I:ModuleName,, L:K,, J:K)) => getPreModule(J,preModule(AList(.List),TList(.List)))
+//    rule initPreModule('moduleBody(J:Body)) => getPreModule(J,preModule(AList(.List),TList(.List)))
+
+    rule initPreModule(J:K) => getPreModule(J,preModule(AList(.List),TList(.List)))
+
+    rule getPreModule('bodytopdecls(I:K), J:K) => getPreModule(I,J)
+    rule getPreModule('topdeclslist('type(A:K,, B:K),, Rest:K),J:K) => fetchTypes(A,B,Rest,J) //constructalpha
+
+
+    rule getPreModule('topdeclslist('data(A:K,, B:K,, C:K,, D:K),, Rest:K),J:K) => makeT(B,C,Rest,J)
+    rule getPreModule('topdeclslist('newtype(A:K,, B:K,, C:K,, D:K),, Rest:K),J:K) => makeT(B,C,Rest,J)
+
+
+    rule getPreModule('topdeclslist('topdecldecl(A:K),, Rest:K),J:K) => getPreModule(Rest,J)
+    rule getPreModule('topdeclslist('class(A:K,, B:K,, C:K,, D:K),, Rest:K),J:K) => getPreModule(Rest,J)
+    rule getPreModule('topdeclslist('instance(A:K,, B:K,, C:K,, D:K),, Rest:K),J:K) => getPreModule(Rest,J)
+    rule getPreModule('topdeclslist('default(A:K,, B:K,, C:K,, D:K),, Rest:K),J:K) => getPreModule(Rest,J)
+    rule getPreModule('topdeclslist('foreign(A:K,, B:K,, C:K,, D:K),, Rest:K),J:K) => getPreModule(Rest,J)
+    rule getPreModule(.TopDecls,J:K) => J
+
+    //rule getPreModule('module(I:ModuleName,L:K, J:K)) => preModule(J)
+
+    rule <k> fetchTypes('simpleTypeCon(I:TyCon,, H:TyVars), 'atypeGTyCon(C:K), Rest:K, preModule(AList(M:List), L:K)) => getPreModule(Rest,preModule(AList(ListItem(AObject(ModPlusType(ModName,I),C)) M), L)) ...</k>
+         <tempModule> ModName:KItem </tempModule>
+
+    rule <k> makeT('simpleTypeCon(I:TyCon,, H:TyVars), D:K, Rest:K, preModule(AList(M:List), TList(ListInside:List))) => getPreModule(Rest,preModule(AList(M),TList(ListItem(TObject(ModName,I,H,makeInnerT(I,H,D))) ListInside))) ...</k>
+         <tempModule> ModName:KItem </tempModule>
+
+    rule makeInnerT(A:K,B:K,'nonemptyConstrs(C:K)) => makeInnerT(A,B,C)
+    rule makeInnerT(A:K,B:K,'singleConstr(C:K)) => ListItem(InnerTPiece(getCon(C),getTypeVars(C),getArgSorts(C),C,A))
+    rule makeInnerT(A:K,B:K,'multConstr(C:K,, D:K)) => ListItem(InnerTPiece(getCon(C),getTypeVars(C),getArgSorts(C),C,A)) makeInnerT(A,B,D)
+
+    rule getTypeVars('constrCon(A:K,, B:K)) => getTypeVars(B)
+    rule getTypeVars('optBangATypes(A:K,, Rest:K)) => getTypeVars(A) getTypeVars(Rest)
+    rule getTypeVars('optBangAType('emptyBang(.KList),, Rest:K)) => getTypeVars(Rest)
+    rule getTypeVars('atypeGTyCon(A:K)) => .List
+    rule getTypeVars('atypeTyVar(A:K)) => ListItem(A)
+    rule getTypeVars(.OptBangATypes) => .List
+
+    //rule getCon('emptyConstrs()) => .K
+    //rule getCon('nonemptyConstrs(A:K)) => getCon(A)
+    rule getCon('constrCon(A:K,, B:K)) => A
+
+    //rule getArgSorts('constrCon(A:K,, B:K)) => B
+    rule getArgSorts('constrCon(A:K,, B:K)) => getArgSorts(B)
+    rule getArgSorts('optBangATypes(A:K,, Rest:K)) => getArgSorts(A) getArgSorts(Rest)
+    rule getArgSorts('optBangAType('emptyBang(.KList),, Rest:K)) => getArgSorts(Rest)
+    rule getArgSorts('atypeGTyCon(A:K)) => ListItem(A)
+    rule getArgSorts('atypeTyVar(A:K)) => .List
+    rule getArgSorts(.OptBangATypes) => .List
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    rule <k> preModule(A:K,T:K) => startTTransform ...</k>
+         <tempAlpha> OldAlpha:K => A </tempAlpha>
+         <tempT> OldT:K => T </tempT>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // STEP 2 PERFORM CHECKS
+
+    syntax KItem ::= "error"
+
+    syntax KItem ::= "startChecks"
+    syntax KItem ::= "checkNoSameKey"
+        //Keys of alpha and keys of T should be unique
+    syntax KItem ::= "checkTypeConsDontCollide"
+        //Make sure typeconstructors do not collide in T
+    syntax KItem ::= "makeAlphaMap"
+        //make map for alpha
+    syntax KItem ::= "checkAlphaNoLoops"
+        //alpha check for no loops
+        //check alpha to make sure that everything points to a T
+    syntax KItem ::= "checkArgSortsAreTargets"
+           //Make sure argument sorts [U] [W,V] are in the set of keys of alpha and targets of T, (keys of T)
+    syntax KItem ::= "checkParUsed"
+//NEED TO CHECK all the polymorphic parameters from right appear on left. RIGHT SIDE ONLY
+//NEED TO CHECK UNIQUENESS FOR POLY PARAM ON LEFT SIDE ONLY
+
+//    rule <k> preModule(A:K,T:K) => startChecks ...</k>
+//         <tempAlpha> OldAlpha:K => A </tempAlpha>
+//         <tempT> OldT:K => T </tempT>
+
+
+/*    rule <k> performNextChecks
+             => checkUseVars
+                ~> (checkLabelUses
+                ~> (checkBlockAddress(.K)
+                ~> (checkNoNormalBlocksHavingLandingpad(.K, TNS -Set TES)
+                ~> (checkAllExpBlocksHavingLandingpad(.K, TES)
+                ~> (checkAllExpInFromInvoke(.K, TES)
+                ~> (checkLandingpad
+                ~> checkLandingDomResumes)))))) ...</k> */
+
+    rule <k> startChecks
+             => checkNoSameKey
+                ~> (checkTypeConsDontCollide
+                ~> (makeAlphaMap
+                ~> (checkAlphaNoLoops
+                ~> (checkArgSortsAreTargets
+                ~> (checkParUsed))))) ...</k>
+
+    rule <k> checkTypeConsDontCollide
+             => tyConCollCheck(T,.List,.Set) ...</k>
+         <tempT> T:K </tempT>
+
+    //syntax KItem ::= tChecker(K) [function]
+    syntax KItem ::= tyConCollCheck(K,K,K) [function] //(TList,List of Tycons,Set of Tycons) 
+    syntax KItem ::= lengthCheck(K,K) [function]
+    //syntax KItem ::= tyConCollCheck(K,K,K) [function]
+    //syntax K ::= innerCollCheck(K) [function]
+    //syntax K ::= tyConCollCheckPasser(K, K) [function]
+
+    //rule tChecker(preModule(Alpha:Map,T:K,Mod:K)) => tyConCollCheck(innerCollCheck(T),preModule(Alpha,T,Mod))
+
+    //rule tyConCollCheck(.K,preModule(Alpha:Map,H:K,Mod:K)) => tyConCollCheck(innerCollCheck(H),preModule(Alpha,H,Mod))
+
+    rule tyConCollCheck(TList(ListItem(TObject(ModName:K, A:K,B:K,ListItem(InnerTPiece(Ty:K,E:K,F:K,H:K,G:K)) Inners:List)) Rest:List),J:List,D:Set) => 
+                    tyConCollCheck(TList(ListItem(TObject(ModName,A,B,Inners)) Rest),ListItem(Ty) J, SetItem(Ty) D)
+    rule tyConCollCheck(TList(ListItem(TObject(ModName:K, A:K,B:K,.List)) Rest:List),J:List,D:Set) => 
+                    tyConCollCheck(TList(Rest),J,D)
+    rule tyConCollCheck(TList(.List),J:List,D:Set) => 
+                    lengthCheck(size(J),size(D))
+
+    rule lengthCheck(A:Int, B:Int) => .K
+                    requires A ==Int B
+
+    rule lengthCheck(A:Int, B:Int) => error
+                    requires A =/=Int B
+
+    //rule tyConCollCheck(TList(TObject(A:K,B:K,C:K) ~> Rest:K),J:K) => tyConCollCheckPasser(TList(innerCollCheck(TObject(A:K,B:K,C:K)) ~> Rest:K),J:K)
+    syntax KItem ::= keyCheck(K,K,K,K) [function] //(Alpha, T, List of names, Set of names)
+
+    rule <k> checkNoSameKey
+             => keyCheck(A, T, .Set, .List) ...</k>
+         <tempAlpha> A:K </tempAlpha>
+         <tempT> T:K </tempT>
+    //rule <k> checkAlphaNoSameKey
+    //         => akeyCheck(.K, .Set) ...</k>
+
+    rule keyCheck(AList(ListItem(AObject(A:K,B:K)) C:List), T:K, D:Set, G:List) => keyCheck(AList(C), T, SetItem(A) D, ListItem(A) G)
+    rule keyCheck(AList(.List), TList(ListItem(TObject(ModName:K, A:K,B:K,C:K)) Rest:List), D:Set, G:List) => keyCheck(AList(.List), TList(Rest), SetItem(A) D, ListItem(A) G)
+    rule keyCheck(AList(.List), TList(.List), D:Set, G:List) => lengthCheck(size(G),size(D))
+
+
+    syntax KItem ::= makeAlphaM(K,K) [function] //(Alpha, AlphaMap)
+    syntax KItem ::= tAlphaMap(K) //(AlphaMap) temp alphamap
+
+    rule <k> makeAlphaMap
+             => makeAlphaM(A, .Map) ...</k>
+         <tempAlpha> A:K </tempAlpha>
+
+    rule makeAlphaM(AList(ListItem(AObject(A:K,B:K)) C:List), M:Map) => makeAlphaM(AList(C), M[A <- B])
+    rule makeAlphaM(AList(.List), M:Map) => tAlphaMap(M)
+
+    rule <k> tAlphaMap(M:K) => .K ...</k>
+         <tempAlphaMap> OldAlphaMap:K => M </tempAlphaMap>
+
+//    syntax KItem ::= tkeyCheck(K,K,K) [function] //(T,List of T,Set of T)
+
+//    rule <k> checkTNoSameKey
+//             => tkeyCheck(T, .Set, T) ...</k>
+//         <tempT> T:K </tempT>
+
+//    rule tkeyCheck(TList(ListItem(TObject(A:K,B:K,C:K)) Rest:List), D:Set, G:K) => tkeyCheck(TList(Rest), SetItem(A) D, G)
+//    rule tkeyCheck(TList(.List), D:Set, TList(G:List)) => lengthCheck(size(G),size(D))
+
+    syntax KItem ::= aloopCheck(K,K,K,K,K,K,K) [function] //(Alpha,List of Alpha,Set of Alpha,CurrNode,lengthcheck,T,BigSet)
+
+    rule <k> checkAlphaNoLoops
+             => aloopCheck(A,.List,.Set,.K,.K,T,.Set) ...</k>
+         <tempAlphaMap> A:K </tempAlphaMap>
+         <tempT> T:K </tempT>
+
+    //aloopCheck set and list to check cycles
+    rule aloopCheck(Alpha:Map (A:KItem |-> B:KItem), D:List, G:Set, .K, .K,T:K,S:Set) => aloopCheck(Alpha, ListItem(B) ListItem(A) D, SetItem(B) SetItem(A) G, B, .K,T,S)
+    rule aloopCheck(Alpha:Map (H |-> B:KItem), D:List, G:Set, H:KItem, .K,T:K,S:Set) => aloopCheck(Alpha, ListItem(B) D, SetItem(B) G, B, .K,T,S)
+
+    rule aloopCheck(Alpha:Map, D:List, G:Set, H:KItem, .K,T:K,S:Set) => aloopCheck(Alpha, .List, .Set, .K, lengthCheck(size(G),size(D)),T,G S) //type rename loop ERROR
+         requires (notBool H in keys(Alpha)) andBool (H in typeSet(T, .Set) orBool H in S) 
+
+    rule aloopCheck(Alpha:Map, D:List, G:Set, H:KItem, .K,T:K,S:Set) => error //terminal alpha rename is not in T ERROR
+         requires (notBool H in keys(Alpha)) andBool (notBool (H in typeSet(T, .Set) orBool H in S))
+
+
+    syntax Set ::= typeSet(K,K) [function] //(K, KSet)
+    rule typeSet(TList(ListItem(TObject(ModName:K, A:K,B:K,C:K)) Rest:List), D:Set) => typeSet(TList(Rest), SetItem(A) D)
+    rule typeSet(TList(.List), D:Set) => D
+
+//    rule aloopCheck(Alpha:Map, D:List, G:Set, H:KItem, .K) => keys(Alpha) ~> H
+//         requires notBool H in keys(Alpha)
+
+    rule aloopCheck(.Map, .List, .Set, .K, .K,T:K, S:Set) => .K
+//    rule aloopCheck(AList(Front:List ListItem(AObject(H,B:K)) C:List), D:List, G:Set, H:ConId) => aloopCheck(AList(C:List), ListItem(B) D, SetItem(B) G, B)
+
+
+//    syntax KItem ::= TList(K) //list of T objects for every new type introduced by data and newtype
+//    syntax KItem ::= TObject(K,K,K) //(type name, entire list of poly type vars, list of inner T pieces)
+//    syntax KItem ::= InnerTPiece(K,K,K,K,K) //(type constructor, poly type vars, argument sorts, entire constr block, type name)
+
+//Make sure argument sorts [U] [W,V] are in the set of keys of alpha and targets of T, (keys of T)
+
+    syntax KItem ::= argSortCheck(K,K,K) [function] //(T,AlphaMap)
+
+    rule <k> checkArgSortsAreTargets
+             => argSortCheck(T,A,typeSet(T,.Set)) ...</k>
+         <tempAlphaMap> A:K </tempAlphaMap>
+         <tempT> T:K </tempT>
+    
+    rule argSortCheck(TList(ListItem(TObject(ModName:K, A:K,B:K,ListItem(InnerTPiece(C:K,D:K,ListItem(Arg:KItem) ArgsRest:List,E:K,F:K)) InnerRest:List)) TListRest:List),AlphaMap:Map,Tset:Set) => argSortCheck(TList(ListItem(TObject(ModName,A,B,ListItem(InnerTPiece(C,D,ArgsRest,E,F)) InnerRest)) TListRest),AlphaMap,Tset)
+         requires ((Arg in keys(AlphaMap)) orBool (Arg in Tset))
+
+    rule argSortCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(C:K,D:K,ListItem(Arg:KItem) ArgsRest:List,E:K,F:K)) InnerRest:List)) TListRest:List),AlphaMap:Map,Tset:Set) => error
+         requires (notBool ((Arg in keys(AlphaMap)) orBool (Arg in Tset)))
+
+    rule argSortCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(C:K,D:K,.List,E:K,F:K)) InnerRest:List)) TListRest:List),AlphaMap:Map,Tset:Set) => argSortCheck(TList(ListItem(TObject(ModName,A,B,InnerRest)) TListRest),AlphaMap,Tset)
+
+    rule argSortCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,.List)) TListRest:List),AlphaMap:Map,Tset:Set) => argSortCheck(TList(TListRest),AlphaMap,Tset)
+
+    rule argSortCheck(TList(.List),AlphaMap:Map,Tset:Set) => .K
+
+//NEED TO CHECK all the polymorphic parameters from right appear on left. RIGHT SIDE ONLY
+//NEED TO CHECK UNIQUENESS FOR POLY PARAM ON LEFT SIDE ONLY
+
+    syntax KItem ::= parCheck(K,K) [function] //(T,AlphaMap)
+    syntax KItem ::= makeTyVarList(K,K,K) [function] //(TyVars, NewList)
+    syntax KItem ::= lengthRet(K,K,K) [function]
+
+    rule <k> checkParUsed
+             => parCheck(T,.K) ...</k>
+         <tempT> T:K </tempT>
+
+    //rule makeParLists(TList(ListItem(TObject(A:K,ListItem(Arg:KItem) PolyList:List,C:K)) Rest:List),Tlist:List,Tset:Set) => makeParLists(TList(ListItem(TObject(A,PolyList,C)) Rest),ListItem(Arg) Tlist,SetItem(Arg) Tset)
+    rule parCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,C:K)) Rest:List),.K) => parCheck(TList(ListItem(TObject(ModName,A:K,B:K,C:K)) Rest:List),makeTyVarList(B,.List,.Set))
+
+    rule parCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(C:K,ListItem(Par:KItem) ParRest:List,D:K,E:K,F:K)) InnerRest:List)) Rest:List),NewSet:Set) =>
+         parCheck(TList(ListItem(TObject(ModName,A,B,ListItem(InnerTPiece(C,ParRest,D,E,F)) InnerRest)) Rest),NewSet)
+            requires Par in NewSet
+
+    rule parCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(C:K,ListItem(Par:KItem) ParRest:List,D:K,E:K,F:K)) InnerRest:List)) Rest:List),NewSet:Set) => error
+            requires notBool (Par in NewSet)
+
+    rule parCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(C:K,.List,D:K,E:K,F:K)) InnerRest:List)) Rest:List),NewSet:Set) =>
+         parCheck(TList(ListItem(TObject(ModName,A,B,InnerRest)) Rest),NewSet)
+
+    rule parCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,.List)) Rest:List),NewSet:Set) =>
+         parCheck(TList(Rest),NewSet)
+
+    rule parCheck(TList(.List),NewSet:Set) => .K
+
+    rule makeTyVarList('typeVars(A:K,,Rest:K),NewList:List,NewSet:Set) => makeTyVarList(Rest, ListItem(A) NewList, SetItem(A) NewSet)
+
+    rule makeTyVarList(.TyVars,NewList:List,NewSet:Set) => lengthRet(size(NewList),size(NewSet),NewSet)
+
+    rule lengthRet(A:Int, B:Int, C:K) => C
+                    requires A ==Int B
+
+    rule lengthRet(A:Int, B:Int, C:K) => error
+                    requires A =/=Int B
+    
+    //rule argSortCheck(TList(ListItem(TObject(A:K,B:K,C:K)
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // STEP 3 Transform T into beta
+
+    syntax KItem ::= "startTTransform"
+    syntax KItem ::= "constructDelta"
+    syntax KItem ::= "constructBeta"
+
+    rule <k> startTTransform
+             => constructDelta
+                ~> (constructBeta) ...</k>
+
+    rule <k> constructDelta
+             => makeDelta(T,.Map) ...</k>
+         <tempT> T:K </tempT>
+
+    syntax KItem ::= makeDelta(K,Map) [function] //(T,Delta)
+    syntax KItem ::= newDelta(Map) //Delta
+    syntax KItem ::= newBeta(Map) //beta
+    syntax List ::= retPolyList(K,List) [function] //(T,Delta)
+
+    rule makeDelta(TList(ListItem(TObject(ModName:K,A:K,Polys:K,C:K)) Rest:List),M:Map) =>
+         makeDelta(TList(Rest),M[ModPlusType(ModName,A) <- size(retPolyList(Polys,.List))])
+    rule makeDelta(TList(.List),M:Map) => newDelta(M)
+
+    rule retPolyList('typeVars(A:K,,Rest:K),NewList:List) => retPolyList(Rest, ListItem(A) NewList)
+    rule retPolyList(.TyVars,L:List) => L
+
+    rule <k> newDelta(M:Map)
+             => .K ...</k>
+         <tempDelta> OldDelta:K => M </tempDelta>
+
+    rule <k> constructBeta
+             => makeBeta(T,.Map) ...</k>
+         <tempT> T:K </tempT>
+
+    syntax KItem ::= makeBeta(K,Map) [function] //(T,Beta,Delta)
+
+    rule makeBeta(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(Con:K,H:K,D:K,E:K,F:K)) InnerRest:List)) Rest:List),Beta:Map) =>
+         makeBeta(TList(ListItem(TObject(ModName,A,B,InnerRest)) Rest),Beta[ModPlusType(ModName,Con) <- betaParser(E,B,A)])
+    rule makeBeta(TList(ListItem(TObject(ModName:K,A:K,B:K,.List)) Rest:List),Beta:Map) =>
+         makeBeta(TList(Rest),Beta)
+    rule makeBeta(TList(.List),Beta:Map) =>
+         newBeta(Beta)
+//    rule makeBeta(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(C:K,H:K,D:K,E:K,F:K)) InnerRest:List)) Rest:List),Beta:Map) =>
+//         makeBeta(TList(ListItem(TObject(ModName,A,B,InnerRest)) Rest),Beta)
+
+    syntax KItem ::= betaParser(K,K,K) [function] //(Tree Piece,NewSyntax,Parameters,Constr)
+    syntax Set ::= getTyVarsRHS(K,List) [function]
+
+    syntax KItem ::= forAll(Set,K)
+    syntax KItem ::= funtype(K,K)
+
+    syntax Set ::= listToSet(List, Set) [function]
+
+    rule listToSet(ListItem(A:KItem) L:List, S:Set) => listToSet(L, SetItem(A) S)
+    rule listToSet(.List, S:Set) => S
+
+
+//if optbangAtypes, need to see if first variable is a typecon
+//if its a typecon then need to go into Delta and see the amount of parameters it has
+//then count the number of optbangAtypes after the typecon
+    rule betaParser('constrCon(A:K,, B:K), Par:K, Con:K) => forAll(getTyVarsRHS(B,.List), betaParser(B, Par, Con))
+    rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'atypeTyVar(Tyv:K)),, Rest:K), Par:K, Con:K) => funtype(Tyv, betaParser(Rest, Par, Con))
+    rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'baTypeCon(A:K,, B:K)),, Rest:K), Par:K, Con:K) => funtype('baTypeCon(A:K,, B:K), betaParser(Rest, Par, Con))
+    rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'atypeGTyCon(Tyc:K)),, Rest:K), Par:K, Con:K) => funtype(Tyc, betaParser(Rest, Par, Con))
+    rule betaParser(.OptBangATypes, Par:K, Con:K) => 'simpleTypeCon(Con,, Par)
+//    rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'atypeGTyCon(Tyc:K)),, Rest:KItem)) => getTypeVars(A) getTypeVars(Rest)
+//    rule getTypeVars('optBangAType('emptyBang(.KList),, Rest:K)) => getTypeVars(Rest)
+//    rule getTypeVars('atypeGTyCon(A:K)) => .List
+//    rule getTypeVars('atypeTyVar(A:K)) => ListItem(A)
+//    rule getTypeVars(.OptBangATypes) => .List
+
+    rule getTyVarsRHS(.OptBangATypes,Tylist:List) => listToSet(Tylist, .Set)
+
+    rule <k> newBeta(M:Map)
+             => .K ...</k>
+         <tempBeta> OldBeta:K => M </tempBeta>
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//    syntax KItem ::= "insertAlphaBetaStar"
+
+    syntax KItem ::= insertABRec(K,List)
+    syntax KItem ::= insertAB(K)
+
+    rule <k> insertAlphaBetaStar => insertABRec(Mod, Imp) ...</k>
+         <tempModule> Mod:KItem </tempModule>
+         <importTree> Imp:List </importTree>
+
+    rule <k> insertABRec(Node:KItem, ListItem(impObject(B:KItem,Node)) I:List) => insertAB(B) ~> insertABRec(Node, I) ...</k>
+
+    rule <k> insertABRec(Node:KItem, ListItem(impObject(B:KItem,C:KItem)) I:List) => insertABRec(Node, I) ...</k>
+             requires Node =/=K C
+
+    rule <k> insertAB(B) => .K ...</k>
+
+         <tempAlphaStar> Alph:KItem </tempAlphaStar>
+         <tempBetaStar> Bet:KItem </tempBetaStar>
+
+         <moduleName> 'moduleName(B) </moduleName>
+         <moduleImpAlphas> ImpAlphas:List => ListItem(Alph) ImpAlphas </moduleImpAlphas>
+         <moduleImpBetas> ImpBetas:List => ListItem(Bet) ImpBetas </moduleImpBetas>
+
+
+endmodule
+\end{lstlisting}
+
+\chapter{haskell-type-inferencing.k}
+\begin{lstlisting}
+requires "haskell-syntax.k"
+requires "haskell-configuration.k"
+requires "haskell-preprocessing.k"
+
+module HASKELL-TYPE-INFERENCING
+    imports HASKELL-SYNTAX
+    imports HASKELL-CONFIGURATION
+    imports HASKELL-PREPROCESSING
+
+    syntax KItem ::= "Bool" //Boolean
+
+    // STEP 4 Type Inferencing
+    syntax KItem ::= inferenceShell(K) [function]//Input, AlphaMap, Beta, Delta, Gamma
+    //syntax KItem ::= typeInferenceFun(K,Map,Map,Map,Map,K,K) [function]//Input, Alpha, Beta, Delta, Gamma
+    //syntax KItem ::= typeInferenceFun(Map,K,K) //Gamma, Expression, Guessed Type
+    syntax Map ::= genGamma(K,Map,K) [function] //Apatlist, Gamma Type
+    syntax KItem ::= genLambda(K,K) [function]
+    syntax KItem ::= guessType(Int)
+//    syntax KItem ::= lambdaReturn(K,K,K)
+    syntax KItem ::= freshInstance(K, Int) [function]
+    syntax Int ::= paramSize(K) [function]
+
+
+    syntax KItem ::= mapBag(Map)
+    syntax KResult ::= mapBagResult(Map)
+
+    syntax Map ::= gammaSub(Map,Map,Map) [function]//substitution, gamma
+
+    rule <k> performIndividualInferencing => inferenceShell(Code) ...</k>
+         <tempModule> Mod:KItem </tempModule>
+
+         <moduleName> 'moduleName(Mod) </moduleName>
+         <moduleTempCode> Code:KItem </moduleTempCode>
+
+    rule inferenceShell('topdeclslist('type(A:K,, B:K),, Rest:K)) =>
+         inferenceShell(Rest) //constructalpha
+    rule inferenceShell('topdeclslist('data(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('newtype(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('class(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('instance(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('default(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+    rule inferenceShell('topdeclslist('foreign(A:K,, B:K,, C:K,, D:K),, Rest:K)) =>
+         inferenceShell(Rest)
+
+    rule inferenceShell('topdeclslist('topdecldecl(A:K),, Rest:K)) =>
+         typeInferenceFun(.ElemList, .Map,A,guessType(0)) ~> inferenceShell(Rest)
+
+
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'declFunLhsRhs(Fn:K,, Lhsrhs:K), Guess:K) =>
+         typeInferenceFun(.ElemList, Gamma, Lhsrhs, Guess) ...</k>
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'eqExpOptDecls(Ex:K,, Optdecls:K), Guess:K) =>
+         typeInferenceFun(.ElemList, Gamma, Ex, Guess) ...</k>
+
+    //T-App
+    //rule typeInferenceFun('aexpQVar(Var:K), Alpha:Map, Beta:Map, Delta:Map, (Var |-> Sigma:K) Gamma:Map,.K,.K) => Sigma
+    //Gamma Proves x:phi(tau) if Gamma(x) = \forall alpha_1, ..., alpha_n . tau
+    //where phi replaces all occurrences of alpha_1, ..., alpha_n by monotypes tau_1, ..., tau_n
+
+    rule <k> typeInferenceFun(.ElemList, (Var |-> Type:K) Gamma:Map, 'aexpQVar(Var:K), Guess:KItem)
+          => mapBagResult(uniFun(ListItem(uniPair(Guess,freshInstance(Type, TypeIt))))) ...</k> //Variable rule
+         <typeIterator> TypeIt:Int => TypeIt +Int paramSize(Type) </typeIterator>
+
+    //rule typeInferenceFun('aexpGCon(Gcon:K), Alpha:Map, (Gcon |-> Sigma:K) Beta:Map, Delta:Map, Gamma:Map,.K,.K) => Sigma //T-App
+    //rule typeInferenceFun('aexpGCon(Gcon:K), Alpha:Map, Lol:Map, Delta:Map, Gamma:Map,.K,.K) => Sigma //T-App
+    //     <tempBeta> (Gcon |-> Sigma:K) Beta:Map </tempBeta>
+
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'aexpGCon('conTyCon(Mid:K,, Gcon:K)), Guess:KItem)
+          => mapBagResult(uniFun(ListItem(uniPair(Guess,freshInstance(Type, TypeIt))))) ...</k> //Constant rule
+         <tempBeta> (ModPlusType(Mid,Gcon) |-> Type:K) Beta:Map </tempBeta>
+         <typeIterator> TypeIt:Int => TypeIt +Int paramSize(Type) </typeIterator>
+
+    //lambda rule
+//    rule <k> typeInferenceFun(Gamma:Map, 'lambdaFun(Apatlist:K,, Ex:K), Guess:KItem) 
+//          => typeInferenceFun(genGamma(Apatlist,Gamma,guessType(TypeIt)), genLambda(Apatlist,Ex), guessType(TypeIt +Int 1))
+//          ~> lambdaReturn(Guess,guessType(TypeIt),guessType(TypeIt +Int 1)) ...</k>
+//         <typeIterator> TypeIt:Int => TypeIt +Int 2 </typeIterator>
+
+//    rule <k> Sigma:Map ~> lambdaReturn(Tau:K, Tauone:K, Tautwo:K) 
+//          => compose(uniFun(ListItem(uniPair(typeSub(Sigma,Tau),typeSub(Sigma,funtype(Tauone,Tautwo))))),Sigma) ...</k>
+
+   syntax KItem ::= typeInferenceFun(ElemList, Map, K, K) [strict(1)]
+   syntax KItem ::= typeInferenceFunLambda(ElemList, K, K, K) [strict(1)]
+/* automatically generated by the strict(1) in typeInferenceFun or typeInferenceFunAux
+   rule typeInferenceFunAux(Es:ElemList, C:K, A:K, B:K) => Es ~> typeInferenceFun(HOLE, C, A, B)
+        requires notBool isKResult(Es)
+   rule Es:KResult ~> typeInferenceFunAux(HOLE, C:K,A:K, B:K) => typeInferenceFun(Es, C, A, B)
+*/     
+
+    //lambda rule
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'lambdaFun(Apatlist:K,, Ex:K), Guess:KItem)
+          => typeInferenceFunLambda(val(typeInferenceFun(.ElemList, genGamma(Apatlist,Gamma,guessType(TypeIt)), genLambda(Apatlist,Ex), guessType(TypeIt +Int 1))), .ElemList, Guess, guessType(TypeIt),guessType(TypeIt +Int 1)) ...</k>
+         <typeIterator> TypeIt:Int => TypeIt +Int 2 </typeIterator>
+
+    rule <k> typeInferenceFunLambda(valValue(mapBagResult(Sigma:Map)), .ElemList, Tau:K, Tauone:K, Tautwo:K)
+         => mapBagResult(compose(uniFun(ListItem(uniPair(typeSub(Sigma,Tau),typeSub(Sigma,funtype(Tauone,Tautwo))))),Sigma)) ...</k>
+
+    //rule <k> substi(S:Map) ~> lambdaReturn(Tau:K, Tauone:K, Tautwo:K) 
+    //      => S[Tauone] ...</k>
+
+
+    //syntax KItem ::= appliReturn(Map, K, K, Map)
+    //syntax KItem ::= typeChildSub(Map, K) [function]
+
+    syntax KItem ::= typeInferenceFunAppli(ElemList, Map, K, K, Map) [strict(1)]
+
+    //application rule
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'funApp(Eone:K,, Etwo:K), Guess:KItem)
+          => typeInferenceFunAppli(val(typeInferenceFun(.ElemList, Gamma, Eone, funtype(guessType(TypeIt),Guess))), .ElemList, Gamma, Etwo, guessType(TypeIt), .Map) ...</k>
+         <typeIterator> TypeIt:Int => TypeIt +Int 1 </typeIterator>
+
+    rule <k> typeInferenceFunAppli(valValue(mapBagResult(Sigmaone:Map)), .ElemList, Gamma:Map, Etwo:KItem, guessType(TypeIt:Int), .Map)
+          => typeInferenceFunAppli(val(typeInferenceFun(.ElemList, gammaSub(Sigmaone, Gamma, .Map), Etwo, typeSub(Sigmaone, guessType(TypeIt)))), .ElemList, .Map, .K, .K, Sigmaone) ...</k>
+
+    rule <k> typeInferenceFunAppli(valValue(mapBagResult(Sigmatwo:Map)), .ElemList, .Map, .K, .K, Sigmaone:Map)
+          => mapBagResult(compose(Sigmatwo, Sigmaone)) ...</k>
+
+//    rule <k> Sigmaone:Map ~> appliReturn(Gamma:Map, Etwo:KItem, guessType(TypeIt:Int), .Map)
+//          => typeInferenceFun(gammaSub(Sigmaone, Gamma, .Map), Etwo, typeSub(Sigmaone, guessType(TypeIt)))
+//          ~> appliReturn(.Map, .K, .K, Sigmaone) ...</k>
+
+//    rule <k> Sigmatwo:Map ~> appliReturn(.Map, .K, .K, Sigmaone:Map)
+//          => compose(Sigmatwo, Sigmaone) ...</k>
+
+    syntax KItem ::= typeInferenceFunIfThen(ElemList, Map, K, K, K, Map, Map) [strict(1)]
+
+    //if_then_else rule
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'ifThenElse(Eone:K,, Optsem:K,, Etwo:K,, Optsemtwo:K,, Ethree:K), Guess:KItem)
+          => typeInferenceFunIfThen(val(typeInferenceFun(.ElemList, Gamma, Eone, Bool)), .ElemList, Gamma, Etwo, Ethree, Guess, .Map, .Map) ...</k>
+
+    rule <k> typeInferenceFunIfThen(valValue(mapBagResult(Sigmaone:Map)), .ElemList, Gamma:Map, Etwo:KItem, Ethree:KItem, Guess:KItem, .Map, .Map)
+          => typeInferenceFunIfThen(val(typeInferenceFun(.ElemList, gammaSub(Sigmaone, Gamma, .Map), Etwo, typeSub(Sigmaone, Guess))), .ElemList, Gamma, .K, Ethree, Guess, Sigmaone, .Map) ...</k>
+
+    rule <k> typeInferenceFunIfThen(valValue(mapBagResult(Sigmatwo:Map)), .ElemList, Gamma:Map, .K, Ethree:KItem, Guess:KItem, Sigmaone:Map, .Map)
+          => typeInferenceFunIfThen(val(typeInferenceFun(.ElemList, gammaSub(compose(Sigmatwo, Sigmaone), Gamma, .Map), Ethree, typeSub(compose(Sigmatwo, Sigmaone), Guess))), .ElemList, .Map, .K, .K, .K, Sigmaone, Sigmatwo) ...</k>
+
+    rule <k> typeInferenceFunIfThen(valValue(mapBagResult(Sigmathree:Map)), .ElemList, .Map, .K, .K, .K, Sigmaone:Map, Sigmatwo:Map)
+          => mapBagResult(compose(compose(Sigmathree, Sigmatwo), Sigmaone)) ...</k>
+
+    syntax KItem ::= typeInferenceFunLetIn(ElemList, Map, Map, K, K, K, Int, Int, Map, Map) [strict(1)]
+    syntax KItem ::= grabLetDeclName(K, Int) [function]
+    syntax KItem ::= grabLetDeclExp(K, Int) [function]
+    syntax KItem ::= mapLookup(Map, K) [function]
+    syntax Map ::= makeDeclMap(K, Int, Map) [function]
+    syntax Map ::= applyGEN(Map, Map, Map, Map) [function]
+
+    //Haskell let in rule (let rec in exp + let in rule combined)
+    //gamma |- let rec f1 = e1 and f2 = e2 and f3 = e3 .... in e =>
+    //beta, [f1 -> tau1, f2 -> tau2, f3 -> tau3,....] + gamma |- e1 : tau1 | sigma1,  [f1 -> simga1(tau1), f2 -> sigma1(tau2), f3 -> sigma1(tau3),....] + sigma1(gamma) |- e2 : sigma1(tau2) | sigma2  [f1 -> sigma2 o sigma1(tau1), f2 -> sigma2 o sigma1(tau2), f3 -> sigma2 o sigma1(tau3),....] + sigma2 o sigma1(gamma) |- e3 : sigma2 o sigma1(tau3) .....  [f1 -> gen(sigma_n o sigma2 o sigma1(tau1), sigma_n o sigma2 o sigma1(Gamma)), f2 -> gen(tau2), f3 -> gen(tau3),....] + gamma |- e : something
+    rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'letIn(D:K,, E:K), Guess:KItem)
+          => typeInferenceFunLetIn(.ElemList, Gamma, makeDeclMap(D, TypeIt, .Map), D, E, Guess, 0, TypeIt, .Map, Beta) ...</k>
+         <typeIterator> TypeIt:Int => TypeIt +Int size(makeDeclMap(D, TypeIt, .Map)) </typeIterator>
+         <tempBeta> Beta:Map </tempBeta>
+
+    rule <k> typeInferenceFunLetIn(.ElemList, Gamma:Map, DeclMap:Map, D:KItem, E:KItem, Guess:KItem, Iter:Int, TypeIt:Int, OldSigma:Map, Beta:Map)
+           => typeInferenceFunLetIn(val(typeInferenceFun(.ElemList, Gamma DeclMap, grabLetDeclExp(D, Iter), mapLookup(DeclMap, grabLetDeclName(D, Iter)))), .ElemList, Gamma, DeclMap, D, E, Guess, Iter, TypeIt, OldSigma, Beta) ...</k>
+          //=> typeInferenceFunLetIn(val(typeInferenceFun(DeclMap, grabLetDeclExp(D, Iter +Int TypeIt), Guess)), .ElemList, Gamma, DeclMap, D, E, Guess, Iter, TypeIt, OldSigma) ...</k>
+          requires Iter <Int (size(DeclMap))
+
+    rule <k> typeInferenceFunLetIn(valValue(mapBagResult(Sigma:Map)), .ElemList, Gamma:Map, DeclMap:Map, D:KItem, E:KItem, Guess:KItem, Iter:Int, TypeIt:Int, OldSigma:Map, Beta:Map)
+          => typeInferenceFunLetIn(.ElemList, gammaSub(Sigma,Gamma,.Map), gammaSub(Sigma, DeclMap,.Map), D, E, typeSub(Sigma, Guess), Iter +Int 1, TypeIt, compose(Sigma,OldSigma), Beta) ...</k>
+          requires Iter <Int (size(DeclMap))
+
+    rule <k> typeInferenceFunLetIn(.ElemList, Gamma:Map, DeclMap:Map, D:KItem, E:KItem, Guess:KItem, Iter:Int, TypeIt:Int, OldSigma:Map, Beta:Map)
+          => typeInferenceFunLetIn(val(typeInferenceFun(.ElemList, Gamma applyGEN(Gamma, DeclMap, .Map, Beta), E, Guess)), .ElemList, Gamma, DeclMap, D, E, Guess, Iter, TypeIt, OldSigma, Beta) ...</k>
+          requires Iter >=Int (size(DeclMap))
+
+    rule <k> typeInferenceFunLetIn(valValue(mapBagResult(Sigma:Map)), .ElemList, Gamma:Map, DeclMap:Map, D:KItem, E:KItem, Guess:KItem, Iter:Int, TypeIt:Int, OldSigma:Map, Beta:Map)
+          => mapBagResult(compose(Sigma, OldSigma))...</k>
+          requires Iter >=Int (size(DeclMap))
+
+    rule mapLookup((Name |-> Type:KItem) DeclMap:Map, Name:KItem) => Type
+    rule mapLookup(DeclMap:Map, Name:KItem) => Name
+         requires notBool(Name in keys(DeclMap))
+
+    //rule makeDeclMap('decls(A:K), TypeIt:Int, NewMap:Map) => makeDeclMap(A, TypeIt +Int 1, NewMap)
+    rule makeDeclMap('decls(Dec:K), TypeIt:Int, NewMap:Map) => makeDeclMap(Dec, TypeIt, NewMap)
+    rule makeDeclMap('declsList('declPatRhs('apatVar(Var:K),, Righthand:K),, Rest:K), TypeIt:Int, NewMap:Map) => makeDeclMap('decls(Rest), TypeIt +Int 1, NewMap[Var <- guessType(TypeIt)])
+    rule makeDeclMap(.DeclsList, TypeIt:Int, NewMap:Map) => NewMap
+
+    rule grabLetDeclName('decls(Dec:K), Iter:Int) => grabLetDeclName(Dec, Iter)
+    rule grabLetDeclName('declsList(Dec:K,, Rest:K), Iter:Int) => grabLetDeclName(Rest, Iter -Int 1)
+         requires Iter >Int 0
+    rule grabLetDeclName('declsList('declPatRhs('apatVar(Var:K),, Righthand:K),, Rest:K), Iter:Int) => Var
+         requires Iter <=Int 0
+
+
+    rule grabLetDeclExp('decls(Dec:K), Iter:Int) => grabLetDeclExp(Dec, Iter)
+    rule grabLetDeclExp('declsList(Dec:K,, Rest:K), Iter:Int) => grabLetDeclExp(Rest, Iter -Int 1)
+         requires Iter >Int 0
+    rule grabLetDeclExp('declsList('declPatRhs('apatVar(Var:K),, Righthand:K),, Rest:K), Iter:Int) => grabLetDeclExp(Righthand, Iter)
+         requires Iter <=Int 0
+    rule grabLetDeclExp('eqExpOptDecls(Righthand:K,, Opt:K), Iter:Int) => 'eqExpOptDecls(Righthand,, Opt)
+
+    rule genGamma('apatVar(Vari:K), Gamma:Map, Guess:K) => Gamma[Vari <- Guess]
+    rule genGamma('apatCon(Vari:K,, Pattwo:K), Gamma:Map, Guess:K) => Gamma[Vari <- Guess]
+
+    rule genLambda('apatVar(Vari:K), Ex:K) => Ex
+    rule genLambda('apatCon(Vari:K,, Pattwo:K), Ex:K) => 'lambdaFun(Pattwo,, Ex)
+
+
+    rule gammaSub(Sigma:Map, (Key:KItem |-> Type:KItem) Gamma:Map, Newgamma:Map)
+        => gammaSub(Sigma, Gamma, Newgamma[Key <- typeSub(Sigma, Type) ] )
+    //  => gammaSub(Sigma, Gamma, Newgamma[Key <- typeChildSub(Sigma, Type) ] )
+
+    rule gammaSub(Sigma:Map, .Map, Newgamma:Map)
+      => Newgamma
+
+    //rule typeChildSub((guessType(TypeIt) |-> Type:KItem) Sigma:Map, guessType(TypeIt:Int)) => Type
+
+    //rule typeChildSub(Sigma:Map, guessType(TypeIt:Int)) => guessType(TypeIt)
+    //     requires notBool (guessType(TypeIt) in keys(Sigma))
+
+    rule freshInstance(guessType(TypeIt:Int), Iter:Int) => guessType(TypeIt)
+    rule freshInstance(forAll(.Set, B:K), Iter:Int) => B
+    rule freshInstance(forAll(SetItem(C:KItem) A:Set, B:K), Iter:Int) => freshInstance(forAll(A, freshInstanceInner(C, B, Iter)), Iter +Int 1)
+
+    syntax KItem ::= freshInstanceInner(K,K,Int) [function]
+
+    rule freshInstanceInner(Repl:KItem, funtype(A:K, B:K), Iter:Int) => funtype(freshInstanceInner(Repl,A,Iter),freshInstanceInner(Repl,B,Iter))
+    rule freshInstanceInner(Repl:KItem, Repl, Iter:Int) => guessType(Iter)
+    rule freshInstanceInner(Repl:KItem, Target:KItem, Iter:Int) => Target [owise]
+
+    rule paramSize(forAll(A:Set, B:K)) => size(A)
+    rule paramSize(A:K) => 0 [owise]
+
+
+     rule applyGEN(Gamma:Map, (Key:KItem |-> Type:KItem) DeclMap:Map, NewMap:Map, Beta:Map)
+       => applyGEN(Gamma, DeclMap, NewMap[Key <- gen(Gamma, Type, Beta)], Beta)
+
+     rule applyGEN(Gamma:Map, .Map, NewMap:Map, Beta:Map)
+       => NewMap
+
+    //GEN
+    //GEN(Gamma, Tau) => Forall alpha
+
+    syntax KItem ::= gen(Map, K, Map) [function]
+    syntax Set ::= freeVarsTy(K, Map) [function]
+    syntax Set ::= freeVarsEnv(Map, Map) [function]
+    //syntax KItem ::= setBag(Set)
+//    syntax Set ::= listToSet(List, Set) [function]
+
+
+    rule gen(Gamma:Map, forAll(Para:Set, Tau:KItem), Beta:Map) => forAll(freeVarsTy(forAll(Para:Set, Tau), Beta) -Set freeVarsEnv(Gamma, Beta), Tau)
+    rule gen(Gamma:Map, Tau:KItem, Beta:Map) => forAll(freeVarsTy(Tau, Beta) -Set freeVarsEnv(Gamma, Beta), Tau) [owise]
+
+    //rule gen(Gamma:Map, forAll(Para:Set, Tau:KItem), Beta:Map) => forAll(freeVarsTy(forAll(Para:Set, Tau), Beta) -Set freeVarsEnv(Gamma, Beta), Tau)
+
+    rule freeVarsTy(guessType(TypeIt:Int), Beta:Map) => SetItem(guessType(TypeIt:Int))
+    rule freeVarsTy(funtype(Tauone:KItem, Tautwo:KItem), Beta:Map) => freeVarsTy(Tauone, Beta) freeVarsTy(Tautwo, Beta)
+    rule freeVarsTy(Tau:KItem, Beta:Map) => .Set
+         requires (forAll(.Set, Tau)) in values(Beta)
+    rule freeVarsTy(forAll(Para:Set, Tau:KItem), Beta:Map) => freeVarsTy(Tau, Beta) -Set Para
+    rule freeVarsEnv(Gamma:Map, Beta:Map) => listToSet(values(Beta), .Set)
+
+
+//    rule listToSet(ListItem(A:KItem) L:List, S:Set) => listToSet(L, SetItem(A) S)
+//    rule listToSet(.List, S:Set) => S
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //Unification
+
+    syntax Map ::= uniFun(List) [function]
+    //syntax List ::= uniSub(K,K,K) [function]
+    syntax Bool ::= isVarType(K) [function]
+    syntax Bool ::= notChildVar(K,K) [function]
+    syntax KItem ::= uniPair(K,K)
+
+    syntax List ::= uniSub(Map,K) [function] //apply substitution to unification
+
+    syntax KItem ::= typeSub(Map,K) [function] //apply substitution to type
+    syntax Map ::= compose(Map,Map) [function]
+
+    // syntax KItem ::= Map
+
+    rule uniFun(.List) => .Map //substi(.K,.K) is id substitution
+
+    rule uniFun(ListItem(uniPair(S:K,S)) Rest:List) => uniFun(Rest)  //delete rule
+
+    // rule uniFun(SetItem(I:K)) => .K //uniFun(Rest)  //delete rule
+
+    rule uniFun(ListItem(uniPair(S:K,T:K)) Rest:List) => uniFun(ListItem(uniPair(T,S)) Rest) //orient rule
+         requires isVarType(T) andBool (notBool isVarType(S))
+
+    //rule uniFun(ListItem(uniPair(forAll(Svars:List,S:K),forAll(.List,T:K))) Rest:List,Sigma:Map) => uniFun(ListItem(uniPair(forAll(.List,T),forAll(Svars,S))) Rest,Sigma) //orient rule
+      //   requires Svars =/=K .List
+
+    //rule uniFun(ListItem(uniPair(guessType(S:Int),forAll(.List,T:K))) Rest:List,Sigma:Map) => uniFun(ListItem(uniPair(forAll(.List,T:K),guessType(S))) Rest,Sigma) //orient rule
+
+   // rule uniFun(ListItem(uniPair(forAll(.List,S:K),T:K)) Rest:List, Sigma:Map) => uniFun(uniSub('aexpQVar(Var),T,Rest), Sigma['aexpQVar(Var) <- T]) //eliminate rule
+   //      requires notChildVar('aexpQVar(Var:K),T)
+
+    rule uniFun(ListItem(uniPair(funtype(A:K, B:K), funtype(C:K, D:K))) Rest:List) => uniFun(ListItem(uniPair(A, C)) ListItem(uniPair(B, D)) Rest:List) //decompose rule function type
+
+    rule uniFun(ListItem(uniPair(S:K,T:K)) Rest:List) 
+      => compose((S |-> typeSub(uniFun(uniSub((S |-> T),Rest)),T)),uniFun(uniSub((S |-> T),Rest))) //eliminate rule
+    //  => compose(uniFun(uniSub((S |-> T),Rest)),(S |-> typeSub(uniFun(uniSub((S |-> T),Rest)),T))) //eliminate rule
+         requires isVarType(S) andBool notChildVar(S,T)
+
+    rule isVarType(S:K) => true
+         requires getKLabel(S) ==KLabel 'guessType
+    rule isVarType(S:K) => false [owise]
+
+    rule notChildVar(S:K,T:K) => true
+
+    rule uniSub(Sigma:Map,.List) => .List
+    rule uniSub(.Map,L:List) => L
+    rule uniSub(Sigma:Map, Rest:List ListItem(uniPair(A:K, B:K))) => uniSub(Sigma, Rest) ListItem(uniPair(typeSub(Sigma, A), typeSub(Sigma, B)))
+
+    //rule typeSub(substi(.Map),Tau:KItem) => Tau
+    rule typeSub(Sigma:Map (Tau |-> Newtau:KItem),Tau:KItem) => typeSub(Sigma (Tau |-> Newtau),Newtau)
+    rule typeSub(Sigma:Map,funtype(Tauone:KItem,Tautwo:KItem)) => funtype(typeSub(Sigma,Tauone),typeSub(Sigma,Tautwo))
+    rule typeSub(Sigma:Map,Tau:KItem) => Tau [owise]
+
+    syntax Map ::= composeIn(Map, Map, Map, K, K) [function]
+
+    rule compose(Sigmaone:Map, Sigmatwo:Map) => composeIn(Sigmaone, Sigmatwo, .Map, .K, .K)
+
+    rule composeIn(Sigmaone:Map, (Key:KItem |-> Type:KItem) Sigmatwo:Map, NewMap:Map, .K, .K) => composeIn(Sigmaone, Sigmatwo, NewMap, Key, Type)
+
+    rule composeIn((Keyone |-> Typetwo:KItem) Sigmaone:Map, Sigmatwo:Map, NewMap:Map, Keyone:KItem, Typeone:KItem) => composeIn(Sigmaone, Sigmatwo, NewMap, Keyone, Typeone)
+
+    rule composeIn((Typeone |-> Typetwo:KItem) Sigmaone:Map, Sigmatwo:Map, NewMap:Map, Keyone:KItem, Typeone:KItem) => composeIn((Typeone |-> Typetwo) Sigmaone, Sigmatwo, NewMap[Keyone <- Typetwo], .K, .K)
+         requires notBool(Keyone in keys(Sigmaone))
+
+    rule composeIn(Sigmaone:Map, Sigmatwo:Map, NewMap:Map, Keyone:KItem, Typeone:KItem) => composeIn(Sigmaone, Sigmatwo, NewMap[Keyone <- Typeone], .K, .K) [owise]
+
+    rule composeIn(Sigmaone:Map, .Map, NewMap:Map, .K, .K) => Sigmaone NewMap
+
+    //rule composeIn(Sigmaone:Map, .Map, .Map, .K, .K) => Sigmaone
+
+    //rule composeIn((Key:KItem |-> Type:KItem) Sigmaone:Map, .Map, NewMap:Map) => composeIn(Sigmaone, .Map, NewMap[Key <- mapLookup(Sigmaone, Type)])
+
+    //rule compose(Sigmaone:Map,Sigmatwo:Map) => updateMap(Sigmaone,Sigmatwo)
+    //rule compose(Sigmaone:Map, (Keytwo:KItem |-> Valtwo:KItem) Sigmatwo:Map) => compose(Sigmaone[Keytwo <- Valtwo][Valtwo <- mapLookup(Sigmaone, Keytwo)], Sigmatwo)
+    //rule compose(Sigmaone:Map, (Key:KItem |-> Type:KItem) Sigmatwo:Map, .K) => compose(Sigmaone[Type <- mapLookup(Sigmaone, Key)][Key <- Type], Sigmatwo, mapLookup(Sigmaone, Key))
+    //rule compose(Sigmaone:Map, (Key:KItem |-> Type:KItem) Sigmatwo:Map) => composeIn(Sigmaone, Sigmatwo, mapLookup(Sigmaone, Key))
+    //     requires (notBool (Type in values(Sigmaone))) andBool (Type =/=K mapLookup(Sigmaone, Key))
+    //rule compose(Sigmaone:Map, (Key:KItem |-> Type:KItem) Sigmatwo:Map) => compose(Sigmaone[Key <- Type][Type <- mapLookup(Sigmaone, Key)], Sigmatwo)
+    //     requires (notBool (Type in values(Sigmaone))) andBool (Type =/=K mapLookup(Sigmaone, Key))
+//    rule compose(Sigmaone:Map, (Keytwo:KItem |-> Valtwo:KItem) Sigmatwo:Map) => compose(Sigmaone[Valtwo <- mapLookup(Sigmaone, Keytwo)], Sigmatwo)
+//         requires (Valtwo in values(Sigmaone)) andBool (Valtwo =/=K mapLookup(Sigmaone, Keytwo))
+    //rule compose(Sigmaone:Map, (Keytwo:KItem |-> Valtwo:KItem) Sigmatwo:Map) => compose((Keytwo |-> Valtwo) Sigmaone, Sigmatwo)
+    // requires notBool (Keytwo in keys(Sigmaone))
+    //rule compose(Sigmaone:Map, .Map) => Sigmaone
+    // rule compose(substi(Sone:K,Tone:K),substi(Stwo:K,Ttwo:K)) => substi(typeSub(substi(Stwo,Ttwo),Sone),Tone)
+
+
+   // rule notChildVar('aexpQVar(Var:K),T)
+
+
+    //T-Var
+//    rule typeInferenceFun('funApp(Eone:K,, Etwo:K), Alpha:Map, Beta:Map, Delta:Map, Gamma:Map,.K,.K) =>
+//         typeInferenceFun('funApp(Eone,, Etwo), Alpha, Beta, Delta, Gamma,typeInferenceFun(Eone,Alpha, Beta, Delta, Gamma,.K,.K),typeInferenceFun(Etwo,Alpha, Beta, Delta, Gamma,.K,.K))
+//    rule typeInferenceFun('funApp(Eone:K,, Etwo:K), Alpha:Map, Beta:Map, Delta:Map, Gamma:Map, funtype(Tauone:K, Tautwo:K), Tauone) => Tautwo
+
+    //T-Lam
+//    rule typeInferenceFun('lambdaFun(Apatlist:K,, Ex:K), Alpha:Map, Beta:Map, Delta:Map, Gamma:Map,.K,.K) =>
+//         typeInferenceFun('lambdaFun(Apatlist,, Ex), Alpha, Beta, Delta, Gamma,typeInferenceFun(Ex, Alpha, Beta, Delta, genGamma(Apatlist,Gamma),.K,.K),.K)
+
+//    rule typeInferenceFun('lambdaFun(Apatlist:K,, Ex:K), Alpha:Map, Beta:Map, Delta:Map, Gamma:Map,Tautwo:K,.K) => Tautwo
+
+endmodule
+\end{lstlisting}

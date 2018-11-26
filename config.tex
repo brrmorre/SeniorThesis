@@ -1,4 +1,7 @@
 \chapter{Configuration}
+K is used for defining a state machine and the K rules define the transition rules for the state machine. The configuration of the state machine is made up of K cells. The K cells contain all the code and the memory of the state machine. An actual state of the state machine in K is when the cells each have some term inside of them.
+
+The following is the configuration of my Haskell semantics.
 \begin{lstlisting}
 requires "haskell-syntax.k"
 
@@ -17,7 +20,8 @@ module HASKELL-CONFIGURATION
             <tempCode> .K </tempCode>
 \end{lstlisting}
 
-The k cell is the cell that computation takes place in. tempModule is the name of the current module.
+The $<k>$ cell is the cell that computation takes place in.
+The program initially  tempModule is the name of the current module.
 
 \begin{lstlisting}
             <typeIterator> 1 </typeIterator>

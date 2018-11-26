@@ -1,10 +1,13 @@
 \chapter{Context Free Syntax}
+This chapter details the first part of the static semantics. In order for any context sensitive checks or type inference can be done, the test programs first need to be parsed into an abstract syntax tree. The context sensitive checks and type inference can then be performed upon the tree.
+Some difficulties with implementing a grammar into K is that the grammar originally is written in sort descending order in a document. The goal was to build a grammar that can parse actual programs and ensure there was no bugs. To do this, I started with small example programs, wrote out the example abstract syntax tree, and included the sorts necessary to parse them. Then if they didn't parse correctly I could then debug. I then wrote bigger and bigger example programs and included more and more sorts until all the grammar was included.
+
 The Haskell 2010 report is the current official specification of the Haskell language. %https://www.haskell.org/onlinereport/haskell2010/
-The grammar specified in section 10.5 of the Haskell 2010 report is a specification of the expanded syntax of haskell.
+The grammar specified in section 10.5 of the Haskell 2010 report is a specification of the expanded syntax of Haskell.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-210002.7
-As specified in section 2.7, the expanded syntax of haskell specifies haskell programs when written using semicolons and braces. However, these can be omitted in a real haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3
+As specified in section 2.7, the expanded syntax of Haskell specifies Haskell programs when written using semicolons and braces. However, these can be omitted in a real Haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3
 %https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17800010.3
-The parser for this project does not implement these layout rules and instead only can parse the expanded, layout insensitive syntax of haskell. It would require another script to convert a program written using the layout sensitive syntax into the expanded syntax in order to parse the program.
+The parser for this project does not implement these layout rules and instead only can parse the expanded, layout insensitive syntax of Haskell. It would require another script to convert a program written using the layout sensitive syntax into the expanded syntax in order to parse the program.
 Haskell has a context free grammar.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-18000010.5
 	Section 10.1 specifies the notation used in the grammar.
@@ -21,35 +24,47 @@ is optional, and the brackets
 \begin{lstlisting}
 [ ]
 \end{lstlisting}
-are not part of the haskell code, but the period 
+are not part of the Haskell code, but the period 
 \begin{lstlisting}
 .
 \end{lstlisting}
-is part of the haskell code. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
+is part of the Haskell code. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
 There are a lot of parts of the grammar that were tricky for me to implement in K. For instance, a sort definition with an optional part could be just written using a pipe
-\begin{lstlisting}
-|
-\end{lstlisting}
-in the K syntax. So 
+in the K syntax.
+
+So the example production 
 \begin{lstlisting}
 qvarid -> [ modid . ] varid
 \end{lstlisting}
-Is written in my K syntax as
+Is written in my K syntax as split into two options.
 \begin{lstlisting}
 syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
 \end{lstlisting}
-However, an issue arises when you have something written like
+However, an issue arises when you have something written on the right hand side of the production like
 \begin{lstlisting}
 data [context =>] simpletype [= constrs] [deriving]
 \end{lstlisting}
-As an option for the definition of the topdecl sort. What I did was, for each optional part, replace the optional part with a new sort. For instance, I replaced
+for the topdecl sort. If each optional sort were split into two options, then a production that includes $n$ optional sorts would require $2^n$ options. This would create an unnecessarily large syntax in K.
+
+Instead, for each optional sort in the original grammar, I replaced the optional sort with a new sort. For instance, I replaced
 \begin{lstlisting}
 [ context => ]
 \end{lstlisting}
-with a new sort called OptContext. Then I just specified
+in the original grammar with a new sort called OptContext. Then I just specified
 \begin{lstlisting}
 syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
 \end{lstlisting}
+This is acceptable because Haskell is not an order sorted algebra, so introducing new sorts that are not originally in the grammar is okay.
+
+In K,
+\begin{lstlisting}
+[klabel('exampleLabel)]
+\end{lstlisting}
+means that in the abstract syntax tree created by K, a term can be referred to using that klabel in a K rule.
+
+\section{Implementation of Section 10.2}
+The following introduces the syntax for the keywords, constants, special symbols, and variables that comprise the terminals for the remaining context free grammar as presented in section 10.1 of the Haskell manual.
+
 \begin{lstlisting}
 // Syntax from haskell 2010 Report
 // https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17500010
@@ -131,8 +146,12 @@ This fixed the issue.
 
     syntax QOp ::= QVarOp | QConOp
 \end{lstlisting}
-\begin{lstlisting}
 
+\section{Implementation of Section 10.5}
+The following introduces the sorts of the context free grammar of the Haskell extended syntax.
+
+We start with modules.
+\begin{lstlisting}
     syntax ModuleName ::= "module" ModId [klabel('moduleName)]
 
     syntax Module ::= ModuleName "where" Body          [klabel('module)]
@@ -148,36 +167,22 @@ This fixed the issue.
 
 The sort that contains all the other sorts is a module. A module represents one complete Haskell program. It can have either a name and a body, a name and a body with exports, or just a body.
 
+The following example program has a Module with only ImpDecls. It has one ImpDecl.
+
 \begin{lstlisting}
 module Foo where
 {import Bar
 }
 \end{lstlisting}
 
-This example program has a Module with only ImpDecls. It has one ImpDecl.
+The following example program has a Module with no name and only ImpDecls. It has one ImpDecl.
 
 \begin{lstlisting}
 import Bar
 \end{lstlisting}
 
-This example program has a Module with no name and only ImpDecls. It has one ImpDecl.
-
+The definition of ImpDecl is the following
 \begin{lstlisting}
-    syntax Exports ::= "(" ExportList OptComma ")"
-    syntax ExportList ::= List{Export, ","}
-
-    syntax Export ::= QVar 
-                    | QTyCon OptCQList
-                    | ModuleName
-
-    //optional cname list
-    syntax OptCQList ::= "(..)"
-                       | "(" CQList ")"   [klabel('cqListBracket)]
-                          //Liyi: a check needs to place in preprocessing to check
-                          //if the CQList is a cname list or a qvar list.
-                       | "" [onlyLabel, klabel('emptyOptCNameList)]
-    syntax CQList ::= List{CQName, ","}
-
     syntax ImpDecl ::= "import" OptQualified ModId OptAsModId OptImpSpec [klabel('impDecl)]
                      | "" [onlyLabel, klabel('emptyImpDecl)]
     syntax OptQualified ::= "qualified"
@@ -214,25 +219,6 @@ An import is another module that this module depends on.
 The main types of expressions in Haskell are TopDecls - Top Declarations. A top declaration can either be a type, a data, a newtype, a class, an instance, a default, a foreign, or an arbitrary declaration.
 
 \begin{lstlisting}
-    syntax FDecl ::= "import" CallConv CusString Var "::" FType
-                   | "import" CallConv Safety CusString Var "::" FType
-                   | "export" CallConv Safety CusString Var "::" FType
-    //Liyi: fdecl needs to use special function in preprocessing
-    // to get the actually elements from the impent and expent from the CusString
-    //did string analysis
-    
-    syntax Safety ::= "unsafe" | "safe"
-                   
-    syntax CallConv ::= "ccall" | "stdcall" | "cplusplus" | "jvm" | "dotnet"
-    syntax FType ::= FrType
-                   | FaType "->" FType // unsure about this one syntax is ambiguous UNFINISHED
-    
-    syntax FrType ::= FaType
-                    | "()"
-                    
-    syntax FaType ::= QTyCon ATypeList
-
-    //define declaration.
     syntax OptDecls ::= "where" Decls | "" [onlyLabel, klabel('emptyOptDecls)]
     syntax Decls ::= "{" DeclsList "}" [klabel('decls)]
     syntax DeclsList ::= List{Decl, ";"} [klabel('declsList)]
@@ -253,36 +239,11 @@ f x = x + 2
 is a Decl.
 
 \begin{lstlisting}
-
-    syntax OptCDecls ::= "where" CDecls | "" [onlyLabel, klabel('emptyOptCDecls)]
-    syntax CDecls ::= "{" CDeclsList "}"
-    syntax CDeclsList ::= List{CDecl, ";"}
-
-    syntax CDecl ::= GenDecl
-                   | FunLhs Rhs
-                   | Var Rhs
-
-    syntax OptIDecls ::= "where" IDecls | "" [onlyLabel, klabel('emptyOptIDecls)]
-    syntax IDecls ::= "{" IDeclsList "}"
-    syntax IDeclsList ::= List{IDecl, ";"} [klabel('ideclslist)]
-
-    syntax IDecl ::= FunLhs Rhs [klabel('cdeclFunLhsRhs)]
-                   | Var Rhs [klabel('cdeclVarRhs)]
-                   | "" [onlyLabel, klabel('emptyIDecl)]
-
     syntax GenDecl ::= VarsType
                      | Vars "::" Context "=>" Type   [klabel('genAssignContext)]
                      | Fixity Ops
                      | Fixity Integer Ops
                      | "" [onlyLabel, klabel('emptyGenDecl)]
-
-    //three optional data type for the TopDecl data operator. 
-    //deriving data type
-    syntax OptDeriving ::= Deriving | "" [onlyLabel, klabel('emptyDeriving)]
-    syntax Deriving ::= "deriving" DClass
-                      | "deriving" "(" DClassList ")"
-    syntax DClassList ::= List{DClass, ","}
-    syntax DClass ::= QTyCon
 
     syntax FunLhs ::= Var APatList [klabel('varApatList)]
                     | Pat VarOp Pat [klabel('patVarOpPat)]
@@ -476,3 +437,18 @@ AExp is also an import sort for the inference function. The main parts of AExp t
     syntax FBindList ::= List{FBind, ","}
     syntax FBind ::= QVar "=" Exp
 \end{lstlisting}
+
+\section{Example Test Programs}
+An example program is
+\begin{lstlisting}
+module Simp1 where
+{import Test
+}
+\end{lstlisting}
+
+The corresponding abstract syntax tree in K is
+\begin{lstlisting}
+`'module`(`'moduleName`(#token("Simp1","ConId")), `'bodyimpdecls`(`'impDecls`(`'impDecl`(`'emptyQualified`( .::KList), #token("Test","ConId"), `'emptyOptAsModId`(.::KList), `'emptyOptImpSpec`(.::KList)), `'.List{"'impDecls"}`(.::KList))))
+\end{lstlisting}
+
+Module contains two children. The first child of module is moduleName which contains the token Simp1. Simp1 is a constructor ID because it starts with a capital letter. The second child of module is bodyimpdecls. This contains the sort impDecls which is a list of impDecls. This program has only one impDecl. Since there is no qualified, the impDecl contains the child emptyQualified, followed by the token Test. Since there is no AsModId or ImpSpec, the last two children are emptyOptAsModId and emptyOptImpSpec.
