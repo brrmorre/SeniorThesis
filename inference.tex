@@ -25,7 +25,94 @@ For functions, function guards, cases, and if-then-else are all equivalent.
 
 A polymorphic data type looks like $\forall a b c, (a \rightarrow b) \rightarrow c$
 
-\subsection{Inferencing Rules}
+\subsection{Transform T into Beta}
+\begin{lstlisting}
+    // STEP 3 Transform T into beta
+
+    syntax KItem ::= "startTTransform"
+    syntax KItem ::= "constructDelta"
+    syntax KItem ::= "constructBeta"
+
+    rule <k> startTTransform
+             => constructDelta
+                ~> (constructBeta) ...</k>
+
+    rule <k> constructDelta
+             => makeDelta(T,.Map) ...</k>
+         <tempT> T:K </tempT>
+
+    syntax KItem ::= makeDelta(K,Map) [function] //(T,Delta)
+    syntax KItem ::= newDelta(Map) //Delta
+    syntax KItem ::= newBeta(Map) //beta
+    syntax List ::= retPolyList(K,List) [function] //(T,Delta)
+\end{lstlisting}
+
+\subsubsection{Construct Delta}
+\begin{lstlisting}
+    rule makeDelta(TList(ListItem(TObject(ModName:K,A:K,Polys:K,C:K)) Rest:List),M:Map) =>
+         makeDelta(TList(Rest),M[ModPlusType(ModName,A) <- size(retPolyList(Polys,.List))])
+    rule makeDelta(TList(.List),M:Map) => newDelta(M)
+
+    rule retPolyList('typeVars(A:K,,Rest:K),NewList:List) => retPolyList(Rest, ListItem(A) NewList)
+    rule retPolyList(.TyVars,L:List) => L
+
+    rule <k> newDelta(M:Map)
+             => .K ...</k>
+         <tempDelta> OldDelta:K => M </tempDelta>
+
+\end{lstlisting}
+
+\subsubsection{Construct Beta}
+\begin{lstlisting}
+    rule <k> constructBeta
+             => makeBeta(T,.Map) ...</k>
+         <tempT> T:K </tempT>
+
+    syntax KItem ::= makeBeta(K,Map) [function] //(T,Beta,Delta)
+
+    rule makeBeta(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(Con:K,H:K,D:K,E:K,F:K)) InnerRest:List)) Rest:List),Beta:Map) =>
+         makeBeta(TList(ListItem(TObject(ModName,A,B,InnerRest)) Rest),Beta[ModPlusType(ModName,Con) <- betaParser(E,B,A)])
+    rule makeBeta(TList(ListItem(TObject(ModName:K,A:K,B:K,.List)) Rest:List),Beta:Map) =>
+         makeBeta(TList(Rest),Beta)
+    rule makeBeta(TList(.List),Beta:Map) =>
+         newBeta(Beta)
+//    rule makeBeta(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(C:K,H:K,D:K,E:K,F:K)) InnerRest:List)) Rest:List),Beta:Map) =>
+//         makeBeta(TList(ListItem(TObject(ModName,A,B,InnerRest)) Rest),Beta)
+
+    syntax KItem ::= betaParser(K,K,K) [function] //(Tree Piece,NewSyntax,Parameters,Constr)
+    syntax Set ::= getTyVarsRHS(K,List) [function]
+
+    syntax KItem ::= forAll(Set,K)
+    syntax KItem ::= funtype(K,K)
+
+    syntax Set ::= listToSet(List, Set) [function]
+
+    rule listToSet(ListItem(A:KItem) L:List, S:Set) => listToSet(L, SetItem(A) S)
+    rule listToSet(.List, S:Set) => S
+
+
+//if optbangAtypes, need to see if first variable is a typecon
+//if its a typecon then need to go into Delta and see the amount of parameters it has
+//then count the number of optbangAtypes after the typecon
+    rule betaParser('constrCon(A:K,, B:K), Par:K, Con:K) => forAll(getTyVarsRHS(B,.List), betaParser(B, Par, Con))
+    rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'atypeTyVar(Tyv:K)),, Rest:K), Par:K, Con:K) => funtype(Tyv, betaParser(Rest, Par, Con))
+    rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'baTypeCon(A:K,, B:K)),, Rest:K), Par:K, Con:K) => funtype('baTypeCon(A:K,, B:K), betaParser(Rest, Par, Con))
+    rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'atypeGTyCon(Tyc:K)),, Rest:K), Par:K, Con:K) => funtype(Tyc, betaParser(Rest, Par, Con))
+    rule betaParser(.OptBangATypes, Par:K, Con:K) => 'simpleTypeCon(Con,, Par)
+//    rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'atypeGTyCon(Tyc:K)),, Rest:KItem)) => getTypeVars(A) getTypeVars(Rest)
+//    rule getTypeVars('optBangAType('emptyBang(.KList),, Rest:K)) => getTypeVars(Rest)
+//    rule getTypeVars('atypeGTyCon(A:K)) => .List
+//    rule getTypeVars('atypeTyVar(A:K)) => ListItem(A)
+//    rule getTypeVars(.OptBangATypes) => .List
+
+    rule getTyVarsRHS(.OptBangATypes,Tylist:List) => listToSet(Tylist, .Set)
+
+    rule <k> newBeta(M:Map)
+             => .K ...</k>
+         <tempBeta> OldBeta:K => M </tempBeta>
+\end{lstlisting}
+
+\section{Inferencing Rules}
 
 Haskell is a strong and static type system.
 
