@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.1.9)  26 NOV 2018 03:43
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  27 NOV 2018 00:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1530,18 +1530,47 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no . in font nullfont!
 Missing character: There is no S in font nullfont!
 Missing character: There is no o in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no e in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no a in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no u in font nullfont!
 Missing character: There is no m in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
 
 Overfull \hbox (20.0pt too wide) in paragraph at lines 5--16
 []
@@ -1603,12 +1632,16 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.19 M
-      eans that
+l.19 T
+      his means that
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
-Missing character: There is no M in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no m in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -1868,21 +1901,28 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no a in font nullfont!
 Missing character: There is no t in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
 Missing character: There is no r in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no f in font nullfont!
 Missing character: There is no o in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no s in font nullfont!
 Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no i in font nullfont!
@@ -1925,11 +1965,19 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no w in font nullfont!
-Missing character: There is no i in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no p in font nullfont!
@@ -1937,12 +1985,6 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no t in font nullfont!
 Missing character: There is no c in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no u in font nullfont!
@@ -2024,51 +2066,68 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no o in font nullfont!
 Missing character: There is no n in font nullfont!
 
-! LaTeX Error: Environment lstlisting undefined.
+Overfull \hbox (20.0pt too wide) in paragraph at lines 29--30
+[]
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.30 \begin{lstlisting}
-                       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+l.31 ...id -> \textbf{[} modid . \textbf{]} varid}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-Missing character: There is no q in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no - in font nullfont!
-Missing character: There is no > in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no . in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no d in font nullfont!
 
-! LaTeX Error: \begin{document} ended by \end{lstlisting}.
+Overfull \hbox (51.49973pt too wide) in paragraph at lines 31--32
+[]\OT1/cmtt/m/n/10 qvarid
+ []
+
+
+Overfull \hbox (10.49991pt too wide) in paragraph at lines 31--32
+\OT1/cmtt/m/n/10 ->
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 31--32
+\OT1/cmtt/m/n/10 [
+ []
+
+
+Overfull \hbox (26.24977pt too wide) in paragraph at lines 31--32
+\OT1/cmtt/m/n/10 modid
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 31--32
+\OT1/cmtt/m/n/10 .
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 31--32
+\OT1/cmtt/m/n/10 ]
+ []
+
+
+Overfull \hbox (26.24977pt too wide) in paragraph at lines 31--32
+\OT1/cmtt/m/n/10 varid 
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.32 \end{lstlisting}
-                     
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+l.33 I
+      s written in my K syntax as split into two options.
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no I in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -2278,75 +2337,99 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no k in font nullfont!
 Missing character: There is no e in font nullfont!
 
-! LaTeX Error: Environment lstlisting undefined.
+Overfull \hbox (20.0pt too wide) in paragraph at lines 33--38
+[]
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.38 \begin{lstlisting}
-                       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+l.39 ...\textbf{]} \textbf{[} deriving \textbf{]}}
+                                                  
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-Missing character: There is no d in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no > in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no m in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no p in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no v in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no g in font nullfont!
-Missing character: There is no ] in font nullfont!
 
-! LaTeX Error: \begin{document} ended by \end{lstlisting}.
+Overfull \hbox (40.99982pt too wide) in paragraph at lines 39--40
+[]\OT1/cmtt/m/n/10 data
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 [
+ []
+
+
+Overfull \hbox (36.74968pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 context
+ []
+
+
+Overfull \hbox (10.49991pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 =>
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 ]
+ []
+
+
+Overfull \hbox (52.49954pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 simpletype
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 [
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 =
+ []
+
+
+Overfull \hbox (36.74968pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 constrs
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 ]
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 [
+ []
+
+
+Overfull \hbox (41.99963pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 deriving
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 39--40
+\OT1/cmtt/m/n/10 ] 
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.40 \end{lstlisting}
-                     
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+l.41 f
+      or the topdecl sort. If each optional sort were split into two options...
+
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no f in font nullfont!
 Missing character: There is no o in font nullfont!
@@ -2518,17 +2601,17 @@ Missing character: There is no n in font nullfont!
 Missing character: There is no K in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 29--42
+Overfull \hbox (20.0pt too wide) in paragraph at lines 41--42
 []
  []
 
 
-Overfull \hbox (6.00235pt too wide) in paragraph at lines 29--42
+Overfull \hbox (6.00235pt too wide) in paragraph at lines 41--42
 \OML/cmm/m/it/10 n$
  []
 
 
-Overfull \hbox (10.44334pt too wide) in paragraph at lines 29--42
+Overfull \hbox (10.44334pt too wide) in paragraph at lines 41--42
 \OT1/cmr/m/n/10 2[]$
  []
 
@@ -2652,41 +2735,59 @@ Missing character: There is no c in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no d in font nullfont!
 
-! LaTeX Error: Environment lstlisting undefined.
+Overfull \hbox (20.0pt too wide) in paragraph at lines 43--44
+[]
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.44 \begin{lstlisting}
-                       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+l.45 \texttt{ \textbf{[} context => \textbf{]} }
+                                                
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
-Missing character: There is no [ in font nullfont!
-Missing character: There is no c in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no > in font nullfont!
-Missing character: There is no ] in font nullfont!
 
-! LaTeX Error: \begin{document} ended by \end{lstlisting}.
+Overfull \hbox (20.0pt too wide) in paragraph at lines 45--46
+[]
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 45--46
+\OT1/cmtt/m/n/10 [
+ []
+
+
+Overfull \hbox (36.74968pt too wide) in paragraph at lines 45--46
+\OT1/cmtt/m/n/10 context
+ []
+
+
+Overfull \hbox (10.49991pt too wide) in paragraph at lines 45--46
+\OT1/cmtt/m/n/10 =>
+ []
+
+
+Overfull \hbox (5.24995pt too wide) in paragraph at lines 45--46
+\OT1/cmtt/m/n/10 ]
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.46 \end{lstlisting}
-                     
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+l.47 i
+      n the original grammar with a new sort called OptContext. Then I just ...
+
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
 
 Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
@@ -2847,6 +2948,146 @@ Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+
+! LaTeX Error: Environment lstlisting undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.52 \begin{lstlisting}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no " in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no " in font nullfont!
+Missing character: There is no O in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no S in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no O in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no C in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no O in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no D in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no ( in font nullfont!
+Missing character: There is no ' in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no ) in font nullfont!
+Missing character: There is no ] in font nullfont!
+
+! LaTeX Error: \begin{document} ended by \end{lstlisting}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.54 \end{lstlisting}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
 Missing character: There is no T in font nullfont!
 Missing character: There is no h in font nullfont!
 Missing character: There is no i in font nullfont!
@@ -2964,7 +3205,7 @@ Missing character: There is no a in font nullfont!
 Missing character: There is no y in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 43--52
+Overfull \hbox (20.0pt too wide) in paragraph at lines 47--56
 []
  []
 
@@ -2975,8 +3216,8 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.53 I
-      n K,
+l.57 I
+      n K, semantic rules are called K rules. The tag
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
@@ -2984,6 +3225,41 @@ Missing character: There is no I in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no K in font nullfont!
 Missing character: There is no , in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no K in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no . in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no g in font nullfont!
 
 ! LaTeX Error: Environment lstlisting undefined.
 
@@ -2991,7 +3267,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.54 \begin{lstlisting}
+l.58 \begin{lstlisting}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3027,7 +3303,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.56 \end{lstlisting}
+l.60 \end{lstlisting}
                      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3121,12 +3397,12 @@ Missing character: There is no l in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 53--58
+Overfull \hbox (20.0pt too wide) in paragraph at lines 57--62
 []
  []
 
 ! Undefined control sequence.
-l.59 \section
+l.63 \section
              {Implementation of Section 10.2}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3141,7 +3417,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.59 \section{I
+l.63 \section{I
                mplementation of Section 10.2}
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3361,7 +3637,7 @@ Missing character: There is no r in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no . in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 59--61
+Overfull \hbox (20.0pt too wide) in paragraph at lines 63--65
 []
  []
 
@@ -3372,7 +3648,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.62 \begin{lstlisting}
+l.66 \begin{lstlisting}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3385,7 +3661,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.63 /
+l.67 /
       / Syntax from haskell 2010 Report
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3487,7 +3763,7 @@ Missing character: There is no t in font nullfont!
 Missing character: There is no m in font nullfont!
 Missing character: There is no l in font nullfont!
 ! You can't use `macro parameter character #' in horizontal mode.
-l.64 ...onlinereport/haskell2010/haskellch10.html#
+l.68 ...onlinereport/haskell2010/haskellch10.html#
                                                   x17-17500010
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -3507,7 +3783,7 @@ Missing character: There is no 0 in font nullfont!
 Missing character: There is no 1 in font nullfont!
 Missing character: There is no 0 in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 63--65
+Overfull \hbox (20.0pt too wide) in paragraph at lines 67--69
 []
  []
 
@@ -3518,7 +3794,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.66 m
+l.70 m
       odule HASKELL-SYNTAX
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3544,7 +3820,7 @@ Missing character: There is no T in font nullfont!
 Missing character: There is no A in font nullfont!
 Missing character: There is no X in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 66--67
+Overfull \hbox (20.0pt too wide) in paragraph at lines 70--71
 []
  []
 
@@ -3555,7 +3831,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.68     s
+l.72     s
           yntax Integer ::= Token{([0-9]+)
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3655,7 +3931,7 @@ Missing character: There is no e in font nullfont!
 Missing character: There is no l in font nullfont!
 Missing character: There is no ] in font nullfont!
 
-Overfull \hbox (20.0pt too wide) in paragraph at lines 68--71
+Overfull \hbox (20.0pt too wide) in paragraph at lines 72--75
 []
  []
 
@@ -3666,7 +3942,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.72     s
+l.76     s
           yntax CusFloat ::= Token{([0-9]+[\.][0-9]+([e E][\+\-]?[0-9]+)?)
 You're in trouble here.  Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
@@ -3701,16 +3977,16 @@ Missing character: There is no 9 in font nullfont!
 Missing character: There is no ] in font nullfont!
 Missing character: There is no + in font nullfont!
 Missing character: There is no [ in font nullfont!
-LaTeX Font Info:    Try loading font information for +cmr on input line 72.
-LaTeX Font Info:    No file cmr.fd. on input line 72.
+LaTeX Font Info:    Try loading font information for +cmr on input line 76.
+LaTeX Font Info:    No file cmr.fd. on input line 76.
 
 LaTeX Font Warning: Font shape `/cmr/m/n' undefined
-(Font)              using `/cmr/m/n' instead on input line 72.
+(Font)              using `/cmr/m/n' instead on input line 76.
 
 ! Corrupted NFSS tables.
 wrong@fontshape ...message {Corrupted NFSS tables}
                                                   error@fontshape else let f...
-l.72     syntax CusFloat ::= Token{([0-9]+[\.]
+l.76     syntax CusFloat ::= Token{([0-9]+[\.]
                                               [0-9]+([e E][\+\-]?[0-9]+)?)
 This error message was generated by an \errmessage
 command, so I can't give any explicit help.
@@ -3719,7 +3995,7 @@ and deduce the truth by order and method.
 
 
 LaTeX Font Warning: Font shape `/cmr/m/n' undefined
-(Font)              using `OT1/cmr/m/n' instead on input line 72.
+(Font)              using `OT1/cmr/m/n' instead on input line 76.
 
 Missing character: There is no [ in font nullfont!
 Missing character: There is no 0 in font nullfont!
@@ -3734,7 +4010,7 @@ Missing character: There is no E in font nullfont!
 Missing character: There is no ] in font nullfont!
 Missing character: There is no [ in font nullfont!
 ! Undefined control sequence.
-l.72 ...Float ::= Token{([0-9]+[\.][0-9]+([e E][\+
+l.76 ...Float ::= Token{([0-9]+[\.][0-9]+([e E][\+
                                                   \-]?[0-9]+)?)
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3768,7 +4044,7 @@ Missing character: There is no E in font nullfont!
 Missing character: There is no ] in font nullfont!
 Missing character: There is no [ in font nullfont!
 ! Undefined control sequence.
-l.73 ...                          |([0-9]+[e E][\+
+l.77 ...                          |([0-9]+[e E][\+
                                                   \-]?[0-9]+)} [onlyLabel]
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -3884,97 +4160,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.76 \end{lstlisting}
-                     
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-! LaTeX Error: Environment lstlisting undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \begin{lstlisting}
-                       
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-Missing character: There is no s in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no x in font nullfont!
-Missing character: There is no V in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no r in font nullfont!
-Missing character: There is no I in font nullfont!
-Missing character: There is no d in font nullfont!
-Missing character: There is no : in font nullfont!
-Missing character: There is no : in font nullfont!
-Missing character: There is no = in font nullfont!
-Missing character: There is no T in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no k in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no - in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no - in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no A in font nullfont!
-Missing character: There is no - in font nullfont!
-Missing character: There is no Z in font nullfont!
-Missing character: There is no 0 in font nullfont!
-Missing character: There is no - in font nullfont!
-Missing character: There is no 9 in font nullfont!
-Missing character: There is no * in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no L in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no ] in font nullfont!
-Missing character: There is no | in font nullfont!
-Missing character: There is no " in font nullfont!
-Missing character: There is no s in font nullfont!
-Missing character: There is no i in font nullfont!
-Missing character: There is no z in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no " in font nullfont!
-Missing character: There is no [ in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no y in font nullfont!
-Missing character: There is no L in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no b in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no l in font nullfont!
-Missing character: There is no ] in font nullfont!
-
-! LaTeX Error: \begin{document} ended by \end{lstlisting}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.79 \end{lstlisting}
+l.80 \end{lstlisting}
                      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -3988,13 +4174,6 @@ Missing character: There is no i in font nullfont!
 Missing character: There is no n in font nullfont!
 Missing character: There is no t in font nullfont!
 Missing character: There is no o in font nullfont!
-Missing character: There is no a in font nullfont!
-Missing character: There is no n in font nullfont!
-Missing character: There is no o in font nullfont!
-Missing character: There is no t in font nullfont!
-Missing character: There is no h in font nullfont!
-Missing character: There is no e in font nullfont!
-Missing character: There is no r in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no s in font nullfont!
@@ -4093,7 +4272,7 @@ Missing character: There is no ô in font nullfont!
 Missing character: There is no i in font nullfont!
 Missing character: There is no s in font nullfont!
 Missing character: There is no a in font nullfont!
-Missing character: There is no k in font nullfont!
+Missing character: There is no K in font nullfont!
 Missing character: There is no k in font nullfont!
 Missing character: There is no e in font nullfont!
 Missing character: There is no y in font nullfont!
@@ -4166,6 +4345,114 @@ Missing character: There is no ‚ in font nullfont!
 Missing character: There is no Ä in font nullfont!
 Missing character: There is no ù in font nullfont!
 Missing character: There is no . in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no v in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no K in font nullfont!
+Missing character: There is no I in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no , in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no K in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no w in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no ' in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no . in font nullfont!
 
 ! LaTeX Error: Environment lstlisting undefined.
 
@@ -4173,7 +4460,97 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.81 \begin{lstlisting}
+l.82 \begin{lstlisting}
+                       
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no s in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no x in font nullfont!
+Missing character: There is no V in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no I in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no : in font nullfont!
+Missing character: There is no = in font nullfont!
+Missing character: There is no T in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no k in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no A in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no Z in font nullfont!
+Missing character: There is no 0 in font nullfont!
+Missing character: There is no - in font nullfont!
+Missing character: There is no 9 in font nullfont!
+Missing character: There is no * in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no ] in font nullfont!
+Missing character: There is no | in font nullfont!
+Missing character: There is no " in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no " in font nullfont!
+Missing character: There is no [ in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no L in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no ] in font nullfont!
+
+! LaTeX Error: \begin{document} ended by \end{lstlisting}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.84 \end{lstlisting}
+                     
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Environment lstlisting undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.85 \begin{lstlisting}
                        
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -4250,13 +4627,13 @@ Missing character: There is no [ in font nullfont!
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.84    ([\!
+l.88    ([\!
              \# \$ \% \& \* \+ \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/ \< \=...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
 ! Undefined control sequence.
-l.84    ([\! \# \$ \% \& \* \+
+l.88    ([\! \# \$ \% \& \* \+
                                \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/ \< \=...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4265,7 +4642,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.84    ([\! \# \$ \% \& \* \+ \/ \> \?
+l.88    ([\! \# \$ \% \& \* \+ \/ \> \?
                                         \^][\! \# \$ \% \& \* \+ \. \/ \< \=...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4274,15 +4651,15 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \^ invalid in math mode on input line 84.
+LaTeX Warning: Command \^ invalid in math mode on input line 88.
 
 
-LaTeX Warning: Command \^ invalid in math mode on input line 84.
+LaTeX Warning: Command \^ invalid in math mode on input line 88.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.84    ([\! \# \$ \% \& \* \+ \/ \> \? \^]
+l.88    ([\! \# \$ \% \& \* \+ \/ \> \? \^]
                                            [\! \# \$ \% \& \* \+ \. \/ \< \=...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4290,7 +4667,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \edef 
-l.84    ([\! \# \$ \% \& \* \+ \/ \> \? \^]
+l.88    ([\! \# \$ \% \& \* \+ \/ \> \? \^]
                                            [\! \# \$ \% \& \* \+ \. \/ \< \=...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -4300,7 +4677,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.84    ([\! \# \$ \% \& \* \+ \/ \> \? \^]
+l.88    ([\! \# \$ \% \& \* \+ \/ \> \? \^]
                                            [\! \# \$ \% \& \* \+ \. \/ \< \=...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4308,7 +4685,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.84 ...\& \* \+ \/ \> \? \^][\! \# \$ \% \& \* \+
+l.88 ...\& \* \+ \/ \> \? \^][\! \# \$ \% \& \* \+
                                                    \. \/ \< \= \> \? \@ \\ \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4317,12 +4694,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \. invalid in math mode on input line 84.
+LaTeX Warning: Command \. invalid in math mode on input line 88.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.84 ...\+ \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/
+l.88 ...\+ \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/
                                                    \< \= \> \? \@ \\ \^ \| \...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4330,7 +4707,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \/
-l.84 ...\+ \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/
+l.88 ...\+ \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/
                                                    \< \= \> \? \@ \\ \^ \| \...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -4340,7 +4717,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.84 ...\+ \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/
+l.88 ...\+ \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/
                                                    \< \= \> \? \@ \\ \^ \| \...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4348,7 +4725,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.84 ...\/ \> \? \^][\! \# \$ \% \& \* \+ \. \/ \<
+l.88 ...\/ \> \? \^][\! \# \$ \% \& \* \+ \. \/ \<
                                                    \= \> \? \@ \\ \^ \| \- \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4357,12 +4734,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \= invalid in math mode on input line 84.
+LaTeX Warning: Command \= invalid in math mode on input line 88.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.84 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.88 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4370,7 +4747,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.84 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.88 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -4380,7 +4757,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \accent #1 #2\egroup \spac...
-l.84 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.88 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4391,7 +4768,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.84 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.88 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4399,7 +4776,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \mskip 
-l.84 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.88 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -4409,7 +4786,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.84 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.88 ...\? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4417,7 +4794,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.84 ...\^][\! \# \$ \% \& \* \+ \. \/ \< \= \> \?
+l.88 ...\^][\! \# \$ \% \& \* \+ \. \/ \< \= \> \?
                                                    \@ \\ \^ \| \- \~ \:]*)
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4428,7 +4805,7 @@ and I'll forget about whatever was undefined.
 ! You can't use `\spacefactor' in math mode.
 \@->\spacefactor 
                  \@m 
-l.84 ...[\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@
+l.88 ...[\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@
                                                    \\ \^ \| \- \~ \:]*)
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4436,12 +4813,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \^ invalid in math mode on input line 84.
+LaTeX Warning: Command \^ invalid in math mode on input line 88.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.84 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.88 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4449,7 +4826,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.84 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.88 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -4459,7 +4836,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \accent #1 #2\egroup \spac...
-l.84 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.88 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4470,7 +4847,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.84 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.88 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4478,7 +4855,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Extra }, or forgotten $.
 \add@accent ...\spacefactor }\accent #1 #2\egroup 
                                                   \spacefactor \accent@space...
-l.84 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.88 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4489,7 +4866,7 @@ deleted material, e.g., by typing `I$}'.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.84 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.88 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4497,12 +4874,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \~ invalid in math mode on input line 84.
+LaTeX Warning: Command \~ invalid in math mode on input line 88.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.84 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.88 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4510,7 +4887,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.84 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.88 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -4520,7 +4897,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \accent #1 #2\egroup \spac...
-l.84 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.88 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4531,7 +4908,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.84 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.88 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4539,7 +4916,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \mskip 
-l.84 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.88 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -4549,7 +4926,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.84 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.88 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4557,12 +4934,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \. invalid in math mode on input line 85.
+LaTeX Warning: Command \. invalid in math mode on input line 89.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.85   |[\-] | [\.]
+l.89   |[\-] | [\.]
                    
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4570,7 +4947,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.85   |[\-] | [\.]
+l.89   |[\-] | [\.]
                    
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4578,12 +4955,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \. invalid in math mode on input line 86.
+LaTeX Warning: Command \. invalid in math mode on input line 90.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.86   |([\.]
+l.90   |([\.]
              [\! \# \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:][\! \...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4591,7 +4968,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.86   |([\.]
+l.90   |([\.]
              [\! \# \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:][\! \...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4599,7 +4976,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.86   |([\.][\! \# \$ \% \& \* \+
+l.90   |([\.][\! \# \$ \% \& \* \+
                                    \/ \< \= \> \? \@ \\ \^ \| \- \~ \:][\! \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4608,7 +4985,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 ! Undefined control sequence.
-l.86   |([\.][\! \# \$ \% \& \* \+ \/ \<
+l.90   |([\.][\! \# \$ \% \& \* \+ \/ \<
                                          \= \> \? \@ \\ \^ \| \- \~ \:][\! \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4617,12 +4994,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \= invalid in math mode on input line 86.
+LaTeX Warning: Command \= invalid in math mode on input line 90.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.86   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
+l.90   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
                                                \? \@ \\ \^ \| \- \~ \:][\! \...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4630,7 +5007,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.86   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
+l.90   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
                                                \? \@ \\ \^ \| \- \~ \:][\! \...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -4640,7 +5017,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \accent #1 #2\egroup \spac...
-l.86   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
+l.90   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
                                                \? \@ \\ \^ \| \- \~ \:][\! \...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4651,7 +5028,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.86   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
+l.90   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
                                                \? \@ \\ \^ \| \- \~ \:][\! \...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4659,7 +5036,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \mskip 
-l.86   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
+l.90   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
                                                \? \@ \\ \^ \| \- \~ \:][\! \...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -4669,7 +5046,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.86   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
+l.90   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \>
                                                \? \@ \\ \^ \| \- \~ \:][\! \...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4677,7 +5054,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.86   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \> \?
+l.90   |([\.][\! \# \$ \% \& \* \+ \/ \< \= \> \?
                                                   \@ \\ \^ \| \- \~ \:][\! \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4688,7 +5065,7 @@ and I'll forget about whatever was undefined.
 ! You can't use `\spacefactor' in math mode.
 \@->\spacefactor 
                  \@m 
-l.86 ...\.][\! \# \$ \% \& \* \+ \/ \< \= \> \? \@
+l.90 ...\.][\! \# \$ \% \& \* \+ \/ \< \= \> \? \@
                                                    \\ \^ \| \- \~ \:][\! \# ...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4696,12 +5073,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \^ invalid in math mode on input line 86.
+LaTeX Warning: Command \^ invalid in math mode on input line 90.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.86 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:][\! \# \$ \% \& ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4709,7 +5086,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.86 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:][\! \# \$ \% \& ...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -4719,7 +5096,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \accent #1 #2\egroup \spac...
-l.86 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:][\! \# \$ \% \& ...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4730,7 +5107,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.86 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:][\! \# \$ \% \& ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4738,7 +5115,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Extra }, or forgotten $.
 \add@accent ...\spacefactor }\accent #1 #2\egroup 
                                                   \spacefactor \accent@space...
-l.86 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:][\! \# \$ \% \& ...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4749,7 +5126,7 @@ deleted material, e.g., by typing `I$}'.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.86 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:][\! \# \$ \% \& ...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4757,12 +5134,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \~ invalid in math mode on input line 86.
+LaTeX Warning: Command \~ invalid in math mode on input line 90.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.86 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ][\! \# \$ \% \& \* \+ \. ...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4770,7 +5147,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.86 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ][\! \# \$ \% \& \* \+ \. ...
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -4780,7 +5157,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \accent #1 #2\egroup \spac...
-l.86 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ][\! \# \$ \% \& \* \+ \. ...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4791,7 +5168,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.86 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ][\! \# \$ \% \& \* \+ \. ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4799,7 +5176,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \mskip 
-l.86 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ][\! \# \$ \% \& \* \+ \. ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -4809,7 +5186,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.86 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ][\! \# \$ \% \& \* \+ \. ...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4817,7 +5194,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.86 ...\@ \\ \^ \| \- \~ \:][\! \# \$ \% \& \* \+
+l.90 ...\@ \\ \^ \| \- \~ \:][\! \# \$ \% \& \* \+
                                                    \. \/ \< \= \> \? \@ \\ \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4826,12 +5203,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \. invalid in math mode on input line 86.
+LaTeX Warning: Command \. invalid in math mode on input line 90.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.86 ...\^ \| \- \~ \:][\! \# \$ \% \& \* \+ \. \/
+l.90 ...\^ \| \- \~ \:][\! \# \$ \% \& \* \+ \. \/
                                                    \< \= \> \? \@ \\ \^ \| \...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4839,7 +5216,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \/
-l.86 ...\^ \| \- \~ \:][\! \# \$ \% \& \* \+ \. \/
+l.90 ...\^ \| \- \~ \:][\! \# \$ \% \& \* \+ \. \/
                                                    \< \= \> \? \@ \\ \^ \| \...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -4849,7 +5226,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.86 ...\^ \| \- \~ \:][\! \# \$ \% \& \* \+ \. \/
+l.90 ...\^ \| \- \~ \:][\! \# \$ \% \& \* \+ \. \/
                                                    \< \= \> \? \@ \\ \^ \| \...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4857,7 +5234,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.86 ...\| \- \~ \:][\! \# \$ \% \& \* \+ \. \/ \<
+l.90 ...\| \- \~ \:][\! \# \$ \% \& \* \+ \. \/ \<
                                                    \= \> \? \@ \\ \^ \| \- \...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4866,12 +5243,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \= invalid in math mode on input line 86.
+LaTeX Warning: Command \= invalid in math mode on input line 90.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.86 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.90 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4879,7 +5256,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.86 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.90 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -4889,7 +5266,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \accent #1 #2\egroup \spac...
-l.86 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.90 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4900,7 +5277,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.86 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.90 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4908,7 +5285,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \mskip 
-l.86 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.90 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -4918,7 +5295,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.86 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
+l.90 ...\~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \>
                                                    \? \@ \\ \^ \| \- \~ \:]*)
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4926,7 +5303,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.86 ...\:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \?
+l.90 ...\:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \?
                                                    \@ \\ \^ \| \- \~ \:]*)
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -4937,7 +5314,7 @@ and I'll forget about whatever was undefined.
 ! You can't use `\spacefactor' in math mode.
 \@->\spacefactor 
                  \@m 
-l.86 ...[\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@
+l.90 ...[\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@
                                                    \\ \^ \| \- \~ \:]*)
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -4945,12 +5322,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \^ invalid in math mode on input line 86.
+LaTeX Warning: Command \^ invalid in math mode on input line 90.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.86 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -4958,7 +5335,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.86 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -4968,7 +5345,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \accent #1 #2\egroup \spac...
-l.86 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4979,7 +5356,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.86 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -4987,7 +5364,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Extra }, or forgotten $.
 \add@accent ...\spacefactor }\accent #1 #2\egroup 
                                                   \spacefactor \accent@space...
-l.86 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -4998,7 +5375,7 @@ deleted material, e.g., by typing `I$}'.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.86 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
+l.90 ... \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \|
                                                    \- \~ \:]*)
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -5006,12 +5383,12 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 
-LaTeX Warning: Command \~ invalid in math mode on input line 86.
+LaTeX Warning: Command \~ invalid in math mode on input line 90.
 
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.86 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
@@ -5019,7 +5396,7 @@ you left one out. Proceed, with fingers crossed.
 ! Improper \spacefactor.
 <recently read> \spacefactor 
                              
-l.86 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 You can refer to \spacefactor only in horizontal mode;
 you can refer to \prevdepth only in vertical mode; and
@@ -5029,7 +5406,7 @@ I'm forgetting what you said and using zero instead.
 ! Extra }, or forgotten $.
 \add@accent ... \accent@spacefactor \spacefactor }
                                                   \accent #1 #2\egroup \spac...
-l.86 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -5040,7 +5417,7 @@ deleted material, e.g., by typing `I$}'.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.86 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -5048,7 +5425,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \mskip 
-l.86 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5058,7 +5435,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.86 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
+l.90 ... \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:
                                                   ]*)
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -5066,7 +5443,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.87   | ([\-][\! \# \$ \% \& \* \+
+l.91   | ([\-][\! \# \$ \% \& \* \+
                                     \. \/ \< \= \? \@ \\ \^ \| \~ \:][\! \# ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5075,12 +5452,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \. invalid in math mode on input line 87.
+LaTeX Warning: Command \. invalid in math mode on input line 91.
 
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.87   | ([\-][\! \# \$ \% \& \* \+ \. \/
+l.91   | ([\-][\! \# \$ \% \& \* \+ \. \/
                                           \< \= \? \@ \\ \^ \| \~ \:][\! \# ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -5088,7 +5465,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Missing { inserted.
 <to be read again> 
                    \/
-l.87   | ([\-][\! \# \$ \% \& \* \+ \. \/
+l.91   | ([\-][\! \# \$ \% \& \* \+ \. \/
                                           \< \= \? \@ \\ \^ \| \~ \:][\! \# ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5098,7 +5475,7 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.87   | ([\-][\! \# \$ \% \& \* \+ \. \/
+l.91   | ([\-][\! \# \$ \% \& \* \+ \. \/
                                           \< \= \? \@ \\ \^ \| \~ \:][\! \# ...
 Sorry, but I'm not programmed to handle this case;
 I'll just pretend that you didn't ask for it.
@@ -5106,7 +5483,7 @@ If you're in the wrong mode, you might be able to
 return to the right one by typing `I}' or `I$' or `I\par'.
 
 ! Undefined control sequence.
-l.87   | ([\-][\! \# \$ \% \& \* \+ \. \/ \<
+l.91   | ([\-][\! \# \$ \% \& \* \+ \. \/ \<
                                              \= \? \@ \\ \^ \| \~ \:][\! \# ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5115,12 +5492,12 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-LaTeX Warning: Command \= invalid in math mode on input line 87.
+LaTeX Warning: Command \= invalid in math mode on input line 91.
 
 ! Undefined control sequence.
 <argument> \?
              
-l.87   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
+l.91   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
                                                    \@ \\ \^ \| \~ \:][\! \# ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5131,7 +5508,7 @@ and I'll forget about whatever was undefined.
 ! Please use \mathaccent for accents in math mode.
 \add@accent ...@spacefactor \spacefactor }\accent 
                                                   #1 #2\egroup \spacefactor ...
-l.87   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
+l.91   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
                                                    \@ \\ \^ \| \~ \:][\! \# ...
 I'm changing \accent to \mathaccent here; wish me luck.
 (Accents are not the same in formulas as they are in text.)
@@ -5139,7 +5516,7 @@ I'm changing \accent to \mathaccent here; wish me luck.
 ! Undefined control sequence.
 <argument> \?
              
-l.87   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
+l.91   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
                                                    \@ \\ \^ \| \~ \:][\! \# ...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -5150,7 +5527,7 @@ and I'll forget about whatever was undefined.
 ! Missing { inserted.
 <to be read again> 
                    \egroup 
-l.87   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
+l.91   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
                                                    \@ \\ \^ \| \~ \:][\! \# ...
 A left brace was mandatory here, so I've put one in.
 You might want to delete and/or insert some corrections
@@ -5160,13 +5537,13 @@ so that I will find a matching right brace soon.
 ! You can't use `\spacefactor' in math mode.
 \add@accent ...}\accent #1 #2\egroup \spacefactor 
                                                   \accent@spacefactor 
-l.87   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
+l.91   | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \?
                                                    \@ \\ \^ \| \~ \:][\! \# ...
 (That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
  31 strings out of 495063
- 397 string characters out of 3182202
- 47057 words of memory out of 3000000
+ 397 string characters out of 3182201
+ 48057 words of memory out of 3000000
  3312 multiletter control sequences out of 15000+200000
  3808 words of font info for 15 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191

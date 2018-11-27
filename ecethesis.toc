@@ -8,11 +8,11 @@
 \contentsline {section}{\numberline {2.3}Implementation of Section 10.5}{8}
 \contentsline {subsection}{\numberline {2.3.1}Modules}{8}
 \contentsline {subsection}{\numberline {2.3.2}ImpDecls}{9}
-\contentsline {subsection}{\numberline {2.3.3}TopDecls}{9}
-\contentsline {subsection}{\numberline {2.3.4}Decls}{10}
-\contentsline {subsection}{\numberline {2.3.5}LExp}{11}
+\contentsline {subsection}{\numberline {2.3.3}TopDecls}{10}
+\contentsline {subsection}{\numberline {2.3.4}Decls}{11}
+\contentsline {subsection}{\numberline {2.3.5}LExp}{12}
 \contentsline {subsection}{\numberline {2.3.6}AExp}{12}
-\contentsline {section}{\numberline {2.4}Example Test Programs}{16}
+\contentsline {section}{\numberline {2.4}Example Test Programs}{17}
 \contentsline {chapter}{CHAPTER\ 3\hskip 1em\relax \MakeUppercase {Configuration}}{18}
 \contentsline {chapter}{CHAPTER\ 4\hskip 1em\relax \MakeUppercase {Context Sensitive Checks}}{20}
 \contentsline {section}{\numberline {4.1}Initial Data Structures}{22}

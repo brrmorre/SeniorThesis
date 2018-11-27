@@ -48,9 +48,13 @@ in the original grammar with a new sort called OptContext. Then I just specified
 \begin{lstlisting}
 syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
 \end{lstlisting}
+and so the right hand side of the production would now look like
+\begin{lstlisting}
+"data" OptContext SimpleType OptConstrs OptDeriving  [klabel('data)]
+\end{lstlisting}
 This is acceptable because Haskell is not an order sorted algebra, so introducing new sorts that are not originally in the grammar is okay.
 
-In K,
+In K, semantic rules are called K rules. The tag
 \begin{lstlisting}
 [klabel('exampleLabel)]
 \end{lstlisting}
@@ -74,7 +78,7 @@ module HASKELL-SYNTAX
     syntax CusChar ::= Token{[\'](~[\'\\\&])[\']} [onlyLabel]
     syntax CusString ::= Token{[\"](~[\"\\]*)[\"]} [onlyLabel]
 \end{lstlisting}
-I ran into issue where a program with a variable called ‘size’ did not parse. I found out that this is because ‘size’ is a k keyword. So I just specified that a variable could be a variable token, or “size”.
+I ran into issue where a program with a variable called ‘size’ did not parse. I found out that this is because ‘size’ is a K keyword. So I just specified that a variable could be a variable token, or “size”. This reveals an issue in the version of K I was using, where K keywords that appear in example parsed programs won't become tokens.
 \begin{lstlisting}
     syntax VarId ::= Token{[a-z\_][a-z A-Z\_0-9\']*} [onlyLabel] | "size" [onlyLabel]
 \end{lstlisting}
@@ -95,7 +99,6 @@ I ran into issue where a program with a variable called ‘size’ did not parse
     syntax ConSym ::= Token{[\:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*}   [onlyLabel]
 \end{lstlisting}
 I ran into an issue where floats and integers did not parse correctly. They caused parsing errors due to ambiguity of parsing. For example the number 123.45 had ambiguity where the parser did not know if 1, 12, or 123 where integers, and if 5 was an integer, or if the entire thing was one float. Normally in K, different tokens are separated with whitespaces. However, for some reason the parser had difficulty here. Initially, I added a workaround by requiring parentheses around each integer and floating point.
-f y z (2)
 This fixed the issue.
 \begin{lstlisting}
 
@@ -162,22 +165,8 @@ We start with modules.
 
 The sort that contains all the other sorts is a module. A module represents one complete Haskell program. It can have either a name and a body, a name and a body with exports, or just a body.
 
-The following example program has a Module with only ImpDecls. It has one ImpDecl.
-
-\begin{lstlisting}
-module Foo where
-{import Bar
-}
-\end{lstlisting}
-
-The following example program has a Module with no name and only ImpDecls. It has one ImpDecl.
-
-\begin{lstlisting}
-import Bar
-\end{lstlisting}
-
 \subsection{ImpDecls}
-An import is another module that this module depends on.
+An import is another module that this module depends on. An ImpDecl is an import declaration.
 The definition of ImpDecl is the following
 \begin{lstlisting}
     syntax ImpDecls ::= List{ImpDecl, ";"} [klabel('impDecls)]
@@ -200,6 +189,34 @@ The definition of ImpDecl is the following
     syntax Import ::= Var
                     | TyCon CQList
 \end{lstlisting}
+
+The following example program has a Module with only ImpDecls. It has one ImpDecl.
+
+\begin{lstlisting}
+module Foo where
+{import Bar
+}
+\end{lstlisting}
+
+The following example program has a Module with no name and only ImpDecls. It has one ImpDecl.
+
+\begin{lstlisting}
+import Bar
+\end{lstlisting}
+
+Another example program is
+\begin{lstlisting}
+module Simp1 where
+{import Test
+}
+\end{lstlisting}
+
+The corresponding abstract syntax tree in K is
+\begin{lstlisting}
+`'module`(`'moduleName`(#token("Simp1","ConId")), `'bodyimpdecls`(`'impDecls`(`'impDecl`(`'emptyQualified`( .::KList), #token("Test","ConId"), `'emptyOptAsModId`(.::KList), `'emptyOptImpSpec`(.::KList)), `'.List{"'impDecls"}`(.::KList))))
+\end{lstlisting}
+
+Module contains two children. The first child of module is moduleName which contains the token Simp1. Simp1 is a constructor ID because it starts with a capital letter. The second child of module is bodyimpdecls. This contains the sort impDecls which is a list of impDecls. This program has only one impDecl. Since there is no qualified, the impDecl contains the child emptyQualified, followed by the token Test. Since there is no AsModId or ImpSpec, the last two children are emptyOptAsModId and emptyOptImpSpec.
 
 \subsection{TopDecls}
 The main types of expressions in Haskell are TopDecls - Top Declarations. A top declaration can either be a type, a data, a newtype, a class, an instance, a default, a foreign, or an arbitrary declaration.
