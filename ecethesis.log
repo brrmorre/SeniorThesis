@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  27 NOV 2018 00:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  27 NOV 2018 00:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -545,7 +545,7 @@ CHAPTER 3.
 
 
 
-] [15]) [16]
+] [15] [16]) [17]
 \openout2 = `checks.aux'.
 
  (./checks.tex
@@ -562,7 +562,7 @@ Missing character: There is no ˜ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-[17
+[18
 
 
 
@@ -657,21 +657,21 @@ Overfull \hbox (1.0738pt too wide) in paragraph at lines 53--56
 e user de-fined datatype.
  []
 
-[18] [19] [20]
+[19] [20] [21]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 141--143
 [][][][] 
  []
 
-[21] [22] [23] [24] [25] [26] [27] [28]) [29]
+[22] [23] [24] [25] [26] [27] [28] [29]) [30]
 \openout2 = `multmod.aux'.
 
  (./multmod.tex
 CHAPTER 5.
-[30
+[31
 
 
 
-] [31] [32] [33] [34] [35] [36]
+] [32] [33] [34] [35] [36] [37]
 Overfull \hbox (2.00378pt too wide) in paragraph at lines 257--259
 [][] 
  []
@@ -681,12 +681,12 @@ Overfull \hbox (330.00732pt too wide) in paragraph at lines 265--267
 [][][][] 
  []
 
-[37]
+[38]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 289--291
 [][][][] 
  []
 
-[38]) [39]
+[39]) [40]
 \openout2 = `inference.aux'.
 
  (./inference.tex
@@ -697,11 +697,11 @@ Overfull \hbox (118.26926pt too wide) in paragraph at lines 22--25
 koverflow.com/questions/9345589/guards-
  []
 
-[40
+[41
 
 
 
-] [41] [42] [43]
+] [42] [43] [44]
 \myBox1=\box38
 \myScoreStart1=\dimen150
 \myCenter1=\dimen151
@@ -726,12 +726,12 @@ Overfull \hbox (65.1766pt too wide) in paragraph at lines 165--171
  [] 
  []
 
-[44] [45] [46] [47] [48]
+[45] [46] [47] [48] [49]
 Overfull \hbox (65.1766pt too wide) in paragraph at lines 339--345
  [] 
  []
 
-[49] [50] [51] [52] [53] [54]
+[50] [51] [52] [53] [54] [55]
 Overfull \hbox (8.70721pt too wide) in paragraph at lines 512--514
 []\OT1/cmr/m/n/12 Orient: if $\OML/cmm/m/it/12 t \OT1/cmr/m/n/12 = \OML/cmm/m/i
 t/12 x$ \OT1/cmr/m/n/12 is a vari-able, and s is not a vari-able, $[](\OML/cmm/
@@ -754,12 +754,12 @@ Missing character: There is no ’ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no † in font cmr12!
 Missing character: There is no ’ in font cmr12!
-[55] [56]) [57]
+[56] [57]) [58]
 \openout2 = `concl.aux'.
 
  (./concl.tex
 CHAPTER 7.
-) [58
+) [59
 
 
 
@@ -768,28 +768,28 @@ CHAPTER 7.
 
  (./apx.tex
 APPENDIX A.
-[59
+[60
 
 
 
-] [60] [61] [62] [63] [64] [65]
+] [61] [62] [63] [64] [65] [66]
 Missing character: There is no â in font pcrr7t!
 Missing character: There is no ‰ in font pcrr7t!
 Missing character: There is no ¥ in font pcrr7t!
- [66] [67] [68] [69] [70]
+ [67] [68] [69] [70] [71]
 APPENDIX B.
-[71
+[72
 
-] [72]
+] [73]
 APPENDIX C.
-[73
+[74
 
-] [74]
+] [75]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 506--508
 [][][][] 
  []
 
-[75] [76] [77]
+[76] [77] [78]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 585--587
 [][][][] 
  []
@@ -804,50 +804,50 @@ Overfull \hbox (330.00732pt too wide) in paragraph at lines 616--618
 [][][][] 
  []
 
-[78]
+[79]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 640--642
 [][][][] 
  []
 
-[79]
+[80]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 656--657
 [][][][] 
  []
 
-[80] [81]
+[81] [82]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 737--739
 [][][][] 
  []
 
-[82]
+[83]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 743--745
 [][][][] 
  []
 
-[83] [84] [85] [86] [87] [88]
+[84] [85] [86] [87] [88] [89]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 948--950
 [][][][] 
  []
 
-[89] [90] [91]
+[90] [91] [92]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1027--1029
 [][][][] 
  []
 
-[92] [93]
+[93] [94]
 APPENDIX D.
-[94
+[95
 
-] [95] [96] [97] [98] [99] [100] [101] [102] [103]
+] [96] [97] [98] [99] [100] [101] [102] [103] [104]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1321--1323
 [][][][] 
  []
 
-[104] [105] [106] [107]) [108] (./ecethesis.bbl
+[105] [106] [107] [108]) [109] (./ecethesis.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 25.
 
-) [109
+) [110
 
 
 
@@ -876,10 +876,10 @@ e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/courier/ucrr8a.pfb>
-Output written on ecethesis.pdf (117 pages, 273221 bytes).
+Output written on ecethesis.pdf (118 pages, 275136 bytes).
 PDF statistics:
- 437 PDF objects out of 1000 (max. 8388607)
- 301 compressed objects within 4 object streams
+ 440 PDF objects out of 1000 (max. 8388607)
+ 303 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -28,19 +28,17 @@ $PGM:ModuleList
 \end{lstlisting}
 means that the parsed tree appears in this cell and the sort that contains all other sorts is ModuleList.
 
-tempModule is the name of the current module.
+$.K$ means that the cell is initially empty.
+
+tempModule is the name of the current module. tempCode is the current code.
+
+typeIterator is used for creating a fresh type variable for the inference algorithm. It has the current count of how many fresh type variables that were created.
 
 \begin{lstlisting}
             <typeIterator> 1 </typeIterator>
 \end{lstlisting}
 
-typeIterator is used for creating a fresh type variable. It has the current count of how many fresh type variables that were created.
-
-\begin{lstlisting}
-            <tempAlpha> .K </tempAlpha>
-            <tempAlphaMap> .Map </tempAlphaMap>
-\end{lstlisting}
-
+\section{Alpha}
 Alpha is a map of type renamings. So if a user declares
 
 \begin{lstlisting}
@@ -48,17 +46,46 @@ data MyBool = TTrue
 ;type MyBooltwo = MyBool
 \end{lstlisting}
 
-Then MyBooltwo is a renaming of MyBool. In tempAlpha, an AObject is made. An AObject is a KItem with two children. One can be thought of as a Key and the other is the Value for a map. So MyBool -> MyBooltwo. However, we want to check and reject programs that have multiple renamings, so we cannot use a K Map which has idempotence. However, once we make this check, we can then use a K Map. This is what tempAlphaMap is.
+Then MyBooltwo is a renaming of MyBool. In tempAlpha, an AObject is made. An AObject is a KItem with two children. One can be thought of as a Key and the other is the Value for a map. So MyBool $->$ MyBooltwo. However, we want to check and reject programs that have multiple renamings, so we cannot use a K Map which has idempotence. However, once we make this check, we can then use a K Map. This is what tempAlphaMap is.
 
+.Map means that the cell starts with an empty map.
+
+\begin{lstlisting}
+            <tempAlpha> .K </tempAlpha>
+            <tempAlphaMap> .Map </tempAlphaMap>
+\end{lstlisting}
+
+\section{Beta}
+
+tempT contains all user defined datatypes. tempT is organized in such a way that makes context sensitive checks easy to perform. tempBeta contains all user defined datatypes organized so that type inference is easy to perform.
 \begin{lstlisting}
             <tempBeta> .Map </tempBeta>
             <tempT> .K </tempT>
+\end{lstlisting}
+
+\section{Delta}
+
+tempDelta contains the arity of the user defined dataTypes. So if a user defined datatype takes in two parameters, tempDelta will contain the number 2.
+
+\begin{lstlisting}
             <tempDelta> .Map </tempDelta>
-            <tempAlphaStar> .K </tempAlphaStar>
-            <tempBetaStar> .K </tempBetaStar>
+\end{lstlisting}
+
+\section{Import Data Structure}
+
+importTree, recurImportTree, and impTreeVMap contain the data necessary for the directed acyclic graph representing imports.
+
+\begin{lstlisting}
             <importTree> .List </importTree>
             <recurImportTree> .List </recurImportTree>
             <impTreeVMap> .Map </impTreeVMap>
+\end{lstlisting}
+
+\section{Modules}
+
+The modules cell contains all modules that were checked and inferred already. Multiplicity means that there can be multiple module cells.
+
+\begin{lstlisting}
             <modules> //static information about a module
                 <module multiplicity="*">
                     <moduleName> .K </moduleName>
