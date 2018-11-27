@@ -49,23 +49,39 @@ newtype [context =>] simpletype = newconstr [deriving]
 \end{lstlisting}
 This is very similar to data except it only parses when the newtype has only one typecon and one field.
 
+\subsection{Context}
+Another thing to note is that the
+\begin{lstlisting}
+[context =>]
+\end{lstlisting}
+part of the syntax for the types is deprecated.
+https://stackoverflow.com/questions/9345589/guards-vs-if-then-else-vs-cases-in-haskell
+
 \section{Initial Data Structures}
 
-I implemented a map, called alpha, of new type names as the keys and their declared types as the entries. I then collected all appearances of the typecon ‘type’ in the program, and put simpletype -> type in the alpha map. However, one of the things I needed to check for in the program was whether a user declared multiple definitions with ‘type’, so I could not use a map in K because they only allow unique keys with unique entries. So I initially used a set of tuples, and then changed it to a map after checking for multiple type declarations.
+I implemented a map, called alpha, of new type names as the keys and their declared types as the entries. I then collected all appearances of the typecon $type$ in the program, and put simpletype $->$ type in the alpha map. However, one of the things I needed to check for in the program was whether a user declared multiple definitions with ‘type’, so I could not use a map in K because they only allow unique keys with unique entries. So I initially used a set of tuples, and then changed it to a map after checking for multiple type declarations.
 
 
 The second data structure I made is called T. T holds the user defined types created using ‘data’ and ‘newtype’.
 \begin{lstlisting}
-syntax KItem ::= TList(K) 
-//list of T objects for every new type introduced by data and newtype
-syntax KItem ::= TObject(K,K,K)
-//(type name, entire list of poly type vars, list of inner T pieces)
-syntax KItem ::= InnerTPiece(K,K,K,K,K)
-//(type constructor, poly type vars, argument sorts, entire constr block, type name)
+syntax KItem ::= TList(K) //list of T objects for every new type introduced by data and newtype
+syntax KItem ::= TObject(K,K,K,K) //(module name, type name, entire list of poly type vars, list of inner T pieces)
+syntax KItem ::= InnerTPiece(K,K,K,K,K) //(type constructor, poly type vars, argument sorts, entire constr block, type name)
 \end{lstlisting}
 T is a list of TObjects, each TObject represents a single user defined datatype. It holds the name, the list of polymorphic parameters, and a list of inner T pieces.
 An inner T piece represents an option of what a type could be. It consists of a type constructor, a list of polymorphic parameters required for this option, the fields for this option, the entire subtree of the AST for this option unedited, and the type name again.
 I then used these data structures to perform these checks, and afterwards will transform them into a new data structure to perform type inferencing.
+
+\subsection{Example T}
+\begin{lstlisting}
+    <tempT>
+        TList ( ListItem ( TObject ( Simp5 , CusBool , .TyVars , 
+            ListItem ( InnerTPiece ( True2 , .List , .List , True2 
+              .OptBangATypes , CusBool ) )
+            ListItem ( InnerTPiece ( False2 , .List , .List , False2 
+              .OptBangATypes , CusBool ) ) ) ) )
+    </tempT>
+\end{lstlisting}
 
 \subsection{K Code}
 The following parses the tree and searches for the user defined types to place into the data structures.
