@@ -91,9 +91,10 @@ The next step is the actual type inference algorithm.
              => .K ...</k>
          <tempBeta> OldBeta:K => M </tempBeta>
 \end{lstlisting}
-	Something to note is that mutually recursive functions are allowed in Haskell.
-	For example:
-	$$
+
+Something to note is that mutually recursive functions are allowed in Haskell.
+For example:
+$$
 f x = y x
 $$
 $$
@@ -101,7 +102,7 @@ y x = f x
 $$
 This set of functions is allowed to compile. When run, the function just simply runs forever. This is unlike the OCaml semantics, which does not allow for mutually recursive functions.
 
-	Another thing to note is that the
+Another thing to note is that the
 \begin{lstlisting}
 [context =>]
 \end{lstlisting}
@@ -141,46 +142,9 @@ A substitution is a set of variables and their replacements. Applying a substitu
 
 \section{Composition of Substitutions}
 
-\section{Inferencing Algorithm}
+Composition of substitutions means that if the composition was applied to a type, it would first apply to the rightmost substitution and then afterwards apply to the substitution to the left of it, and so on.
 
-\begin{prooftree}
-\AxiomC{}
-\RightLabel{Constant}
-\UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
-\end{prooftree}
-
-\begin{prooftree}
-\AxiomC{}
-\RightLabel{Variable}
-\UnaryInfC{$\Gamma \vdash x : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\Gamma(x)))\}$}
-\end{prooftree}
-
-\begin{prooftree}
-\AxiomC{$[x : \tau_1] + \Gamma \vdash e : \tau_2 \, | \, \sigma$}
-\RightLabel{Lambda}
-\UnaryInfC{$\Gamma \vdash \text{\textbackslash \, x \textrightarrow \, e}: \tau \, | \, \text{unify}\{ ( \sigma(\tau) , \sigma(\tau_1 \rightarrow \tau_2)) \} \circ \sigma$}
-\end{prooftree}
-
-\begin{prooftree}
-\AxiomC{$\Gamma \vdash e_1 : \text{bool} \, | \, \sigma_1$}
-\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau) \, | \, \sigma_2$}
-\AxiomC{$\sigma_2 \circ \sigma_1(\Gamma) \vdash e_3 : \sigma_2 \circ \sigma_1(\tau) \, | \, \sigma_3$}
-\RightLabel{IfThenElse}
-\TrinaryInfC{$\Gamma \vdash \text{if} \, e_1 \, \text{then} \, e_2 \, \text{else} \, e_3 : \tau \, | \, \sigma_3 \circ \sigma_2 \circ \sigma_1$}
-\end{prooftree}
-
-\begin{prooftree}
-\AxiomC{$\Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
-\AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau_1) \, | \, \sigma_2$}
-\RightLabel{Application}
-\BinaryInfC{$\Gamma \vdash e_1 e_2 : \tau \, | \, \sigma_2 \circ \sigma_1$}
-\end{prooftree}
-
-\begin{prooftree}
-\AxiomC{}
-\RightLabel{LetIn}
-\UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
-\end{prooftree}
+\section{Inference Algorithm}
 
 [cs 421 gather exp ty substitution mp]
 
@@ -372,9 +336,25 @@ let {f = \x -> y x; y = \x -> f x} in (f 2)
 In this example, the f is an expression that refers to y and y is an expression that refers to f.
 
 \begin{prooftree}
-\AxiomC{}
+\AxiomC{$\Gamma \vdash \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
+\AxiomC{$\sigma ( \Delta + \Gamma ) \vdash e : \tau \, | \, \sigma'$}
 \RightLabel{LetIn}
-\UnaryInfC{$\Gamma \vdash c : \tau \, | \, \text{unify}\{ ( \tau , \text{freshInstance}(\tau))\}$}
+\BinaryInfC{$\Gamma \vdash \text{let} \, \{ \, \text{decls} \, \} \, \text{in} \, \text{exp} : \tau \, | \, \sigma' \circ \sigma$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
+\RightLabel{LetIn}
+\UnaryInfC{$\Gamma \vdash \text{module} \, \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$\sigma_0' = \{\}$}
+\AxiomC{$\text{dom} ( \Psi ) = \{ \, x_1, \cdots, x_n \, \}$}
+\AxiomC{$\sigma_{i + 1} ( \Psi + \Gamma ) \vdash e_i : \Psi(x_i) \, | \, \sigma_j$}
+\AxiomC{$\sigma_i' = \sigma_i \circ \sigma_{j + 1}'$}
+\RightLabel{LetIn}
+\QuaternaryInfC{$\Gamma \vdash \{ \, x_1 = e_1; \, \cdots \, x_i = e_i; \, \cdots \, x_n = e_n \, \} \, \text{in} \, \text{exp} : \bigcup_{i = 1}^n \, \{ \, x_i \mapsto \, \text{GEN} \, ( \sigma_n'(\Gamma),\sigma_n'(\psi_i) ) \, \} \, | \, \sigma_n'$}
 \end{prooftree}
 
 \begin{lstlisting}

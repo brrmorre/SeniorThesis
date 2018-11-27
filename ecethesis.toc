@@ -49,7 +49,7 @@
 \contentsline {section}{\numberline {5.5}Hindley-Milner}{36}
 \contentsline {section}{\numberline {5.6}Definition of Substitution}{36}
 \contentsline {section}{\numberline {5.7}Composition of Substitutions}{36}
-\contentsline {section}{\numberline {5.8}Inferencing Algorithm}{36}
+\contentsline {section}{\numberline {5.8}Inference Algorithm}{36}
 \contentsline {subsection}{\numberline {5.8.1}Variable Rule}{38}
 \contentsline {subsection}{\numberline {5.8.2}Constant Rule}{39}
 \contentsline {subsection}{\numberline {5.8.3}Lambda Rule}{39}
