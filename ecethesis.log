@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  27 NOV 2018 01:54
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  27 NOV 2018 02:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -322,8 +322,8 @@ Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 340.
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/courier.sty
 Package: courier 2005/04/12 PSNFSS-v9.2a (WaS) 
 ) (./ecethesis.aux
-(./intro.aux) (./syntax.aux) (./config.aux) (./checks.aux) (./multmod.aux)
-(./inference.aux) (./concl.aux) (./apx.aux))
+(./intro.aux) (./syntax.aux) (./config.aux) (./checks.aux) (./inference.aux)
+(./multmod.aux) (./concl.aux) (./apx.aux))
 \openout1 = `ecethesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
@@ -591,57 +591,33 @@ Overfull \hbox (330.00732pt too wide) in paragraph at lines 145--147
 [][][][] 
  []
 
-[23] [24] [25] [26] [27] [28] [29]) [30]
-\openout2 = `multmod.aux'.
-
- (./multmod.tex
-CHAPTER 5.
-[31
-
-
-
-] [32] [33] [34] [35] [36] [37]
-Overfull \hbox (2.00378pt too wide) in paragraph at lines 257--259
-[][] 
- []
-
-
-Overfull \hbox (330.00732pt too wide) in paragraph at lines 265--267
-[][][][] 
- []
-
-[38]
-Overfull \hbox (330.00732pt too wide) in paragraph at lines 289--291
-[][][][] 
- []
-
-[39]) [40]
+[23] [24] [25] [26] [27] [28] [29] [30]) [31]
 \openout2 = `inference.aux'.
 
  (./inference.tex
-CHAPTER 6.
+CHAPTER 5.
+[32
 
-Overfull \hbox (118.26926pt too wide) in paragraph at lines 22--25
+
+
+] [33] [34]
+Overfull \hbox (118.26926pt too wide) in paragraph at lines 108--111
 \OT1/cmr/m/n/12 part of the syn-tax for the types is dep-re-cated. https://stac
 koverflow.com/questions/9345589/guards-
  []
 
-[41
-
-
-
-] [42] [43] [44]
+[35]
 \myBox1=\box38
 \myScoreStart1=\dimen150
 \myCenter1=\dimen151
 \myScoreEnd1=\dimen152
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 162.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 161.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 162.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 161.
 \myBox2=\box39
 \myScoreStart2=\dimen153
 \myCenter2=\dimen154
@@ -651,17 +627,17 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 \myCenter3=\dimen157
 \myScoreEnd3=\dimen158
 
-Overfull \hbox (65.1766pt too wide) in paragraph at lines 165--171
+Overfull \hbox (65.1766pt too wide) in paragraph at lines 164--170
  [] 
  []
 
-[45] [46] [47] [48] [49]
-Overfull \hbox (65.1766pt too wide) in paragraph at lines 339--345
+[36] [37] [38] [39] [40]
+Overfull \hbox (65.1766pt too wide) in paragraph at lines 338--344
  [] 
  []
 
-[50] [51] [52] [53] [54] [55]
-Overfull \hbox (8.70721pt too wide) in paragraph at lines 512--514
+[41] [42] [43] [44] [45] [46]
+Overfull \hbox (8.70721pt too wide) in paragraph at lines 511--513
 []\OT1/cmr/m/n/12 Orient: if $\OML/cmm/m/it/12 t \OT1/cmr/m/n/12 = \OML/cmm/m/i
 t/12 x$ \OT1/cmr/m/n/12 is a vari-able, and s is not a vari-able, $[](\OML/cmm/
 m/it/12 S\OT1/cmr/m/n/12 ) = [](\OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/i
@@ -683,12 +659,36 @@ Missing character: There is no ’ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no † in font cmr12!
 Missing character: There is no ’ in font cmr12!
-[56] [57]) [58]
+[47] [48]) [49]
+\openout2 = `multmod.aux'.
+
+ (./multmod.tex
+CHAPTER 6.
+[50
+
+
+
+] [51] [52] [53] [54] [55] [56]
+Overfull \hbox (2.00378pt too wide) in paragraph at lines 257--259
+[][] 
+ []
+
+
+Overfull \hbox (330.00732pt too wide) in paragraph at lines 265--267
+[][][][] 
+ []
+
+[57]
+Overfull \hbox (330.00732pt too wide) in paragraph at lines 289--291
+[][][][] 
+ []
+
+[58]) [59]
 \openout2 = `concl.aux'.
 
  (./concl.tex
 CHAPTER 7.
-) [59
+) [60
 
 
 
@@ -697,28 +697,28 @@ CHAPTER 7.
 
  (./apx.tex
 APPENDIX A.
-[60
+[61
 
 
 
-] [61] [62] [63] [64] [65] [66]
+] [62] [63] [64] [65] [66] [67]
 Missing character: There is no â in font pcrr7t!
 Missing character: There is no ‰ in font pcrr7t!
 Missing character: There is no ¥ in font pcrr7t!
- [67] [68] [69] [70] [71]
+ [68] [69] [70] [71] [72]
 APPENDIX B.
-[72
+[73
 
-] [73]
+] [74]
 APPENDIX C.
-[74
+[75
 
-] [75]
+] [76]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 506--508
 [][][][] 
  []
 
-[76] [77] [78]
+[77] [78] [79]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 585--587
 [][][][] 
  []
@@ -733,55 +733,55 @@ Overfull \hbox (330.00732pt too wide) in paragraph at lines 616--618
 [][][][] 
  []
 
-[79]
+[80]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 640--642
 [][][][] 
  []
 
-[80]
+[81]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 656--657
 [][][][] 
  []
 
-[81] [82]
+[82] [83]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 737--739
 [][][][] 
  []
 
-[83]
+[84]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 743--745
 [][][][] 
  []
 
-[84] [85] [86] [87] [88] [89]
+[85] [86] [87] [88] [89] [90]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 948--950
 [][][][] 
  []
 
-[90] [91] [92]
+[91] [92] [93]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1027--1029
 [][][][] 
  []
 
-[93] [94]
+[94] [95]
 APPENDIX D.
-[95
+[96
 
-] [96] [97] [98] [99] [100] [101] [102] [103] [104]
+] [97] [98] [99] [100] [101] [102] [103] [104] [105]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1321--1323
 [][][][] 
  []
 
-[105] [106] [107] [108]) [109] (./ecethesis.bbl
+[106] [107] [108] [109]) [110] (./ecethesis.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 25.
 
-) [110
+) [111
 
 
 
 ] (./ecethesis.aux (./intro.aux) (./syntax.aux) (./config.aux)
-(./checks.aux) (./multmod.aux) (./inference.aux) (./concl.aux) (./apx.aux)) ) 
+(./checks.aux) (./inference.aux) (./multmod.aux) (./concl.aux) (./apx.aux)) ) 
 Here is how much of TeX's memory you used:
  5800 strings out of 495063
  84315 string characters out of 3182201
@@ -805,10 +805,10 @@ e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/courier/ucrr8a.pfb>
-Output written on ecethesis.pdf (118 pages, 278239 bytes).
+Output written on ecethesis.pdf (119 pages, 278506 bytes).
 PDF statistics:
- 440 PDF objects out of 1000 (max. 8388607)
- 303 compressed objects within 4 object streams
+ 443 PDF objects out of 1000 (max. 8388607)
+ 305 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -344,7 +344,25 @@ The following is the code for the check.
 
 The polymorphic parameters that appear on the right hand side of a $data$ declaration need to appear on the left hand side as well.
 
-Also, The polymorphic parameters that appear on the left hand side of a $data$ declaration need to be unique.
+The following example should not be allowed.
+\begin{lstlisting}
+Data Newtype = New a b
+\end{lstlisting}
+
+Also, The polymorphic parameters that appear on the left hand side of a $data$ declaration need to be unique. However, the parameters that appear on the right hand side do not need to be unique.
+
+The following example should not be allowed.
+\begin{lstlisting}
+Data Newtype a a = New a
+\end{lstlisting}
+
+However, the following example should be allowed.
+\begin{lstlisting}
+Data Newtype a = New a a
+\end{lstlisting}
+
+\subsubsection{K Code}
+The following is the code for the check.
 
 \begin{lstlisting}
 //NEED TO CHECK all the polymorphic parameters from right appear on left. RIGHT SIDE ONLY
@@ -384,6 +402,4 @@ Also, The polymorphic parameters that appear on the left hand side of a $data$ d
 
     rule lengthRet(A:Int, B:Int, C:K) => error
                     requires A =/=Int B
-    
-    //rule argSortCheck(TList(ListItem(TObject(A:K,B:K,C:K)
 \end{lstlisting}
