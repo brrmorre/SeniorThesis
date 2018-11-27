@@ -166,7 +166,7 @@ We start with modules.
 The sort that contains all the other sorts is a module. A module represents one complete Haskell program. It can have either a name and a body, a name and a body with exports, or just a body.
 
 \subsection{ImpDecls}
-An import is another module that this module depends on. An ImpDecl is an import declaration.
+An ImpDecl is an import declaration. An import is another module that this module depends on.
 The definition of ImpDecl is the following
 \begin{lstlisting}
     syntax ImpDecls ::= List{ImpDecl, ";"} [klabel('impDecls)]
@@ -190,7 +190,7 @@ The definition of ImpDecl is the following
                     | TyCon CQList
 \end{lstlisting}
 
-The following example program has a Module with only ImpDecls. It has one ImpDecl.
+The following example program has a Module with a name and a body of only ImpDecls. It has one ImpDecl.
 
 \begin{lstlisting}
 module Foo where
@@ -198,7 +198,7 @@ module Foo where
 }
 \end{lstlisting}
 
-The following example program has a Module with no name and only ImpDecls. It has one ImpDecl.
+The following example program has a Module with no name and and a body of only ImpDecls. It has one ImpDecl.
 
 \begin{lstlisting}
 import Bar
@@ -246,6 +246,8 @@ f x = x + 2
 
 is a Decl.
 
+The following is the definition of Decl and related sorts.
+
 \begin{lstlisting}
     syntax OptDecls ::= "where" Decls | "" [onlyLabel, klabel('emptyOptDecls)]
     syntax Decls ::= "{" DeclsList "}" [klabel('decls)]
@@ -255,6 +257,8 @@ is a Decl.
                   | FunLhs Rhs [klabel('declFunLhsRhs)]
                   | Pat Rhs [klabel('declPatRhs)]
 \end{lstlisting}
+
+This section introduces the sorts whose parent is Decl. This contains general declarations, function left hand side and right hand side, function guards, and expressions.
 
 \begin{lstlisting}
     syntax GenDecl ::= VarsType
@@ -289,7 +293,9 @@ is a Decl.
 \end{lstlisting}
 
 \subsection{LExp}
-LExp is an important sort for the inference function. This is because LExp defines the different expression types which the inference function has specific rules for.
+LExp is an important sort for the type inference function. This is because LExp defines the different expression types which the type inference function has specific rules for.
+
+The different LExp types are a lambda expression, a 'let-in' expression, an 'if' statement, a case statement, and a 'do' block.
 
 \begin{lstlisting}
     syntax LExp ::= AExp
@@ -302,8 +308,9 @@ LExp is an important sort for the inference function. This is because LExp defin
 \end{lstlisting}
 
 \subsection{AExp}
-AExp is also an import sort for the inference function. The main parts of AExp that the inference function cares about is QVar and GCon.
+AExp is also an import sort for the type inference function. The main parts of AExp that the inference function cares about is QVar and GCon.
 
+QVar is a qualified variable and GCon is a general constructor.
 \begin{lstlisting}
 
     syntax OptSemicolon ::= ";" | "" [onlyLabel, klabel('emptySemicolon)]
@@ -329,148 +336,4 @@ AExp is also an import sort for the inference function. The main parts of AExp t
                            
 \end{lstlisting}
 
-\begin{lstlisting}
-
-    syntax OptExpComma ::= "," Exp | "" [onlyLabel, klabel('emptyExpComma)]
-    syntax OptExp ::= Exp | "" [onlyLabel, klabel('emptyExp)]
-
-    syntax ExpList ::= Exp | Exp "," ExpList  [right]
-    syntax ExpTuple ::= Exp "," Exp           [right, klabel('twoExpTuple)]
-                      | Exp "," ExpTuple      [right, klabel('expTupleCon)]
-
-    //constr datatypes
-    syntax OptConstrs  ::= "=" Constrs [klabel('nonemptyConstrs)] | "" [onlyLabel, klabel('emptyConstrs)]
-    syntax Constrs     ::= Constr [klabel('singleConstr)] | Constr "|" Constrs [klabel('multConstr)]
-    syntax Constr      ::= Con OptBangATypes [klabel('constrCon)] // (arity con  =  k, k ≥ 0) UNFINISHED
-                         | SubConstr ConOp SubConstr
-                         | Con "{" FieldDeclList "}"
-
-    syntax NewConstr   ::= Con AType [klabel('newConstrCon)]
-                         | Con "{" Var "::" Type "}"
-
-    syntax SubConstr   ::= BType | "!" AType
-    syntax FieldDeclList ::= List{FieldDecl, ","}
-    syntax FieldDecl ::= VarsType
-                       | Vars "::" "!" AType
-
-
-    syntax OptBangATypes ::= List{OptBangAType, " "} [klabel('optBangATypes)]
-    syntax OptBangAType ::= OptBang AType [klabel('optBangAType)]
-    syntax OptBang ::= "!" | "" [onlyLabel, klabel('emptyBang)]
-
-    syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
-    syntax Context ::= Class
-                     | "(" Classes ")"
-
-    syntax Classes ::= List{Class, ","}
-
-    syntax SimpleClass ::= QTyCon TyVar  [klabel('classCon)]
-
-    syntax Class       ::= SimpleClass
-                         | QTyCon "(" TyVar ATypeList ")"
-                              //Liyi: a check in preprossing to check if the Atype list is empty
-                              //it must have at least one item
-
-    //define type and simple type
-    syntax SimpleType  ::= TyCon TyVars  [klabel('simpleTypeCon)]
-    syntax Type ::= BType
-                  | BType "->" Type  [klabel('typeArrow)]
-    syntax BType ::= AType
-                   | BType AType [klabel('baTypeCon)]
-
-    syntax ATypeList ::= List{AType, ""} [klabel('atypeList)]
-
-    syntax AType ::= GTyCon                     [klabel('atypeGTyCon)]
-                   | TyVar                      [klabel('atypeTyVar)]
-                   | "(" TypeTuple ")"          [klabel('atypeTuple)]
-                   | "[" Type "]"               [klabel('tyList)]
-                   | "(" Type ")"               [bracket]
-    syntax TypeTuple ::= Type "," Type          [right,klabel('twoTypeTuple)]
-                       | Type "," TypeTuple     [klabel('typeTupleCon)]
-    syntax Types ::= List{Type, ","}
-
-    syntax GConCommas ::= "," | "," GConCommas
-    syntax GConCommon ::= "()" | "[]" | "(" GConCommas ")" //was incorrect syntax
-    syntax GTyCon ::= QTyCon
-                    | GConCommon
-                    | "(->)"
-
-    syntax GCon ::= GConCommon
-                  | QCon
-
-    //inst definition
-    syntax Inst  ::= GTyCon
-                   | "(" GTyCon TyVars ")" //TyVars must be distinct UNFINISHED
-                   | "(" TyVarTuple ")" //TyVars must be distinct
-                   | "[" TyVar "]"  [klabel('tyVarList)]
-                   | "(" TyVar "->" TyVar ")" //TyVars must be distinct
-    //pat definition
-    syntax Pat ::= LPat QConOp Pat
-                 | LPat
-
-    syntax LPat ::= APat
-                  | "-" IntFloat    [klabel('minusPat)]
-                  | GCon APatList  [klabel('lpatCon)]//arity gcon = k UNFINISHED
-
-    syntax APatList ::= APat | APat APatList [klabel('apatCon)]
-
-    syntax APat ::= Var [klabel('apatVar)]
-                  | Var "@" APat
-                  | GCon
-                  | QCon "{" FPats "}"
-                  | Literal [klabel('apatLiteral)]
-                  | "_"
-                  | "(" Pat ")"   [bracket]
-                  | "(" PatTuple ")"
-                  | "[" PatList "]"
-                  | "~" APat
-
-    syntax PatTuple ::= Pat "," Pat         [klabel('twoPatTuple)]
-                      | Pat "," PatTuple    [klabel('patTupleCon)]
-    syntax PatList ::= Pat
-                      | Pat "," PatList     [klabel('patListCon)]
-
-    syntax FPats ::= List{FPat, ","}
-    syntax FPat ::= QVar "=" Pat
-
-    //definition of quals
-    syntax Quals ::= Qual | Qual "," Quals  [klabel('qualCon)]
-
-    syntax Qual ::= Pat "<-" Exp
-                  | "let" Decls
-                  | Exp
-
-    //definition of alts
-    syntax Alts ::= Alt | Alt ";" Alts
-
-    syntax Alt ::= Pat "->" Exp  [klabel('altArrow)]
-                 | Pat "->" Exp "where" Decls
-                 | "" [onlyLabel, klabel('emptyAlt)]
-
-    //definition of stmts
-    syntax Stmts ::= StmtList Exp OptSemicolon
-    syntax StmtList ::= List{Stmt, ""}
-    syntax Stmt ::= Exp ";"
-                  | Pat "<-" Exp ";"
-                  | "let" Decls ";"
-                  | ";"
-
-     //definition of fbind
-    syntax FBindList ::= List{FBind, ","}
-    syntax FBind ::= QVar "=" Exp
-\end{lstlisting}
-
 \section{Example Test Programs}
-An example program is
-\begin{lstlisting}
-module Simp1 where
-{import Test
-}
-\end{lstlisting}
-
-The corresponding abstract syntax tree in K is
-\begin{lstlisting}
-`'module`(`'moduleName`(#token("Simp1","ConId")), `'bodyimpdecls`(`'impDecls`(`'impDecl`(`'emptyQualified`( .::KList), #token("Test","ConId"), `'emptyOptAsModId`(.::KList), `'emptyOptImpSpec`(.::KList)), `'.List{"'impDecls"}`(.::KList))))
-\end{lstlisting}
-
-Module contains two children. The first child of module is moduleName which contains the token Simp1. Simp1 is a constructor ID because it starts with a capital letter. The second child of module is bodyimpdecls. This contains the sort impDecls which is a list of impDecls. This program has only one impDecl. Since there is no qualified, the impDecl contains the child emptyQualified, followed by the token Test. Since there is no AsModId or ImpSpec, the last two children are emptyOptAsModId and emptyOptImpSpec.
