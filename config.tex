@@ -57,10 +57,39 @@ Then MyBooltwo is a renaming of MyBool. In tempAlpha, an AObject is made. An AOb
 
 \section{Beta}
 
-tempT contains all user defined datatypes. tempT is organized in such a way that makes context sensitive checks easy to perform. tempBeta contains all user defined datatypes organized so that type inference is easy to perform.
+tempT contains all user defined datatypes. tempT is organized in such a way that makes context sensitive checks easy to perform. tempBeta contains all user defined datatypes organized so that type inference is easy to perform. More is explained in chapter 5.
 \begin{lstlisting}
             <tempBeta> .Map </tempBeta>
             <tempT> .K </tempT>
+\end{lstlisting}
+
+\subsection{Example}
+If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
+\begin{lstlisting}
+data CusBool = True2 | False2
+\end{lstlisting}
+
+Then the corresponding $tempBeta$ should look like this. Note how the monomorphic datatype just has an empty $forAll$.
+
+\begin{lstlisting}
+    <tempBeta>
+        ModPlusType ( Simp5 , False2 ) |-> forAll ( .Set , CusBool .TyVars )
+        ModPlusType ( Simp5 , True2 ) |-> forAll ( .Set , CusBool .TyVars )
+    </tempBeta>
+\end{lstlisting}
+
+If the user makes the data type CusBool in module Simp5, and declares it with this example...
+\begin{lstlisting}
+data CusBool a b = True2 a | False2 b
+\end{lstlisting}
+
+Then the corresponding tempBeta should look like this.
+\begin{lstlisting}
+    <tempBeta>
+        ModPlusType ( Simp5 , False2 ) |-> forAll ( b , funtype ( b , CusBool a b ) )
+        ModPlusType ( Simp5 , True2 ) |-> forAll ( a , funtype ( a , CusBool a b ) )
+    </tempBeta>
+
 \end{lstlisting}
 
 \section{Delta}
@@ -69,6 +98,20 @@ tempDelta contains the arity of the user defined dataTypes. So if a user defined
 
 \begin{lstlisting}
             <tempDelta> .Map </tempDelta>
+\end{lstlisting}
+
+\subsection{Example}
+If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
+\begin{lstlisting}
+data CusBool a b = True2 a | False2 b
+\end{lstlisting}
+
+Then the corresponding $tempDelta$ should look like this.
+
+\begin{lstlisting}
+<tempDelta>
+     ModPlusType ( Simp5 , CusBool ) |-> 2
+</tempDelta>
 \end{lstlisting}
 
 \section{Import Data Structure}

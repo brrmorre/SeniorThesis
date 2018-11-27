@@ -1,31 +1,27 @@
 \chapter{Inferencing}
-Haskell is a strong and static type system.
+Haskell's type system is a Hindley-Milner polymorphic type system that has been extended with type classes to account for overloaded functions.
 
-This means that type inferencing can be ran before compilation or running the code. used to ensure that fun
-
-Type inferencing 
-
-Haskell's type system is a Hindley-Milner polymorphic type system that has been extended with type classes to account for overloaded function
-%[haskell 2010 report] 
+[haskell 2010 report]
 
 A type system is a set of rules that assign a property to various constructs in a programming language called type. A type is a property that allows the programmer to add constraints to programs.
-%[https://en.wikipedia.org/wiki/Type_system]
+
+\url{https://en.wikipedia.org/wiki/Type_system}
+
+The type inference function infers the type of the expression that is fed into it. A purpose of it is to ensure that all functions and function applications are allowed with regards to the types of the inputs and outputs.
 
 \section{Type theory}
 Type theory was created by Bertrand Russell to prevent Russell's Paradox for set theory, introduced by Georg Cantor. The issue was that not specifying a certain property for sets allowed sets to contain themselves in Naive Set Theory. So Bertrand Russell prevented this problem by specifying a property called type for objects, and objects cannot contain their own type.
-%[https://plato.stanford.edu/entries/type-theory/]
 
-\section{Lambda Calculus}
-The Lambda Calculus was created to
-
-\section{Hindley-Milner}
+\url{https://plato.stanford.edu/entries/type-theory/}
 
 \section{Data Structures}
-The next step is the actual type inference algorithm.
-	I needed to create a syntax for polymorphic types that may contain monomorphic type variables and polymorphic type variables.
-	Then I made a map from type constructor names to arities, called Delta.
-	Then I made a map from data constructors and term identifiers to their most general polymorphic types, called beta.
-	The first part was converting the T data structure into beta, which is more suited for type inferencing.
+I needed to create a syntax for polymorphic types that may contain monomorphic type variables and polymorphic type variables.
+
+Then I made a map from type constructor names to arities, called Delta.
+
+Then I made a map from data constructors and term identifiers to their most general polymorphic types, called beta.
+
+The first part was converting the T data structure into beta, which is more suited for type inference.
 \subsection{Transform T into Beta}
 \begin{lstlisting}
     // STEP 3 Transform T into beta
@@ -51,6 +47,20 @@ The next step is the actual type inference algorithm.
 \subsection{Construct Delta}
 Delta contains the arity of the user defined dataTypes. So if a user defined datatype takes in two parameters, tempDelta will contain the number 2.
 
+\subsubsection{Example}
+If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
+\begin{lstlisting}
+data CusBool a b = True2 a | False2 b
+\end{lstlisting}
+
+Then the corresponding $tempDelta$ should look like this.
+
+\begin{lstlisting}
+<tempDelta>
+     ModPlusType ( Simp5 , CusBool ) |-> 2
+</tempDelta>
+\end{lstlisting}
+
 \begin{lstlisting}
     rule makeDelta(TList(ListItem(TObject(ModName:K,A:K,Polys:K,C:K)) Rest:List),M:Map) =>
          makeDelta(TList(Rest),M[ModPlusType(ModName,A) <- size(retPolyList(Polys,.List))])
@@ -68,12 +78,25 @@ Delta contains the arity of the user defined dataTypes. So if a user defined dat
 \subsection{Construct Beta}
 Beta is a map from the type constructor to its corresponding type.
 
-For instance, if a 
+A monomorphic data type looks like $(a \rightarrow b) \rightarrow c$
+In my K semantics, the equivalent data type looks like
+\begin{lstlisting}
+forAll ( .Set , funtype ( funtype ( a , b ) , c ) )
+\end{lstlisting}
 
-A polymorphic data type looks like $\forall a b c, (a \rightarrow b) \rightarrow c$
+A polymorphic data type looks like $\forall a b c \, . \, (a \rightarrow b) \rightarrow c$
+In my K semantics, the equivalent data type looks like
+\begin{lstlisting}
+forAll ( a b c , funtype ( funtype ( a , b ) , c ) )
+\end{lstlisting}
+
+\subsubsection{Example}
+If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
 \begin{lstlisting}
 data CusBool = True2 | False2
 \end{lstlisting}
+
+Then the corresponding $tempBeta$ should look like this. Note how the monomorphic datatype just has an empty $forAll$.
 
 \begin{lstlisting}
     <tempBeta>
@@ -82,6 +105,22 @@ data CusBool = True2 | False2
     </tempBeta>
 \end{lstlisting}
 
+If the user makes the data type CusBool in module Simp5, and declares it with this example...
+\begin{lstlisting}
+data CusBool a b = True2 a | False2 b
+\end{lstlisting}
+
+Then the corresponding tempBeta should look like this.
+\begin{lstlisting}
+    <tempBeta>
+        ModPlusType ( Simp5 , False2 ) |-> forAll ( b , funtype ( b , CusBool a b ) )
+        ModPlusType ( Simp5 , True2 ) |-> forAll ( a , funtype ( a , CusBool a b ) )
+    </tempBeta>
+
+\end{lstlisting}
+
+\subsubsection{K Code}
+The following is the K Code.
 \begin{lstlisting}
     rule <k> constructBeta
              => makeBeta(T,.Map) ...</k>
@@ -95,8 +134,6 @@ data CusBool = True2 | False2
          makeBeta(TList(Rest),Beta)
     rule makeBeta(TList(.List),Beta:Map) =>
          newBeta(Beta)
-//    rule makeBeta(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(C:K,H:K,D:K,E:K,F:K)) InnerRest:List)) Rest:List),Beta:Map) =>
-//         makeBeta(TList(ListItem(TObject(ModName,A,B,InnerRest)) Rest),Beta)
 
     syntax KItem ::= betaParser(K,K,K) [function] //(Tree Piece,NewSyntax,Parameters,Constr)
     syntax Set ::= getTyVarsRHS(K,List) [function]
@@ -118,11 +155,6 @@ data CusBool = True2 | False2
     rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'baTypeCon(A:K,, B:K)),, Rest:K), Par:K, Con:K) => funtype('baTypeCon(A:K,, B:K), betaParser(Rest, Par, Con))
     rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'atypeGTyCon(Tyc:K)),, Rest:K), Par:K, Con:K) => funtype(Tyc, betaParser(Rest, Par, Con))
     rule betaParser(.OptBangATypes, Par:K, Con:K) => 'simpleTypeCon(Con,, Par)
-//    rule betaParser('optBangATypes('optBangAType('emptyBang(.KList),, 'atypeGTyCon(Tyc:K)),, Rest:KItem)) => getTypeVars(A) getTypeVars(Rest)
-//    rule getTypeVars('optBangAType('emptyBang(.KList),, Rest:K)) => getTypeVars(Rest)
-//    rule getTypeVars('atypeGTyCon(A:K)) => .List
-//    rule getTypeVars('atypeTyVar(A:K)) => ListItem(A)
-//    rule getTypeVars(.OptBangATypes) => .List
 
     rule getTyVarsRHS(.OptBangATypes,Tylist:List) => listToSet(Tylist, .Set)
 
@@ -135,10 +167,12 @@ data CusBool = True2 | False2
 \section{Definition of Substitution}
 A substitution is a set of variables and their replacements. Applying a substitution to an expression means to simultaneously replace each variable in the expression with the replacement term.
 
-[http://www.mathcs.duq.edu/simon/Fall04/notes-7-4/node3.html]
+\url{http://www.mathcs.duq.edu/simon/Fall04/notes-7-4/node3.html}
 
 
 \section{Inference Algorithm}
+
+Much of the inference algorithm is the same as the one introduced in cs 421.
 
 [cs 421 gather exp ty substitution mp]
 
@@ -161,7 +195,6 @@ module HASKELL-TYPE-INFERENCING
     syntax Map ::= genGamma(K,Map,K) [function] //Apatlist, Gamma Type
     syntax KItem ::= genLambda(K,K) [function]
     syntax KItem ::= guessType(Int)
-//    syntax KItem ::= lambdaReturn(K,K,K)
     syntax KItem ::= freshInstance(K, Int) [function]
     syntax Int ::= paramSize(K) [function]
 
@@ -211,11 +244,6 @@ module HASKELL-TYPE-INFERENCING
 \end{prooftree}
 
 \begin{lstlisting}
-    //T-App
-    //rule typeInferenceFun('aexpQVar(Var:K), Alpha:Map, Beta:Map, Delta:Map, (Var |-> Sigma:K) Gamma:Map,.K,.K) => Sigma
-    //Gamma Proves x:phi(tau) if Gamma(x) = \forall alpha_1, ..., alpha_n . tau
-    //where phi replaces all occurrences of alpha_1, ..., alpha_n by monotypes tau_1, ..., tau_n
-
     rule <k> typeInferenceFun(.ElemList, (Var |-> Type:K) Gamma:Map, 'aexpQVar(Var:K), Guess:KItem)
           => mapBagResult(uniFun(ListItem(uniPair(Guess,freshInstance(Type, TypeIt))))) ...</k> //Variable rule
          <typeIterator> TypeIt:Int => TypeIt +Int paramSize(Type) </typeIterator>
@@ -229,12 +257,10 @@ module HASKELL-TYPE-INFERENCING
 \end{prooftree}
 
 \begin{lstlisting}
-
     rule <k> typeInferenceFun(.ElemList, Gamma:Map, 'aexpGCon('conTyCon(Mid:K,, Gcon:K)), Guess:KItem)
           => mapBagResult(uniFun(ListItem(uniPair(Guess,freshInstance(Type, TypeIt))))) ...</k> //Constant rule
          <tempBeta> (ModPlusType(Mid,Gcon) |-> Type:K) Beta:Map </tempBeta>
          <typeIterator> TypeIt:Int => TypeIt +Int paramSize(Type) </typeIterator>
-         
 \end{lstlisting}
 
 \subsection{Lambda Rule}
@@ -322,7 +348,6 @@ For functions, function guards, cases, and if-then-else are all equivalent.
 \end{lstlisting}
 
 \section{Mutual Recursion}
-\subsection{LetIn Rule}
 Something to note is that mutually recursive functions are allowed in Haskell.
 For example:
 $$
@@ -341,6 +366,8 @@ let {f = \x -> y x; y = \x -> f x} in (f 2)
 
 In this example, the f is an expression that refers to y and y is an expression that refers to f.
 
+\subsection{LetIn Rule}
+This let rule, unlike the let rule introduced in cs 421, allows for mutual recursion.
 \begin{prooftree}
 \AxiomC{$\Gamma \vdash \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
 \AxiomC{$\sigma ( \Delta + \Gamma ) \vdash e : \tau \, | \, \sigma'$}
@@ -350,7 +377,7 @@ In this example, the f is an expression that refers to y and y is an expression 
 
 \begin{prooftree}
 \AxiomC{$\Gamma \vdash \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
-\RightLabel{LetIn}
+\RightLabel{Module}
 \UnaryInfC{$\Gamma \vdash \text{module} \, \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
 \end{prooftree}
 
@@ -362,6 +389,8 @@ In this example, the f is an expression that refers to y and y is an expression 
 \RightLabel{LetIn}
 \QuaternaryInfC{$\Gamma \vdash \{ \, x_1 = e_1; \, \cdots \, x_i = e_i; \, \cdots \, x_n = e_n \, \} \, \text{in} \, \text{exp} : \bigcup_{i = 1}^n \, \{ \, x_i \mapsto \, \text{GEN} \, ( \sigma_n'(\Gamma),\sigma_n'(\psi_i) ) \, \} \, | \, \sigma_n'$}
 \end{prooftree}
+
+\subsubsection{K Code}
 
 \begin{lstlisting}
 

@@ -73,6 +73,13 @@ An inner T piece represents an option of what a type could be. It consists of a 
 I then used these data structures to perform these checks, and afterwards will transform them into a new data structure to perform type inferencing.
 
 \subsection{Example T}
+
+If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
+\begin{lstlisting}
+data CusBool = True2 | False2
+\end{lstlisting}
+
+Then the corresponding $tempT$ should look like this.
 \begin{lstlisting}
     <tempT>
         TList ( ListItem ( TObject ( Simp5 , CusBool , .TyVars , 
