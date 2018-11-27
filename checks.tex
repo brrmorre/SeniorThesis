@@ -2,8 +2,20 @@
 I also placed the user defined types into data structures in order to perform several checks to make sure that the user did not have errors when creating types. Then the data structures will be transformed into a form that will be used for type inferencing.
 Section 4 of the Haskell 2010 report specifies the haskell type system.
 %https://www.haskell.org/onlinereport/haskell2010/haskellch4.html#x10-620004
-In the topdecl sort, there are three typecons that are used to create user defined datatypes. Data, type, and newtype. The end goal is to put the user defined types into a data structure which I can use to perform type inferencing. These three typecons are used to create user defined types.
-The first one is type,
+In the TopDecl sort, there are three type constructors that are used to create user defined datatypes. These are data, type, and newtype.
+
+\section{Datatype Constructors}
+\begin{lstlisting}
+    syntax TopDecl ::= Decl [klabel('topdecldecl)]
+                     > "type" SimpleType "=" Type [klabel('type)]
+                     | "data" OptContext SimpleType OptConstrs OptDeriving  [klabel('data)]
+                     | "newtype" OptContext SimpleType "=" NewConstr OptDeriving [klabel('newtype)]
+\end{lstlisting}
+
+The end goal is to put the user defined types into a data structure which I can use to perform type inferencing. These three typecons are used to create user defined types.
+
+\subsection{Type}
+The first one is $type$,
 	\begin{lstlisting}
 type simpletype = type 
 	\end{lstlisting}
@@ -12,32 +24,33 @@ This is used in a haskell program to declare a new type as a single type. In eff
 type Username = String
 	\end{lstlisting}
 Is one such example usage of type, it creates a new type Username, which is defined as just a string. Now the programmer can refer to Username or String to make a string.
-	The second one is data,
-	\begin{lstlisting}
+
+\subsection{Data}
+The second one is $data$,
+\begin{lstlisting}
 data [context =>] simpletype [= constrs] [deriving]
-	\end{lstlisting}
-This allows a user to declare a new type that may include many fields, and polymorphic types. For instance:
-	\begin{lstlisting}
+\end{lstlisting}
+This allows a user to declare a new type that may include many fields and polymorphic types.
+
+For instance:
+\begin{lstlisting}
 data Date = Date Int Int Int
-	\end{lstlisting}
-This is a new type that includes the typecon ‘Date’ followed by three integers.
-	\begin{lstlisting}
+\end{lstlisting}
+This is a new type that includes the type constructor $Date$ followed by three integers.
+\begin{lstlisting}
 data Poly a = Number a
-	\end{lstlisting}
-This is a new polymorphic type with polymorphic parameter a, that has the typecon ‘Number’.
-	The third one is newtype,
-	\begin{lstlisting}
+\end{lstlisting}
+This is a new polymorphic type with polymorphic parameter a, that has the type constructor $Number$.
+
+\subsection{Newtype}
+The third one is $newtype$,
+\begin{lstlisting}
 newtype [context =>] simpletype = newconstr [deriving]
 \end{lstlisting}
 This is very similar to data except it only parses when the newtype has only one typecon and one field.
 
-I perform several checks here, 
-1. The programmer should not be able to make two user defined datatypes with the same name, even if one is created using ‘data’ and another is created using ‘type’ for instance.
-2. The programmer should not be able to use the same typecons when making different options for their types or use the same typecons for different types.
-3. There should be no cycles in type renaming using ‘type’, and the type renaming chains using ‘type’ should terminate with a type defined with ‘data’ or ‘newtype’.
-4. The argument sorts for types defined using ‘data’ or ‘newtype’ should be types that exist.
-5. The polymorphic parameters that appear on the right hand side of a ‘data’ declaration need to appear on the left hand side as well.
-6. The polymorphic parameters that appear on the left hand side of a ‘data’ declaration need to be unique.
+\section{Initial Data Structures}
+
 I implemented a map, called alpha, of new type names as the keys and their declared types as the entries. I then collected all appearances of the typecon ‘type’ in the program, and put simpletype -> type in the alpha map. However, one of the things I needed to check for in the program was whether a user declared multiple definitions with ‘type’, so I could not use a map in K because they only allow unique keys with unique entries. So I initially used a set of tuples, and then changed it to a map after checking for multiple type declarations.
 
 
@@ -54,8 +67,8 @@ T is a list of TObjects, each TObject represents a single user defined datatype.
 An inner T piece represents an option of what a type could be. It consists of a type constructor, a list of polymorphic parameters required for this option, the fields for this option, the entire subtree of the AST for this option unedited, and the type name again.
 I then used these data structures to perform these checks, and afterwards will transform them into a new data structure to perform type inferencing.
 
-\section{Initial Data Structures}
-The following parses the tree and searches for the 
+\subsection{K Code}
+The following parses the tree and searches for the user defined types to place into the data structures.
 
 \begin{lstlisting}
     //get alpha and beta
@@ -86,10 +99,6 @@ The following parses the tree and searches for the
     syntax KItem ::= TObject(K,K,K,K) //(module name, type name, entire list of poly type vars, list of inner T pieces)
     syntax KItem ::= InnerTPiece(K,K,K,K,K) //(type constructor, poly type vars, argument sorts, entire constr block, type name)
 
-//    rule initPreModule('module(I:ModuleName,, J:K)) => getPreModule(J,preModule(AList(.List),TList(.List)))
-//    rule initPreModule('moduleExp(I:ModuleName,, L:K,, J:K)) => getPreModule(J,preModule(AList(.List),TList(.List)))
-//    rule initPreModule('moduleBody(J:Body)) => getPreModule(J,preModule(AList(.List),TList(.List)))
-
     rule initPreModule(J:K) => getPreModule(J,preModule(AList(.List),TList(.List)))
 
     rule getPreModule('bodytopdecls(I:K), J:K) => getPreModule(I,J)
@@ -106,8 +115,6 @@ The following parses the tree and searches for the
     rule getPreModule('topdeclslist('default(A:K,, B:K,, C:K,, D:K),, Rest:K),J:K) => getPreModule(Rest,J)
     rule getPreModule('topdeclslist('foreign(A:K,, B:K,, C:K,, D:K),, Rest:K),J:K) => getPreModule(Rest,J)
     rule getPreModule(.TopDecls,J:K) => J
-
-    //rule getPreModule('module(I:ModuleName,L:K, J:K)) => preModule(J)
 
     rule <k> fetchTypes('simpleTypeCon(I:TyCon,, H:TyVars), 'atypeGTyCon(C:K), Rest:K, preModule(AList(M:List), L:K)) => getPreModule(Rest,preModule(AList(ListItem(AObject(ModPlusType(ModName,I),C)) M), L)) ...</k>
          <tempModule> ModName:KItem </tempModule>
@@ -126,11 +133,8 @@ The following parses the tree and searches for the
     rule getTypeVars('atypeTyVar(A:K)) => ListItem(A)
     rule getTypeVars(.OptBangATypes) => .List
 
-    //rule getCon('emptyConstrs()) => .K
-    //rule getCon('nonemptyConstrs(A:K)) => getCon(A)
     rule getCon('constrCon(A:K,, B:K)) => A
 
-    //rule getArgSorts('constrCon(A:K,, B:K)) => B
     rule getArgSorts('constrCon(A:K,, B:K)) => getArgSorts(B)
     rule getArgSorts('optBangATypes(A:K,, Rest:K)) => getArgSorts(A) getArgSorts(Rest)
     rule getArgSorts('optBangAType('emptyBang(.KList),, Rest:K)) => getArgSorts(Rest)
@@ -145,7 +149,12 @@ The following parses the tree and searches for the
          <tempT> OldT:K => T </tempT>
 \end{lstlisting}
 
-\section{Perform Checks}
+\section{Context Sensitive Checks}
+For my context sensitive checks, I perform several checks that are not inclusive to all context sensitive checks that need to be made in a complete Haskell semantics, but enough for the sanity of the type inference function.
+
+\subsubsection{K Code}
+The following code introduces all checks that need to be made.
+
 \begin{lstlisting}
     // STEP 2 PERFORM CHECKS
 
@@ -167,21 +176,6 @@ The following parses the tree and searches for the
 //NEED TO CHECK all the polymorphic parameters from right appear on left. RIGHT SIDE ONLY
 //NEED TO CHECK UNIQUENESS FOR POLY PARAM ON LEFT SIDE ONLY
 
-//    rule <k> preModule(A:K,T:K) => startChecks ...</k>
-//         <tempAlpha> OldAlpha:K => A </tempAlpha>
-//         <tempT> OldT:K => T </tempT>
-
-
-/*    rule <k> performNextChecks
-             => checkUseVars
-                ~> (checkLabelUses
-                ~> (checkBlockAddress(.K)
-                ~> (checkNoNormalBlocksHavingLandingpad(.K, TNS -Set TES)
-                ~> (checkAllExpBlocksHavingLandingpad(.K, TES)
-                ~> (checkAllExpInFromInvoke(.K, TES)
-                ~> (checkLandingpad
-                ~> checkLandingDomResumes)))))) ...</k> */
-
     rule <k> startChecks
              => checkNoSameKey
                 ~> (checkTypeConsDontCollide
@@ -192,23 +186,24 @@ The following parses the tree and searches for the
 
 \end{lstlisting}
 
-\subsection{Collision Check}
-\begin{lstlisting}
+\subsection{Name Collision}
+The programmer should not be able to make two user defined datatypes with the same name, even if one is created using the constructor $data$ and another is created using the constructor $type$ for instance.
 
+The following example should not be allowed.
+\begin{lstlisting}
+data Date = Date Int
+;type Date = Contwo Int
+\end{lstlisting}
+
+\subsubsection{K Code}
+The following is the code for the check.
+\begin{lstlisting}
     rule <k> checkTypeConsDontCollide
              => tyConCollCheck(T,.List,.Set) ...</k>
          <tempT> T:K </tempT>
 
-    //syntax KItem ::= tChecker(K) [function]
     syntax KItem ::= tyConCollCheck(K,K,K) [function] //(TList,List of Tycons,Set of Tycons) 
     syntax KItem ::= lengthCheck(K,K) [function]
-    //syntax KItem ::= tyConCollCheck(K,K,K) [function]
-    //syntax K ::= innerCollCheck(K) [function]
-    //syntax K ::= tyConCollCheckPasser(K, K) [function]
-
-    //rule tChecker(preModule(Alpha:Map,T:K,Mod:K)) => tyConCollCheck(innerCollCheck(T),preModule(Alpha,T,Mod))
-
-    //rule tyConCollCheck(.K,preModule(Alpha:Map,H:K,Mod:K)) => tyConCollCheck(innerCollCheck(H),preModule(Alpha,H,Mod))
 
     rule tyConCollCheck(TList(ListItem(TObject(ModName:K, A:K,B:K,ListItem(InnerTPiece(Ty:K,E:K,F:K,H:K,G:K)) Inners:List)) Rest:List),J:List,D:Set) => 
                     tyConCollCheck(TList(ListItem(TObject(ModName,A,B,Inners)) Rest),ListItem(Ty) J, SetItem(Ty) D)
@@ -222,11 +217,25 @@ The following parses the tree and searches for the
 
     rule lengthCheck(A:Int, B:Int) => error
                     requires A =/=Int B
-
-    //rule tyConCollCheck(TList(TObject(A:K,B:K,C:K) ~> Rest:K),J:K) => tyConCollCheckPasser(TList(innerCollCheck(TObject(A:K,B:K,C:K)) ~> Rest:K),J:K)
 \end{lstlisting}
 
-\subsection{Key Check}
+\subsection{Type Constructor Collision}
+The programmer should not be able to use the same type constructors when making different options for their types or use the same type constructors for different types.
+
+The following example should not be allowed.
+\begin{lstlisting}
+data Date = Date Int | Date Bool
+\end{lstlisting}
+
+The following example should also not be allowed.
+\begin{lstlisting}
+data Date = Date Int
+;data Datetwo = Date Int
+\end{lstlisting}
+
+\subsubsection{K Code}
+The following is the code for the check.
+
 \begin{lstlisting}
     syntax KItem ::= keyCheck(K,K,K,K) [function] //(Alpha, T, List of names, Set of names)
 
@@ -234,8 +243,6 @@ The following parses the tree and searches for the
              => keyCheck(A, T, .Set, .List) ...</k>
          <tempAlpha> A:K </tempAlpha>
          <tempT> T:K </tempT>
-    //rule <k> checkAlphaNoSameKey
-    //         => akeyCheck(.K, .Set) ...</k>
 
     rule keyCheck(AList(ListItem(AObject(A:K,B:K)) C:List), T:K, D:Set, G:List) => keyCheck(AList(C), T, SetItem(A) D, ListItem(A) G)
     rule keyCheck(AList(.List), TList(ListItem(TObject(ModName:K, A:K,B:K,C:K)) Rest:List), D:Set, G:List) => keyCheck(AList(.List), TList(Rest), SetItem(A) D, ListItem(A) G)
@@ -254,19 +261,25 @@ The following parses the tree and searches for the
 
     rule <k> tAlphaMap(M:K) => .K ...</k>
          <tempAlphaMap> OldAlphaMap:K => M </tempAlphaMap>
-
-//    syntax KItem ::= tkeyCheck(K,K,K) [function] //(T,List of T,Set of T)
-
-//    rule <k> checkTNoSameKey
-//             => tkeyCheck(T, .Set, T) ...</k>
-//         <tempT> T:K </tempT>
-
-//    rule tkeyCheck(TList(ListItem(TObject(A:K,B:K,C:K)) Rest:List), D:Set, G:K) => tkeyCheck(TList(Rest), SetItem(A) D, G)
-//    rule tkeyCheck(TList(.List), D:Set, TList(G:List)) => lengthCheck(size(G),size(D))
-
 \end{lstlisting}
 
-\subsection{Alpha Loop Check}
+\subsection{Alpha Cycle Check}
+There should be no cycles in type renaming using $type$, and the type renaming chains using $type$ should terminate with a type defined with $data$ or $newtype$.
+
+The following example should not be allowed.
+\begin{lstlisting}
+type Birthday = Date
+;type Date = Birthday
+\end{lstlisting}
+
+The following example should also not be allowed if Date is not defined anywhere.
+\begin{lstlisting}
+type Birthday = Date
+\end{lstlisting}
+
+\subsubsection{K Code}
+The following is the code for the check.
+
 \begin{lstlisting}
     syntax KItem ::= aloopCheck(K,K,K,K,K,K,K) [function] //(Alpha,List of Alpha,Set of Alpha,CurrNode,lengthcheck,T,BigSet)
 
@@ -290,19 +303,20 @@ The following parses the tree and searches for the
     rule typeSet(TList(ListItem(TObject(ModName:K, A:K,B:K,C:K)) Rest:List), D:Set) => typeSet(TList(Rest), SetItem(A) D)
     rule typeSet(TList(.List), D:Set) => D
 
-//    rule aloopCheck(Alpha:Map, D:List, G:Set, H:KItem, .K) => keys(Alpha) ~> H
-//         requires notBool H in keys(Alpha)
-
     rule aloopCheck(.Map, .List, .Set, .K, .K,T:K, S:Set) => .K
-//    rule aloopCheck(AList(Front:List ListItem(AObject(H,B:K)) C:List), D:List, G:Set, H:ConId) => aloopCheck(AList(C:List), ListItem(B) D, SetItem(B) G, B)
-
-
-//    syntax KItem ::= TList(K) //list of T objects for every new type introduced by data and newtype
-//    syntax KItem ::= TObject(K,K,K) //(type name, entire list of poly type vars, list of inner T pieces)
-//    syntax KItem ::= InnerTPiece(K,K,K,K,K) //(type constructor, poly type vars, argument sorts, entire constr block, type name)
 \end{lstlisting}
 
-\subsection{Arg Sort Check}
+\subsection{Argument Sort Check}
+The argument sorts for types defined using the $data$ keyword or the $newtype$ keyword should be types that exist.
+
+The following example should not be allowed if $Date$ is not defined anywhere.
+\begin{lstlisting}
+Data Birthday = Birthday Date
+\end{lstlisting}
+
+\subsubsection{K Code}
+The following is the code for the check.
+
 \begin{lstlisting}
 //Make sure argument sorts [U] [W,V] are in the set of keys of alpha and targets of T, (keys of T)
 
@@ -326,7 +340,12 @@ The following parses the tree and searches for the
     rule argSortCheck(TList(.List),AlphaMap:Map,Tset:Set) => .K
 \end{lstlisting}
 
-\subsection{Par Check}
+\subsection{Polymorphic Parameter Check}
+
+The polymorphic parameters that appear on the right hand side of a $data$ declaration need to appear on the left hand side as well.
+
+Also, The polymorphic parameters that appear on the left hand side of a $data$ declaration need to be unique.
+
 \begin{lstlisting}
 //NEED TO CHECK all the polymorphic parameters from right appear on left. RIGHT SIDE ONLY
 //NEED TO CHECK UNIQUENESS FOR POLY PARAM ON LEFT SIDE ONLY
@@ -339,7 +358,6 @@ The following parses the tree and searches for the
              => parCheck(T,.K) ...</k>
          <tempT> T:K </tempT>
 
-    //rule makeParLists(TList(ListItem(TObject(A:K,ListItem(Arg:KItem) PolyList:List,C:K)) Rest:List),Tlist:List,Tset:Set) => makeParLists(TList(ListItem(TObject(A,PolyList,C)) Rest),ListItem(Arg) Tlist,SetItem(Arg) Tset)
     rule parCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,C:K)) Rest:List),.K) => parCheck(TList(ListItem(TObject(ModName,A:K,B:K,C:K)) Rest:List),makeTyVarList(B,.List,.Set))
 
     rule parCheck(TList(ListItem(TObject(ModName:K,A:K,B:K,ListItem(InnerTPiece(C:K,ListItem(Par:KItem) ParRest:List,D:K,E:K,F:K)) InnerRest:List)) Rest:List),NewSet:Set) =>
