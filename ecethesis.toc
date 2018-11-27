@@ -12,42 +12,42 @@
 \contentsline {subsection}{\numberline {2.3.4}Decls}{11}
 \contentsline {subsection}{\numberline {2.3.5}LExp}{12}
 \contentsline {subsection}{\numberline {2.3.6}AExp}{12}
-\contentsline {section}{\numberline {2.4}Example Test Programs}{17}
-\contentsline {chapter}{CHAPTER\ 3\hskip 1em\relax \MakeUppercase {Configuration}}{18}
-\contentsline {chapter}{CHAPTER\ 4\hskip 1em\relax \MakeUppercase {Context Sensitive Checks}}{20}
-\contentsline {section}{\numberline {4.1}Initial Data Structures}{22}
-\contentsline {section}{\numberline {4.2}Perform Checks}{25}
-\contentsline {subsection}{\numberline {4.2.1}Collision Check}{26}
-\contentsline {subsection}{\numberline {4.2.2}Key Check}{27}
-\contentsline {subsection}{\numberline {4.2.3}Alpha Loop Check}{28}
-\contentsline {subsection}{\numberline {4.2.4}Arg Sort Check}{29}
-\contentsline {subsection}{\numberline {4.2.5}Par Check}{30}
-\contentsline {chapter}{CHAPTER\ 5\hskip 1em\relax \MakeUppercase {Multiple Module Support}}{33}
-\contentsline {section}{\numberline {5.1}Module Inclusion Tree}{37}
-\contentsline {section}{\numberline {5.2}Leaf DFS}{39}
-\contentsline {section}{\numberline {5.3}Insert AlphaBetaStar}{41}
-\contentsline {chapter}{CHAPTER\ 6\hskip 1em\relax \MakeUppercase {Inferencing}}{43}
-\contentsline {section}{\numberline {6.1}Data Structures}{43}
-\contentsline {subsection}{\numberline {6.1.1}Transform T into Beta}{43}
-\contentsline {subsubsection}{Construct Delta}{44}
-\contentsline {subsubsection}{Construct Beta}{44}
-\contentsline {section}{\numberline {6.2}Inferencing Rules}{46}
-\contentsline {section}{\numberline {6.3}Type theory}{47}
-\contentsline {section}{\numberline {6.4}Lambda Calculus}{47}
-\contentsline {section}{\numberline {6.5}Hindley-Milner}{47}
-\contentsline {section}{\numberline {6.6}Definition of Substitution}{47}
-\contentsline {section}{\numberline {6.7}Composition of Substitutions}{47}
-\contentsline {section}{\numberline {6.8}Inferencing Algorithm}{47}
-\contentsline {subsection}{\numberline {6.8.1}Variable Rule}{50}
-\contentsline {subsection}{\numberline {6.8.2}Constant Rule}{50}
-\contentsline {subsection}{\numberline {6.8.3}Lambda Rule}{50}
-\contentsline {subsection}{\numberline {6.8.4}Application Rule}{51}
-\contentsline {subsection}{\numberline {6.8.5}IfThenElse Rule}{52}
-\contentsline {subsection}{\numberline {6.8.6}LetIn Rule}{53}
-\contentsline {section}{\numberline {6.9}Unification Algorithm}{58}
-\contentsline {chapter}{CHAPTER\ 7\hskip 1em\relax \MakeUppercase {Conclusion}}{61}
-\contentsline {chapter}{APPENDIX\ A\hskip 1em\relax \MakeUppercase {haskell-syntax.k}}{62}
-\contentsline {chapter}{APPENDIX\ B\hskip 1em\relax \MakeUppercase {haskell-configuration.k}}{74}
-\contentsline {chapter}{APPENDIX\ C\hskip 1em\relax \MakeUppercase {haskell-preprocessing.k}}{76}
-\contentsline {chapter}{APPENDIX\ D\hskip 1em\relax \MakeUppercase {haskell-type-inferencing.k}}{97}
-\contentsline {chapter}{\MakeUppercase {REFERENCES}}{112}
+\contentsline {section}{\numberline {2.4}Example Test Programs}{13}
+\contentsline {chapter}{CHAPTER\ 3\hskip 1em\relax \MakeUppercase {Configuration}}{14}
+\contentsline {chapter}{CHAPTER\ 4\hskip 1em\relax \MakeUppercase {Context Sensitive Checks}}{17}
+\contentsline {section}{\numberline {4.1}Initial Data Structures}{19}
+\contentsline {section}{\numberline {4.2}Perform Checks}{22}
+\contentsline {subsection}{\numberline {4.2.1}Collision Check}{23}
+\contentsline {subsection}{\numberline {4.2.2}Key Check}{24}
+\contentsline {subsection}{\numberline {4.2.3}Alpha Loop Check}{25}
+\contentsline {subsection}{\numberline {4.2.4}Arg Sort Check}{26}
+\contentsline {subsection}{\numberline {4.2.5}Par Check}{27}
+\contentsline {chapter}{CHAPTER\ 5\hskip 1em\relax \MakeUppercase {Multiple Module Support}}{30}
+\contentsline {section}{\numberline {5.1}Module Inclusion Tree}{34}
+\contentsline {section}{\numberline {5.2}Leaf DFS}{36}
+\contentsline {section}{\numberline {5.3}Insert AlphaBetaStar}{38}
+\contentsline {chapter}{CHAPTER\ 6\hskip 1em\relax \MakeUppercase {Inferencing}}{40}
+\contentsline {section}{\numberline {6.1}Data Structures}{40}
+\contentsline {subsection}{\numberline {6.1.1}Transform T into Beta}{40}
+\contentsline {subsubsection}{Construct Delta}{41}
+\contentsline {subsubsection}{Construct Beta}{41}
+\contentsline {section}{\numberline {6.2}Inferencing Rules}{43}
+\contentsline {section}{\numberline {6.3}Type theory}{44}
+\contentsline {section}{\numberline {6.4}Lambda Calculus}{44}
+\contentsline {section}{\numberline {6.5}Hindley-Milner}{44}
+\contentsline {section}{\numberline {6.6}Definition of Substitution}{44}
+\contentsline {section}{\numberline {6.7}Composition of Substitutions}{44}
+\contentsline {section}{\numberline {6.8}Inferencing Algorithm}{44}
+\contentsline {subsection}{\numberline {6.8.1}Variable Rule}{47}
+\contentsline {subsection}{\numberline {6.8.2}Constant Rule}{47}
+\contentsline {subsection}{\numberline {6.8.3}Lambda Rule}{47}
+\contentsline {subsection}{\numberline {6.8.4}Application Rule}{48}
+\contentsline {subsection}{\numberline {6.8.5}IfThenElse Rule}{49}
+\contentsline {subsection}{\numberline {6.8.6}LetIn Rule}{50}
+\contentsline {section}{\numberline {6.9}Unification Algorithm}{55}
+\contentsline {chapter}{CHAPTER\ 7\hskip 1em\relax \MakeUppercase {Conclusion}}{58}
+\contentsline {chapter}{APPENDIX\ A\hskip 1em\relax \MakeUppercase {haskell-syntax.k}}{59}
+\contentsline {chapter}{APPENDIX\ B\hskip 1em\relax \MakeUppercase {haskell-configuration.k}}{71}
+\contentsline {chapter}{APPENDIX\ C\hskip 1em\relax \MakeUppercase {haskell-preprocessing.k}}{73}
+\contentsline {chapter}{APPENDIX\ D\hskip 1em\relax \MakeUppercase {haskell-type-inferencing.k}}{94}
+\contentsline {chapter}{\MakeUppercase {REFERENCES}}{109}

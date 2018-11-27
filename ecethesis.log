@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  27 NOV 2018 00:30
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  27 NOV 2018 00:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -536,20 +536,16 @@ LaTeX Font Info:    Try loading font information for TS1+pcr on input line 88.
  (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1pcr.fd
 File: ts1pcr.fd 2001/06/04 font definitions for TS1/pcr.
 ) [5] [6] [7]
-[8] [9] [10] [11] [12]
-Missing character: There is no â in font pcrr7t!
-Missing character: There is no ‰ in font pcrr7t!
-Missing character: There is no ¥ in font pcrr7t!
- [13] [14] [15] [16]) [17]
+[8] [9] [10] [11] [12]) [13]
 \openout2 = `config.aux'.
 
  (./config.tex
 CHAPTER 3.
-[18
+[14
 
 
 
-]) [19]
+] [15]) [16]
 \openout2 = `checks.aux'.
 
  (./checks.tex
@@ -566,7 +562,7 @@ Missing character: There is no ˜ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-[20
+[17
 
 
 
@@ -661,21 +657,21 @@ Overfull \hbox (1.0738pt too wide) in paragraph at lines 53--56
 e user de-fined datatype.
  []
 
-[21] [22] [23]
+[18] [19] [20]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 141--143
 [][][][] 
  []
 
-[24] [25] [26] [27] [28] [29] [30] [31]) [32]
+[21] [22] [23] [24] [25] [26] [27] [28]) [29]
 \openout2 = `multmod.aux'.
 
  (./multmod.tex
 CHAPTER 5.
-[33
+[30
 
 
 
-] [34] [35] [36] [37] [38] [39]
+] [31] [32] [33] [34] [35] [36]
 Overfull \hbox (2.00378pt too wide) in paragraph at lines 257--259
 [][] 
  []
@@ -685,12 +681,12 @@ Overfull \hbox (330.00732pt too wide) in paragraph at lines 265--267
 [][][][] 
  []
 
-[40]
+[37]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 289--291
 [][][][] 
  []
 
-[41]) [42]
+[38]) [39]
 \openout2 = `inference.aux'.
 
  (./inference.tex
@@ -701,11 +697,11 @@ Overfull \hbox (118.26926pt too wide) in paragraph at lines 22--25
 koverflow.com/questions/9345589/guards-
  []
 
-[43
+[40
 
 
 
-] [44] [45] [46]
+] [41] [42] [43]
 \myBox1=\box38
 \myScoreStart1=\dimen150
 \myCenter1=\dimen151
@@ -730,12 +726,12 @@ Overfull \hbox (65.1766pt too wide) in paragraph at lines 165--171
  [] 
  []
 
-[47] [48] [49] [50] [51]
+[44] [45] [46] [47] [48]
 Overfull \hbox (65.1766pt too wide) in paragraph at lines 339--345
  [] 
  []
 
-[52] [53] [54] [55] [56] [57]
+[49] [50] [51] [52] [53] [54]
 Overfull \hbox (8.70721pt too wide) in paragraph at lines 512--514
 []\OT1/cmr/m/n/12 Orient: if $\OML/cmm/m/it/12 t \OT1/cmr/m/n/12 = \OML/cmm/m/i
 t/12 x$ \OT1/cmr/m/n/12 is a vari-able, and s is not a vari-able, $[](\OML/cmm/
@@ -758,12 +754,12 @@ Missing character: There is no ’ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no † in font cmr12!
 Missing character: There is no ’ in font cmr12!
-[58] [59]) [60]
+[55] [56]) [57]
 \openout2 = `concl.aux'.
 
  (./concl.tex
 CHAPTER 7.
-) [61
+) [58
 
 
 
@@ -772,28 +768,28 @@ CHAPTER 7.
 
  (./apx.tex
 APPENDIX A.
-[62
+[59
 
 
 
-] [63] [64] [65] [66] [67] [68]
+] [60] [61] [62] [63] [64] [65]
 Missing character: There is no â in font pcrr7t!
 Missing character: There is no ‰ in font pcrr7t!
 Missing character: There is no ¥ in font pcrr7t!
- [69] [70] [71] [72] [73]
+ [66] [67] [68] [69] [70]
 APPENDIX B.
-[74
+[71
 
-] [75]
+] [72]
 APPENDIX C.
-[76
+[73
 
-] [77]
+] [74]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 506--508
 [][][][] 
  []
 
-[78] [79] [80]
+[75] [76] [77]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 585--587
 [][][][] 
  []
@@ -808,50 +804,50 @@ Overfull \hbox (330.00732pt too wide) in paragraph at lines 616--618
 [][][][] 
  []
 
-[81]
+[78]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 640--642
 [][][][] 
  []
 
-[82]
+[79]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 656--657
 [][][][] 
  []
 
-[83] [84]
+[80] [81]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 737--739
 [][][][] 
  []
 
-[85]
+[82]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 743--745
 [][][][] 
  []
 
-[86] [87] [88] [89] [90] [91]
+[83] [84] [85] [86] [87] [88]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 948--950
 [][][][] 
  []
 
-[92] [93] [94]
+[89] [90] [91]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1027--1029
 [][][][] 
  []
 
-[95] [96]
+[92] [93]
 APPENDIX D.
-[97
+[94
 
-] [98] [99] [100] [101] [102] [103] [104] [105] [106]
+] [95] [96] [97] [98] [99] [100] [101] [102] [103]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1321--1323
 [][][][] 
  []
 
-[107] [108] [109] [110]) [111] (./ecethesis.bbl
+[104] [105] [106] [107]) [108] (./ecethesis.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 25.
 
-) [112
+) [109
 
 
 
@@ -860,7 +856,7 @@ LaTeX Warning: Empty `thebibliography' environment on input line 25.
 Here is how much of TeX's memory you used:
  5800 strings out of 495063
  84315 string characters out of 3182201
- 343245 words of memory out of 3000000
+ 343246 words of memory out of 3000000
  8806 multiletter control sequences out of 15000+200000
  13050 words of font info for 50 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -880,10 +876,10 @@ e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/courier/ucrr8a.pfb>
-Output written on ecethesis.pdf (120 pages, 277166 bytes).
+Output written on ecethesis.pdf (117 pages, 273221 bytes).
 PDF statistics:
- 446 PDF objects out of 1000 (max. 8388607)
- 307 compressed objects within 4 object streams
+ 437 PDF objects out of 1000 (max. 8388607)
+ 301 compressed objects within 4 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

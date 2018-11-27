@@ -21,7 +21,14 @@ module HASKELL-CONFIGURATION
 \end{lstlisting}
 
 The $<k>$ cell is the cell that computation takes place in.
-The program initially  tempModule is the name of the current module.
+The abstract syntax tree is initially placed into the $<k>$ cell.
+The command
+\begin{lstlisting}
+$PGM:ModuleList
+\end{lstlisting}
+means that the parsed tree appears in this cell and the sort that contains all other sorts is ModuleList.
+
+tempModule is the name of the current module.
 
 \begin{lstlisting}
             <typeIterator> 1 </typeIterator>
