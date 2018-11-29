@@ -29,18 +29,18 @@ In the \texttt{TopDecl} sort, there are three type constructors that are used to
                      | "newtype" OptContext SimpleType "=" NewConstr OptDeriving [klabel('newtype)]
 \end{lstlisting}
 
-The end goal is to put the user defined types into a data structure which I can use to perform type inferencing. These three typecons are used to create user defined types.
+These three type constructors are used to create user defined types.
 
 \subsection{Type}
 The first one is $type$,
 	\begin{lstlisting}
 type simpletype = type 
 	\end{lstlisting}
-This is used in a haskell program to declare a new type as a single type. In effect, it renames the type where both names now can be used to refer to the type.
+This is used in a Haskell program to declare a new type as a single type. In effect, it renames the type where both names now can be used to refer to the type.
 	\begin{lstlisting}
 type Username = String
 	\end{lstlisting}
-Is one such example usage of type, it creates a new type Username, which is defined as just a string. Now the programmer can refer to Username or String to make a string.
+Is one such example usage of \texttt{type}, it creates a new type \texttt{Username}, which is defined as just a string. Now the programmer can refer to \texttt{Username} or \texttt{String} to make a string.
 
 \subsection{Data}
 The second one is $data$,
