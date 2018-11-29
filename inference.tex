@@ -1,11 +1,11 @@
 \chapter{Inferencing}
-Haskell's type system is a Hindley-Milner polymorphic type system that has been extended with type classes to account for overloaded functions.
-
-[haskell 2010 report]
+Once context sensitive checks are made, the module can now be type inferred. Type inference is used to find the most general type of an expression. This is useful for assigning the most general type to variables and functions. It also is useful for performing type checking if the programmer specifies what type a function should take in or what a variable should be.
 
 A type system is a set of rules that assign a property to various constructs in a programming language called type. A type is a property that allows the programmer to add constraints to programs.
 
 \url{https://en.wikipedia.org/wiki/Type_system}
+
+The Haskell 2010 report says that Haskell's type system is a Hindley-Milner polymorphic type system that has been extended with type classes to account for overloaded functions. The semantics in this paper makes precise what this means with regards to Haskell's specific syntax.
 
 The type inference function infers the type of the expression that is fed into it. A purpose of it is to ensure that all functions and function applications are allowed with regards to the types of the inputs and outputs.
 
@@ -14,29 +14,30 @@ Type theory was created by Bertrand Russell to prevent Russell's Paradox for set
 
 \url{https://plato.stanford.edu/entries/type-theory/}
 
+Type theory turns out to be useful for solving a number of problems that arise in computer science.
+
 \section{Data Structures}
 
-I needed to create a syntax for polymorphic types that may contain monomorphic type variables and polymorphic type variables.
+A monomorphic data type has no quantifiers. It is either a ground term itself, or is a term composed of ground terms. For instance, a monomorphic data type can be $(a \rightarrow b) \rightarrow c$ if a, b, and c are also types.
 
-A monomorphic data type looks like $(a \rightarrow b) \rightarrow c$
-
-In my K semantics, the equivalent data type looks like
+In the K semantics, the equivalent data type looks like
 \begin{lstlisting}
 forAll ( .Set , funtype ( funtype ( a , b ) , c ) )
 \end{lstlisting}
 
-A polymorphic data type looks like $\forall a b c \, . \, (a \rightarrow b) \rightarrow c$
+Note how there are no quantified variables.
 
-In my K semantics, the equivalent data type looks like
+A polymorphic data type on the other hand has quantifiers. looks like $\forall a b c \, . \, (a \rightarrow b) \rightarrow c$
+
+In the K semantics, the equivalent data type looks like
 \begin{lstlisting}
 forAll ( a b c , funtype ( funtype ( a , b ) , c ) )
 \end{lstlisting}
 
-Then I made a map from type constructor names to arities, called Delta.
+There are two more data structures that are made to make type inference easier. The first map is from data constructors and term identifiers to their most general polymorphic types. This map is called beta. The second one is a map from the type constructor names to arities. This map is called Delta. These maps are useful for type inference because the type inference function can quickly look up a type constructor within an expression and acquire its data type and arity.
 
-Then I made a map from data constructors and term identifiers to their most general polymorphic types, called beta.
+To construct beta the semantics uses the already existing T data structure.
 
-The first part was converting the T data structure into beta, which is more suited for type inference.
 \subsection{Transform T into Beta}
 \begin{lstlisting}
     // STEP 3 Transform T into beta
@@ -62,10 +63,8 @@ The first part was converting the T data structure into beta, which is more suit
 \subsection{Construct Beta}
 Beta is a map from the type constructor to its corresponding type.
 
-
-
 \subsubsection{Example}
-If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
+If the user makes the data type \texttt{CusBool} in module $Simp5$, and declares it with this example...
 \begin{lstlisting}
 data CusBool = True2 | False2
 \end{lstlisting}
@@ -95,6 +94,7 @@ Then the corresponding tempBeta should look like this.
 
 \subsubsection{K Code}
 The following is the K Code.
+
 \begin{lstlisting}
     rule <k> constructBeta
              => makeBeta(T,.Map) ...</k>
@@ -174,9 +174,8 @@ A substitution is a set of variables and their replacements. Applying a substitu
 
 \url{http://www.mathcs.duq.edu/simon/Fall04/notes-7-4/node3.html}
 
-
 \section{Inference Algorithm}
-
+The inference function acquires the most general data type for the expression that is fed into it. It inducts down into an expression to the most primitive parts of the expression, and then collects information about each of the primitive parts and how they combine together. Then it passes the information back up the layers and slowly acquires all the information about the most general type of the expression. 
 Much of the inference algorithm is the same as the one introduced in cs 421.
 
 [cs 421 gather exp ty substitution mp]
@@ -241,6 +240,7 @@ module HASKELL-TYPE-INFERENCING
 \end{lstlisting}
 
 \subsection{Variable Rule}
+The variable rule is used whenever the inference function encounters a variable. It looks up the variable in the environment, and then acquires the corresponding polymorphic type of the variable in the environment. It then calls \texttt{freshInstance} which removes all quantifiers and converts this type to a monomorphic type. This is because we cannot induct any further on the variable \texttt{x}, so any quantified variables that the type of \texttt{x} contains should instead become free variables. This is because \texttt{x} does not act upon anything. The rule then calls unify and sets the fresh type assigned to the variable equal to the output of the \texttt{freshInstance} function.
 
 \begin{prooftree}
 \AxiomC{}
@@ -254,6 +254,7 @@ module HASKELL-TYPE-INFERENCING
          <typeIterator> TypeIt:Int => TypeIt +Int paramSize(Type) </typeIterator>
 \end{lstlisting}
 \subsection{Constant Rule}
+The constant rule is much like the variable rule. The constant rule is used whenever the inference function encounters a constant. It looks up the constant in the beta map, and then acquires the corresponding polymorphic type of the constant in the map. It then calls \texttt{freshInstance} which removes all quantifiers and converts this type to a monomorphic type. This is because we cannot induct any further on the constant \texttt{c}, so any quantified variables that the type of \texttt{c} contains should instead become free variables. This is because \texttt{c} does not act upon anything. The rule then calls unify and sets the fresh type assigned to the constant equal to the output of the \texttt{freshInstance} function.
 
 \begin{prooftree}
 \AxiomC{}
@@ -269,6 +270,12 @@ module HASKELL-TYPE-INFERENCING
 \end{lstlisting}
 
 \subsection{Lambda Rule}
+
+The Lambda Rule is used for lambda expressions. It overwrites the type of \texttt{x} with a fresh type in the environment \texttt{$\tau_1$}, and inducts on e with a different fresh type \texttt{$\tau_2$}. When that corresponds to a substitution, it first looks up the guessed type of the lambda expression in the substitution. It then also looks up the term \texttt{$\tau_1 \rightarrow \tau_2$} within the substitution as well. This is because if the substitution reveals additional information about these fresh types, we can remove the fresh types and replace them with types that reveal more information about them instead. We then set them equal, because the type of this lambda expression is \texttt{$\tau_1 \rightarrow \tau_2$}.
+
+Also, a lambda expression that takes in multiple variables is instead transformed into multiple lambda expressions that each take in one variable.
+
+Also, functions that take in variables can be desugared to variables that are set equal to lambda terms within a let expression. So, the Let-In rule coupled with the Lambda Rule can infer the type of a function in Haskell, and we do not need an extra rule.
 
 \begin{prooftree}
 \AxiomC{$[x : \tau_1] + \Gamma \vdash e : \tau_2 \, | \, \sigma$}
@@ -298,6 +305,8 @@ module HASKELL-TYPE-INFERENCING
 
 \subsection{Application Rule}
 
+The application is similar to the lambda rule. The rule inducts on the left most expression and places the constraint of the leftmost expression being a function into the recursive call. Then when it gets a substitution, it looks up the fresh type within the substitution to get any additional information about the fresh type that we may have. Afterwards it inducts upon the rightmost expression and acquires another substitution. It then composes them and returns that substitution.
+
 \begin{prooftree}
 \AxiomC{$\Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
 \AxiomC{$\sigma_1(\Gamma) \vdash e_2 : \sigma_1(\tau_1) \, | \, \sigma_2$}
@@ -324,7 +333,9 @@ module HASKELL-TYPE-INFERENCING
 
 \subsection{IfThenElse Rule}
 
-For functions, function guards, cases, and if-then-else are all equivalent.
+Function guards, cases, and if-then-else are all equivalent. This means that function guards and cases can both be desugared to if-then-else rules and the inference function only has to care about encountering an if-then-else rule to account for all three.
+
+The rule is very similar to the compose rule and the lambda rule. It just keeps inducting into each term and collects information about the types from each of them and then returns back the information it acquired from all three. The only interesting constraint is that the first term must be a boolean.
 
 \begin{prooftree}
 \AxiomC{$\Gamma \vdash e_1 : \text{bool} \, | \, \sigma_1$}
@@ -363,7 +374,9 @@ y x = f x
 $$
 This set of functions is allowed to compile. When run, the function just simply runs forever. This is unlike the OCaml semantics, which does not allow for mutually recursive functions.
 
-The LetIn Rule must allow for mutual recursion. This means that an example program that must be inferred is
+This is also the case for LetIn expressions. These expressions also allow for mutual recursion, where the inside of each declaration within the let expression can refer to other declarations within the let expression.
+
+For instance, an expression that could be written in Haskell is
 
 \begin{lstlisting}
 let {f = \x -> y x; y = \x -> f x} in (f 2)
@@ -373,18 +386,8 @@ In this example, the f is an expression that refers to y and y is an expression 
 
 \subsection{LetIn Rule}
 This let rule, unlike the let rule introduced in cs 421, allows for mutual recursion.
-\begin{prooftree}
-\AxiomC{$\Gamma \vdash \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
-\AxiomC{$\sigma ( \Delta + \Gamma ) \vdash e : \tau \, | \, \sigma'$}
-\RightLabel{LetIn}
-\BinaryInfC{$\Gamma \vdash \text{let} \, \{ \, \text{decls} \, \} \, \text{in} \, \text{exp} : \tau \, | \, \sigma' \circ \sigma$}
-\end{prooftree}
 
-\begin{prooftree}
-\AxiomC{$\Gamma \vdash \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
-\RightLabel{Module}
-\UnaryInfC{$\Gamma \vdash \text{module} \, \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
-\end{prooftree}
+The let rule assigns each declaration within the let expression a new fresh monomorphic type. Each of these types are collected in a new environment called \texttt{$\Psi$}. It then inducts into each declaration and keeps collecting type information from each one. As it does this, it keeps composing the substitutions it collects from each declaration and looks up all the type variables within the substitution composition to keep adding the information gathered from each declaration. After it finishes doing this, it finally calls GEN on each type given to the declarations, to make them polymorphic for all the remaining free variables. Afterwards it maps all the variables to these new generated types within the environment. Finally, it inducts within the expression with this new environment, and gives it the type of the substitution of \texttt{$\tau$}.
 
 \begin{prooftree}
 \AxiomC{$\sigma_0' = \{\}$}
@@ -393,6 +396,23 @@ This let rule, unlike the let rule introduced in cs 421, allows for mutual recur
 \AxiomC{$\sigma_i' = \sigma_i \circ \sigma_{j + 1}'$}
 \RightLabel{LetIn}
 \QuaternaryInfC{$\Gamma \vdash \{ \, x_1 = e_1; \, \cdots \, x_i = e_i; \, \cdots \, x_n = e_n \, \} \, \text{in} \, \text{exp} : \bigcup_{i = 1}^n \, \{ \, x_i \mapsto \, \text{GEN} \, ( \sigma_n'(\Gamma),\sigma_n'(\psi_i) ) \, \} \, | \, \sigma_n'$}
+\end{prooftree}
+
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
+\AxiomC{$\sigma ( \Delta + \Gamma ) \vdash e : \tau \, | \, \sigma'$}
+\RightLabel{LetIn}
+\BinaryInfC{$\Gamma \vdash \text{let} \, \{ \, \text{decls} \, \} \, \text{in} \, \text{exp} : \tau \, | \, \sigma' \circ \sigma$}
+\end{prooftree}
+
+\subsubsection{Module}
+
+This can then be applied to an entire module. An entire module can be inferred in the same way, if the only parts of the module that need to be inferred are the declarations within the module.
+
+\begin{prooftree}
+\AxiomC{$\Gamma \vdash \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
+\RightLabel{Module}
+\UnaryInfC{$\Gamma \vdash \text{module} \, \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
 \end{prooftree}
 
 \subsubsection{K Code}
@@ -433,6 +453,9 @@ This let rule, unlike the let rule introduced in cs 421, allows for mutual recur
           
           
 \end{lstlisting}
+\section{Helper Functions}
+
+These helper functions are necessary for the inference function.
 
 \begin{lstlisting}
 
@@ -472,6 +495,9 @@ This let rule, unlike the let rule introduced in cs 421, allows for mutual recur
       => Newgamma
 \end{lstlisting}
 \section{Fresh Instance}
+
+Fresh Instance takes in a polymorphic variable and removes all the quantifiers by taking all quantified variables and replacing them with fresh unused types.
+
 \begin{lstlisting}
     rule freshInstance(guessType(TypeIt:Int), Iter:Int) => guessType(TypeIt)
     rule freshInstance(forAll(.Set, B:K), Iter:Int) => B
@@ -489,6 +515,10 @@ This let rule, unlike the let rule introduced in cs 421, allows for mutual recur
 
 \section{GEN}
 
+The GEN function takes in a monomorphic type and an environment. It will add quantifiers to all free variables in the type that do not appear in the environment.
+
+The rules of GEN are as follows. Note that it just looks for free variables that are in the type that do not appear in the environment and will then add quantifiers.
+
 $$\text{GEN}(\Gamma,\tau) = \forall \alpha_1, \cdots, \alpha_n \, . \, \tau$$
 where
 $$\{ \, \alpha_1, \cdots, \alpha_n \, \} = \text{freevarsty}(\tau) - \text{freevarsenv}(\Gamma)$$
@@ -497,6 +527,9 @@ $$\text{freevarsty}(c) = \{\}$$ where $c$ is a type such as $Int$
 $$\text{freevarsty}(c(\tau_1, \cdots, \tau_n)) = \bigcup_{i = 1}^n \text{freevarsty}(\tau_i)$$
 $$\text{freevarsty}(\forall \alpha_1, \cdots, \alpha_n \, . \, \tau) = \text{freevarsty}(\tau) - \{ \, \alpha_1, \cdots, \alpha_n \, \}$$
 $$\text{freevarsenv}(\Gamma) = \bigcup_{x \in \text{dom}(\Gamma)}\text{freevarsty}(\Gamma(x))$$
+
+The K Code is as follows.
+
 \begin{lstlisting}
      rule applyGEN(Gamma:Map, (Key:KItem |-> Type:KItem) DeclMap:Map, NewMap:Map, Beta:Map)
        => applyGEN(Gamma, DeclMap, NewMap[Key <- gen(Gamma, Type, Beta)], Beta)
@@ -525,6 +558,10 @@ $$\text{freevarsenv}(\Gamma) = \bigcup_{x \in \text{dom}(\Gamma)}\text{freevarst
     rule freeVarsEnv(Gamma:Map, Beta:Map) => listToSet(values(Beta), .Set)
 \end{lstlisting}
 \section{Unification Algorithm}
+
+The goal of the unification algorithm is to provide a substitution. This substitution is used to map variables to monomorphic types. The goal of the substitution is to look up a variable in an expression or an environment 
+
+This unification algorithm is provided from CS 421.
 
 Let $S = \{(s_1 , t_1), (s_2 , t_2), \cdots, (s_n , t_n)\}$ be a
 unification problem.
@@ -559,6 +596,8 @@ Note: $$\{\, x \mapsto a \, \} \, \circ \, \{ \, y \mapsto b\,\} =
 in $a$
 
 [cs 421 class notes]
+
+The following is the K code.
 \begin{lstlisting}
     //Unification
 

@@ -57,7 +57,7 @@ Then MyBooltwo is a renaming of MyBool. In tempAlpha, an AObject is made. An AOb
 
 \section{Beta}
 
-tempT contains all user defined datatypes. tempT is organized in such a way that makes context sensitive checks easy to perform. tempBeta contains all user defined datatypes organized so that type inference is easy to perform. More is explained in chapter 5.
+tempT contains all user defined data types. tempT is organized in such a way that makes context sensitive checks easy to perform. tempBeta contains all user defined data types organized so that type inference is easy to perform. More is explained in chapter 5.
 \begin{lstlisting}
             <tempBeta> .Map </tempBeta>
             <tempT> .K </tempT>
@@ -86,8 +86,8 @@ data CusBool a b = True2 a | False2 b
 Then the corresponding tempBeta should look like this.
 \begin{lstlisting}
     <tempBeta>
-        ModPlusType ( Simp5 , False2 ) |-> forAll ( b , funtype ( b , CusBool a b ) )
-        ModPlusType ( Simp5 , True2 ) |-> forAll ( a , funtype ( a , CusBool a b ) )
+        ModPlusType ( Simp5 , False2 ) |-> forAll ( a b , funtype ( b , CusBool a b ) )
+        ModPlusType ( Simp5 , True2 ) |-> forAll ( a b , funtype ( a , CusBool a b ) )
     </tempBeta>
 
 \end{lstlisting}

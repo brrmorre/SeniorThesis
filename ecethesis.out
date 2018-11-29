@@ -53,18 +53,19 @@
 \BOOKMARK [2][-]{subsection.5.4.5}{IfThenElse Rule}{section.5.4}% 53
 \BOOKMARK [1][-]{section.5.5}{Mutual Recursion}{chapter.5}% 54
 \BOOKMARK [2][-]{subsection.5.5.1}{LetIn Rule}{section.5.5}% 55
-\BOOKMARK [1][-]{section.5.6}{Fresh Instance}{chapter.5}% 56
-\BOOKMARK [1][-]{section.5.7}{GEN}{chapter.5}% 57
-\BOOKMARK [1][-]{section.5.8}{Unification Algorithm}{chapter.5}% 58
-\BOOKMARK [1][-]{section.5.9}{Composition of Substitutions}{chapter.5}% 59
-\BOOKMARK [1][-]{section.5.10}{Examples}{chapter.5}% 60
-\BOOKMARK [0][-]{chapter.6}{Chapter 6 Multiple Module Support}{}% 61
-\BOOKMARK [1][-]{section.6.1}{Module Inclusion Tree}{chapter.6}% 62
-\BOOKMARK [1][-]{section.6.2}{Leaf DFS}{chapter.6}% 63
-\BOOKMARK [1][-]{section.6.3}{Insert AlphaBetaStar}{chapter.6}% 64
-\BOOKMARK [0][-]{chapter.7}{Chapter 7 Conclusion}{}% 65
-\BOOKMARK [0][-]{appendix.A}{Appendix A haskell-syntax.k}{}% 66
-\BOOKMARK [0][-]{appendix.B}{Appendix B haskell-configuration.k}{}% 67
-\BOOKMARK [0][-]{appendix.C}{Appendix C haskell-preprocessing.k}{}% 68
-\BOOKMARK [0][-]{appendix.D}{Appendix D haskell-type-inferencing.k}{}% 69
-\BOOKMARK [0][-]{appendix*.16}{References}{}% 70
+\BOOKMARK [1][-]{section.5.6}{Helper Functions}{chapter.5}% 56
+\BOOKMARK [1][-]{section.5.7}{Fresh Instance}{chapter.5}% 57
+\BOOKMARK [1][-]{section.5.8}{GEN}{chapter.5}% 58
+\BOOKMARK [1][-]{section.5.9}{Unification Algorithm}{chapter.5}% 59
+\BOOKMARK [1][-]{section.5.10}{Composition of Substitutions}{chapter.5}% 60
+\BOOKMARK [1][-]{section.5.11}{Examples}{chapter.5}% 61
+\BOOKMARK [0][-]{chapter.6}{Chapter 6 Multiple Module Support}{}% 62
+\BOOKMARK [1][-]{section.6.1}{Module Inclusion Tree}{chapter.6}% 63
+\BOOKMARK [1][-]{section.6.2}{Leaf DFS}{chapter.6}% 64
+\BOOKMARK [1][-]{section.6.3}{Insert AlphaBetaStar}{chapter.6}% 65
+\BOOKMARK [0][-]{chapter.7}{Chapter 7 Conclusion}{}% 66
+\BOOKMARK [0][-]{appendix.A}{Appendix A haskell-syntax.k}{}% 67
+\BOOKMARK [0][-]{appendix.B}{Appendix B haskell-configuration.k}{}% 68
+\BOOKMARK [0][-]{appendix.C}{Appendix C haskell-preprocessing.k}{}% 69
+\BOOKMARK [0][-]{appendix.D}{Appendix D haskell-type-inferencing.k}{}% 70
+\BOOKMARK [0][-]{appendix*.17}{References}{}% 71
