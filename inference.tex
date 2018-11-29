@@ -15,6 +15,23 @@ Type theory was created by Bertrand Russell to prevent Russell's Paradox for set
 \url{https://plato.stanford.edu/entries/type-theory/}
 
 \section{Data Structures}
+
+
+
+A monomorphic data type looks like $(a \rightarrow b) \rightarrow c$
+
+In my K semantics, the equivalent data type looks like
+\begin{lstlisting}
+forAll ( .Set , funtype ( funtype ( a , b ) , c ) )
+\end{lstlisting}
+
+A polymorphic data type looks like $\forall a b c \, . \, (a \rightarrow b) \rightarrow c$
+
+In my K semantics, the equivalent data type looks like
+\begin{lstlisting}
+forAll ( a b c , funtype ( funtype ( a , b ) , c ) )
+\end{lstlisting}
+
 I needed to create a syntax for polymorphic types that may contain monomorphic type variables and polymorphic type variables.
 
 Then I made a map from type constructor names to arities, called Delta.
@@ -44,51 +61,10 @@ The first part was converting the T data structure into beta, which is more suit
     syntax List ::= retPolyList(K,List) [function] //(T,Delta)
 \end{lstlisting}
 
-\subsection{Construct Delta}
-Delta contains the arity of the user defined dataTypes. So if a user defined datatype takes in two parameters, tempDelta will contain the number 2.
-
-\subsubsection{Example}
-If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
-\begin{lstlisting}
-data CusBool a b = True2 a | False2 b
-\end{lstlisting}
-
-Then the corresponding $tempDelta$ should look like this.
-
-\begin{lstlisting}
-<tempDelta>
-     ModPlusType ( Simp5 , CusBool ) |-> 2
-</tempDelta>
-\end{lstlisting}
-
-\begin{lstlisting}
-    rule makeDelta(TList(ListItem(TObject(ModName:K,A:K,Polys:K,C:K)) Rest:List),M:Map) =>
-         makeDelta(TList(Rest),M[ModPlusType(ModName,A) <- size(retPolyList(Polys,.List))])
-    rule makeDelta(TList(.List),M:Map) => newDelta(M)
-
-    rule retPolyList('typeVars(A:K,,Rest:K),NewList:List) => retPolyList(Rest, ListItem(A) NewList)
-    rule retPolyList(.TyVars,L:List) => L
-
-    rule <k> newDelta(M:Map)
-             => .K ...</k>
-         <tempDelta> OldDelta:K => M </tempDelta>
-
-\end{lstlisting}
-
 \subsection{Construct Beta}
 Beta is a map from the type constructor to its corresponding type.
 
-A monomorphic data type looks like $(a \rightarrow b) \rightarrow c$
-In my K semantics, the equivalent data type looks like
-\begin{lstlisting}
-forAll ( .Set , funtype ( funtype ( a , b ) , c ) )
-\end{lstlisting}
 
-A polymorphic data type looks like $\forall a b c \, . \, (a \rightarrow b) \rightarrow c$
-In my K semantics, the equivalent data type looks like
-\begin{lstlisting}
-forAll ( a b c , funtype ( funtype ( a , b ) , c ) )
-\end{lstlisting}
 
 \subsubsection{Example}
 If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
@@ -161,6 +137,37 @@ The following is the K Code.
     rule <k> newBeta(M:Map)
              => .K ...</k>
          <tempBeta> OldBeta:K => M </tempBeta>
+\end{lstlisting}
+
+\subsection{Construct Delta}
+Delta contains the arity of the user defined dataTypes. So if a user defined datatype takes in two parameters, tempDelta will contain the number 2.
+
+\subsubsection{Example}
+If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
+\begin{lstlisting}
+data CusBool a b = True2 a | False2 b
+\end{lstlisting}
+
+Then the corresponding $tempDelta$ should look like this.
+
+\begin{lstlisting}
+<tempDelta>
+     ModPlusType ( Simp5 , CusBool ) |-> 2
+</tempDelta>
+\end{lstlisting}
+
+\begin{lstlisting}
+    rule makeDelta(TList(ListItem(TObject(ModName:K,A:K,Polys:K,C:K)) Rest:List),M:Map) =>
+         makeDelta(TList(Rest),M[ModPlusType(ModName,A) <- size(retPolyList(Polys,.List))])
+    rule makeDelta(TList(.List),M:Map) => newDelta(M)
+
+    rule retPolyList('typeVars(A:K,,Rest:K),NewList:List) => retPolyList(Rest, ListItem(A) NewList)
+    rule retPolyList(.TyVars,L:List) => L
+
+    rule <k> newDelta(M:Map)
+             => .K ...</k>
+         <tempDelta> OldDelta:K => M </tempDelta>
+
 \end{lstlisting}
 
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.8.17)  27 NOV 2018 23:14
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.5.29)  28 NOV 2018 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -662,7 +662,13 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 ]
-Overfull \hbox (118.26926pt too wide) in paragraph at lines 57--59
+Overfull \hbox (53.7497pt too wide) in paragraph at lines 21--22
+[][]$\OT1/pcr/m/n/12 https : / / www . haskell . org / onlinereport / haskell20
+10 / haskellch4 .
+ []
+
+[20]
+Overfull \hbox (118.26926pt too wide) in paragraph at lines 74--76
 \OT1/cmr/m/n/12 part of the syn-tax for the types is dep-re-cated. https://stac
 koverflow.com/questions/9345589/guards-
  []
@@ -673,7 +679,7 @@ Missing character: There is no ˜ in font cmr12!
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
-[20]
+[21]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ˜ in font cmr12!
@@ -687,17 +693,17 @@ Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
 
-Overfull \hbox (1.0738pt too wide) in paragraph at lines 71--74
+Overfull \hbox (1.0738pt too wide) in paragraph at lines 88--91
 \OT1/cmr/m/n/12 T is a list of TO-b-jects, each TO-b-ject rep-re-sents a sin-gl
 e user de-fined datatype.
  []
 
-[21] [22] [23]
-Overfull \hbox (330.00732pt too wide) in paragraph at lines 168--170
+[22] [23] [24]
+Overfull \hbox (330.00732pt too wide) in paragraph at lines 185--187
 [][][][][] 
  []
 
-[24] [25] [26] [27] [28] [29] [30] [31]) [32]
+[25] [26] [27] [28] [29] [30] [31] [32]) [33]
 \openout2 = `inference.aux'.
 
  (./inference.tex
@@ -707,64 +713,69 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 1.
 
-[33
+[34
 
 
 
-] [34] [35] [36]
-Overfull \hbox (18.74971pt too wide) in paragraph at lines 170--171
+]
+Overfull \hbox (11.25287pt too wide) in paragraph at lines 35--36
+[]\OT1/cmr/m/n/12 I needed to cre-ate a syn-tax for poly-mor-phic types that ma
+y con-tain monomor-
+ []
+
+[35] [36] [37] [38]
+Overfull \hbox (18.74971pt too wide) in paragraph at lines 177--178
 [][]$\OT1/pcr/m/n/12 http : / / www . mathcs . duq . edu / simon / Fall04 / not
 es-[]7-[]4 / node3 .
  []
 
-[37] [38]
+[39] [40]
 \myBox1=\box39
 \myScoreStart1=\dimen154
 \myCenter1=\dimen155
 \myScoreEnd1=\dimen156
- [39]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 271.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 278.
 
  (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 271.
-
-[40]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 278.
+ [41]
 \myBox2=\box40
 \myScoreStart2=\dimen157
 \myCenter2=\dimen158
 \myScoreEnd2=\dimen159
- [41]
+
+[42]
 \myBox3=\box41
 \myScoreStart3=\dimen160
 \myCenter3=\dimen161
 \myScoreEnd3=\dimen162
 
-Overfull \hbox (65.1766pt too wide) in paragraph at lines 324--330
+Overfull \hbox (65.1766pt too wide) in paragraph at lines 331--337
  [] 
  []
 
-[42] [43]
+[43] [44]
 \myBox4=\box42
 \myScoreStart4=\dimen163
 \myCenter4=\dimen164
 \myScoreEnd4=\dimen165
 
-Overfull \hbox (89.83653pt too wide) in paragraph at lines 384--391
+Overfull \hbox (89.83653pt too wide) in paragraph at lines 391--398
  [] 
  []
 
-[44] [45] [46] [47] [48]
-Overfull \hbox (8.70721pt too wide) in paragraph at lines 539--541
+[45] [46] [47] [48] [49]
+Overfull \hbox (8.70721pt too wide) in paragraph at lines 546--548
 []\OT1/cmr/m/n/12 Orient: if $\OML/cmm/m/it/12 t \OT1/cmr/m/n/12 = \OML/cmm/m/i
 t/12 x$ \OT1/cmr/m/n/12 is a vari-able, and s is not a vari-able, $[](\OML/cmm/
 m/it/12 S\OT1/cmr/m/n/12 ) = [](\OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 (\OML/cmm/m/i
 t/12 x; s\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g [
  []
 
-[49] [50]) [51]
+[50] [51]) [52]
 \openout2 = `multmod.aux'.
 
  (./multmod.tex
@@ -774,11 +785,11 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 1.
 
-[52
+[53
 
 
 
-] [53] [54] [55] [56] [57] [58]
+] [54] [55] [56] [57] [58] [59]
 Overfull \hbox (2.00378pt too wide) in paragraph at lines 257--259
 [][] 
  []
@@ -788,12 +799,12 @@ Overfull \hbox (330.00732pt too wide) in paragraph at lines 265--267
 [][][][][] 
  []
 
-[59]
+[60]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 289--291
 [][][][][] 
  []
 
-[60]) [61]
+[61]) [62]
 \openout2 = `concl.aux'.
 
  (./concl.tex
@@ -803,7 +814,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 1.
 
-) [62
+) [63
 
 
 
@@ -817,38 +828,38 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 1.
 
-[63
+[64
 
 
 
-] [64] [65] [66] [67] [68] [69]
+] [65] [66] [67] [68] [69] [70]
 Missing character: There is no â in font pcrr7t!
 Missing character: There is no ‰ in font pcrr7t!
 Missing character: There is no ¥ in font pcrr7t!
- [70] [71] [72] [73] [74]
+ [71] [72] [73] [74] [75]
 Appendix B.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 368.
 
-[75
+[76
 
-] [76]
+] [77]
 Appendix C.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 418.
 
-[77
+[78
 
-] [78]
+] [79]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 506--508
 [][][][][] 
  []
 
-[79] [80] [81]
+[80] [81] [82]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 585--587
 [][][][][] 
  []
@@ -863,57 +874,57 @@ Overfull \hbox (330.00732pt too wide) in paragraph at lines 616--618
 [][][][][] 
  []
 
-[82]
+[83]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 640--642
 [][][][][] 
  []
 
-[83]
+[84]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 656--657
 [][][][][] 
  []
 
-[84] [85]
+[85] [86]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 737--739
 [][][][][] 
  []
 
-[86]
+[87]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 743--745
 [][][][][] 
  []
 
-[87] [88] [89] [90] [91] [92]
+[88] [89] [90] [91] [92] [93]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 948--950
 [][][][][] 
  []
 
-[93] [94] [95]
+[94] [95] [96]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1027--1029
 [][][][][] 
  []
 
-[96] [97]
+[97] [98]
 Appendix D.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 1056.
 
-[98
+[99
 
-] [99] [100] [101] [102] [103] [104] [105] [106] [107]
+] [100] [101] [102] [103] [104] [105] [106] [107] [108]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1321--1323
 [][][][][] 
  []
 
-[108] [109] [110] [111]) [112] (./ecethesis.bbl
+[109] [110] [111] [112]) [113] (./ecethesis.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 25.
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 177.
- [113
+ [114
 
 
 
@@ -923,37 +934,62 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 177.
 (./checks.aux) (./inference.aux) (./multmod.aux) (./concl.aux) (./apx.aux))
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 177.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 177.
-Package rerunfilecheck Info: File `ecethesis.out' has not changed.
-(rerunfilecheck)             Checksum: 8BF15A88C7F61199C454D09913230FFB;4340.
+
+
+Package rerunfilecheck Warning: File `ecethesis.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `ecethesis.out':
+(rerunfilecheck)             Before: 923D8A426C8CB1F72AA4D724C800AC51;4340
+(rerunfilecheck)             After:  F635C89448BB648C9B2516AB9F13B0F5;4462.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 177.
  ) 
 Here is how much of TeX's memory you used:
- 12126 strings out of 495063
- 182534 string characters out of 3182201
+ 12135 strings out of 495063
+ 182665 string characters out of 3182201
  423411 words of memory out of 3000000
  12273 multiletter control sequences out of 15000+200000
  13050 words of font info for 50 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  36i,5n,38p,1458b,1681s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/us
-r/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texm
-f-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
-r8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb
-></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texliv
-e/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf
--dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/courier/ucrr8a.pfb>
-Output written on ecethesis.pdf (121 pages, 368868 bytes).
+pdfTeX warning (dest): name{subsection.4.3.5} has been referenced but does no
+t exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.3.4} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.3.3} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.1.4} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.1.3} has been referenced but does not 
+exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{subsection.4.1.2} has been referenced but does not 
+exist, replaced by a fixed one
+
+{/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/
+share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/f
+onts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb><
+/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf-d
+ist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/typ
+e1/urw/courier/ucrr8a.pfb>
+Output written on ecethesis.pdf (122 pages, 370879 bytes).
 PDF statistics:
- 4151 PDF objects out of 4296 (max. 8388607)
- 3974 compressed objects within 40 object streams
- 2839 named destinations out of 2984 (max. 500000)
+ 4168 PDF objects out of 4296 (max. 8388607)
+ 3990 compressed objects within 40 object streams
+ 2848 named destinations out of 2984 (max. 500000)
  545 words of extra memory for PDF output out of 10000 (max. 10000000)
 
