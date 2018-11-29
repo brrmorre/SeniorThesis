@@ -16,7 +16,7 @@ Type theory was created by Bertrand Russell to prevent Russell's Paradox for set
 
 \section{Data Structures}
 
-
+I needed to create a syntax for polymorphic types that may contain monomorphic type variables and polymorphic type variables.
 
 A monomorphic data type looks like $(a \rightarrow b) \rightarrow c$
 
@@ -31,8 +31,6 @@ In my K semantics, the equivalent data type looks like
 \begin{lstlisting}
 forAll ( a b c , funtype ( funtype ( a , b ) , c ) )
 \end{lstlisting}
-
-I needed to create a syntax for polymorphic types that may contain monomorphic type variables and polymorphic type variables.
 
 Then I made a map from type constructor names to arities, called Delta.
 
