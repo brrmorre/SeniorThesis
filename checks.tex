@@ -76,18 +76,20 @@ https://stackoverflow.com/questions/9345589/guards-vs-if-then-else-vs-cases-in-h
 
 \section{Initial Data Structures}
 
-I implemented a map, called alpha, of new type names as the keys and their declared types as the entries. I then collected all appearances of the typecon $type$ in the program, and put simpletype $->$ type in the alpha map. However, one of the things I needed to check for in the program was whether a user declared multiple definitions with ‘type’, so I could not use a map in K because they only allow unique keys with unique entries. So I initially used a set of tuples, and then changed it to a map after checking for multiple type declarations.
+The semantics includes a map, called alpha, of new type names as the keys and their declared types as the entries. It collects all appearances of the type constructor \texttt{type} in the program, and puts \texttt{simpletype $\mapsto$ type} in the alpha map. However, one of the checks that is made, is whether a user declared multiple definitions with texttt{type}, but maps in K only allow for unique keys. So initially the semantics creates a set of tuples, and after checking for multiple type declarations, it then changes the alpha set to a map.
 
 
-The second data structure I made is called T. T holds the user defined types created using ‘data’ and ‘newtype’.
+The second data structure that the semantics creates is called T. T holds the user defined types created using \texttt{data} and \texttt{newtype}.
+
 \begin{lstlisting}
 syntax KItem ::= TList(K) //list of T objects for every new type introduced by data and newtype
 syntax KItem ::= TObject(K,K,K,K) //(module name, type name, entire list of poly type vars, list of inner T pieces)
 syntax KItem ::= InnerTPiece(K,K,K,K,K) //(type constructor, poly type vars, argument sorts, entire constr block, type name)
 \end{lstlisting}
-T is a list of TObjects, each TObject represents a single user defined datatype. It holds the name, the list of polymorphic parameters, and a list of inner T pieces.
+
+The structure, \texttt{T}, is a list of TObjects. Each TObject represents a single user defined datatype. It holds the name, the list of polymorphic parameters, and a list of inner T pieces.
 An inner T piece represents an option of what a type could be. It consists of a type constructor, a list of polymorphic parameters required for this option, the fields for this option, the entire subtree of the AST for this option unedited, and the type name again.
-I then used these data structures to perform these checks, and afterwards will transform them into a new data structure to perform type inferencing.
+The semantics then uses these data structures to perform these checks, and afterwards uses different data structures to perform type inference.
 
 \subsection{Example T}
 
@@ -190,7 +192,7 @@ The following parses the tree and searches for the user defined types to place i
 \end{lstlisting}
 
 \section{Context Sensitive Checks}
-For my context sensitive checks, I perform several checks that are not inclusive to all context sensitive checks that need to be made in a complete Haskell semantics, but enough for the sanity of the type inference function.
+For the context sensitive checks, the semantics performs several checks that are not inclusive to all context sensitive checks that need to be made in a complete Haskell semantics, but enough for some sanity of the type inference function.
 
 \subsubsection{K Code}
 The following code introduces all checks that need to be made.

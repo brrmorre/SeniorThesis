@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.5.29)  28 NOV 2018 22:00
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.5.29)  28 NOV 2018 22:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -673,33 +673,8 @@ Overfull \hbox (118.26926pt too wide) in paragraph at lines 74--76
 koverflow.com/questions/9345589/guards-
  []
 
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ˜ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-[21]
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ˜ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ˜ in font cmr12!
-Missing character: There is no â in font cmr12!
-Missing character: There is no € in font cmr12!
-Missing character: There is no ™ in font cmr12!
-
-Overfull \hbox (1.0738pt too wide) in paragraph at lines 88--91
-\OT1/cmr/m/n/12 T is a list of TO-b-jects, each TO-b-ject rep-re-sents a sin-gl
-e user de-fined datatype.
- []
-
-[22] [23] [24]
-Overfull \hbox (330.00732pt too wide) in paragraph at lines 185--187
+[21] [22] [23] [24]
+Overfull \hbox (330.00732pt too wide) in paragraph at lines 187--189
 [][][][][] 
  []
 
@@ -961,7 +936,7 @@ texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/urw/courier/ucrr8a.pfb>
-Output written on ecethesis.pdf (122 pages, 370376 bytes).
+Output written on ecethesis.pdf (122 pages, 370575 bytes).
 PDF statistics:
  4167 PDF objects out of 4296 (max. 8388607)
  3989 compressed objects within 40 object streams
