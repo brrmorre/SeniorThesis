@@ -67,8 +67,7 @@ Another thing to note is that the
 \begin{lstlisting}
 [context =>]
 \end{lstlisting}
-part of the syntax for the types is deprecated.
-https://stackoverflow.com/questions/9345589/guards-vs-if-then-else-vs-cases-in-haskell
+part of the syntax for the types is deprecated. \cite{Stack:Depre}
 
 \section{Initial Data Structures}
 
@@ -179,12 +178,6 @@ The following parses the tree and searches for the user defined types to place i
     rule getArgSorts('atypeGTyCon(A:K)) => ListItem(A)
     rule getArgSorts('atypeTyVar(A:K)) => .List
     rule getArgSorts(.OptBangATypes) => .List
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    rule <k> preModule(A:K,T:K) => startTTransform ...</k>
-         <tempAlpha> OldAlpha:K => A </tempAlpha>
-         <tempT> OldT:K => T </tempT>
 \end{lstlisting}
 
 \section{Context Sensitive Checks}

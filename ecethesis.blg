@@ -22,45 +22,45 @@ Database file #1: thesisrefs.bib
 Warning--missing publisher in Type:Type
 
 Done.
-You've used 12 entries,
+You've used 13 entries,
             4034 wiz_defined-function locations,
-            884 strings with 8891 characters,
-and the built_in function-call counts, 4057 in all, are:
-= -- 293
-> -- 49
+            888 strings with 9013 characters,
+and the built_in function-call counts, 4321 in all, are:
+= -- 309
+> -- 50
 < -- 0
-+ -- 25
++ -- 26
 - -- 11
-* -- 159
-:= -- 762
-add.period$ -- 21
-call.type$ -- 12
-change.case$ -- 9
+* -- 168
+:= -- 806
+add.period$ -- 23
+call.type$ -- 13
+change.case$ -- 10
 chr.to.int$ -- 0
-cite$ -- 13
-duplicate$ -- 325
-empty$ -- 408
+cite$ -- 14
+duplicate$ -- 350
+empty$ -- 439
 format.name$ -- 13
-if$ -- 843
+if$ -- 899
 int.to.chr$ -- 0
-int.to.str$ -- 12
-missing$ -- 81
-newline$ -- 82
+int.to.str$ -- 13
+missing$ -- 87
+newline$ -- 87
 num.names$ -- 9
-pop$ -- 264
+pop$ -- 287
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 306
+skip$ -- 325
 stack$ -- 0
-substring$ -- 9
-swap$ -- 175
+substring$ -- 10
+swap$ -- 186
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 12
+type$ -- 13
 warning$ -- 1
 while$ -- 9
-width$ -- 14
-write$ -- 132
+width$ -- 15
+write$ -- 140
 (There was 1 warning)

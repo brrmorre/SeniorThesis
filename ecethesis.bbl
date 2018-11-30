@@ -64,6 +64,12 @@ S.~Marlow, ``Haskell 2010 report,'' 2010. [Online]. Available:
   \url{https://www.haskell.org/onlinereport/haskell2010/haskellch4.html#x10-620004}
 \BIBentrySTDinterwordspacing
 
+\bibitem{Stack:Depre}
+\BIBentryALTinterwordspacing
+``Stack overflow.'' [Online]. Available:
+  \url{https://stackoverflow.com/questions/9345589/guards-vs-if-then-else-vs-cases-in-haskell}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Type:Type}
 B.~Pierce, \emph{Types and Programming Languages}, 2002.
 
