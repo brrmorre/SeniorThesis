@@ -1,12 +1,10 @@
 \chapter{Multiple Module Support}
 The next step is to implement multiple modules into the Haskell semantics. Similar to including files or objects in other programming languages, Haskell modules can include other modules and use functions, types, and typeclasses declared in the module.
 There are a several considerations and additional checks that need to be made.
-Modules need to include other modules
-There cannot be inclusion cycles
-Modules need to be able to access user defined types from the other modules that are included
-When referencing types from other modules, there is a scope where
-if the user makes another type of the same name in the current module
-then when the user references the type, it refers to the type from the current module.
+Modules need to include other modules.
+There cannot be inclusion cycles.
+Modules need to be able to access user defined types from the other modules that are included.
+When referencing types from other modules, there is a scope where if the user makes another type of the same name in the current module then when the user references the type, it refers to the type from the current module.
 For instance:
 \begin{lstlisting}
 File 1:
@@ -39,11 +37,7 @@ module File3 where
 }
 \end{lstlisting}
 
-	This will not compile because in File 3, type A is ambiguous and can mean File1.A or File2.A
-Type synonyms need to include polymorphism
-For instance:
-	The user can write
-	type A a = B a
+	This will not compile because in File 3, type A is ambiguous and can mean File1.A or File2.A.
 
 Since we need to check for module inclusion cycles and also build the set of user defined types for each module and included modules, I decided to use a tree.
 The plan for the algorithm is as follows
