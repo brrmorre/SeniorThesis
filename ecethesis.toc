@@ -5,85 +5,84 @@
 \contentsline {chapter}{Chapter\ 2\hskip 1em\relax Context Free Syntax}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Syntax Explanation}{4}{section.2.1}
 \contentsline {section}{\numberline {2.2}Implementation of Section 10.2}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}Implementation of Section 10.5}{8}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Modules}{8}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}ImpDecls}{8}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}TopDecls}{10}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Decls}{10}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}LExp}{12}{subsection.2.3.5}
-\contentsline {subsection}{\numberline {2.3.6}AExp}{12}{subsection.2.3.6}
-\contentsline {section}{\numberline {2.4}Example Test Programs}{13}{section.2.4}
-\contentsline {chapter}{Chapter\ 3\hskip 1em\relax Configuration}{14}{chapter.3}
-\contentsline {section}{\numberline {3.1}Alpha}{15}{section.3.1}
-\contentsline {section}{\numberline {3.2}Beta}{16}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Example}{16}{subsection.3.2.1}
-\contentsline {section}{\numberline {3.3}Delta}{17}{section.3.3}
-\contentsline {subsection}{\numberline {3.3.1}Example}{17}{subsection.3.3.1}
-\contentsline {section}{\numberline {3.4}Import Data Structure}{17}{section.3.4}
-\contentsline {section}{\numberline {3.5}Modules}{17}{section.3.5}
-\contentsline {chapter}{Chapter\ 4\hskip 1em\relax Context Sensitive Checks}{19}{chapter.4}
-\contentsline {section}{\numberline {4.1}Data Types}{19}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Polymorphim}{19}{subsection.4.1.1}
-\contentsline {section}{\numberline {4.2}Datatype Constructors}{20}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Type}{20}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Data}{20}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Newtype}{21}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}Context}{21}{subsection.4.2.4}
-\contentsline {section}{\numberline {4.3}Initial Data Structures}{21}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Example T}{22}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}K Code}{23}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Context Sensitive Checks}{25}{section.4.4}
-\contentsline {subsubsection}{K Code}{25}{section*.6}
-\contentsline {subsection}{\numberline {4.4.1}Name Collision}{26}{subsection.4.4.1}
-\contentsline {subsubsection}{K Code}{26}{section*.7}
-\contentsline {subsection}{\numberline {4.4.2}Type Constructor Collision}{27}{subsection.4.4.2}
-\contentsline {subsubsection}{K Code}{28}{section*.8}
-\contentsline {subsection}{\numberline {4.4.3}Alpha Cycle Check}{28}{subsection.4.4.3}
-\contentsline {subsubsection}{K Code}{29}{section*.9}
-\contentsline {subsection}{\numberline {4.4.4}Argument Sort Check}{30}{subsection.4.4.4}
-\contentsline {subsubsection}{K Code}{30}{section*.10}
-\contentsline {subsection}{\numberline {4.4.5}Polymorphic Parameter Check}{31}{subsection.4.4.5}
-\contentsline {subsubsection}{K Code}{31}{section*.11}
-\contentsline {chapter}{Chapter\ 5\hskip 1em\relax Inferencing}{34}{chapter.5}
-\contentsline {section}{\numberline {5.1}Type theory}{34}{section.5.1}
-\contentsline {section}{\numberline {5.2}Data Structures}{35}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Transform T into Beta}{35}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Construct Beta}{36}{subsection.5.2.2}
-\contentsline {subsubsection}{Example}{36}{section*.12}
-\contentsline {subsubsection}{K Code}{36}{section*.13}
-\contentsline {subsection}{\numberline {5.2.3}Construct Delta}{38}{subsection.5.2.3}
-\contentsline {subsubsection}{Example}{38}{section*.14}
-\contentsline {section}{\numberline {5.3}Definition of Substitution}{39}{section.5.3}
-\contentsline {section}{\numberline {5.4}Inference Algorithm}{39}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Variable Rule}{41}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Constant Rule}{42}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Lambda Rule}{42}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}Application Rule}{44}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}IfThenElse Rule}{45}{subsection.5.4.5}
-\contentsline {section}{\numberline {5.5}Mutual Recursion}{46}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}LetIn Rule}{46}{subsection.5.5.1}
-\contentsline {subsubsection}{Module}{47}{section*.15}
-\contentsline {subsubsection}{K Code}{47}{section*.16}
-\contentsline {section}{\numberline {5.6}Helper Functions}{49}{section.5.6}
-\contentsline {section}{\numberline {5.7}Fresh Instance}{50}{section.5.7}
-\contentsline {section}{\numberline {5.8}GEN}{51}{section.5.8}
-\contentsline {section}{\numberline {5.9}Unification Algorithm}{53}{section.5.9}
-\contentsline {subsection}{\numberline {5.9.1}Identity}{53}{subsection.5.9.1}
-\contentsline {subsection}{\numberline {5.9.2}Non-Identity}{53}{subsection.5.9.2}
-\contentsline {subsubsection}{Delete}{53}{section*.17}
-\contentsline {subsubsection}{Decompose}{53}{section*.18}
-\contentsline {subsubsection}{Orient}{53}{section*.19}
-\contentsline {subsubsection}{Eliminate}{54}{section*.20}
-\contentsline {subsection}{\numberline {5.9.3}K Code}{54}{subsection.5.9.3}
-\contentsline {section}{\numberline {5.10}Composition of Substitutions}{55}{section.5.10}
-\contentsline {section}{\numberline {5.11}Examples}{57}{section.5.11}
-\contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{58}{chapter.6}
-\contentsline {section}{\numberline {6.1}Module Inclusion Tree}{62}{section.6.1}
-\contentsline {section}{\numberline {6.2}Leaf DFS}{64}{section.6.2}
-\contentsline {section}{\numberline {6.3}Insert AlphaBetaStar}{66}{section.6.3}
-\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{68}{chapter.7}
-\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{69}{appendix.A}
-\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{81}{appendix.B}
-\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{83}{appendix.C}
-\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{104}{appendix.D}
-\contentsline {chapter}{References}{119}{appendix*.21}
+\contentsline {section}{\numberline {2.3}Implementation of Section 10.5}{5}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Modules}{6}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}ImpDecls}{6}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}TopDecls}{8}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Decls}{8}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}LExp}{9}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.6}AExp}{10}{subsection.2.3.6}
+\contentsline {chapter}{Chapter\ 3\hskip 1em\relax Configuration}{12}{chapter.3}
+\contentsline {section}{\numberline {3.1}Alpha}{13}{section.3.1}
+\contentsline {section}{\numberline {3.2}Beta}{14}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Example}{14}{subsection.3.2.1}
+\contentsline {section}{\numberline {3.3}Delta}{15}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Example}{15}{subsection.3.3.1}
+\contentsline {section}{\numberline {3.4}Import Data Structure}{15}{section.3.4}
+\contentsline {section}{\numberline {3.5}Modules}{15}{section.3.5}
+\contentsline {chapter}{Chapter\ 4\hskip 1em\relax Context Sensitive Checks}{17}{chapter.4}
+\contentsline {section}{\numberline {4.1}Data Types}{17}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}Polymorphim}{17}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}Datatype Constructors}{18}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Type}{18}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Data}{18}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Newtype}{19}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}Context}{19}{subsection.4.2.4}
+\contentsline {section}{\numberline {4.3}Initial Data Structures}{19}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Example T}{20}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}K Code}{21}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}Context Sensitive Checks}{23}{section.4.4}
+\contentsline {subsubsection}{K Code}{23}{section*.6}
+\contentsline {subsection}{\numberline {4.4.1}Name Collision}{24}{subsection.4.4.1}
+\contentsline {subsubsection}{K Code}{24}{section*.7}
+\contentsline {subsection}{\numberline {4.4.2}Type Constructor Collision}{25}{subsection.4.4.2}
+\contentsline {subsubsection}{K Code}{26}{section*.8}
+\contentsline {subsection}{\numberline {4.4.3}Alpha Cycle Check}{26}{subsection.4.4.3}
+\contentsline {subsubsection}{K Code}{27}{section*.9}
+\contentsline {subsection}{\numberline {4.4.4}Argument Sort Check}{28}{subsection.4.4.4}
+\contentsline {subsubsection}{K Code}{28}{section*.10}
+\contentsline {subsection}{\numberline {4.4.5}Polymorphic Parameter Check}{29}{subsection.4.4.5}
+\contentsline {subsubsection}{K Code}{29}{section*.11}
+\contentsline {chapter}{Chapter\ 5\hskip 1em\relax Inferencing}{32}{chapter.5}
+\contentsline {section}{\numberline {5.1}Type theory}{32}{section.5.1}
+\contentsline {section}{\numberline {5.2}Data Structures}{33}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Transform T into Beta}{33}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Construct Beta}{34}{subsection.5.2.2}
+\contentsline {subsubsection}{Example}{34}{section*.12}
+\contentsline {subsubsection}{K Code}{34}{section*.13}
+\contentsline {subsection}{\numberline {5.2.3}Construct Delta}{36}{subsection.5.2.3}
+\contentsline {subsubsection}{Example}{36}{section*.14}
+\contentsline {section}{\numberline {5.3}Definition of Substitution}{37}{section.5.3}
+\contentsline {section}{\numberline {5.4}Inference Algorithm}{37}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Variable Rule}{39}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Constant Rule}{40}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Lambda Rule}{40}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}Application Rule}{42}{subsection.5.4.4}
+\contentsline {subsection}{\numberline {5.4.5}IfThenElse Rule}{43}{subsection.5.4.5}
+\contentsline {section}{\numberline {5.5}Mutual Recursion}{44}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}LetIn Rule}{44}{subsection.5.5.1}
+\contentsline {subsubsection}{Module}{45}{section*.15}
+\contentsline {subsubsection}{K Code}{45}{section*.16}
+\contentsline {section}{\numberline {5.6}Helper Functions}{47}{section.5.6}
+\contentsline {section}{\numberline {5.7}Fresh Instance}{48}{section.5.7}
+\contentsline {section}{\numberline {5.8}GEN}{49}{section.5.8}
+\contentsline {section}{\numberline {5.9}Unification Algorithm}{51}{section.5.9}
+\contentsline {subsection}{\numberline {5.9.1}Identity}{51}{subsection.5.9.1}
+\contentsline {subsection}{\numberline {5.9.2}Non-Identity}{51}{subsection.5.9.2}
+\contentsline {subsubsection}{Delete}{51}{section*.17}
+\contentsline {subsubsection}{Decompose}{51}{section*.18}
+\contentsline {subsubsection}{Orient}{51}{section*.19}
+\contentsline {subsubsection}{Eliminate}{52}{section*.20}
+\contentsline {subsection}{\numberline {5.9.3}K Code}{52}{subsection.5.9.3}
+\contentsline {section}{\numberline {5.10}Composition of Substitutions}{53}{section.5.10}
+\contentsline {section}{\numberline {5.11}Examples}{55}{section.5.11}
+\contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{56}{chapter.6}
+\contentsline {section}{\numberline {6.1}Module Inclusion Tree}{60}{section.6.1}
+\contentsline {section}{\numberline {6.2}Leaf DFS}{62}{section.6.2}
+\contentsline {section}{\numberline {6.3}Insert AlphaBetaStar}{64}{section.6.3}
+\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{66}{chapter.7}
+\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{67}{appendix.A}
+\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{79}{appendix.B}
+\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{81}{appendix.C}
+\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{102}{appendix.D}
+\contentsline {chapter}{References}{117}{appendix*.21}

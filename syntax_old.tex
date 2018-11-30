@@ -72,15 +72,86 @@ In K, semantic rules are called K rules. The tag
 means that in the abstract syntax tree created by K, a term can be referred to using that klabel in a K rule.
 
 \section{Implementation of Section 10.2}
-The first section of the syntax introduces the syntax for the keywords, constants, special symbols, and variables that comprise the terminals for the remaining context free grammar as presented in section 10.2 of the 2010 Haskell report. The rest of section 10.2 is included in Appendix A.
+The following introduces the syntax for the keywords, constants, special symbols, and variables that comprise the terminals for the remaining context free grammar as presented in section 10.2 of the 2010 Haskell report.
 
-Variable IDs start with lowercase letter and Constructor IDs start with an uppercase letter.
+\begin{lstlisting}
+// Syntax from haskell 2010 Report
+// https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17500010
 
+module HASKELL-SYNTAX
+
+    syntax Integer ::= Token{([0-9]+)
+                | (([0][o]|[0][O])[0-7]+) 
+                | (([0][x] | [0][X])[0-9a-fA-F]+)}   [onlyLabel]
+
+    syntax CusFloat ::= Token{([0-9]+[\.][0-9]+([e E][\+\-]?[0-9]+)?)
+                                 |([0-9]+[e E][\+\-]?[0-9]+)} [onlyLabel]
+    syntax CusChar ::= Token{[\'](~[\'\\\&])[\']} [onlyLabel]
+    syntax CusString ::= Token{[\"](~[\"\\]*)[\"]} [onlyLabel]
+\end{lstlisting}
+I ran into issue where a program with a variable called ‘size’ did not parse. I found out that this is because ‘size’ is a K keyword. So I just specified that a variable could be a variable token, or “size”. This reveals an issue in the version of K I was using, where K keywords that appear in example parsed programs won't become tokens.
 \begin{lstlisting}
     syntax VarId ::= Token{[a-z\_][a-z A-Z\_0-9\']*} [onlyLabel] | "size" [onlyLabel]
 \end{lstlisting}
 \begin{lstlisting}
     syntax ConId ::= Token{[A-Z][a-zA-Z \_0-9\']*} [onlyLabel]
+    syntax VarSym ::= Token{
+   ([\! \# \$ \% \& \* \+ \/ \> \? \^][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)
+  |[\-] | [\.]
+  |([\.][\! \# \$ \% \& \* \+ \/ \< \= \> \? \@ \\ \^ \| \- \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)
+  | ([\-][\! \# \$ \% \& \* \+ \. \/ \< \= \? \@ \\ \^ \| \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \~ \:]*)
+  | ([\@][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]+)
+  | ([\~][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]+)
+  | ([\\][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]+)
+  | ([\|][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]+)
+  | ([\:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)
+  | ([\<][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)
+  | ([\=][\! \# \$ \% \& \* \+ \. \/ \< \= \? \@ \\ \^ \| \~ \:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*)} [onlyLabel]
+    syntax ConSym ::= Token{[\:][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~][\! \# \$ \% \& \* \+ \. \/ \< \= \> \? \@ \\ \^ \| \- \~ \:]*}   [onlyLabel]
+\end{lstlisting}
+I ran into an issue where floats and integers did not parse correctly. They caused parsing errors due to ambiguity of parsing. For example the number 123.45 had ambiguity where the parser did not know if 1, 12, or 123 where integers, and if 5 was an integer, or if the entire thing was one float. Normally in K, different tokens are separated with whitespaces. However, for some reason the parser had difficulty here. Initially, I added a workaround by requiring parentheses around each integer and floating point.
+This fixed the issue.
+\begin{lstlisting}
+
+    syntax IntFloat ::= "(" Integer ")"  [bracket] //NOT OFFICIAL SYNTAX
+                      | "(" CusFloat ")" [bracket]
+\end{lstlisting}
+\begin{lstlisting}
+    syntax Literal ::= IntFloat | CusChar | CusString
+    syntax TyCon ::= ConId
+    syntax ModId ::= ConId | ConId "." ModId  [klabel('conModId)]
+    syntax QTyCon ::= TyCon | ModId "." TyCon [klabel('conTyCon)]
+    syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
+    syntax QVarSym ::= VarSym | ModId "." VarSym  [klabel('qVarSymCon)]
+    syntax QConSym ::= ConSym | ModId "." ConSym  [klabel('qConSymCon)]
+    syntax TyVars ::= List{TyVar, ""} [klabel('typeVars)] //used in SimpleType syntax
+    syntax TyVar ::= VarId
+    syntax TyVarTuple ::= TyVar "," TyVar      [klabel('twoTypeVarTuple)]
+                        | TyVar "," TyVarTuple [klabel('typeVarTupleCon)]
+
+    syntax Con ::= ConId | "(" ConSym ")"   [klabel('conSymBracket)]
+    syntax Var ::= VarId | "(" VarSym ")"   [klabel('varSymBracket)]
+    syntax QVar ::= QVarId | "(" QConSym ")" [klabel('qVarBracket)]
+    syntax QCon ::= QTyCon | "(" GConSym ")"  [klabel('gConBracket)]
+
+    syntax QConOp ::= GConSym | "`" QTyCon "`"    [klabel('qTyConQuote)]
+    syntax QVarOp ::= QVarSym | "`" QVarId "`"    [klabel('qVarIdQuote)]
+    syntax VarOp ::= VarSym   | "`" VarId "`"     [klabel('varIdQuote)]
+    syntax ConOp ::= ConSym   | "`" ConId "`"     [klabel('conIdQuote)]
+
+    syntax GConSym ::= ":" | QConSym
+    syntax Vars ::= Var
+                  | Var "," Vars  [klabel('varCon)]
+    syntax VarsType ::= Vars "::" Type  [klabel('varAssign)]
+    syntax Ops ::= Op
+                 | Op "," Ops  [klabel('opCon)]
+    syntax Fixity ::= "infixl" | "infixr" | "infix"
+    syntax Op ::= VarOp | ConOp
+    syntax CQName ::= Var | Con | QVar
+
+    /* syntax QConId ::= ConId | ModId "." ConId */
+
+    syntax QOp ::= QVarOp | QConOp
 \end{lstlisting}
 
 \section{Implementation of Section 10.5}
@@ -272,3 +343,5 @@ QVar is a qualified variable and GCon is a general constructor.
                            //Liyi: place a check here to check if QOp is a minus
                            
 \end{lstlisting}
+
+\section{Example Test Programs}
