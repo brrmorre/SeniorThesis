@@ -4,13 +4,14 @@
 \contentsline {chapter}{Chapter\ 1\hskip 1em\relax Introduction}{1}{chapter.1}
 \contentsline {chapter}{Chapter\ 2\hskip 1em\relax Context Free Syntax}{3}{chapter.2}
 \contentsline {section}{\numberline {2.1}Syntax Explanation}{4}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}K Labels}{5}{subsection.2.1.1}
 \contentsline {section}{\numberline {2.2}Implementation of Section 10.2}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}Implementation of Section 10.5}{5}{section.2.3}
+\contentsline {section}{\numberline {2.3}Implementation of Section 10.5}{6}{section.2.3}
 \contentsline {subsection}{\numberline {2.3.1}Modules}{6}{subsection.2.3.1}
 \contentsline {subsection}{\numberline {2.3.2}ImpDecls}{6}{subsection.2.3.2}
 \contentsline {subsection}{\numberline {2.3.3}TopDecls}{8}{subsection.2.3.3}
 \contentsline {subsection}{\numberline {2.3.4}Decls}{8}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}LExp}{9}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.5}LExp}{10}{subsection.2.3.5}
 \contentsline {subsection}{\numberline {2.3.6}AExp}{10}{subsection.2.3.6}
 \contentsline {chapter}{Chapter\ 3\hskip 1em\relax Configuration}{12}{chapter.3}
 \contentsline {section}{\numberline {3.1}Alpha}{13}{section.3.1}
@@ -77,12 +78,9 @@
 \contentsline {section}{\numberline {5.10}Composition of Substitutions}{53}{section.5.10}
 \contentsline {section}{\numberline {5.11}Examples}{55}{section.5.11}
 \contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{56}{chapter.6}
-\contentsline {section}{\numberline {6.1}Module Inclusion Tree}{60}{section.6.1}
-\contentsline {section}{\numberline {6.2}Leaf DFS}{62}{section.6.2}
-\contentsline {section}{\numberline {6.3}Insert AlphaBetaStar}{64}{section.6.3}
-\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{66}{chapter.7}
-\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{67}{appendix.A}
-\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{79}{appendix.B}
-\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{81}{appendix.C}
-\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{102}{appendix.D}
-\contentsline {chapter}{References}{117}{appendix*.21}
+\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{59}{chapter.7}
+\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{60}{appendix.A}
+\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{72}{appendix.B}
+\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{74}{appendix.C}
+\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{95}{appendix.D}
+\contentsline {chapter}{References}{110}{appendix*.21}

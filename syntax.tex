@@ -28,9 +28,11 @@ So an example production in the document looks like
 \texttt{qvarid -> \textbf{[} modid . \textbf{]} varid}
 
 This means that 
+
 \begin{lstlisting}
 modid .
 \end{lstlisting}
+
 is optional, and the brackets are not terminals, but the period is a terminal. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
 
 \section{Syntax Explanation}
@@ -42,34 +44,46 @@ So the example production
 \texttt{qvarid -> \textbf{[} modid . \textbf{]} varid}
 
 Is written in the K syntax as split into two options.
+
 \begin{lstlisting}
 syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
 \end{lstlisting}
+
 However, an issue arises when you have something written on the right hand side of the production like
 
 \texttt{data \textbf{[} context => \textbf{]} simpletype \textbf{[} = constrs \textbf{]} \textbf{[} deriving \textbf{]}}
 
-for the topdecl sort. If each optional sort were split into two options, then a production that includes $n$ optional sorts would require $2^n$ options. This would create an unnecessarily large syntax in K.
+for the \texttt{topdecl} sort. If each optional sort were split into two options, then a production that includes $n$ optional sorts would require $2^n$ options. This would create an unnecessarily large syntax in K. It also would quickly become hard to read or maintain.
 
-Instead, for each optional sort in the original grammar, I replaced the optional sort with a new sort. For instance, I replaced
+Instead of having many optional sorts in a production similar to the original grammar, the K syntax instead utilizes an entirely new sort which can optionally include just an empty string.
+
+For instance, an optional sort in the original grammar could look like:
 
 \texttt{ \textbf{[} context => \textbf{]} }
 
-in the original grammar with a new sort called OptContext. Then I just specified
+The corresponding production in the K syntax instead includes the sort called \texttt{OptContext}, where OptContext is defined as
+
 \begin{lstlisting}
 syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
 \end{lstlisting}
-and so the right hand side of the production would now look like
+
+and so the right hand side of the previous production would now look like
+
 \begin{lstlisting}
 "data" OptContext SimpleType OptConstrs OptDeriving  [klabel('data)]
 \end{lstlisting}
+
 This is acceptable because Haskell is not an order sorted algebra, so introducing new sorts that are not originally in the grammar is okay.
 
+\subsection{K Labels}
+
 In K, semantic rules are called K rules. The tag
+
 \begin{lstlisting}
 [klabel('exampleLabel)]
 \end{lstlisting}
-means that in the abstract syntax tree created by K, a term can be referred to using that klabel in a K rule.
+
+means that in the abstract syntax tree created by K, a term can be referred to using that \texttt{klabel} in a K rule.
 
 \section{Implementation of Section 10.2}
 The first section of the syntax introduces the syntax for the keywords, constants, special symbols, and variables that comprise the terminals for the remaining context free grammar as presented in section 10.2 of the 2010 Haskell report. The rest of section 10.2 is included in Appendix A.
@@ -248,6 +262,7 @@ The different LExp types are a lambda expression, a 'let-in' expression, an 'if'
 AExp is also an import sort for the type inference function. The main parts of AExp that the inference function cares about is QVar and GCon.
 
 QVar is a qualified variable and GCon is a general constructor.
+
 \begin{lstlisting}
 
     syntax OptSemicolon ::= ";" | "" [onlyLabel, klabel('emptySemicolon)]
@@ -258,17 +273,13 @@ QVar is a qualified variable and GCon is a general constructor.
                   | Literal [klabel('aexpLiteral)]
                   > AExp AExp [left, klabel('funApp)]
                   > QCon "{" FBindList "}"
-                  | AExp "{" FBindList "}" //aexp cannot be qcon UNFINISHED
-                          //Liyi: first, does not understand the syntax, it is the Qcon {FBindlist}
-                          //or QCon? Second, place a check in preprosssing.
-                          //and also check the Fbindlist here must be at least one argument
+                  | AExp "{" FBindList "}"
                   > "(" Exp ")"             [bracket]
                   | "(" ExpTuple ")"
                   | "[" ExpList "]"
                   | "[" Exp OptExpComma ".." OptExp "]"
                   | "[" Exp "|" Quals "]"
                   | "(" InfixExp QOp ")"
-                  | "(" QOp InfixExp ")" //qop cannot be - (minus) UNFINISHED
-                           //Liyi: place a check here to check if QOp is a minus
+                  | "(" QOp InfixExp ")"
                            
 \end{lstlisting}

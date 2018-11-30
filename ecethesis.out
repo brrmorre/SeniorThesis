@@ -4,70 +4,68 @@
 \BOOKMARK [0][-]{chapter.1}{Chapter 1 Introduction}{}% 4
 \BOOKMARK [0][-]{chapter.2}{Chapter 2 Context Free Syntax}{}% 5
 \BOOKMARK [1][-]{section.2.1}{Syntax Explanation}{chapter.2}% 6
-\BOOKMARK [1][-]{section.2.2}{Implementation of Section 10.2}{chapter.2}% 7
-\BOOKMARK [1][-]{section.2.3}{Implementation of Section 10.5}{chapter.2}% 8
-\BOOKMARK [2][-]{subsection.2.3.1}{Modules}{section.2.3}% 9
-\BOOKMARK [2][-]{subsection.2.3.2}{ImpDecls}{section.2.3}% 10
-\BOOKMARK [2][-]{subsection.2.3.3}{TopDecls}{section.2.3}% 11
-\BOOKMARK [2][-]{subsection.2.3.4}{Decls}{section.2.3}% 12
-\BOOKMARK [2][-]{subsection.2.3.5}{LExp}{section.2.3}% 13
-\BOOKMARK [2][-]{subsection.2.3.6}{AExp}{section.2.3}% 14
-\BOOKMARK [0][-]{chapter.3}{Chapter 3 Configuration}{}% 15
-\BOOKMARK [1][-]{section.3.1}{Alpha}{chapter.3}% 16
-\BOOKMARK [1][-]{section.3.2}{Beta}{chapter.3}% 17
-\BOOKMARK [2][-]{subsection.3.2.1}{Example}{section.3.2}% 18
-\BOOKMARK [1][-]{section.3.3}{Delta}{chapter.3}% 19
-\BOOKMARK [2][-]{subsection.3.3.1}{Example}{section.3.3}% 20
-\BOOKMARK [1][-]{section.3.4}{Import Data Structure}{chapter.3}% 21
-\BOOKMARK [1][-]{section.3.5}{Modules}{chapter.3}% 22
-\BOOKMARK [0][-]{chapter.4}{Chapter 4 Context Sensitive Checks}{}% 23
-\BOOKMARK [1][-]{section.4.1}{Data Types}{chapter.4}% 24
-\BOOKMARK [2][-]{subsection.4.1.1}{Polymorphim}{section.4.1}% 25
-\BOOKMARK [1][-]{section.4.2}{Datatype Constructors}{chapter.4}% 26
-\BOOKMARK [2][-]{subsection.4.2.1}{Type}{section.4.2}% 27
-\BOOKMARK [2][-]{subsection.4.2.2}{Data}{section.4.2}% 28
-\BOOKMARK [2][-]{subsection.4.2.3}{Newtype}{section.4.2}% 29
-\BOOKMARK [2][-]{subsection.4.2.4}{Context}{section.4.2}% 30
-\BOOKMARK [1][-]{section.4.3}{Initial Data Structures}{chapter.4}% 31
-\BOOKMARK [2][-]{subsection.4.3.1}{Example T}{section.4.3}% 32
-\BOOKMARK [2][-]{subsection.4.3.2}{K Code}{section.4.3}% 33
-\BOOKMARK [1][-]{section.4.4}{Context Sensitive Checks}{chapter.4}% 34
-\BOOKMARK [2][-]{subsection.4.4.1}{Name Collision}{section.4.4}% 35
-\BOOKMARK [2][-]{subsection.4.4.2}{Type Constructor Collision}{section.4.4}% 36
-\BOOKMARK [2][-]{subsection.4.4.3}{Alpha Cycle Check}{section.4.4}% 37
-\BOOKMARK [2][-]{subsection.4.4.4}{Argument Sort Check}{section.4.4}% 38
-\BOOKMARK [2][-]{subsection.4.4.5}{Polymorphic Parameter Check}{section.4.4}% 39
-\BOOKMARK [0][-]{chapter.5}{Chapter 5 Inferencing}{}% 40
-\BOOKMARK [1][-]{section.5.1}{Type theory}{chapter.5}% 41
-\BOOKMARK [1][-]{section.5.2}{Data Structures}{chapter.5}% 42
-\BOOKMARK [2][-]{subsection.5.2.1}{Transform T into Beta}{section.5.2}% 43
-\BOOKMARK [2][-]{subsection.5.2.2}{Construct Beta}{section.5.2}% 44
-\BOOKMARK [2][-]{subsection.5.2.3}{Construct Delta}{section.5.2}% 45
-\BOOKMARK [1][-]{section.5.3}{Definition of Substitution}{chapter.5}% 46
-\BOOKMARK [1][-]{section.5.4}{Inference Algorithm}{chapter.5}% 47
-\BOOKMARK [2][-]{subsection.5.4.1}{Variable Rule}{section.5.4}% 48
-\BOOKMARK [2][-]{subsection.5.4.2}{Constant Rule}{section.5.4}% 49
-\BOOKMARK [2][-]{subsection.5.4.3}{Lambda Rule}{section.5.4}% 50
-\BOOKMARK [2][-]{subsection.5.4.4}{Application Rule}{section.5.4}% 51
-\BOOKMARK [2][-]{subsection.5.4.5}{IfThenElse Rule}{section.5.4}% 52
-\BOOKMARK [1][-]{section.5.5}{Mutual Recursion}{chapter.5}% 53
-\BOOKMARK [2][-]{subsection.5.5.1}{LetIn Rule}{section.5.5}% 54
-\BOOKMARK [1][-]{section.5.6}{Helper Functions}{chapter.5}% 55
-\BOOKMARK [1][-]{section.5.7}{Fresh Instance}{chapter.5}% 56
-\BOOKMARK [1][-]{section.5.8}{GEN}{chapter.5}% 57
-\BOOKMARK [1][-]{section.5.9}{Unification Algorithm}{chapter.5}% 58
-\BOOKMARK [2][-]{subsection.5.9.1}{Identity}{section.5.9}% 59
-\BOOKMARK [2][-]{subsection.5.9.2}{Non-Identity}{section.5.9}% 60
-\BOOKMARK [2][-]{subsection.5.9.3}{K Code}{section.5.9}% 61
-\BOOKMARK [1][-]{section.5.10}{Composition of Substitutions}{chapter.5}% 62
-\BOOKMARK [1][-]{section.5.11}{Examples}{chapter.5}% 63
-\BOOKMARK [0][-]{chapter.6}{Chapter 6 Multiple Module Support}{}% 64
-\BOOKMARK [1][-]{section.6.1}{Module Inclusion Tree}{chapter.6}% 65
-\BOOKMARK [1][-]{section.6.2}{Leaf DFS}{chapter.6}% 66
-\BOOKMARK [1][-]{section.6.3}{Insert AlphaBetaStar}{chapter.6}% 67
-\BOOKMARK [0][-]{chapter.7}{Chapter 7 Conclusion}{}% 68
-\BOOKMARK [0][-]{appendix.A}{Appendix A haskell-syntax.k}{}% 69
-\BOOKMARK [0][-]{appendix.B}{Appendix B haskell-configuration.k}{}% 70
-\BOOKMARK [0][-]{appendix.C}{Appendix C haskell-preprocessing.k}{}% 71
-\BOOKMARK [0][-]{appendix.D}{Appendix D haskell-type-inferencing.k}{}% 72
-\BOOKMARK [0][-]{appendix*.21}{References}{}% 73
+\BOOKMARK [2][-]{subsection.2.1.1}{K Labels}{section.2.1}% 7
+\BOOKMARK [1][-]{section.2.2}{Implementation of Section 10.2}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Implementation of Section 10.5}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.3.1}{Modules}{section.2.3}% 10
+\BOOKMARK [2][-]{subsection.2.3.2}{ImpDecls}{section.2.3}% 11
+\BOOKMARK [2][-]{subsection.2.3.3}{TopDecls}{section.2.3}% 12
+\BOOKMARK [2][-]{subsection.2.3.4}{Decls}{section.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.3.5}{LExp}{section.2.3}% 14
+\BOOKMARK [2][-]{subsection.2.3.6}{AExp}{section.2.3}% 15
+\BOOKMARK [0][-]{chapter.3}{Chapter 3 Configuration}{}% 16
+\BOOKMARK [1][-]{section.3.1}{Alpha}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.2}{Beta}{chapter.3}% 18
+\BOOKMARK [2][-]{subsection.3.2.1}{Example}{section.3.2}% 19
+\BOOKMARK [1][-]{section.3.3}{Delta}{chapter.3}% 20
+\BOOKMARK [2][-]{subsection.3.3.1}{Example}{section.3.3}% 21
+\BOOKMARK [1][-]{section.3.4}{Import Data Structure}{chapter.3}% 22
+\BOOKMARK [1][-]{section.3.5}{Modules}{chapter.3}% 23
+\BOOKMARK [0][-]{chapter.4}{Chapter 4 Context Sensitive Checks}{}% 24
+\BOOKMARK [1][-]{section.4.1}{Data Types}{chapter.4}% 25
+\BOOKMARK [2][-]{subsection.4.1.1}{Polymorphim}{section.4.1}% 26
+\BOOKMARK [1][-]{section.4.2}{Datatype Constructors}{chapter.4}% 27
+\BOOKMARK [2][-]{subsection.4.2.1}{Type}{section.4.2}% 28
+\BOOKMARK [2][-]{subsection.4.2.2}{Data}{section.4.2}% 29
+\BOOKMARK [2][-]{subsection.4.2.3}{Newtype}{section.4.2}% 30
+\BOOKMARK [2][-]{subsection.4.2.4}{Context}{section.4.2}% 31
+\BOOKMARK [1][-]{section.4.3}{Initial Data Structures}{chapter.4}% 32
+\BOOKMARK [2][-]{subsection.4.3.1}{Example T}{section.4.3}% 33
+\BOOKMARK [2][-]{subsection.4.3.2}{K Code}{section.4.3}% 34
+\BOOKMARK [1][-]{section.4.4}{Context Sensitive Checks}{chapter.4}% 35
+\BOOKMARK [2][-]{subsection.4.4.1}{Name Collision}{section.4.4}% 36
+\BOOKMARK [2][-]{subsection.4.4.2}{Type Constructor Collision}{section.4.4}% 37
+\BOOKMARK [2][-]{subsection.4.4.3}{Alpha Cycle Check}{section.4.4}% 38
+\BOOKMARK [2][-]{subsection.4.4.4}{Argument Sort Check}{section.4.4}% 39
+\BOOKMARK [2][-]{subsection.4.4.5}{Polymorphic Parameter Check}{section.4.4}% 40
+\BOOKMARK [0][-]{chapter.5}{Chapter 5 Inferencing}{}% 41
+\BOOKMARK [1][-]{section.5.1}{Type theory}{chapter.5}% 42
+\BOOKMARK [1][-]{section.5.2}{Data Structures}{chapter.5}% 43
+\BOOKMARK [2][-]{subsection.5.2.1}{Transform T into Beta}{section.5.2}% 44
+\BOOKMARK [2][-]{subsection.5.2.2}{Construct Beta}{section.5.2}% 45
+\BOOKMARK [2][-]{subsection.5.2.3}{Construct Delta}{section.5.2}% 46
+\BOOKMARK [1][-]{section.5.3}{Definition of Substitution}{chapter.5}% 47
+\BOOKMARK [1][-]{section.5.4}{Inference Algorithm}{chapter.5}% 48
+\BOOKMARK [2][-]{subsection.5.4.1}{Variable Rule}{section.5.4}% 49
+\BOOKMARK [2][-]{subsection.5.4.2}{Constant Rule}{section.5.4}% 50
+\BOOKMARK [2][-]{subsection.5.4.3}{Lambda Rule}{section.5.4}% 51
+\BOOKMARK [2][-]{subsection.5.4.4}{Application Rule}{section.5.4}% 52
+\BOOKMARK [2][-]{subsection.5.4.5}{IfThenElse Rule}{section.5.4}% 53
+\BOOKMARK [1][-]{section.5.5}{Mutual Recursion}{chapter.5}% 54
+\BOOKMARK [2][-]{subsection.5.5.1}{LetIn Rule}{section.5.5}% 55
+\BOOKMARK [1][-]{section.5.6}{Helper Functions}{chapter.5}% 56
+\BOOKMARK [1][-]{section.5.7}{Fresh Instance}{chapter.5}% 57
+\BOOKMARK [1][-]{section.5.8}{GEN}{chapter.5}% 58
+\BOOKMARK [1][-]{section.5.9}{Unification Algorithm}{chapter.5}% 59
+\BOOKMARK [2][-]{subsection.5.9.1}{Identity}{section.5.9}% 60
+\BOOKMARK [2][-]{subsection.5.9.2}{Non-Identity}{section.5.9}% 61
+\BOOKMARK [2][-]{subsection.5.9.3}{K Code}{section.5.9}% 62
+\BOOKMARK [1][-]{section.5.10}{Composition of Substitutions}{chapter.5}% 63
+\BOOKMARK [1][-]{section.5.11}{Examples}{chapter.5}% 64
+\BOOKMARK [0][-]{chapter.6}{Chapter 6 Multiple Module Support}{}% 65
+\BOOKMARK [0][-]{chapter.7}{Chapter 7 Conclusion}{}% 66
+\BOOKMARK [0][-]{appendix.A}{Appendix A haskell-syntax.k}{}% 67
+\BOOKMARK [0][-]{appendix.B}{Appendix B haskell-configuration.k}{}% 68
+\BOOKMARK [0][-]{appendix.C}{Appendix C haskell-preprocessing.k}{}% 69
+\BOOKMARK [0][-]{appendix.D}{Appendix D haskell-type-inferencing.k}{}% 70
+\BOOKMARK [0][-]{appendix*.21}{References}{}% 71

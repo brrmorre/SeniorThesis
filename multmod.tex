@@ -1,10 +1,16 @@
 \chapter{Multiple Module Support}
-The next step is to implement multiple modules into the Haskell semantics. Similar to including files or objects in other programming languages, Haskell modules can include other modules and use functions, types, and typeclasses declared in the module.
-There are a several considerations and additional checks that need to be made.
-Modules need to include other modules.
+The final part of the semantics presented in this paper is the implementation of support of multiple modules. Similar to including files or objects in other programming languages, Haskell modules can include other modules and use functions, types, and type classes declared in the module.
+
+When supporting multiple modules, there are several considerations and additional checks that need to be made:
+
+Modules need to be able to include other modules.
+
 There cannot be inclusion cycles.
+
 Modules need to be able to access user defined types from the other modules that are included.
+
 When referencing types from other modules, there is a scope where if the user makes another type of the same name in the current module then when the user references the type, it refers to the type from the current module.
+
 For instance:
 \begin{lstlisting}
 File 1:
@@ -17,9 +23,12 @@ module File2 where
 ;data C = B A
 }
 \end{lstlisting}
-	This will compile. The A used in data C is File2.A
+
+This will compile. The A used in data C is File2.A
 However, If there are multiple types with the same name declared outside of the current module. If you try to refer to the type without the parent module, there will be a compiler error because there is ambiguity.
+
 For instance:
+
 \begin{lstlisting}
 File 1:
 module File1 where
@@ -37,17 +46,22 @@ module File3 where
 }
 \end{lstlisting}
 
-	This will not compile because in File 3, type A is ambiguous and can mean File1.A or File2.A.
+This will not compile because in File 3, type A is ambiguous and can mean File1.A or File2.A.
 
 Since we need to check for module inclusion cycles and also build the set of user defined types for each module and included modules, I decided to use a tree.
 The plan for the algorithm is as follows
+
 1. Construct tree for module inclusion
+
 2. Check tree for cycles
+
 3. Go to each leaf and recursively go up the tree and build alpha* and beta* for the types of the module and the children and desugar the scope so that each type specifies the scope.
 
 Where alpha is the map of type synonyms declared in the current module and alpha* is the map of type synonyms declared in the current module and all the included modules. Beta is the set of user defined types from using data and newtype declared in the current module. Beta* is the set of user defined types from using data and newtype declared in the current module and all the included modules. 
 Desugar the scope means that when the user references a type, desugar the reference to also include the parent module at all times.
+
 The syntax also needed to be changed to allow for multiple modules. The new syntax added is
+
 \begin{lstlisting}
 //  CUSTOM SYNTAX NOT PART OF OFFICAL HASKELL
 
@@ -56,271 +70,3 @@ The syntax also needed to be changed to allow for multiple modules. The new synt
 
 This is because K cannot read mutiple files. So instead all the included modules for a program are dumped into one file and are seperated by the keyword <NEXTMODULE>
 This creates a list of modules called ModuleList.
-
-\begin{lstlisting}
-//
-requires "haskell-syntax.k"
-requires "haskell-configuration.k"
-
-module HASKELL-PREPROCESSING
-    imports HASKELL-SYNTAX
-    imports HASKELL-CONFIGURATION
-
-    //USER DEFINED LIST
-    //definition of ElemList
-
-    //syntax KItem ::= ElemList
-    syntax ElemList ::= List{Element,","} [strict]
-//    syntax Int ::= lengthOfList(ElemList) [function]
-
-//    rule lengthOfList(.ElemList) => 0
-//    rule lengthOfList(val(K:K),L:ElemList) => 1 +Int lengthOfList(L)
-//    rule lengthOfList(valValue(K:K),L:ElemList) => 1 +Int lengthOfList(L)
-
-    syntax Element ::= val(K) [strict]
-    syntax ElementResult ::= valValue(K)
-    syntax Element ::= ElementResult
-    syntax KResult ::= ElementResult
-    rule val(K:KResult) => valValue(K) [structural]
-
-    //form ElemList
-//    syntax ElemList ::= formElemList(K) [function]
-
-    //CONVERT ~> TO List
-    //list convert
-//    syntax List ::= convertToList(K)  [function]
-//    rule convertToList(.K) => .List
-//    rule convertToList(A:KItem ~> B:K) => ListItem(A) convertToList(B)
-
-
-    syntax KItem ::= dealWithImports(K,K)
-
-    rule <k> 'modListSingle('module(A:K,, B:K)) => dealWithImports(A,B) ...</k>
-
-    (.Bag =>
-          <module>...   //DOT DOT DOT MEANS OVERWRITE ONLY SOME OF THE DEFAULTS
-    	    <moduleName> A </moduleName>
-       ...</module>
-    )
-
-    rule <k> 'modList('module(A:K,, B:K),, C:K) => dealWithImports(A,B) ~> C ...</k>
-
-    (.Bag =>
-          <module>...   //DOT DOT DOT MEANS OVERWRITE ONLY SOME OF THE DEFAULTS
-    	    <moduleName> A </moduleName>
-       ...</module>
-    )
-
-//    rule dealWithImports(Mod:K, A:K) => callInit(A)
-
-//    rule <k> dealWithImports(Mod:K, A:K) => callInit(A) ...</k>
-
-    rule <k> dealWithImports(Mod:K, 'bodyimpandtop(A:K,, B:K)) => .K ...</k>
-        <importTree> L:List => L importListConvert(Mod, A) </importTree>
-        <recurImportTree> L:List => L importListConvert(Mod, A) </recurImportTree>
-
-        <moduleName> Mod </moduleName>
-        <imports> S:Set (.Set => SetItem(A)) </imports>
-        <moduleTempCode> OldTemp:K => B </moduleTempCode>
-
-    rule <k> dealWithImports(Mod:K, 'bodyimpdecls(A:K)) => .K ...</k>
-        <importTree> L:List => L importListConvert(Mod, A) </importTree>
-        <recurImportTree> L:List => L importListConvert(Mod, A) </recurImportTree>
-
-        <moduleName> Mod </moduleName>
-        <imports> S:Set (.Set => SetItem(A)) </imports>
-
-//    rule <k> dealWithImports(Mod:K, 'bodytopdecls(A:K)) => callInit(A) ...</k>
-    rule <k> dealWithImports(Mod:K, 'bodytopdecls(B:K)) => .K ...</k>
-
-        <moduleName> Mod </moduleName>
-        <moduleTempCode> OldTemp:K => B </moduleTempCode>
-
-    //importlist convert
-    syntax List ::= importListConvert(K,K) [function]
-    syntax KItem ::= impObject(K,K)
-
-    rule importListConvert(Name:K, 'impDecls(A:K,, Rest:K)) => importListConvert(Name, A) importListConvert(Name, Rest)
-    rule importListConvert('moduleName(Name:K), 'impDecl(A:K,, Modid:K,, C:K,, D:K)) => ListItem(impObject(Name, Modid))
-    rule importListConvert(Name:K, .ImpDecls) => .List
-\end{lstlisting}
-
-\section{Module Inclusion Tree}
-\begin{lstlisting}
-    /*NEW TODO ALGORITHM
-1. Construct tree for module inclusion
-2. Check tree for cycles
-3. Go to each leaf and recursively go up the tree and build alpha* and beta* for the types of the module and the children
-(and specify scoping) (desugar the scope so that each type specifies the scope) */
-
-    syntax KItem ::= "checkImportCycle"
-    syntax KItem ::= "recurseImportTree"
-
-/*    rule <k> performNextChecks
-             => checkUseVars
-                ~> (checkLabelUses
-                ~> (checkBlockAddress(.K)
-                ~> (checkNoNormalBlocksHavingLandingpad(.K, TNS -Set TES)
-                ~> (checkAllExpBlocksHavingLandingpad(.K, TES)
-                ~> (checkAllExpInFromInvoke(.K, TES)
-                ~> (checkLandingpad
-                ~> checkLandingDomResumes)))))) ...</k> */
-
-    rule <k> startImportRecursion => checkImportCycle 
-                                     ~> (recurseImportTree)...</k>
-
-    syntax KItem ::= cycleCheck(K,Map,List,List) [function] //current node, map of all nodes to visited or not, stack, graph
-    syntax Map ::= createVisitMap(List,Map) [function] //graph, visitmap
-    syntax KItem ::= getUnvisitedNode(K,K, Map) [function] //visitmap
-    syntax List ::= getNodeNeighbors(K,List) [function] //visitmap
-
-    rule <k> checkImportCycle
-             => cycleCheck(.K,createVisitMap(I, .Map),.List,I) ...</k>
-         <importTree> I:List </importTree>
-         <impTreeVMap> .Map => createVisitMap(I, .Map) </impTreeVMap>
-
-    syntax KItem ::= "visited"
-    syntax KItem ::= "unvisited"
-    syntax KItem ::= "none"
-
-    rule createVisitMap(ListItem(impObject(A:K,B:K)) Rest:List, M:Map) 
-             => createVisitMap(Rest, M[A <- unvisited][B <- unvisited])
-    rule createVisitMap(.List, M:Map) => M
-
-    rule getUnvisitedNode(.K, .K, .Map) => none
-    rule getUnvisitedNode(.K, .K, (A:K |-> B:K) M:Map)
-           => getUnvisitedNode(A, B, M)
-    rule getUnvisitedNode(A:KItem, unvisited, M:Map) => A
-    rule getUnvisitedNode(A:KItem, visited, M:Map)
-            =>  getUnvisitedNode(.K, .K, M)
-
-
-
-    rule getNodeNeighbors(Node:K,.List) => .List
-    rule getNodeNeighbors(.K,Rest:List) => .List
-
-    rule getNodeNeighbors(Node:KItem,ListItem(impObject(Node,B:KItem)) Rest:List) => getNodeNeighbors(Node, Rest) ListItem(B)
-    rule getNodeNeighbors(Node:KItem,ListItem(impObject(A:KItem,B:KItem)) Rest:List) => getNodeNeighbors(Node, Rest)
-         requires Node =/=K A
-
-
-    rule cycleCheck(none, M:Map, .List, L:List) => .K
-    rule cycleCheck(.K, M:Map, .List, I:List) => cycleCheck(getUnvisitedNode(.K, .K, M), M, .List, I)
-    rule cycleCheck(.K, M:Map, ListItem(Node:K) S:List, I:List) => cycleCheck(Node, M, S, I)
-    rule cycleCheck(Node:K, M:Map, S:List, I:List)
-                 => cycleCheck(.K, M[Node <- visited], getNodeNeighbors(Node,I) S, I)
-         requires Node =/=K .K andBool Node =/=K none
-    rule cycleCheck(.K, M:Map, ListItem(Node:K) S:List, I:K) => cycleCheck(Node, M, S, I)
-         requires S =/=K .List
-
-/*
-    rule cycleCheck(A:K,.K,.K,I:K) => cycleCheck(A,createVisitMap(I,.Map),.List,I)
-
-
-
-    rule cycleCheck(Node:K, M:Map, S:List, I:K) => cycleCheck(.K, M[Node <- visited], getNodeNeighbors(Node,I) S, I)
-
-    rule cycleCheck(.K, M:Map, ListItem(Node:K) S:List, I:K) => cycleCheck(Node, M, S, I)
-    //rule cycleCheck(.K, M:Map, .K, ListItem(impObject(A:K,B:K)) Rest:List) => cycleCheck(ListItem(impObject(A:K,B:K)) Rest:List)
-*/
-\end{lstlisting}
-
-\section{Leaf DFS}
-\begin{lstlisting}
-//COPY IMPORT GRAPH, NEED SECOND GRAPH FOR RECURSING, ADDITIONAL GRAPH FOR SELECTING IMPORTS FOR ALPHA* AND BETA*
-//DFS for leaf
-//acquire alpha and beta for leaf
-//merge alpha and beta with imports to produce alpha* and beta*
-//perform checks
-//perform inferencing
-//insert alpha* and beta* into importing modules
-//remove all edges pointing to leaf
-
-    syntax KItem ::= "leafDFS"
-    syntax KItem ::= "getAlphaAndBeta"
-    syntax KItem ::= "getAlphaBetaStar"
-    syntax KItem ::= "performIndividualChecks"
-    syntax KItem ::= "performIndividualInferencing"
-    syntax KItem ::= "insertAlphaBetaStar"
-    syntax KItem ::= "removeAllEdges"
-    syntax KItem ::= "seeIfFinished"
-
-    rule <k> recurseImportTree => leafDFS 
-                                  ~> (getAlphaAndBeta
-                                  //~> (getAlphaBetaStar
-                                  ~> (performIndividualInferencing))...</k>
-
-//rule <k> dealWithImports(Mod:K, 'bodytopdecls(A:K)) => callInit(A) ...</k>
-
-//    rule <k> leaf
-//             => cycleCheck(.K,createVisitMap(I, .Map),.List,I) ...</k>
-//         <importTree> I:List </importTree>
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    syntax KItem ::= returnLeafDFS(K,List,Map) [function] //current node, map of all nodes to visited or not, stack, graph
-    syntax KItem ::= innerLeafDFS(K,List) [function]
-    syntax KItem ::= loadModule(K)
-
-    rule <k> leafDFS
-             => returnLeafDFS(.K,I,M) ...</k>
-         <recurImportTree> I:List </recurImportTree>
-         <impTreeVMap> M:Map </impTreeVMap>
-
-    rule returnLeafDFS(.K,ListItem(impObject(Node:KItem,B:KItem)) I:List,M:Map) => returnLeafDFS(B,I,M)
-    rule returnLeafDFS(Node:KItem,I:List,M:Map) => returnLeafDFS(innerLeafDFS(Node,I),I,M)
-         requires innerLeafDFS(Node,I) =/=K none
-    rule returnLeafDFS(Node:KItem,I:List,M:Map) => loadModule(Node)
-         requires innerLeafDFS(Node,I) ==K none
-
-    rule innerLeafDFS(Node:KItem,ListItem(impObject(Node,B:KItem)) I:List) => B
-    rule innerLeafDFS(Node:KItem,ListItem(impObject(A:KItem,B:KItem)) I:List) => innerLeafDFS(Node,I)
-         requires Node =/=K A
-    rule innerLeafDFS(Node:KItem,.List) => none
-//    returnLeafDFS(Node:KItem,ListItem(impObject(Node,B:KItem)) I:List,M:Map) => returnLeafDFS(B,I,M)
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    //call before Checker Code
-//    rule <k> callInit(S:K) => initPreModule(S) ...</k>
-//         <tempModule> A:K => S </tempModule>
-
-    rule <k> loadModule(S:KItem) => .K ...</k>
-         <tempModule> A:K => S </tempModule>
-
-    rule <k> getAlphaAndBeta => initPreModule(Code) ...</k>
-         <tempModule> Mod:KItem </tempModule>
-
-         <moduleName> 'moduleName(Mod) </moduleName>
-         <moduleTempCode> Code:KItem </moduleTempCode>
-\end{lstlisting}
-
-\section{Insert AlphaBetaStar}
-\begin{lstlisting}
-//    syntax KItem ::= "insertAlphaBetaStar"
-
-    syntax KItem ::= insertABRec(K,List)
-    syntax KItem ::= insertAB(K)
-
-    rule <k> insertAlphaBetaStar => insertABRec(Mod, Imp) ...</k>
-         <tempModule> Mod:KItem </tempModule>
-         <importTree> Imp:List </importTree>
-
-    rule <k> insertABRec(Node:KItem, ListItem(impObject(B:KItem,Node)) I:List) => insertAB(B) ~> insertABRec(Node, I) ...</k>
-
-    rule <k> insertABRec(Node:KItem, ListItem(impObject(B:KItem,C:KItem)) I:List) => insertABRec(Node, I) ...</k>
-             requires Node =/=K C
-
-    rule <k> insertAB(B) => .K ...</k>
-
-         <tempAlphaStar> Alph:KItem </tempAlphaStar>
-         <tempBetaStar> Bet:KItem </tempBetaStar>
-
-         <moduleName> 'moduleName(B) </moduleName>
-         <moduleImpAlphas> ImpAlphas:List => ListItem(Alph) ImpAlphas </moduleImpAlphas>
-         <moduleImpBetas> ImpBetas:List => ListItem(Bet) ImpBetas </moduleImpBetas>
-
-
-endmodule
-\end{lstlisting}

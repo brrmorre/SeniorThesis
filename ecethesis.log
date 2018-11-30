@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  30 NOV 2018 02:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013) (format=pdflatex 2018.6.12)  30 NOV 2018 02:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -627,7 +627,7 @@ Overfull \hbox (60.94969pt too wide) in paragraph at lines 23--24
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <12> not available
 (Font)              Font shape `OT1/pcr/b/n' tried instead on input line 28.
 
-Overfull \hbox (17.74971pt too wide) in paragraph at lines 50--51
+Overfull \hbox (17.74971pt too wide) in paragraph at lines 54--55
 []\OT1/pcr/m/n/12 data \OT1/pcr/b/n/12 [ \OT1/pcr/m/n/12 context => \OT1/pcr/b/
 n/12 ] \OT1/pcr/m/n/12 simpletype \OT1/pcr/b/n/12 [ \OT1/pcr/m/n/12 = constrs \
 OT1/pcr/b/n/12 ] [ \OT1/pcr/m/n/12 deriving
@@ -770,22 +770,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 
 
 
-] [57] [58] [59] [60] [61] [62]
-Overfull \hbox (2.00378pt too wide) in paragraph at lines 251--253
-[][] 
- []
-
-
-Overfull \hbox (330.00732pt too wide) in paragraph at lines 259--261
-[][][][] 
- []
-
-[63]
-Overfull \hbox (330.00732pt too wide) in paragraph at lines 283--285
-[][][][] 
- []
-
-[64]) [65]
+]) [57] [58]
 \openout2 = `concl.aux'.
 
  (./concl.tex
@@ -795,7 +780,7 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 1.
 
-) [66
+) [59
 
 
 
@@ -809,38 +794,38 @@ Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 1.
 
-[67
+[60
 
 
 
-] [68] [69] [70] [71] [72] [73]
+] [61] [62] [63] [64] [65] [66]
 Missing character: There is no â in font pcrr7t!
 Missing character: There is no ‰ in font pcrr7t!
 Missing character: There is no ¥ in font pcrr7t!
- [74] [75] [76] [77] [78]
+ [67] [68] [69] [70] [71]
 Appendix B.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 368.
 
-[79
+[72
 
-] [80]
+] [73]
 Appendix C.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 418.
 
-[81
+[74
 
-] [82]
+] [75]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 506--508
 [][][][] 
  []
 
-[83] [84] [85]
+[76] [77] [78]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 585--587
 [][][][] 
  []
@@ -855,57 +840,57 @@ Overfull \hbox (330.00732pt too wide) in paragraph at lines 616--618
 [][][][] 
  []
 
-[86]
+[79]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 640--642
 [][][][] 
  []
 
-[87]
+[80]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 656--657
 [][][][] 
  []
 
-[88] [89]
+[81] [82]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 737--739
 [][][][] 
  []
 
-[90]
+[83]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 743--745
 [][][][] 
  []
 
-[91] [92] [93] [94] [95] [96]
+[84] [85] [86] [87] [88] [89]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 948--950
 [][][][] 
  []
 
-[97] [98] [99]
+[90] [91] [92]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1027--1029
 [][][][] 
  []
 
-[100] [101]
+[93] [94]
 Appendix D.
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
 (hyperref)                \hskip 11.74988pt
 (hyperref)                replaced by space on input line 1056.
 
-[102
+[95
 
-] [103] [104] [105] [106] [107] [108] [109] [110] [111]
+] [96] [97] [98] [99] [100] [101] [102] [103] [104]
 Overfull \hbox (330.00732pt too wide) in paragraph at lines 1321--1323
 [][][][] 
  []
 
-[112] [113] [114] [115]) [116] (./ecethesis.bbl
+[105] [106] [107] [108]) [109] (./ecethesis.bbl
 
 LaTeX Warning: Empty `thebibliography' environment on input line 25.
 
 )
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 177.
- [117
+ [110
 
 
 
@@ -922,20 +907,26 @@ Package rerunfilecheck Warning: File `ecethesis.out' has changed.
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `ecethesis.out':
-(rerunfilecheck)             Before: 5CACB354789F047DDD9655E208E02023;4714
-(rerunfilecheck)             After:  D110A5390FBC9342DAD9688016DD4FFB;4646.
+(rerunfilecheck)             Before: D110A5390FBC9342DAD9688016DD4FFB;4646
+(rerunfilecheck)             After:  FA7AF1106006F27A6D26AFC75026161C;4518.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 177.
  ) 
 Here is how much of TeX's memory you used:
- 12075 strings out of 495063
- 181316 string characters out of 3182201
+ 11806 strings out of 495063
+ 177112 string characters out of 3182201
  423359 words of memory out of 3000000
- 12279 multiletter control sequences out of 15000+200000
+ 12278 multiletter control sequences out of 15000+200000
  13050 words of font info for 50 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  36i,5n,38p,1458b,1679s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{section.2.4} has been referenced but does not exi
+pdfTeX warning (dest): name{section.6.3} has been referenced but does not exi
 st, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.6.2} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{section.6.1} has been referenced but does not exist
+, replaced by a fixed one
 
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/
 share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-
@@ -951,10 +942,10 @@ hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/urw/courier/ucrr8a.pfb>
-Output written on ecethesis.pdf (125 pages, 355386 bytes).
+Output written on ecethesis.pdf (118 pages, 342194 bytes).
 PDF statistics:
- 4124 PDF objects out of 4296 (max. 8388607)
- 3944 compressed objects within 40 object streams
- 2782 named destinations out of 2984 (max. 500000)
- 593 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 3772 PDF objects out of 4296 (max. 8388607)
+ 3602 compressed objects within 37 object streams
+ 2514 named destinations out of 2984 (max. 500000)
+ 585 words of extra memory for PDF output out of 10000 (max. 10000000)
 
