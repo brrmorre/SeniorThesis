@@ -2,25 +2,15 @@
 This chapter details the first part of the static semantics. In order for any context sensitive checks or type inference can be done, the test programs first need to be parsed into an abstract syntax tree. The context sensitive checks and type inference can then be performed upon the tree.
 Some difficulties with implementing a grammar into K is that the grammar originally is written in sort descending order in a document. The goal was to build a grammar that can parse actual programs and ensure there was no bugs. To do this, I started with small example programs, wrote out the example abstract syntax tree, and included the sorts necessary to parse them. Then if they didn't parse correctly I could then debug. I then wrote bigger and bigger example programs and included more and more sorts until all the grammar was included.
 
-The Haskell 2010 report is the current official specification of the Haskell language. 
+The Haskell 2010 report \cite{Report:Report} is the current official specification of the Haskell language. 
 
-\url{https://www.haskell.org/onlinereport/haskell2010/}
+The grammar specified in section 10.5 of the Haskell 2010 report \cite{Report:105} is a specification of the expanded syntax of Haskell.
 
-The grammar specified in section 10.5 of the Haskell 2010 report is a specification of the expanded syntax of Haskell.
-
-\url{https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-210002.7}
-
-As specified in section 2.7, the expanded syntax of Haskell specifies Haskell programs when written using semicolons and braces. However, these can be omitted in a real Haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3.
-
-\url{https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17800010.3}
+As specified in section 2.7 \cite{Report:27}, the expanded syntax of Haskell specifies Haskell programs when written using semicolons and braces. However, these can be omitted in a real Haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3 \cite{Report:103}.
 
 The parser for this project does not implement these layout rules and instead only can parse the expanded, layout insensitive syntax of Haskell. It would require another script to convert a program written using the layout sensitive syntax into the expanded syntax in order to parse the program.
 
-\url{https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-18000010.5}
-
-Section 10.1 specifies the notation used in the grammar.
-
-\url{https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17600010.1}
+Section 10.1 \cite{Report:101} specifies the notation used in the grammar.
 
 The notation of 10.1 are always in bold in the grammar. The notation is the same as standard syntax definition notation.
 So an example production in the document looks like

@@ -10,7 +10,7 @@ This way, real and complex programs written in natural looking programming langu
 
 K is a framework for creating the formal specification of a programming language. It then can interpret programs written in the language by running only the rules of the formal operational semantics of the programming language. This allows programs to be run and analyzed formally. This way, the formal specification of the complex programming language can be tested and analyzed with the use of a machine.
 A K-configuration defines the memory structure of the programming language, which is made up of cells. The program state can be thought of as the current values of the K-configuration at a certain point in time.
-Grammar can be written in K using the constructor $syntax$, and a semantic rule can be written in K using the constructor $rule$.
+Grammar can be written in K using the constructor \texttt{syntax}, and a semantic rule can be written in K using the constructor \texttt{rule}.
 
 Haskell is a purely functional programming language with strong static typing. Purely functional means that the language only allows the user to make functions whose output is only dependent on the function input. Strong static typing means that before a program is run, a type inference algorithm infers the type of the program and ensures that all functions and function applications are allowed with regards to the types of the inputs and outputs. Static refers to the fact that type inference is performed before the code is run, and will not run during the runtime of the code. Strong typing refers to the fact that the compiler will not allow the user to perform workarounds like typecasting.
 
@@ -25,3 +25,7 @@ Also, an important part of the Haskell language is mutual recursion of functions
 In the specification in this paper, a more complete specification of parts of the type system is presented as a family of mutually inductive rules. Such a presentation is not only the basis of an executable semantics but can later provide the basis of formal and rigorous proofs.
 
 This project details the syntax of Haskell and the type system of Haskell in K.
+
+The repository of the K semantics is provided at:
+
+\url{https://github.com/liyili2/haskell-semantics/}

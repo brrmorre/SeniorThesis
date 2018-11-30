@@ -65,9 +65,10 @@
 \BOOKMARK [1][-]{section.5.10}{Composition of Substitutions}{chapter.5}% 65
 \BOOKMARK [1][-]{section.5.11}{Example}{chapter.5}% 66
 \BOOKMARK [0][-]{chapter.6}{Chapter 6 Multiple Module Support}{}% 67
-\BOOKMARK [0][-]{chapter.7}{Chapter 7 Conclusion}{}% 68
-\BOOKMARK [0][-]{appendix.A}{Appendix A haskell-syntax.k}{}% 69
-\BOOKMARK [0][-]{appendix.B}{Appendix B haskell-configuration.k}{}% 70
-\BOOKMARK [0][-]{appendix.C}{Appendix C haskell-preprocessing.k}{}% 71
-\BOOKMARK [0][-]{appendix.D}{Appendix D haskell-type-inferencing.k}{}% 72
-\BOOKMARK [0][-]{appendix*.21}{References}{}% 73
+\BOOKMARK [1][-]{section.6.1}{Algorithm}{chapter.6}% 68
+\BOOKMARK [0][-]{chapter.7}{Chapter 7 Conclusion}{}% 69
+\BOOKMARK [0][-]{appendix.A}{Appendix A haskell-syntax.k}{}% 70
+\BOOKMARK [0][-]{appendix.B}{Appendix B haskell-configuration.k}{}% 71
+\BOOKMARK [0][-]{appendix.C}{Appendix C haskell-preprocessing.k}{}% 72
+\BOOKMARK [0][-]{appendix.D}{Appendix D haskell-type-inferencing.k}{}% 73
+\BOOKMARK [0][-]{appendix*.21}{References}{}% 74

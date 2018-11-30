@@ -1,18 +1,14 @@
 \chapter{Inferencing}
 Once context sensitive checks are made, the module can now be type inferred. Type inference is used to find the most general type of an expression. This is useful for assigning the most general type to variables and functions. It also is useful for performing type checking if the programmer specifies what type a function should take in or what a variable should be.
 
-A type system is a set of rules that assign a property to various constructs in a programming language called type. A type is a property that allows the programmer to add constraints to programs.
-
-\url{https://en.wikipedia.org/wiki/Type_system}
+A type system is a set of rules that assign a property to various constructs in a programming language called type. A type is a property that allows the programmer to add constraints to programs. \cite{Type:Type}
 
 The Haskell 2010 report says that Haskell's type system is a Hindley-Milner polymorphic type system that has been extended with type classes to account for overloaded functions. The semantics in this paper makes precise what this means with regards to Haskell's specific syntax.
 
 The type inference function infers the type of the expression that is fed into it. A purpose of it is to ensure that all functions and function applications are allowed with regards to the types of the inputs and outputs.
 
 \section{Type theory}
-Type theory was created by Bertrand Russell to prevent Russell's Paradox for set theory, introduced by Georg Cantor. The issue was that not specifying a certain property for sets allowed sets to contain themselves in Naive Set Theory. So Bertrand Russell prevented this problem by specifying a property called type for objects, and objects cannot contain their own type.
-
-\url{https://plato.stanford.edu/entries/type-theory/}
+Type theory was created by Bertrand Russell to prevent Russell's Paradox for set theory, introduced by Georg Cantor. The issue was that not specifying a certain property for sets allowed sets to contain themselves in Naive Set Theory. So Bertrand Russell prevented this problem by specifying a property called type for objects, and objects cannot contain their own type. \cite{Stanford:TypeTheory}
 
 Type theory turns out to be useful for solving a number of problems that arise in computer science.
 
@@ -170,15 +166,11 @@ Then the corresponding $tempDelta$ should look like this.
 
 
 \section{Definition of Substitution}
-A substitution is a set of variables and their replacements. Applying a substitution to an expression means to simultaneously replace each variable in the expression with the replacement term.
-
-\url{http://www.mathcs.duq.edu/simon/Fall04/notes-7-4/node3.html}
+A substitution is a set of variables and their replacements. Applying a substitution to an expression means to simultaneously replace each variable in the expression with the replacement term. \cite{Infer:TypeSub}
 
 \section{Inference Algorithm}
 The inference function acquires the most general data type for the expression that is fed into it. It inducts down into an expression to the most primitive parts of the expression, and then collects information about each of the primitive parts and how they combine together. Then it passes the information back up the layers and slowly acquires all the information about the most general type of the expression. 
-Much of the inference algorithm is the same as the one introduced in cs 421.
-
-[cs 421 gather exp ty substitution mp]
+Much of the inference algorithm is the same as the one introduced in CS 421. \cite{CS421:Unif}
 
 \begin{lstlisting}
 requires "haskell-syntax.k"
@@ -561,7 +553,7 @@ The K Code is as follows.
 
 The goal of the unification algorithm is to provide a substitution. This substitution is used to map variables to monomorphic types. The goal of the substitution is to look up a variable in an expression or an environment 
 
-This unification algorithm is provided from CS 421.
+This unification algorithm is provided from CS 421. \cite{CS421:Unif}
 
 Let $S = \{(s_1 , t_1), (s_2 , t_2), \cdots, (s_n , t_n)\}$ be a
 unification problem.
@@ -666,15 +658,13 @@ The following is the K code.
 
 Composition of substitutions means that if the composition was applied to a type, it would first apply to the rightmost substitution and then afterwards apply to the substitution to the left of it, and so on.
 
-The following is a mathematical definition where $\theta$ and $\lambda$ are substitutions.
+The following is a mathematical definition where $\theta$ and $\lambda$ are substitutions. \cite{Infer:Compose}
 
 $$ \theta = [t_1 / x_1 , t_2 / x_2 , \cdots , t_n / x_n] $$
 
 $$ \lambda = [s_1 / y_1 , s_2 / y_2 , \cdots , s_m / y_m] $$
 
 $$ \lambda \circ \theta = [ \lambda(t_1) /x_1 , \lambda(t_2) / x_2, \cdots, \lambda(t_n) / x_n]$$
-
-\url{http://www.mathcs.duq.edu/simon/Fall04/notes-7-4/node4.html}
 
 The following is the K Code.
 

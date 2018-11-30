@@ -10,48 +10,10 @@ There cannot be inclusion cycles.
 
 Modules need to be able to access user defined types from the other modules that are included.
 
-When referencing types from other modules, there is a scope where if the user makes another type of the same name in the current module then when the user references the type, it refers to the type from the current module.
-
-For instance:
-\begin{lstlisting}
-File 1:
-module File1 where
-{data A = B
-}
-File 2:
-module File2 where
-{data A = B
-;data C = B A
-}
-\end{lstlisting}
-
-This will compile. The \texttt{A} used in \texttt{data C} is \texttt{File2.A}.
-
-However, there can be multiple types with the same name declared outside of the current module. If a user tries to refer to the type without the parent module, there will be a compiler error because there is ambiguity.
-
-For instance:
-
-\begin{lstlisting}
-File 1:
-module File1 where
-{data A = B
-}
-File 2:
-module File2 where
-{data A = B
-}
-File 3:
-module File3 where
-{import File1
-;import File2
-;data C = B A
-}
-\end{lstlisting}
-
-This will not compile because in \texttt{File3}, type \texttt{A} is ambiguous and can mean either \texttt{File1.A} or \texttt{File2.A}.
-
 Since we need to check for module inclusion cycles and also build the set of user defined types for each module and included modules, I decided to use a directed acyclic graph.
-The algorithm is as follows
+
+\section{Algorithm}
+The algorithm is as follows:
 
 1. Construct graph for module inclusion
 
@@ -70,7 +32,13 @@ The syntax also needed to be changed to allow for multiple modules. The new synt
     syntax ModuleList ::= Module [klabel('modListSingle)] | Module "<NEXTMODULE>" ModuleList [klabel('modList)]
 \end{lstlisting}
 
-This is because K cannot read mutiple files. So instead all the included modules for a program are dumped into one file and are separated by the keyword \texttt{<NEXTMODULE>}
+This is because K cannot read multiple files. So instead all the included modules for a program are dumped into one file and are separated by the keyword \texttt{<NEXTMODULE>}
 This creates a list of modules called \texttt{ModuleList}.
 
-The code for graph construction and checking for cycles is included in Appendix D. Building \texttt{alpha*} and \texttt{beta*} proved difficult and are not included in this paper.
+The code for graph construction and checking for cycles is included in Appendix D. Building \texttt{alpha*} and \texttt{beta*}, and desugaring the scope proved difficult and are not included in the semantics presented in this paper.
+
+In the semantics presented in this paper, type constructors must be referenced using both the constructor and the module that it was created in. For instance:
+
+\begin{lstlisting}
+Simp5.True2
+\end{lstlisting}

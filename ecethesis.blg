@@ -1,65 +1,66 @@
-This is BibTeX, Version 0.99d (TeX Live 2018/Arch Linux)
-Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: ecethesis.aux
 A level-1 auxiliary file: intro.aux
 A level-1 auxiliary file: syntax.aux
 A level-1 auxiliary file: config.aux
 A level-1 auxiliary file: checks.aux
-A level-1 auxiliary file: multmod.aux
 A level-1 auxiliary file: inference.aux
+A level-1 auxiliary file: multmod.aux
 A level-1 auxiliary file: concl.aux
+A level-1 auxiliary file: apx.aux
 The style file: IEEE_ECE.bst
-I found no \citation commands---while reading file ecethesis.aux
-Reallocated singl_function (elt_size=8) to 100 items from 50.
-Reallocated singl_function (elt_size=8) to 100 items from 50.
-Reallocated singl_function (elt_size=8) to 100 items from 50.
-Reallocated wiz_functions (elt_size=8) to 6000 items from 3000.
-Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: thesisrefs.bib
 -- IEEEtran.bst version 1.12 (2007/01/11) by Michael Shell.
 -- http://www.michaelshell.org/tex/ieeetran/bibtex/
 -- See the "IEEEtran_bst_HOWTO.pdf" manual for usage information.
+Warning--missing publisher in Type:Type
 
 Done.
-You've used 0 entries,
+You've used 12 entries,
             4034 wiz_defined-function locations,
-            837 strings with 7657 characters,
-and the built_in function-call counts, 105 in all, are:
-= -- 0
-> -- 0
+            884 strings with 8891 characters,
+and the built_in function-call counts, 4057 in all, are:
+= -- 293
+> -- 49
 < -- 0
-+ -- 0
-- -- 0
-* -- 19
-:= -- 26
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
++ -- 25
+- -- 11
+* -- 159
+:= -- 762
+add.period$ -- 21
+call.type$ -- 12
+change.case$ -- 9
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 3
+cite$ -- 13
+duplicate$ -- 325
+empty$ -- 408
+format.name$ -- 13
+if$ -- 843
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 24
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 12
+missing$ -- 81
+newline$ -- 82
+num.names$ -- 9
+pop$ -- 264
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 1
+skip$ -- 306
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
+substring$ -- 9
+swap$ -- 175
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 5
-type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 23
-(There was 1 error message)
+type$ -- 12
+warning$ -- 1
+while$ -- 9
+width$ -- 14
+write$ -- 132
+(There was 1 warning)
