@@ -113,9 +113,6 @@ This fixed the issue.
     syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
     syntax QVarSym ::= VarSym | ModId "." VarSym  [klabel('qVarSymCon)]
     syntax QConSym ::= ConSym | ModId "." ConSym  [klabel('qConSymCon)]
-/*    syntax QTyCls ::= QTyCon
-    syntax TyCls ::= ConId
-*/
     syntax TyVars ::= List{TyVar, ""} [klabel('typeVars)] //used in SimpleType syntax
     syntax TyVar ::= VarId
     syntax TyVarTuple ::= TyVar "," TyVar      [klabel('twoTypeVarTuple)]

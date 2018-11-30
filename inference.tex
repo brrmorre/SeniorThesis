@@ -305,7 +305,7 @@ Also, functions that take in variables can be desugared to variables that are se
 
 \subsection{Application Rule}
 
-The application is similar to the lambda rule. The rule inducts on the left most expression and places the constraint of the leftmost expression being a function into the recursive call. Then when it gets a substitution, it looks up the fresh type within the substitution to get any additional information about the fresh type that we may have. Afterwards it inducts upon the rightmost expression and acquires another substitution. It then composes them and returns that substitution.
+The application is similar to the lambda rule. The rule inducts on the left most expression and places the constraint of the leftmost expression being a function into the recursive call. Then when it gets a substitution, it looks up the fresh type \texttt{$\tau_1$} within the substitution to get any additional information about the fresh type that we may have. Afterwards it inducts upon the rightmost expression and acquires another substitution. It then composes them and returns that substitution.
 
 \begin{prooftree}
 \AxiomC{$\Gamma \vdash e_1 : \tau_1 \rightarrow \tau \, | \, \sigma_1$}
@@ -407,7 +407,7 @@ The let rule assigns each declaration within the let expression a new fresh mono
 
 \subsubsection{Module}
 
-This can then be applied to an entire module. An entire module can be inferred in the same way, if the only parts of the module that need to be inferred are the declarations within the module.
+This can then be applied to an entire module. An entire module can be inferred in the same way, if the only parts of the module that need to be inferred are the declarations within the module. This is how the semantics can begin the inference algorithm upon a Haskell module, because a module contains everything else.
 
 \begin{prooftree}
 \AxiomC{$\Gamma \vdash \{ \, \text{decls} \, \} : \Delta \, | \, \sigma$}
@@ -566,20 +566,41 @@ This unification algorithm is provided from CS 421.
 Let $S = \{(s_1 , t_1), (s_2 , t_2), \cdots, (s_n , t_n)\}$ be a
 unification problem.
 
+\subsection{Identity}
+If the input is empty, then return the identity substitution.
+
 Case $S = \{ \} : \text{Unif}(S) = \text{Identity function}$ (ie
 no substitution)
 
-Case $S = {(s, t)} \cup S')$: Four main steps
+\subsection{Non-Identity}
+
+Case $S = \{(s, t)\} \cup S'$: Four main steps
+
+\subsubsection{Delete}
+
+If the the two terms that are set equal are already equal, then they are not necessary in the substitution map. They can be removed.
 
 Delete: if $s = t$ (they are the same term)
 then $Unif(S) = Unif(S')$
+
+\subsubsection{Decompose}
+
+If the two terms use the same constructor and contain the same amount of children, this means that each child can be set equal. 
 
 Decompose: if $s = f(q_1, \cdots, q_m )$ and
 $t = f(r_1, \cdots, r_m )$ (same f, same m!), then
 $\text{Unif}(S) = \text{Unif}(\{(q_1 , r_1 ), ..., (q_m , r_m )\} \cup S')$
 
+\subsubsection{Orient}
+
+The substitution should map variables to non variables, so if the equation has a non variable mapped to a variable, it should be oriented the other way.
+
 Orient: if $t = x$ is a variable, and s is not a
 variable, $\text{Unif}(S) = \text{Unif} (\{(x,s)\} \cup S')$
+
+\subsubsection{Eliminate}
+
+This rule removes an equation from the set and adds it to the substitution map if the conditions of the equation are met.
 
 Eliminate: if s = x is a variable, and
 x does not occur in t (the occurs
@@ -596,6 +617,8 @@ Note: $$\{\, x \mapsto a \, \} \, \circ \, \{ \, y \mapsto b\,\} =
 in $a$
 
 [cs 421 class notes]
+
+\subsection{K Code}
 
 The following is the K code.
 \begin{lstlisting}
@@ -642,6 +665,18 @@ The following is the K code.
 \section{Composition of Substitutions}
 
 Composition of substitutions means that if the composition was applied to a type, it would first apply to the rightmost substitution and then afterwards apply to the substitution to the left of it, and so on.
+
+The following is a mathematical definition where $\theta$ and $\lambda$ are substitutions.
+
+$$ \theta = [t_1 / x_1 , t_2 / x_2 , \cdots , t_n / x_n] $$
+
+$$ \lambda = [s_1 / y_1 , s_2 / y_2 , \cdots , s_m / y_m] $$
+
+$$ \lambda \circ \theta = [ \lambda(t_1) /x_1 , \lambda(t_2) / x_2, \cdots, \lambda(t_n) / x_n]$$
+
+\url{http://www.mathcs.duq.edu/simon/Fall04/notes-7-4/node4.html}
+
+The following is the K Code.
 
 \begin{lstlisting}
     syntax Map ::= composeIn(Map, Map, Map, K, K) [function]

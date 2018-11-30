@@ -57,15 +57,18 @@
 \BOOKMARK [1][-]{section.5.7}{Fresh Instance}{chapter.5}% 57
 \BOOKMARK [1][-]{section.5.8}{GEN}{chapter.5}% 58
 \BOOKMARK [1][-]{section.5.9}{Unification Algorithm}{chapter.5}% 59
-\BOOKMARK [1][-]{section.5.10}{Composition of Substitutions}{chapter.5}% 60
-\BOOKMARK [1][-]{section.5.11}{Examples}{chapter.5}% 61
-\BOOKMARK [0][-]{chapter.6}{Chapter 6 Multiple Module Support}{}% 62
-\BOOKMARK [1][-]{section.6.1}{Module Inclusion Tree}{chapter.6}% 63
-\BOOKMARK [1][-]{section.6.2}{Leaf DFS}{chapter.6}% 64
-\BOOKMARK [1][-]{section.6.3}{Insert AlphaBetaStar}{chapter.6}% 65
-\BOOKMARK [0][-]{chapter.7}{Chapter 7 Conclusion}{}% 66
-\BOOKMARK [0][-]{appendix.A}{Appendix A haskell-syntax.k}{}% 67
-\BOOKMARK [0][-]{appendix.B}{Appendix B haskell-configuration.k}{}% 68
-\BOOKMARK [0][-]{appendix.C}{Appendix C haskell-preprocessing.k}{}% 69
-\BOOKMARK [0][-]{appendix.D}{Appendix D haskell-type-inferencing.k}{}% 70
-\BOOKMARK [0][-]{appendix*.17}{References}{}% 71
+\BOOKMARK [2][-]{subsection.5.9.1}{Identity}{section.5.9}% 60
+\BOOKMARK [2][-]{subsection.5.9.2}{Non-Identity}{section.5.9}% 61
+\BOOKMARK [2][-]{subsection.5.9.3}{K Code}{section.5.9}% 62
+\BOOKMARK [1][-]{section.5.10}{Composition of Substitutions}{chapter.5}% 63
+\BOOKMARK [1][-]{section.5.11}{Examples}{chapter.5}% 64
+\BOOKMARK [0][-]{chapter.6}{Chapter 6 Multiple Module Support}{}% 65
+\BOOKMARK [1][-]{section.6.1}{Module Inclusion Tree}{chapter.6}% 66
+\BOOKMARK [1][-]{section.6.2}{Leaf DFS}{chapter.6}% 67
+\BOOKMARK [1][-]{section.6.3}{Insert AlphaBetaStar}{chapter.6}% 68
+\BOOKMARK [0][-]{chapter.7}{Chapter 7 Conclusion}{}% 69
+\BOOKMARK [0][-]{appendix.A}{Appendix A haskell-syntax.k}{}% 70
+\BOOKMARK [0][-]{appendix.B}{Appendix B haskell-configuration.k}{}% 71
+\BOOKMARK [0][-]{appendix.C}{Appendix C haskell-preprocessing.k}{}% 72
+\BOOKMARK [0][-]{appendix.D}{Appendix D haskell-type-inferencing.k}{}% 73
+\BOOKMARK [0][-]{appendix*.21}{References}{}% 74
