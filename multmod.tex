@@ -1,7 +1,8 @@
 \chapter{Multiple Module Support}
-The final part of the semantics presented in this paper is the implementation of support of multiple modules. Similar to including files or objects in other programming languages, Haskell modules can include other modules and use functions, types, and type classes declared in the module.
+The final part of the semantics presented in this paper is the beginning of the of support of multiple modules. Similar to including files or objects in other programming languages, Haskell modules can include other modules and use functions, types, and type classes declared in the module.
 
-When supporting multiple modules, there are several considerations and additional checks that need to be made:
+When supporting multiple modules, there are several considerations and additional checks that should be made. This again comes from analyzing the behavior of GHC.
+Among them:
 
 Modules need to be able to include other modules.
 
@@ -24,8 +25,9 @@ module File2 where
 }
 \end{lstlisting}
 
-This will compile. The A used in data C is File2.A
-However, If there are multiple types with the same name declared outside of the current module. If you try to refer to the type without the parent module, there will be a compiler error because there is ambiguity.
+This will compile. The \texttt{A} used in \texttt{data C} is \texttt{File2.A}.
+
+However, there can be multiple types with the same name declared outside of the current module. If a user tries to refer to the type without the parent module, there will be a compiler error because there is ambiguity.
 
 For instance:
 
@@ -46,18 +48,18 @@ module File3 where
 }
 \end{lstlisting}
 
-This will not compile because in File 3, type A is ambiguous and can mean File1.A or File2.A.
+This will not compile because in \texttt{File3}, type \texttt{A} is ambiguous and can mean either \texttt{File1.A} or \texttt{File2.A}.
 
-Since we need to check for module inclusion cycles and also build the set of user defined types for each module and included modules, I decided to use a tree.
-The plan for the algorithm is as follows
+Since we need to check for module inclusion cycles and also build the set of user defined types for each module and included modules, I decided to use a directed acyclic graph.
+The algorithm is as follows
 
-1. Construct tree for module inclusion
+1. Construct graph for module inclusion
 
-2. Check tree for cycles
+2. Check graph for cycles
 
-3. Go to each leaf and recursively go up the tree and build alpha* and beta* for the types of the module and the children and desugar the scope so that each type specifies the scope.
+3. Go to each leaf and recursively go up the tree and build \texttt{alpha*} and \texttt{beta*} for the types of the module and the children and desugar the scope so that each type specifies the scope.
 
-Where alpha is the map of type synonyms declared in the current module and alpha* is the map of type synonyms declared in the current module and all the included modules. Beta is the set of user defined types from using data and newtype declared in the current module. Beta* is the set of user defined types from using data and newtype declared in the current module and all the included modules. 
+Where \texttt{alpha} is the map of type synonyms declared in the current module and \texttt{alpha*} is the map of type synonyms declared in the current module and all the included modules. \texttt{Beta} is the set of user defined types from using \texttt{data} and \texttt{newtype} declared in the current module. \texttt{Beta*} is the set of user defined types from using \texttt{data} and \texttt{newtype} declared in the current module and all the included modules. 
 Desugar the scope means that when the user references a type, desugar the reference to also include the parent module at all times.
 
 The syntax also needed to be changed to allow for multiple modules. The new syntax added is
@@ -68,5 +70,7 @@ The syntax also needed to be changed to allow for multiple modules. The new synt
     syntax ModuleList ::= Module [klabel('modListSingle)] | Module "<NEXTMODULE>" ModuleList [klabel('modList)]
 \end{lstlisting}
 
-This is because K cannot read mutiple files. So instead all the included modules for a program are dumped into one file and are seperated by the keyword <NEXTMODULE>
-This creates a list of modules called ModuleList.
+This is because K cannot read mutiple files. So instead all the included modules for a program are dumped into one file and are separated by the keyword \texttt{<NEXTMODULE>}
+This creates a list of modules called \texttt{ModuleList}.
+
+The code for graph construction and checking for cycles is included in Appendix D. Building \texttt{alpha*} and \texttt{beta*} proved difficult and are not included in this paper.
