@@ -22,7 +22,7 @@ Section 10.1 specifies the notation used in the grammar.
 
 \url{https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17600010.1}
 
-The notation of 10.1 are always in bold in the grammar.
+The notation of 10.1 are always in bold in the grammar. The notation is the same as standard syntax definition notation.
 So an example production in the document looks like
 
 \texttt{qvarid -> \textbf{[} modid . \textbf{]} varid}
@@ -35,6 +35,25 @@ modid .
 
 is optional, and the brackets are not terminals, but the period is a terminal. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
 
+\section{K Explanation}
+\subsection{K Labels}
+In K, semantic rules are called K rules. The tag
+
+\begin{lstlisting}
+[klabel('exampleLabel)]
+\end{lstlisting}
+
+means that in the abstract syntax tree created by K, a term can be referred to using that \texttt{klabel} in a K rule.
+
+\subsection{Strict}
+The tag
+
+\begin{lstlisting}
+[strict]
+\end{lstlisting}
+
+means that K will add two additional heating and cooling rules. This means the child of the \texttt{KItem} will be placed in front of the \texttt{KItem} to be evaluated first until it is given the \texttt{KResult} label. Then it is placed back into the \texttt{KItem}.
+
 \section{Syntax Explanation}
 There are a lot of parts of the grammar that proposed many challenges to implement in K. For instance, a sort definition that includes an option could be just written using a pipe
 in the K syntax.
@@ -43,7 +62,7 @@ So the example production
 
 \texttt{qvarid -> \textbf{[} modid . \textbf{]} varid}
 
-Is written in the K syntax as split into two options.
+is written in the K syntax as split into two options.
 
 \begin{lstlisting}
 syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
@@ -74,16 +93,6 @@ and so the right hand side of the previous production would now look like
 \end{lstlisting}
 
 This is acceptable because Haskell is not an order sorted algebra, so introducing new sorts that are not originally in the grammar is okay.
-
-\subsection{K Labels}
-
-In K, semantic rules are called K rules. The tag
-
-\begin{lstlisting}
-[klabel('exampleLabel)]
-\end{lstlisting}
-
-means that in the abstract syntax tree created by K, a term can be referred to using that \texttt{klabel} in a K rule.
 
 \section{Implementation of Section 10.2}
 The first section of the syntax introduces the syntax for the keywords, constants, special symbols, and variables that comprise the terminals for the remaining context free grammar as presented in section 10.2 of the 2010 Haskell report. The rest of section 10.2 is included in Appendix A.

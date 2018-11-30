@@ -3,24 +3,26 @@
 \contentsline {chapter}{LIST OF ABBREVIATIONS}{viii}{chapter*.5}
 \contentsline {chapter}{Chapter\ 1\hskip 1em\relax Introduction}{1}{chapter.1}
 \contentsline {chapter}{Chapter\ 2\hskip 1em\relax Context Free Syntax}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Syntax Explanation}{4}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}K Labels}{5}{subsection.2.1.1}
-\contentsline {section}{\numberline {2.2}Implementation of Section 10.2}{5}{section.2.2}
-\contentsline {section}{\numberline {2.3}Implementation of Section 10.5}{6}{section.2.3}
-\contentsline {subsection}{\numberline {2.3.1}Modules}{6}{subsection.2.3.1}
-\contentsline {subsection}{\numberline {2.3.2}ImpDecls}{6}{subsection.2.3.2}
-\contentsline {subsection}{\numberline {2.3.3}TopDecls}{8}{subsection.2.3.3}
-\contentsline {subsection}{\numberline {2.3.4}Decls}{8}{subsection.2.3.4}
-\contentsline {subsection}{\numberline {2.3.5}LExp}{10}{subsection.2.3.5}
-\contentsline {subsection}{\numberline {2.3.6}AExp}{10}{subsection.2.3.6}
+\contentsline {section}{\numberline {2.1}K Explanation}{4}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}K Labels}{4}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Strict}{4}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Syntax Explanation}{5}{section.2.2}
+\contentsline {section}{\numberline {2.3}Implementation of Section 10.2}{6}{section.2.3}
+\contentsline {section}{\numberline {2.4}Implementation of Section 10.5}{6}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Modules}{6}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}ImpDecls}{7}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}TopDecls}{8}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Decls}{9}{subsection.2.4.4}
+\contentsline {subsection}{\numberline {2.4.5}LExp}{10}{subsection.2.4.5}
+\contentsline {subsection}{\numberline {2.4.6}AExp}{10}{subsection.2.4.6}
 \contentsline {chapter}{Chapter\ 3\hskip 1em\relax Configuration}{12}{chapter.3}
 \contentsline {section}{\numberline {3.1}Alpha}{13}{section.3.1}
 \contentsline {section}{\numberline {3.2}Beta}{14}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Example}{14}{subsection.3.2.1}
 \contentsline {section}{\numberline {3.3}Delta}{15}{section.3.3}
 \contentsline {subsection}{\numberline {3.3.1}Example}{15}{subsection.3.3.1}
-\contentsline {section}{\numberline {3.4}Import Data Structure}{15}{section.3.4}
-\contentsline {section}{\numberline {3.5}Modules}{15}{section.3.5}
+\contentsline {section}{\numberline {3.4}Import Data Structure}{16}{section.3.4}
+\contentsline {section}{\numberline {3.5}Modules}{16}{section.3.5}
 \contentsline {chapter}{Chapter\ 4\hskip 1em\relax Context Sensitive Checks}{17}{chapter.4}
 \contentsline {section}{\numberline {4.1}Data Types}{17}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Polymorphim}{17}{subsection.4.1.1}
