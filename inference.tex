@@ -696,4 +696,68 @@ The following is the K Code.
 endmodule
 \end{lstlisting}
 
-\section{Examples}
+\section{Example}
+
+The following is an example inference:
+
+The module called \texttt{Simp5} defined a data type called \texttt{CusBool} as
+
+\begin{lstlisting}
+data CusBool = True2 | False2
+\end{lstlisting}
+
+The data structures for this data type look as follows after running the semantics:
+
+\begin{lstlisting}
+    <tempBeta>
+        ModPlusType ( Simp5 , False2 ) |-> forAll ( .Set , CusBool .TyVars )
+        ModPlusType ( Simp5 , True2 ) |-> forAll ( .Set , CusBool .TyVars )
+    </tempBeta>
+    <tempT>
+        TList ( ListItem ( TObject ( Simp5 , CusBool , .TyVars , 
+            ListItem ( InnerTPiece ( True2 , .List , .List , True2 
+              .OptBangATypes , CusBool ) )
+            ListItem ( InnerTPiece ( False2 , .List , .List , False2 
+              .OptBangATypes , CusBool ) ) ) ) )
+    </tempT>
+    <tempDelta>
+        ModPlusType ( Simp5 , CusBool ) |-> 0
+    </tempDelta>
+
+\end{lstlisting}
+
+In the module \texttt{Simp5} there is also an example declaration:
+
+\begin{lstlisting}
+\y -> (let {f = \x -> x y} in (f (\x -> Simp5.True2)))
+\end{lstlisting}
+
+After running the inference algorithm, the substitution generated for this declaration is as follows:
+
+\begin{lstlisting}
+    <k>
+        mapBagResult ( 
+            guessType ( 0 ) |-> funtype ( guessType ( 1 ) , CusBool .TyVars 
+              )
+            guessType ( 2 ) |-> CusBool .TyVars
+            guessType ( 3 ) |-> funtype ( funtype ( guessType ( 1 ) , 
+              guessType ( 5 ) ) , guessType ( 5 ) )
+            guessType ( 4 ) |-> funtype ( guessType ( 6 ) , guessType ( 5 ) 
+              )
+            guessType ( 6 ) |-> guessType ( 1 )
+            guessType ( 7 ) |-> funtype ( guessType ( 9 ) , guessType ( 8 ) 
+              )
+            guessType ( 8 ) |-> CusBool .TyVars
+            guessType ( 9 ) |-> guessType ( 10 )
+            guessType ( 11 ) |-> CusBool .TyVars ) ~> inferenceShell ( 
+          .TopDecls )
+    </k>
+\end{lstlisting}
+
+And the example expression is inferred as 
+
+\begin{lstlisting}
+funtype ( guessType ( 1 ) , CusBool .TyVars )
+\end{lstlisting}
+
+Which should be the case.

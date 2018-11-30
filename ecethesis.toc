@@ -78,11 +78,11 @@
 \contentsline {subsubsection}{Eliminate}{52}{section*.20}
 \contentsline {subsection}{\numberline {5.9.3}K Code}{52}{subsection.5.9.3}
 \contentsline {section}{\numberline {5.10}Composition of Substitutions}{53}{section.5.10}
-\contentsline {section}{\numberline {5.11}Examples}{55}{section.5.11}
-\contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{56}{chapter.6}
-\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{59}{chapter.7}
-\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{60}{appendix.A}
-\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{72}{appendix.B}
-\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{74}{appendix.C}
-\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{95}{appendix.D}
-\contentsline {chapter}{References}{110}{appendix*.21}
+\contentsline {section}{\numberline {5.11}Example}{55}{section.5.11}
+\contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{57}{chapter.6}
+\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{60}{chapter.7}
+\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{61}{appendix.A}
+\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{73}{appendix.B}
+\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{75}{appendix.C}
+\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{96}{appendix.D}
+\contentsline {chapter}{References}{111}{appendix*.21}
