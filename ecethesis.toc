@@ -45,42 +45,46 @@
 \contentsline {subsubsection}{K Code}{29}{section*.8}
 \contentsline {chapter}{Chapter\ 5\hskip 1em\relax Inferencing}{32}{chapter.5}
 \contentsline {section}{\numberline {5.1}Type theory}{32}{section.5.1}
-\contentsline {section}{\numberline {5.2}Data Structures}{33}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Transform T into Beta}{33}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Construct Beta}{34}{subsection.5.2.2}
-\contentsline {subsubsection}{Example}{34}{section*.9}
-\contentsline {subsubsection}{K Code}{34}{section*.10}
-\contentsline {subsection}{\numberline {5.2.3}Construct Delta}{36}{subsection.5.2.3}
-\contentsline {subsubsection}{Example}{36}{section*.11}
-\contentsline {section}{\numberline {5.3}Definition of Substitution}{37}{section.5.3}
-\contentsline {section}{\numberline {5.4}Inference Algorithm}{37}{section.5.4}
-\contentsline {subsection}{\numberline {5.4.1}Variable Rule}{39}{subsection.5.4.1}
-\contentsline {subsection}{\numberline {5.4.2}Constant Rule}{40}{subsection.5.4.2}
-\contentsline {subsection}{\numberline {5.4.3}Lambda Rule}{40}{subsection.5.4.3}
-\contentsline {subsection}{\numberline {5.4.4}Application Rule}{42}{subsection.5.4.4}
-\contentsline {subsection}{\numberline {5.4.5}IfThenElse Rule}{43}{subsection.5.4.5}
-\contentsline {section}{\numberline {5.5}Mutual Recursion}{44}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}LetIn Rule}{44}{subsection.5.5.1}
-\contentsline {subsubsection}{Module}{45}{section*.12}
-\contentsline {subsubsection}{K Code}{45}{section*.13}
-\contentsline {section}{\numberline {5.6}Helper Functions}{47}{section.5.6}
-\contentsline {section}{\numberline {5.7}Fresh Instance}{48}{section.5.7}
-\contentsline {section}{\numberline {5.8}GEN}{49}{section.5.8}
-\contentsline {section}{\numberline {5.9}Unification Algorithm}{51}{section.5.9}
-\contentsline {subsection}{\numberline {5.9.1}Identity}{51}{subsection.5.9.1}
-\contentsline {subsection}{\numberline {5.9.2}Non-Identity}{51}{subsection.5.9.2}
-\contentsline {subsubsection}{Delete}{51}{section*.14}
-\contentsline {subsubsection}{Decompose}{51}{section*.15}
-\contentsline {subsubsection}{Orient}{51}{section*.16}
-\contentsline {subsubsection}{Eliminate}{52}{section*.17}
-\contentsline {subsection}{\numberline {5.9.3}K Code}{52}{subsection.5.9.3}
-\contentsline {section}{\numberline {5.10}Composition of Substitutions}{53}{section.5.10}
-\contentsline {section}{\numberline {5.11}Example}{54}{section.5.11}
-\contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{57}{chapter.6}
-\contentsline {section}{\numberline {6.1}Algorithm}{57}{section.6.1}
-\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{59}{chapter.7}
-\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{60}{appendix.A}
-\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{72}{appendix.B}
-\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{74}{appendix.C}
-\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{95}{appendix.D}
-\contentsline {chapter}{References}{110}{appendix*.18}
+\contentsline {subsection}{\numberline {5.1.1}Simply Typed Lambda Calculus}{33}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}System F}{33}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}Hindley-Milner}{33}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}Meta Language}{33}{subsection.5.1.4}
+\contentsline {section}{\numberline {5.2}Data Structures}{34}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Transform T into Beta}{34}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Construct Beta}{35}{subsection.5.2.2}
+\contentsline {subsubsection}{Example}{35}{section*.9}
+\contentsline {subsubsection}{K Code}{35}{section*.10}
+\contentsline {subsection}{\numberline {5.2.3}Construct Delta}{37}{subsection.5.2.3}
+\contentsline {subsubsection}{Example}{37}{section*.11}
+\contentsline {section}{\numberline {5.3}Definition of Substitution}{38}{section.5.3}
+\contentsline {section}{\numberline {5.4}Inference Algorithm}{38}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Variable Rule}{40}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Constant Rule}{41}{subsection.5.4.2}
+\contentsline {subsection}{\numberline {5.4.3}Lambda Rule}{41}{subsection.5.4.3}
+\contentsline {subsection}{\numberline {5.4.4}Application Rule}{43}{subsection.5.4.4}
+\contentsline {subsection}{\numberline {5.4.5}IfThenElse Rule}{44}{subsection.5.4.5}
+\contentsline {section}{\numberline {5.5}Mutual Recursion}{45}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}LetIn Rule}{45}{subsection.5.5.1}
+\contentsline {subsubsection}{Module}{46}{section*.12}
+\contentsline {subsubsection}{K Code}{46}{section*.13}
+\contentsline {section}{\numberline {5.6}Helper Functions}{48}{section.5.6}
+\contentsline {section}{\numberline {5.7}Fresh Instance}{49}{section.5.7}
+\contentsline {section}{\numberline {5.8}GEN}{50}{section.5.8}
+\contentsline {section}{\numberline {5.9}Unification Algorithm}{52}{section.5.9}
+\contentsline {subsection}{\numberline {5.9.1}Identity}{52}{subsection.5.9.1}
+\contentsline {subsection}{\numberline {5.9.2}Non-Identity}{52}{subsection.5.9.2}
+\contentsline {subsubsection}{Delete}{52}{section*.14}
+\contentsline {subsubsection}{Decompose}{52}{section*.15}
+\contentsline {subsubsection}{Orient}{52}{section*.16}
+\contentsline {subsubsection}{Eliminate}{53}{section*.17}
+\contentsline {subsection}{\numberline {5.9.3}K Code}{53}{subsection.5.9.3}
+\contentsline {section}{\numberline {5.10}Composition of Substitutions}{54}{section.5.10}
+\contentsline {section}{\numberline {5.11}Example}{55}{section.5.11}
+\contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{58}{chapter.6}
+\contentsline {section}{\numberline {6.1}Algorithm}{58}{section.6.1}
+\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{60}{chapter.7}
+\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{61}{appendix.A}
+\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{73}{appendix.B}
+\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{75}{appendix.C}
+\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{96}{appendix.D}
+\contentsline {chapter}{References}{111}{appendix*.18}

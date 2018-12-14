@@ -22,46 +22,31 @@
 \providecommand{\BIBdecl}{\relax}
 \BIBdecl
 
+\bibitem{rosu-serbanuta-2010-jlap}
+G.~Ro{\c s}u and T.~F. {\c S}erb{\u a}nu{\c t}{\u a}, ``An overview of the {K}
+  semantic framework,'' \emph{Journal of Logic and Algebraic Programming},
+  vol.~79, no.~6, pp. 397--434, 2010.
+
+\bibitem{KFrame}
+\BIBentryALTinterwordspacing
+``K-framework.'' [Online]. Available: \url{http://www.kframework.org/}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Report:Report}
 \BIBentryALTinterwordspacing
 S.~Marlow, ``Haskell 2010 report,'' 2010. [Online]. Available:
   \url{https://www.haskell.org/onlinereport/haskell2010/}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Report:105}
+\bibitem{GHC}
 \BIBentryALTinterwordspacing
-S.~Marlow, ``Haskell 2010 report,'' 2010. [Online]. Available:
-  \url{https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-18000010.5}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Report:27}
-\BIBentryALTinterwordspacing
-S.~Marlow, ``Haskell 2010 report,'' 2010. [Online]. Available:
-  \url{https://www.haskell.org/onlinereport/haskell2010/haskellch2.html#x7-210002.7}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Report:103}
-\BIBentryALTinterwordspacing
-S.~Marlow, ``Haskell 2010 report,'' 2010. [Online]. Available:
-  \url{https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17800010.3}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Report:101}
-\BIBentryALTinterwordspacing
-S.~Marlow, ``Haskell 2010 report,'' 2010. [Online]. Available:
-  \url{https://www.haskell.org/onlinereport/haskell2010/haskellch10.html#x17-17600010.1}
+``Ghc website.'' [Online]. Available: \url{https://www.haskell.org/ghc/}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Foldoc:Type}
 \BIBentryALTinterwordspacing
 ``Free online dictionary of computing.'' [Online]. Available:
   \url{http://foldoc.org/type}
-\BIBentrySTDinterwordspacing
-
-\bibitem{Report:104}
-\BIBentryALTinterwordspacing
-S.~Marlow, ``Haskell 2010 report,'' 2010. [Online]. Available:
-  \url{https://www.haskell.org/onlinereport/haskell2010/haskellch4.html#x10-620004}
 \BIBentrySTDinterwordspacing
 
 \bibitem{Stack:Depre}
@@ -72,6 +57,16 @@ S.~Marlow, ``Haskell 2010 report,'' 2010. [Online]. Available:
 
 \bibitem{Type:Type}
 B.~Pierce, \emph{Types and Programming Languages}, 2002.
+
+\bibitem{TypeSystem:Hindley}
+R.~Hindley, ``The principal type scheme of an object in combinatory logic,''
+  \emph{Transactions of the American Mathematical Society}, vol. 146, pp.
+  29--60, Dec. 1969.
+
+\bibitem{TypeSystem:Milner}
+L.~Damas and R.~Milner, ``Principal type-schemes for functional programs,'' in
+  \emph{In Conference Record of the 9th Annual ACM Symposium on Principles of
+  Programming Languages}, New York, 1982, pp. 207--212.
 
 \bibitem{Stanford:TypeTheory}
 \BIBentryALTinterwordspacing
@@ -91,10 +86,7 @@ N.~Drakos and R.~Moore, 2001. [Online]. Available:
   \url{https://courses.engr.illinois.edu/cs421/fa2018/CS421A/lectures/15-16-poly-type-infer-unif.pdf}
 \BIBentrySTDinterwordspacing
 
-\bibitem{Infer:Compose}
-\BIBentryALTinterwordspacing
-N.~Drakos and R.~Moore, 2001. [Online]. Available:
-  \url{http://www.mathcs.duq.edu/simon/Fall04/notes-7-4/node4.html}
-\BIBentrySTDinterwordspacing
+\bibitem{Milner90thedefinition}
+R.~Milner and M.~Tofte, \emph{The Definition of Standard ML}, 1990.
 
 \end{thebibliography}

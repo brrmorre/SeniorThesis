@@ -3,7 +3,7 @@ Once context sensitive checks are made, the module can now be type inferred. Typ
 
 A type system is a set of rules that assign a property to various constructs in a programming language called type. A type is a property that allows the programmer to add constraints to programs. \cite{Type:Type}
 
-The Haskell 2010 report says that Haskell's type system is a Hindley-Milner polymorphic type system that has been extended with type classes to account for overloaded functions. The semantics in this paper makes precise what this means with regards to Haskell's specific syntax.
+The Haskell 2010 report says that Haskell's type system is a Hindley-Milner polymorphic type system \cite{TypeSystem:Hindley, TypeSystem:Milner} that has been extended with type classes to account for overloaded functions. The semantics in this paper makes precise what this means with regards to Haskell's specific syntax.
 
 The type inference function infers the type of the expression that is fed into it. A purpose of it is to ensure that all functions and function applications are allowed with regards to the types of the inputs and outputs.
 
@@ -11,6 +11,24 @@ The type inference function infers the type of the expression that is fed into i
 Type theory was created by Bertrand Russell to prevent Russell's Paradox for set theory, introduced by Georg Cantor. The issue was that not specifying a certain property for sets allowed sets to contain themselves in Naive Set Theory. So Bertrand Russell prevented this problem by specifying a property called type for objects, and objects cannot contain their own type. \cite{Stanford:TypeTheory}
 
 Type theory turns out to be useful for solving a number of problems that arise in computer science.
+
+\subsection{Simply Typed Lambda Calculus}
+The Lambda Calculus was created by Alonzo Church as part of his research in foundations of mathematics. However, the Lambda Calculus was logically inconsistent, similar to set theory, shown by the Kleene-Rosser paradox.
+In order to prevent the Kleene-Rosser paradox for the Lambda Calculus, Church introduced the concept of types into the Lambda Calculus. This is the Simply Typed Lambda Calculus.
+
+Later, it was shown that there is a correspondence between programming languages and the Lambda Calculus, which makes the Lambda Calculus a potential abstraction for programming languages.
+
+Later still, it was shown that there is a correspondence between proof calculi and type systems, which links mathematics between formal logic and programs. This is the Curry-Howard correspondence.
+
+\subsection{System F}
+System F introduced the concept of polymorphic types into the Lambda Calculus. It accomplishes this by using universal quantifiers over the types in System F.
+
+\subsection{Hindley-Milner}
+The concept of type systems grew out of further complications to the types used in the Lambda Calculus.
+The Hindley-Milner type system adds the concept of type inference to the Lambda Calculus. Type inference used in Hindley-Milner can acquire the most general type of a program without the user giving any type annotations.
+
+\subsection{Meta Language}
+The theoretical research in type theory and programming language semantics eventually lead to the Meta Language, also known as ML. It utilizes the Hindley-Milner type system. It also features a complete formal specification.
 
 \section{Data Structures}
 
@@ -170,7 +188,7 @@ A substitution is a set of variables and their replacements. Applying a substitu
 
 \section{Inference Algorithm}
 The inference function acquires the most general data type for the expression that is fed into it. It inducts down into an expression to the most primitive parts of the expression, and then collects information about each of the primitive parts and how they combine together. Then it passes the information back up the layers and slowly acquires all the information about the most general type of the expression. 
-Much of the inference algorithm is the same as the one introduced in CS 421. \cite{CS421:Unif}
+Much of the inference algorithm is the same as the one introduced in CS 421. This is also used in the definition of Standard ML. \cite{CS421:Unif, Milner90thedefinition}
 
 \begin{lstlisting}
 requires "haskell-syntax.k"
@@ -364,7 +382,7 @@ $$
 $$
 y x = f x
 $$
-This set of functions is allowed to compile. When run, the function just simply runs forever. This is unlike the OCaml semantics, which does not allow for mutually recursive functions.
+This set of functions is allowed to compile. When run, the function just simply runs forever. This is unlike standard ML \cite{Milner90thedefinition}, which does not allow for mutually recursive functions.
 
 This is also the case for LetIn expressions. These expressions also allow for mutual recursion, where the inside of each declaration within the let expression can refer to other declarations within the let expression.
 
@@ -608,7 +626,7 @@ Note: $$\{\, x \mapsto a \, \} \, \circ \, \{ \, y \mapsto b\,\} =
 \{ \, y \mapsto (\,\{ \, x \mapsto a \, \} (b) \, \} \, \circ \, \{ \, x \mapsto a \, \}$$ if $y$ not
 in $a$
 
-[cs 421 class notes]
+\cite{CS421:Unif}
 
 \subsection{K Code}
 
@@ -658,7 +676,7 @@ The following is the K code.
 
 Composition of substitutions means that if the composition was applied to a type, it would first apply to the rightmost substitution and then afterwards apply to the substitution to the left of it, and so on.
 
-The following is a mathematical definition where $\theta$ and $\lambda$ are substitutions. \cite{Infer:Compose}
+The following is a mathematical definition where $\theta$ and $\lambda$ are substitutions. \cite{Infer:TypeSub}
 
 $$ \theta = [t_1 / x_1 , t_2 / x_2 , \cdots , t_n / x_n] $$
 

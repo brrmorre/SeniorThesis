@@ -4,13 +4,13 @@ Some difficulties with implementing a grammar into K is that the grammar origina
 
 The Haskell 2010 report \cite{Report:Report} is the current official specification of the Haskell language. 
 
-The grammar specified in section 10.5 of the Haskell 2010 report \cite{Report:105} is a specification of the expanded syntax of Haskell.
+The grammar specified in section 10.5 of the Haskell 2010 report \cite{Report:Report} is a specification of the expanded syntax of Haskell.
 
-As specified in section 2.7 \cite{Report:27}, the expanded syntax of Haskell specifies Haskell programs when written using semicolons and braces. However, these can be omitted in a real Haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3 \cite{Report:103}.
+As specified in section 2.7 \cite{Report:Report}, the expanded syntax of Haskell specifies Haskell programs when written using semicolons and braces. However, these can be omitted in a real Haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3 \cite{Report:Report}.
 
 The parser for this project does not implement these layout rules and instead only can parse the expanded, layout insensitive syntax of Haskell. It would require another script to convert a program written using the layout sensitive syntax into the expanded syntax in order to parse the program.
 
-Section 10.1 \cite{Report:101} specifies the notation used in the grammar.
+Section 10.1 \cite{Report:Report} specifies the notation used in the grammar.
 
 The notation of 10.1 are always in bold in the grammar. The notation is the same as standard syntax definition notation.
 So an example production in the document looks like

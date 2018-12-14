@@ -1,5 +1,5 @@
 \chapter{Context Sensitive Checks}
-The standard Haskell Compiler is called the Glascow Haskell Compiler. It is otherwise known as GHC. By testing GHC, it is apparent that the compiler will check and reject programs that are syntactically valid, but have additional issues that make the programs invalid. This means that GHC does in fact make additional context sensitive checks that are not part of the context free grammar. In the semantics in this paper, there are also context sensitive checks that are made prior to type inference to reject programs that GHC rejects.
+The standard Haskell Compiler is called the Glascow Haskell Compiler \cite{GHC}. It is otherwise known as GHC. By testing GHC, it is apparent that the compiler will check and reject programs that are syntactically valid, but have additional issues that make the programs invalid. This means that GHC does in fact make additional context sensitive checks that are not part of the context free grammar. In the semantics in this paper, there are also context sensitive checks that are made prior to type inference to reject programs that GHC rejects.
 
 \section{Data Types}
 Within the context of a computer program, a data type is a property of data that tells the compiler or interpreter more about how the data is supposed to be used within the context of the program. This is useful for having the compiler find bugs that occur from the programmer misusing data. \cite{Foldoc:Type}
@@ -14,7 +14,7 @@ A monomorphic data type is a data type that does not do this.
 
 In order to perform context sensitive checks to make sure that the user did not have errors when creating types, the types are placed into data structures that make context sensitive checks easy to perform.
 
-Section 4 of the Haskell 2010 report \cite{Report:104} specifies the haskell type system.
+Section 4 of the Haskell 2010 report \cite{Report:Report} specifies the Haskell type system.
 
 In the \texttt{TopDecl} sort, there are three type constructors that are used to create user defined data types. These are \texttt{data}, \texttt{type}, and \texttt{newtype}.
 
