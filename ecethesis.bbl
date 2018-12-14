@@ -74,6 +74,17 @@ L.~Damas and R.~Milner, ``Principal type-schemes for functional programs,'' in
   \url{https://plato.stanford.edu/entries/type-theory/}
 \BIBentrySTDinterwordspacing
 
+\bibitem{TypeSystem:Simple}
+A.~Church, ``A formulation of the simple theory of types,'' \emph{The Journal
+  of Symbolic Logic}, vol.~5, pp. 56--68, June 1940.
+
+\bibitem{Reynolds2018}
+\BIBentryALTinterwordspacing
+J.~C. Reynolds, ``{Towards a Theory of Type Structure},'' 6 2018. [Online].
+  Available:
+  \url{https://figshare.com/articles/Towards_a_Theory_of_Type_Structure/6611015}
+\BIBentrySTDinterwordspacing
+
 \bibitem{Infer:TypeSub}
 \BIBentryALTinterwordspacing
 N.~Drakos and R.~Moore, 2001. [Online]. Available:
