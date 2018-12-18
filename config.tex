@@ -1,7 +1,7 @@
 \chapter{Configuration}
-K is a framework that is used to define formal specifications of programming languages. The K framework is designed to easily correspond to a finite automaton. In a different programming language, it is much harder to represent the program as a formal model because it would require modeling many different parts of the machine. K on the other hand can directly compile to Isabelle proofs and be verified. The rules in K, are already mathematically precise due to being written in K.
+K is a framework that is used to define formal specifications of programming languages. The K framework is designed to easily correspond to a finite automaton. In a different programming language, it is much harder to represent the program as a formal model because it would require modeling many different parts of the machine. K, on the other hand, can directly compile to Isabelle proofs and be verified. The rules in K are already mathematically precise due to being written in K.
 
-However, code written in K is also executable. It can run example programs using the formal semantics written in it. This means that the K code can run test sets for validation. K code can be considered validated if it passes all the standard test suites provided for a compiler or an interpreter for example.
+However, code written in K is also executable. It can run example programs using the formal semantics written in it. This means that the K code can run test sets for validation. K code can be considered validated if it passes all the standard test suites provided for a compiler or an interpreter, for example.
 
 A configuration of an automaton is the definition of the specific structure that contains all code and memory that the automaton contains and operates on.
 
@@ -13,6 +13,7 @@ K rules can be used to edit the program code as well as edit the other cells tha
 
 In the description below I give incrementally the various components that make up the configuration used in the Haskell static semantics given in this paper, along with a brief description of what they name and examples of what they hold and how they are used.
 
+\noindent
 The cells are defined using XML syntax.
 
 \begin{lstlisting}
@@ -31,29 +32,35 @@ module HASKELL-CONFIGURATION
             <tempCode> .K </tempCode>
 \end{lstlisting}
 
+\noindent
 The \texttt{$<k>$} cell is the cell that computation takes place in.
 The abstract syntax tree is initially placed into the \texttt{$<k>$} cell.
 
+\noindent
 The command
 
 \begin{lstlisting}
 $PGM:ModuleList
 \end{lstlisting}
 
+\noindent
 means that the parsed tree appears in this cell and the sort that contains all other sorts is \texttt{ModuleList}.
 
+\noindent
 Putting \texttt{$.K$} means that the cell is initially empty.
 
+\noindent
 The name of the current module is \texttt{tempModule}. The current code is \texttt{tempCode}.
 
-The cell, \texttt{typeIterator}, is used for creating a fresh type variable for the inference algorithm. It has the current count of how many fresh type variables that were created.
+\noindent
+The cell \texttt{typeIterator} is used for creating a fresh type variable for the inference algorithm. It has the current count of how many fresh type variables were created.
 
 \begin{lstlisting}
             <typeIterator> 1 </typeIterator>
 \end{lstlisting}
 
 \section{Alpha}
-The data structure, \texttt{Alpha} is a map of type renamings. More is explained in Chapter 5.
+The data structure \texttt{Alpha} is a map of type renamings. More is explained in Chapter 5.
 
 So if a user declares
 
@@ -62,9 +69,10 @@ data MyBool = TTrue
 ;type MyBooltwo = MyBool
 \end{lstlisting}
 
-Then \texttt{MyBooltwo} is a renaming of \texttt{MyBool}. In \texttt{tempAlpha}, an \texttt{AObject} is made. An \texttt{AObject} is a \texttt{KItem} with two children. One can be thought of as a Key and the other is the Value for a map. So \texttt{MyBooltwo} is an alias for \texttt{MyBool} and \texttt{MyBooltwo $->$ MyBool} in the map. However, we want to check and reject programs that have the same name as an alias for multiple types, so the semantics doesn't initially use a K Map which has idempotence. However, once it makes this check, it then switches to using a K Map. This is what \texttt{tempAlphaMap} is.
+\noindent
+then \texttt{MyBooltwo} is a renaming of \texttt{MyBool}. In \texttt{tempAlpha}, an \texttt{AObject} is made. An \texttt{AObject} is a \texttt{KItem} with two children. One can be thought of as a Key and the other is the Value for a map. So \texttt{MyBooltwo} is an alias for \texttt{MyBool} and \texttt{MyBooltwo $->$ MyBool} in the map. However, we want to check and reject programs that have the same name as an alias for multiple types, so the semantics does not initially use a K Map which has idempotence. However, once it makes this check, it then switches to using a K Map. This is what \texttt{tempAlphaMap} is.
 
-.Map means that the cell starts with an empty map.
+\texttt{.Map} means that the cell starts with an empty map.
 
 \begin{lstlisting}
             <tempAlpha> .K </tempAlpha>
@@ -73,7 +81,7 @@ Then \texttt{MyBooltwo} is a renaming of \texttt{MyBool}. In \texttt{tempAlpha},
 
 \section{Beta}
 
-tempT contains all user defined data types. tempT is organized in such a way that makes context sensitive checks easy to perform. tempBeta contains all user defined data types organized so that type inference is easy to perform. More is explained in chapter 5.
+\texttt{tempT} contains all user-defined data types. \texttt{tempT} is organized in such a way that makes context-sensitive checks easy to perform. \texttt{tempBeta} contains all user-defined data types organized so that type inference is easy to perform. More is explained in Chapter 5.
 \begin{lstlisting}
             <tempBeta> .Map </tempBeta>
             <tempT> .K </tempT>
@@ -82,10 +90,11 @@ tempT contains all user defined data types. tempT is organized in such a way tha
 \subsection{Example}
 If the user makes the data type \texttt{CusBool} in module \texttt{Simp5}, and declares it with this example:
 \begin{lstlisting}
-data CusBool = True2 | False2
+	data CusBool = True2 | False2
 \end{lstlisting}
 
-then the corresponding \texttt{tempBeta} should look as below. Note how the monomorphic datatype just has an empty \texttt{forAll} and \texttt{TyVars}. For more on monomorphic and polymorphic types, please see Chapter 5.
+\noindent
+then the corresponding \texttt{tempBeta} should look as below. Note how the monomorphic datatype just has an empty \texttt{forAll} and \texttt{TyVars}. For more on monomorphic and polymorphic types, see Chapter 5.
 
 \begin{lstlisting}
     <tempBeta>
@@ -94,12 +103,13 @@ then the corresponding \texttt{tempBeta} should look as below. Note how the mono
     </tempBeta>
 \end{lstlisting}
 
-If the user makes the data type CusBool in module Simp5, and declares it with this example:
+If the user makes the data type \texttt{CusBool} in module \texttt{Simp5}, and declares it with the example
 \begin{lstlisting}
-data CusBool a b = True2 a | False2 b
+	data CusBool a b = True2 a | False2 b
 \end{lstlisting}
 
-Then the corresponding tempBeta should look like this.
+\noindent
+then the corresponding \texttt{tempBeta} should look like this:
 \begin{lstlisting}
     <tempBeta>
         ModPlusType ( Simp5 , False2 ) |-> forAll ( a b , funtype ( b , CusBool a b ) )
@@ -110,19 +120,20 @@ Then the corresponding tempBeta should look like this.
 
 \section{Delta}
 
-tempDelta contains the arity of the user defined data types. So if a user-defined data type takes in two parameters, tempDelta will contain a mapping from the module and the data type name to the number 2. Again, it is initially empty.
+\texttt{tempDelta} contains the arity of the user-defined data types. So if a user-defined data type takes in two parameters, \texttt{tempDelta} will contain a mapping from the module and the data type name to the number 2. Again, it is initially empty.
 
 \begin{lstlisting}
             <tempDelta> .Map </tempDelta>
 \end{lstlisting}
 
 \subsection{Example}
-If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
+If the user makes the data type \texttt{CusBool} in module \texttt{Simp5}, and declares it with the example
 \begin{lstlisting}
 data CusBool a b = True2 a | False2 b
 \end{lstlisting}
 
-Then the corresponding $tempDelta$ should look like this.
+\noindent
+then the corresponding \texttt{tempDelta} should look like this:
 
 \begin{lstlisting}
 <tempDelta>
@@ -132,7 +143,7 @@ Then the corresponding $tempDelta$ should look like this.
 
 \section{Import Data Structure}
 
-importTree, recurImportTree, and impTreeVMap contain the data necessary for the directed acyclic graph representing imports.
+\texttt{importTree}, \texttt{recurImportTree}, and \texttt{impTreeVMap} contain the data necessary for the directed acyclic graph representing imports.
 
 \begin{lstlisting}
             <importTree> .List </importTree>

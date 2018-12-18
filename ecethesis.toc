@@ -30,19 +30,19 @@
 \contentsline {subsection}{\numberline {4.2.4}Context}{19}{subsection.4.2.4}
 \contentsline {section}{\numberline {4.3}Initial Data Structures}{19}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Example T}{20}{subsection.4.3.1}
-\contentsline {subsection}{\numberline {4.3.2}K Code}{20}{subsection.4.3.2}
+\contentsline {subsection}{\numberline {4.3.2}K Code}{21}{subsection.4.3.2}
 \contentsline {section}{\numberline {4.4}Context Sensitive Checks}{23}{section.4.4}
 \contentsline {subsubsection}{K Code}{23}{section*.3}
 \contentsline {subsection}{\numberline {4.4.1}Name Collision}{24}{subsection.4.4.1}
-\contentsline {subsubsection}{K Code}{24}{section*.4}
+\contentsline {subsubsection}{K Code}{25}{section*.4}
 \contentsline {subsection}{\numberline {4.4.2}Type Constructor Collision}{25}{subsection.4.4.2}
-\contentsline {subsubsection}{K Code}{25}{section*.5}
+\contentsline {subsubsection}{K Code}{26}{section*.5}
 \contentsline {subsection}{\numberline {4.4.3}Alpha Cycle Check}{26}{subsection.4.4.3}
 \contentsline {subsubsection}{K Code}{27}{section*.6}
 \contentsline {subsection}{\numberline {4.4.4}Argument Sort Check}{28}{subsection.4.4.4}
 \contentsline {subsubsection}{K Code}{28}{section*.7}
 \contentsline {subsection}{\numberline {4.4.5}Polymorphic Parameter Check}{29}{subsection.4.4.5}
-\contentsline {subsubsection}{K Code}{29}{section*.8}
+\contentsline {subsubsection}{K Code}{30}{section*.8}
 \contentsline {chapter}{Chapter\ 5\hskip 1em\relax Inferencing}{32}{chapter.5}
 \contentsline {section}{\numberline {5.1}Type theory}{32}{section.5.1}
 \contentsline {subsection}{\numberline {5.1.1}Simply Typed Lambda Calculus}{33}{subsection.5.1.1}
@@ -68,18 +68,18 @@
 \contentsline {subsubsection}{Module}{46}{section*.12}
 \contentsline {subsubsection}{K Code}{46}{section*.13}
 \contentsline {section}{\numberline {5.6}Helper Functions}{48}{section.5.6}
-\contentsline {section}{\numberline {5.7}Fresh Instance}{49}{section.5.7}
+\contentsline {section}{\numberline {5.7}Fresh Instance}{50}{section.5.7}
 \contentsline {section}{\numberline {5.8}GEN}{50}{section.5.8}
 \contentsline {section}{\numberline {5.9}Unification Algorithm}{52}{section.5.9}
 \contentsline {subsection}{\numberline {5.9.1}Identity}{52}{subsection.5.9.1}
 \contentsline {subsection}{\numberline {5.9.2}Non-Identity}{52}{subsection.5.9.2}
 \contentsline {subsubsection}{Delete}{52}{section*.14}
 \contentsline {subsubsection}{Decompose}{52}{section*.15}
-\contentsline {subsubsection}{Orient}{52}{section*.16}
+\contentsline {subsubsection}{Orient}{53}{section*.16}
 \contentsline {subsubsection}{Eliminate}{53}{section*.17}
 \contentsline {subsection}{\numberline {5.9.3}K Code}{53}{subsection.5.9.3}
-\contentsline {section}{\numberline {5.10}Composition of Substitutions}{54}{section.5.10}
-\contentsline {section}{\numberline {5.11}Example}{55}{section.5.11}
+\contentsline {section}{\numberline {5.10}Composition of Substitutions}{55}{section.5.10}
+\contentsline {section}{\numberline {5.11}Example}{56}{section.5.11}
 \contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{58}{chapter.6}
 \contentsline {section}{\numberline {6.1}Algorithm}{58}{section.6.1}
 \contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{60}{chapter.7}

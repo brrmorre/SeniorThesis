@@ -119,8 +119,8 @@ We start with modules.
 The sort that contains all the other sorts is a module. A module represents one complete Haskell program. It can have either a name and a body, a name and a body with exports, or just a body.
 
 \subsection{ImpDecls}
-An ImpDecl is an import declaration. An import is another module that this module depends on.
-The definition of ImpDecl is the following:
+An \texttt{ImpDecl} is an import declaration. An import is another module that this module depends on.
+The definition of \texttt{ImpDecl} is the following:
 \begin{lstlisting}
     syntax ImpDecls ::= List{ImpDecl, ";"} [klabel('impDecls)]
     syntax ImpDecl ::= "import" OptQualified ModId OptAsModId OptImpSpec [klabel('impDecl)]
@@ -144,7 +144,7 @@ The definition of ImpDecl is the following:
 \end{lstlisting}
 
 \noindent
-The following example program has a Module with a name and a body of only ImpDecls. It has one ImpDecl.
+The following example program has a Module with a name and a body of only \texttt{ImpDecls}. It has one \texttt{ImpDecl}.
 
 \begin{lstlisting}
 	module Foo where
@@ -153,7 +153,7 @@ The following example program has a Module with a name and a body of only ImpDec
 \end{lstlisting}
 
 \noindent
-The following example program has a Module with no name and and a body of only ImpDecls. It has one ImpDecl.
+The following example program has a Module with no name and and a body of only \texttt{ImpDecls}. It has one \texttt{ImpDecl}.
 
 \begin{lstlisting}
 	import Bar
@@ -195,15 +195,15 @@ Any sort that starts with \texttt{Opt} means that this is optional. In K somethi
 
 \subsection{Decls}
 
-A Decl is any general declaration. So something like
+A \texttt{Decl} is any general declaration. So something like
 
 \begin{lstlisting}
 f x = x + 2
 \end{lstlisting}
 
-is a Decl.
+is a \texttt{Decl}.
 
-The following is the definition of Decl and related sorts.
+The following is the definition of \texttt{Decl} and related sorts.
 
 \begin{lstlisting}
     syntax OptDecls ::= "where" Decls | "" [onlyLabel, klabel('emptyOptDecls)]
@@ -215,7 +215,7 @@ The following is the definition of Decl and related sorts.
                   | Pat Rhs [klabel('declPatRhs)]
 \end{lstlisting}
 
-This section introduces the sorts whose parent is Decl. This contains general declarations, function left-hand side and right-hand side, function guards, and expressions.
+This section introduces the sorts whose parent is \texttt{Decl}. This contains general declarations, function left-hand side and right-hand side, function guards, and expressions.
 
 \begin{lstlisting}
     syntax GenDecl ::= VarsType
@@ -265,9 +265,9 @@ The different \texttt{LExp} types are a lambda expression, a \texttt{let-in} exp
 \end{lstlisting}
 
 \subsection{AExp}
-AExp is also an import sort for the type inference function. The main parts of AExp that the inference function cares about are QVar and GCon.
+\texttt{AExp} is also an import sort for the type inference function. The main parts of \texttt{AExp} that the inference function cares about are \texttt{QVar} and \texttt{GCon}.
 
-QVar is a qualified variable and GCon is a general constructor.
+\texttt{QVar} is a qualified variable and \texttt{GCon} is a general constructor.
 
 \begin{lstlisting}
 
