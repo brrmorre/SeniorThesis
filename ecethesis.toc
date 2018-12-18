@@ -20,7 +20,7 @@
 \contentsline {subsection}{\numberline {3.3.1}Example}{15}{subsection.3.3.1}
 \contentsline {section}{\numberline {3.4}Import Data Structure}{16}{section.3.4}
 \contentsline {section}{\numberline {3.5}Modules}{16}{section.3.5}
-\contentsline {chapter}{Chapter\ 4\hskip 1em\relax Context Sensitive Checks}{17}{chapter.4}
+\contentsline {chapter}{Chapter\ 4\hskip 1em\relax Context-Sensitive Checks}{17}{chapter.4}
 \contentsline {section}{\numberline {4.1}Data Types}{17}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Polymorphim}{17}{subsection.4.1.1}
 \contentsline {section}{\numberline {4.2}Datatype Constructors}{18}{section.4.2}
@@ -31,7 +31,7 @@
 \contentsline {section}{\numberline {4.3}Initial Data Structures}{19}{section.4.3}
 \contentsline {subsection}{\numberline {4.3.1}Example T}{20}{subsection.4.3.1}
 \contentsline {subsection}{\numberline {4.3.2}K Code}{21}{subsection.4.3.2}
-\contentsline {section}{\numberline {4.4}Context Sensitive Checks}{23}{section.4.4}
+\contentsline {section}{\numberline {4.4}context-sensitive Checks}{23}{section.4.4}
 \contentsline {subsubsection}{K Code}{23}{section*.3}
 \contentsline {subsection}{\numberline {4.4.1}Name Collision}{24}{subsection.4.4.1}
 \contentsline {subsubsection}{K Code}{25}{section*.4}
@@ -64,7 +64,7 @@
 \contentsline {subsection}{\numberline {5.4.4}Application Rule}{43}{subsection.5.4.4}
 \contentsline {subsection}{\numberline {5.4.5}IfThenElse Rule}{44}{subsection.5.4.5}
 \contentsline {section}{\numberline {5.5}Mutual Recursion}{45}{section.5.5}
-\contentsline {subsection}{\numberline {5.5.1}LetIn Rule}{45}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.1}LetIn Rule}{46}{subsection.5.5.1}
 \contentsline {subsubsection}{Module}{46}{section*.12}
 \contentsline {subsubsection}{K Code}{46}{section*.13}
 \contentsline {section}{\numberline {5.6}Helper Functions}{48}{section.5.6}
@@ -74,7 +74,7 @@
 \contentsline {subsection}{\numberline {5.9.1}Identity}{52}{subsection.5.9.1}
 \contentsline {subsection}{\numberline {5.9.2}Non-Identity}{52}{subsection.5.9.2}
 \contentsline {subsubsection}{Delete}{52}{section*.14}
-\contentsline {subsubsection}{Decompose}{52}{section*.15}
+\contentsline {subsubsection}{Decompose}{53}{section*.15}
 \contentsline {subsubsection}{Orient}{53}{section*.16}
 \contentsline {subsubsection}{Eliminate}{53}{section*.17}
 \contentsline {subsection}{\numberline {5.9.3}K Code}{53}{subsection.5.9.3}

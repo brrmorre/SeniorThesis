@@ -17,7 +17,7 @@ So an example production in the document looks like
 This means that 
 
 \begin{lstlisting}
-	modid .
+modid .
 \end{lstlisting}
 
 \noindent
@@ -28,7 +28,7 @@ is optional, and the brackets are not terminals, but the period is a terminal. A
 In K, semantic rules are called K rules. The tag
 
 \begin{lstlisting}
-	[klabel('exampleLabel)]
+[klabel('exampleLabel)]
 \end{lstlisting}
 
 \noindent
@@ -38,7 +38,7 @@ means that in the abstract syntax tree created by K, a term can be referred to u
 The tag
 
 \begin{lstlisting}
-	[strict]
+[strict]
 \end{lstlisting}
 
 \noindent
@@ -56,7 +56,7 @@ So the example production
 is written in the K syntax as split into two options.
 
 \begin{lstlisting}
-	syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
+syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
 \end{lstlisting}
 
 However, an issue arises when you have something written on the right-hand side of the production like
@@ -75,14 +75,14 @@ For instance, an optional sort in the original grammar could look like:
 The corresponding production in the K syntax instead includes the sort called \texttt{OptContext}, where OptContext is defined as
 
 \begin{lstlisting}
-	syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
+syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
 \end{lstlisting}
 
 \noindent
 and so the right hand side of the previous production would now look like
 
 \begin{lstlisting}
-	"data" OptContext SimpleType OptConstrs OptDeriving  [klabel('data)]
+"data" OptContext SimpleType OptConstrs OptDeriving  [klabel('data)]
 \end{lstlisting}
 
 This is acceptable because Haskell is not an order sorted algebra, so introducing new sorts that are not originally in the grammar is allowed.
@@ -147,24 +147,24 @@ The definition of \texttt{ImpDecl} is the following:
 The following example program has a Module with a name and a body of only \texttt{ImpDecls}. It has one \texttt{ImpDecl}.
 
 \begin{lstlisting}
-	module Foo where
-	{import Bar
-	}
+module Foo where
+{import Bar
+}
 \end{lstlisting}
 
 \noindent
 The following example program has a Module with no name and and a body of only \texttt{ImpDecls}. It has one \texttt{ImpDecl}.
 
 \begin{lstlisting}
-	import Bar
+import Bar
 \end{lstlisting}
 
 \noindent
 Another example program is
 \begin{lstlisting}
-	module Simp1 where
-	{import Test
-	}
+module Simp1 where
+{import Test
+}
 \end{lstlisting}
 
 \noindent

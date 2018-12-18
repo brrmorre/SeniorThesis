@@ -1,10 +1,9 @@
-\chapter{Context Sensitive Checks}
-The standard Haskell Compiler is called the Glascow Haskell Compiler \cite{GHC}. It is otherwise known as GHC. By testing GHC, it is apparent that the compiler will check and reject programs that are syntactically valid, but have additional issues that make the programs invalid. This means that GHC does in fact make additional context sensitive checks that are not part of the context free grammar. In the semantics in this paper, there are also context sensitive checks that are made prior to type inference to reject programs that GHC rejects.
+\chapter{Context-Sensitive Checks}
+The standard Haskell Compiler is called the Glasgow Haskell Compiler \cite{GHC}. It is otherwise known as GHC. By testing GHC, it is apparent that the compiler will check and reject programs that are syntactically valid, but have additional issues that make the programs invalid. This means that GHC does in fact make additional context-sensitive checks that are not part of the context free grammar. In the semantics in this paper, there are also context-sensitive checks that are made prior to type inference to reject programs that GHC rejects.
 
 \section{Data Types}
-Within the context of a computer program, a data type is a property of data that tells the compiler or interpreter more about how the data is supposed to be used within the context of the program. This is useful for having the compiler find bugs that occur from the programmer misusing data. \cite{Foldoc:Type}
-
-In Haskell, a user can create a custom data type. This is referred to as a user defined type. Then when the user creates functions or any other expression, they can operate on their own data type.
+Within the context of a computer program, a data type is a property of data that tells the compiler or interpreter more about how the data is supposed to be used within the context of the program. This is useful for having the compiler find bugs that occur from the programmer misusing data \cite{Foldoc:Type}.
+In Haskell, a user can create a custom data type. This is referred to as a user-defined type. Then when the user creates functions or any other expression, they can operate on their own data type.
 
 \subsection{Polymorphim}
 A polymorphic data type is a data type that can generalize over other data types.
@@ -12,11 +11,11 @@ A monomorphic data type is a data type that does not do this.
 
 \section{Datatype Constructors}
 
-In order to perform context sensitive checks to make sure that the user did not have errors when creating types, the types are placed into data structures that make context sensitive checks easy to perform.
+In order to perform context-sensitive checks to make sure that the user did not have errors when creating types, the types are placed into data structures that make context-sensitive checks easy to perform.
 
 Section 4 of the Haskell 2010 report \cite{Report:Report} specifies the Haskell type system.
 
-In the \texttt{TopDecl} sort, there are three type constructors that are used to create user defined data types. These are \texttt{data}, \texttt{type}, and \texttt{newtype}.
+In the \texttt{TopDecl} sort, there are three type constructors that are used to create user-defined data types. These are \texttt{data}, \texttt{type}, and \texttt{newtype}.
 
 \begin{lstlisting}
     syntax TopDecl ::= Decl [klabel('topdecldecl)]
@@ -25,10 +24,10 @@ In the \texttt{TopDecl} sort, there are three type constructors that are used to
                      | "newtype" OptContext SimpleType "=" NewConstr OptDeriving [klabel('newtype)]
 \end{lstlisting}
 
-These three type constructors are used to create user defined types.
+These three type constructors are used to create user-defined types.
 
 \subsection{Type}
-The first one is $type$,
+The first one is \texttt{type},
 	\begin{lstlisting}
 type simpletype = type 
 	\end{lstlisting}
@@ -39,7 +38,7 @@ type Username = String
 Is one such example usage of \texttt{type}, it creates a new type \texttt{Username}, which is defined as just a string. Now the programmer can refer to \texttt{Username} or \texttt{String} to make a string.
 
 \subsection{Data}
-The second one is $data$,
+The second one is \texttt{data},
 \begin{lstlisting}
 data [context =>] simpletype [= constrs] [deriving]
 \end{lstlisting}
@@ -49,14 +48,14 @@ For instance:
 \begin{lstlisting}
 data Date = Date Int Int Int
 \end{lstlisting}
-This is a new type that includes the type constructor $Date$ followed by three integers.
+This is a new type that includes the type constructor \texttt{Date} followed by three integers.
 \begin{lstlisting}
 data Poly a = Number a
 \end{lstlisting}
 This is a new polymorphic type with polymorphic parameter a, that has the type constructor $Number$.
 
 \subsection{Newtype}
-The third one is $newtype$,
+The third one is \texttt{newtype},
 \begin{lstlisting}
 newtype [context =>] simpletype = newconstr [deriving]
 \end{lstlisting}
@@ -67,14 +66,14 @@ Another thing to note is that the
 \begin{lstlisting}
 [context =>]
 \end{lstlisting}
-part of the syntax for the types is deprecated. \cite{Stack:Depre}
+part of the syntax for the types is deprecated \cite{Stack:Depre}.
 
 \section{Initial Data Structures}
 
 The semantics includes a map, called alpha, of new type names as the keys and their declared types as the entries. It collects all appearances of the type constructor \texttt{type} in the program, and puts \texttt{simpletype $\mapsto$ type} in the alpha map. However, one of the checks that is made, is whether a user declared multiple definitions with texttt{type}, but maps in K only allow for unique keys. So initially the semantics creates a set of tuples, and after checking for multiple type declarations, it then changes the alpha set to a map.
 
 
-The second data structure that the semantics creates is called T. T holds the user defined types created using \texttt{data} and \texttt{newtype}.
+The second data structure that the semantics creates is called T. T holds the user-defined types created using \texttt{data} and \texttt{newtype}.
 
 \begin{lstlisting}
 syntax KItem ::= TList(K) //list of T objects for every new type introduced by data and newtype
@@ -82,18 +81,19 @@ syntax KItem ::= TObject(K,K,K,K) //(module name, type name, entire list of poly
 syntax KItem ::= InnerTPiece(K,K,K,K,K) //(type constructor, poly type vars, argument sorts, entire constr block, type name)
 \end{lstlisting}
 
-The structure, \texttt{T}, is a list of TObjects. Each TObject represents a single user defined datatype. It holds the name, the list of polymorphic parameters, and a list of inner T pieces.
+The structure, \texttt{T}, is a list of TObjects. Each TObject represents a single user-defined datatype. It holds the name, the list of polymorphic parameters, and a list of inner T pieces.
 An inner T piece represents an option of what a type could be. It consists of a type constructor, a list of polymorphic parameters required for this option, the fields for this option, the entire subtree of the AST for this option unedited, and the type name again.
 The semantics then uses these data structures to perform these checks, and afterwards uses different data structures to perform type inference.
 
 \subsection{Example T}
 
-If the user makes the data type $CusBool$ in module $Simp5$, and declares it with this example...
+If the user makes the data type \texttt{CusBool} in module \texttt{Simp5}, and declares it with this example
 \begin{lstlisting}
 data CusBool = True2 | False2
 \end{lstlisting}
 
-Then the corresponding $tempT$ should look like this.
+\noindent
+then the corresponding \texttt{tempT} should look like this.
 \begin{lstlisting}
     <tempT>
         TList ( ListItem ( TObject ( Simp5 , CusBool , .TyVars , 
@@ -105,7 +105,7 @@ Then the corresponding $tempT$ should look like this.
 \end{lstlisting}
 
 \subsection{K Code}
-The following parses the tree and searches for the user defined types to place into the data structures.
+The following parses the tree and searches for the user-defined types to place into the data structures.
 
 \begin{lstlisting}
     //get alpha and beta
@@ -180,8 +180,8 @@ The following parses the tree and searches for the user defined types to place i
     rule getArgSorts(.OptBangATypes) => .List
 \end{lstlisting}
 
-\section{Context Sensitive Checks}
-For the context sensitive checks, the semantics performs several checks that are not inclusive to all context sensitive checks that need to be made in a complete Haskell semantics, but enough for some sanity of the type inference function.
+\section{context-sensitive Checks}
+For the context-sensitive checks, the semantics performs several checks that are not inclusive to all context-sensitive checks that need to be made in a complete Haskell semantics, but enough for some sanity of the type inference function.
 
 \subsubsection{K Code}
 The following code introduces all checks that need to be made.
@@ -218,7 +218,7 @@ The following code introduces all checks that need to be made.
 \end{lstlisting}
 
 \subsection{Name Collision}
-The programmer should not be able to make two user defined datatypes with the same name, even if one is created using the constructor $data$ and another is created using the constructor $type$ for instance.
+The programmer should not be able to make two user-defined datatypes with the same name, even if one is created using the constructor \texttt{data} and another is created using the constructor \texttt{type} for instance.
 
 The following example should not be allowed.
 \begin{lstlisting}
@@ -295,7 +295,7 @@ The following is the code for the check.
 \end{lstlisting}
 
 \subsection{Alpha Cycle Check}
-There should be no cycles in type renaming using $type$, and the type renaming chains using $type$ should terminate with a type defined with $data$ or $newtype$.
+There should be no cycles in type renaming using \texttt{type}, and the type renaming chains using \texttt{type} should terminate with a type defined with \texttt{data} or \texttt{newtype}.
 
 The following example should not be allowed.
 \begin{lstlisting}
@@ -338,9 +338,9 @@ The following is the code for the check.
 \end{lstlisting}
 
 \subsection{Argument Sort Check}
-The argument sorts for types defined using the $data$ keyword or the $newtype$ keyword should be types that exist.
+The argument sorts for types defined using the \texttt{data} keyword or the \texttt{newtype} keyword should be types that exist.
 
-The following example should not be allowed if $Date$ is not defined anywhere.
+The following example should not be allowed if \texttt{Date} is not defined anywhere.
 \begin{lstlisting}
 Data Birthday = Birthday Date
 \end{lstlisting}
@@ -373,14 +373,14 @@ The following is the code for the check.
 
 \subsection{Polymorphic Parameter Check}
 
-The polymorphic parameters that appear on the right hand side of a $data$ declaration need to appear on the left hand side as well.
+The polymorphic parameters that appear on the right-hand side of a \texttt{data} declaration need to appear on the left-hand side as well.
 
 The following example should not be allowed.
 \begin{lstlisting}
 Data Newtype = New a b
 \end{lstlisting}
 
-Also, The polymorphic parameters that appear on the left hand side of a $data$ declaration need to be unique. However, the parameters that appear on the right hand side do not need to be unique.
+Also, The polymorphic parameters that appear on the left-hand side of a \texttt{data} declaration need to be unique. However, the parameters that appear on the right-hand side do not need to be unique.
 
 The following example should not be allowed.
 \begin{lstlisting}
