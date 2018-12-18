@@ -1,28 +1,26 @@
 \chapter{Context Free Syntax}
-This chapter details the first part of the static semantics. In order for any context sensitive checks or type inference can be done, the test programs first need to be parsed into an abstract syntax tree. The context sensitive checks and type inference can then be performed upon the tree.
-Some difficulties with implementing a grammar into K is that the grammar originally is written in sort descending order in a document. The goal was to build a grammar that can parse actual programs and ensure there was no bugs. To do this, I started with small example programs, wrote out the example abstract syntax tree, and included the sorts necessary to parse them. Then if they didn't parse correctly I could then debug. I then wrote bigger and bigger example programs and included more and more sorts until all the grammar was included.
+This chapter details the first part of the static semantics. In order for any context-sensitive checks or type inference to be done, the test programs first need to be parsed into an abstract syntax tree. The context-sensitive checks and type inference can then be performed upon the tree.
+A difficulty with implementing a grammar into K is that the grammar originally is written in sort descending order in a document. The goal was to build a grammar that can parse actual programs and ensure there were no bugs. To do this, I started with small example programs, wrote out the example abstract syntax tree, and included the sorts necessary to parse them. Then if they did not parse correctly I could debug. I then wrote bigger and bigger example programs and included more and more sorts until all the grammar was included.
 
-The Haskell 2010 report \cite{Report:Report} is the current official specification of the Haskell language. 
+The Haskell 2010 report \cite{Report:Report} is the current official specification of the Haskell language. The grammar specified in section 10.5 of the Haskell 2010 report is a specification of the expanded syntax of Haskell. As specified in section 2.7, the expanded syntax of Haskell specifies Haskell programs when written using semicolons and braces. However, these can be omitted in a real Haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3.
 
-The grammar specified in section 10.5 of the Haskell 2010 report \cite{Report:Report} is a specification of the expanded syntax of Haskell.
-
-As specified in section 2.7 \cite{Report:Report}, the expanded syntax of Haskell specifies Haskell programs when written using semicolons and braces. However, these can be omitted in a real Haskell program. The compiler will then utilize layout rules for certain grammar structures instead. These are specified in section 10.3 \cite{Report:Report}.
-
-The parser for this project does not implement these layout rules and instead only can parse the expanded, layout insensitive syntax of Haskell. It would require another script to convert a program written using the layout sensitive syntax into the expanded syntax in order to parse the program.
+The parser for this project does not implement these layout rules and instead only can parse the expanded, layout-insensitive syntax of Haskell. It would require another script to convert a program written using the layout-sensitive syntax into the expanded syntax in order to parse the program.
 
 Section 10.1 \cite{Report:Report} specifies the notation used in the grammar.
 
-The notation of 10.1 are always in bold in the grammar. The notation is the same as standard syntax definition notation.
+The notations of 10.1 are always in bold in the grammar. The notation is the same as standard syntax definition notation.
 So an example production in the document looks like
 
 \texttt{qvarid -> \textbf{[} modid . \textbf{]} varid}
 
+\noindent
 This means that 
 
 \begin{lstlisting}
-modid .
+	modid .
 \end{lstlisting}
 
+\noindent
 is optional, and the brackets are not terminals, but the period is a terminal. Any symbol that is not in bold needs to be written in the program in order to parse correctly.
 
 \section{K Explanation}
@@ -30,38 +28,42 @@ is optional, and the brackets are not terminals, but the period is a terminal. A
 In K, semantic rules are called K rules. The tag
 
 \begin{lstlisting}
-[klabel('exampleLabel)]
+	[klabel('exampleLabel)]
 \end{lstlisting}
 
+\noindent
 means that in the abstract syntax tree created by K, a term can be referred to using that \texttt{klabel} in a K rule.
 
 \subsection{Strict}
 The tag
 
 \begin{lstlisting}
-[strict]
+	[strict]
 \end{lstlisting}
 
+\noindent
 means that K will add two additional heating and cooling rules. This means the child of the \texttt{KItem} will be placed in front of the \texttt{KItem} to be evaluated first until it is given the \texttt{KResult} label. Then it is placed back into the \texttt{KItem}.
 
 \section{Syntax Explanation}
-There are a lot of parts of the grammar that proposed many challenges to implement in K. For instance, a sort definition that includes an option could be just written using a pipe
+Many parts of the grammar posed challenges when implementing in K. For instance, a sort definition that includes an option could be just written using a pipe
 in the K syntax.
 
 So the example production
 
 \texttt{qvarid -> \textbf{[} modid . \textbf{]} varid}
 
+\noindent
 is written in the K syntax as split into two options.
 
 \begin{lstlisting}
-syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
+	syntax QVarId ::= VarId | ModId "." VarId [klabel('qVarIdCon)]
 \end{lstlisting}
 
-However, an issue arises when you have something written on the right hand side of the production like
+However, an issue arises when you have something written on the right-hand side of the production like
 
-\texttt{data \textbf{[} context => \textbf{]} simpletype \textbf{[} = constrs \textbf{]} \textbf{[} deriving \textbf{]}}
+\texttt{data \textbf{[} context => \textbf{]} simpletype \textbf{[} = constrs \textbf{]} \textbf{[}deriving\textbf{]}}
 
+\noindent
 for the \texttt{topdecl} sort. If each optional sort were split into two options, then a production that includes $n$ optional sorts would require $2^n$ options. This would create an unnecessarily large syntax in K. It also would quickly become hard to read or maintain.
 
 Instead of having many optional sorts in a production similar to the original grammar, the K syntax instead utilizes an entirely new sort which can optionally include just an empty string.
@@ -73,21 +75,22 @@ For instance, an optional sort in the original grammar could look like:
 The corresponding production in the K syntax instead includes the sort called \texttt{OptContext}, where OptContext is defined as
 
 \begin{lstlisting}
-syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
+	syntax OptContext ::= Context "=>" | "" [onlyLabel, klabel('emptyContext)]
 \end{lstlisting}
 
+\noindent
 and so the right hand side of the previous production would now look like
 
 \begin{lstlisting}
-"data" OptContext SimpleType OptConstrs OptDeriving  [klabel('data)]
+	"data" OptContext SimpleType OptConstrs OptDeriving  [klabel('data)]
 \end{lstlisting}
 
-This is acceptable because Haskell is not an order sorted algebra, so introducing new sorts that are not originally in the grammar is okay.
+This is acceptable because Haskell is not an order sorted algebra, so introducing new sorts that are not originally in the grammar is allowed.
 
 \section{Implementation of Section 10.2}
-The first section of the syntax introduces the syntax for the keywords, constants, special symbols, and variables that comprise the terminals for the remaining context free grammar as presented in section 10.2 of the 2010 Haskell report. The rest of section 10.2 is included in Appendix A.
+The first section of the syntax introduces the syntax for the keywords, constants, special symbols, and variables that comprise the terminals for the remaining context-free grammar as presented in section 10.2 of the 2010 Haskell report. The rest of section 10.2 is included in Appendix A.
 
-Variable IDs start with lowercase letter and Constructor IDs start with an uppercase letter.
+Variable IDs start with a lowercase letter and Constructor IDs start with an uppercase letter.
 
 \begin{lstlisting}
     syntax VarId ::= Token{[a-z\_][a-z A-Z\_0-9\']*} [onlyLabel] | "size" [onlyLabel]
@@ -97,7 +100,7 @@ Variable IDs start with lowercase letter and Constructor IDs start with an upper
 \end{lstlisting}
 
 \section{Implementation of Section 10.5}
-The following introduces the sorts of the context free grammar of the Haskell extended syntax. The rest of section 10.5 is included in Appendix A.
+The following introduces the sorts of the context-free grammar of the Haskell extended syntax. The rest of section 10.5 is included in Appendix A.
 
 \subsection{Modules}
 We start with modules.
@@ -117,7 +120,7 @@ The sort that contains all the other sorts is a module. A module represents one 
 
 \subsection{ImpDecls}
 An ImpDecl is an import declaration. An import is another module that this module depends on.
-The definition of ImpDecl is the following
+The definition of ImpDecl is the following:
 \begin{lstlisting}
     syntax ImpDecls ::= List{ImpDecl, ";"} [klabel('impDecls)]
     syntax ImpDecl ::= "import" OptQualified ModId OptAsModId OptImpSpec [klabel('impDecl)]
@@ -140,38 +143,42 @@ The definition of ImpDecl is the following
                     | TyCon CQList
 \end{lstlisting}
 
+\noindent
 The following example program has a Module with a name and a body of only ImpDecls. It has one ImpDecl.
 
 \begin{lstlisting}
-module Foo where
-{import Bar
-}
+	module Foo where
+	{import Bar
+	}
 \end{lstlisting}
 
+\noindent
 The following example program has a Module with no name and and a body of only ImpDecls. It has one ImpDecl.
 
 \begin{lstlisting}
-import Bar
+	import Bar
 \end{lstlisting}
 
+\noindent
 Another example program is
 \begin{lstlisting}
-module Simp1 where
-{import Test
-}
+	module Simp1 where
+	{import Test
+	}
 \end{lstlisting}
 
+\noindent
 The corresponding abstract syntax tree in K is
 \begin{lstlisting}
-`'module`(`'moduleName`(#token("Simp1","ConId")), `'bodyimpdecls`(`'impDecls`(`'impDecl`(`'emptyQualified`( .::KList), #token("Test","ConId"), `'emptyOptAsModId`(.::KList), `'emptyOptImpSpec`(.::KList)), `'.List{"'impDecls"}`(.::KList))))
+	`'module`(`'moduleName`(#token("Simp1","ConId")), `'bodyimpdecls`(`'impDecls`(`'impDecl`(`'emptyQualified`( .::KList), #token("Test","ConId"), `'emptyOptAsModId`(.::KList), `'emptyOptImpSpec`(.::KList)), `'.List{"'impDecls"}`(.::KList))))
 \end{lstlisting}
 
-Module contains two children. The first child of module is moduleName which contains the token Simp1. Simp1 is a constructor ID because it starts with a capital letter. The second child of module is bodyimpdecls. This contains the sort impDecls which is a list of impDecls. This program has only one impDecl. Since there is no qualified, the impDecl contains the child emptyQualified, followed by the token Test. Since there is no AsModId or ImpSpec, the last two children are emptyOptAsModId and emptyOptImpSpec.
+The \texttt{module} structure contains two children. The first child of \texttt{module} is \texttt{moduleName} which contains the token \texttt{Simp1}. \texttt{Simp1} is a constructor ID because it starts with a capital letter. The second child of \texttt{module} is \texttt{bodyimpdecls}. This contains the sort \texttt{impDecls} which is a list of \texttt{impDecls}. This program has only one \texttt{impDecl}. Since there is no \texttt{qualified}, the \texttt{impDecl} contains the child \texttt{emptyQualified}, followed by the token \texttt{Test}. Since there is no \texttt{AsModId} or \texttt{ImpSpec}, the last two children are \texttt{emptyOptAsModId} and \texttt{emptyOptImpSpec}.
 
 \subsection{TopDecls}
 The main types of expressions in Haskell are TopDecls - Top Declarations. A top declaration can either be a type, a data, a newtype, a class, an instance, a default, a foreign, or an arbitrary declaration.
 
-Any sort that starts with 'Opt' means that this is optional. In K something can be made optional by declaring the necessary constructors or nothing.
+Any sort that starts with \texttt{Opt} means that this is optional. In K something can be made optional by declaring the necessary constructors or nothing.
 
 \begin{lstlisting}
     syntax TopDecls ::= List{TopDecl, ";"} [klabel('topdeclslist)]
@@ -208,7 +215,7 @@ The following is the definition of Decl and related sorts.
                   | Pat Rhs [klabel('declPatRhs)]
 \end{lstlisting}
 
-This section introduces the sorts whose parent is Decl. This contains general declarations, function left hand side and right hand side, function guards, and expressions.
+This section introduces the sorts whose parent is Decl. This contains general declarations, function left-hand side and right-hand side, function guards, and expressions.
 
 \begin{lstlisting}
     syntax GenDecl ::= VarsType
@@ -243,9 +250,9 @@ This section introduces the sorts whose parent is Decl. This contains general de
 \end{lstlisting}
 
 \subsection{LExp}
-LExp is an important sort for the type inference function. This is because LExp defines the different expression types which the type inference function has specific rules for.
+\texttt{LExp} is an important sort for the type inference function. This is because \texttt{LExp} defines the different expression types for which the type inference function has specific rules.
 
-The different LExp types are a lambda expression, a 'let-in' expression, an 'if' statement, a case statement, and a 'do' block.
+The different \texttt{LExp} types are a lambda expression, a \texttt{let-in} expression, an \texttt{if} statement, a case statement, and a \texttt{do} block.
 
 \begin{lstlisting}
     syntax LExp ::= AExp
@@ -258,7 +265,7 @@ The different LExp types are a lambda expression, a 'let-in' expression, an 'if'
 \end{lstlisting}
 
 \subsection{AExp}
-AExp is also an import sort for the type inference function. The main parts of AExp that the inference function cares about is QVar and GCon.
+AExp is also an import sort for the type inference function. The main parts of AExp that the inference function cares about are QVar and GCon.
 
 QVar is a qualified variable and GCon is a general constructor.
 
