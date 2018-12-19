@@ -66,25 +66,25 @@
 \contentsline {section}{\numberline {5.5}Mutual Recursion}{45}{section.5.5}
 \contentsline {subsection}{\numberline {5.5.1}LetIn Rule}{46}{subsection.5.5.1}
 \contentsline {subsubsection}{Module}{46}{section*.12}
-\contentsline {subsubsection}{K Code}{46}{section*.13}
-\contentsline {section}{\numberline {5.6}Helper Functions}{48}{section.5.6}
+\contentsline {subsubsection}{K Code}{47}{section*.13}
+\contentsline {section}{\numberline {5.6}Helper Functions}{49}{section.5.6}
 \contentsline {section}{\numberline {5.7}Fresh Instance}{50}{section.5.7}
-\contentsline {section}{\numberline {5.8}GEN}{50}{section.5.8}
+\contentsline {section}{\numberline {5.8}GEN}{51}{section.5.8}
 \contentsline {section}{\numberline {5.9}Unification Algorithm}{52}{section.5.9}
 \contentsline {subsection}{\numberline {5.9.1}Identity}{52}{subsection.5.9.1}
-\contentsline {subsection}{\numberline {5.9.2}Non-Identity}{52}{subsection.5.9.2}
-\contentsline {subsubsection}{Delete}{52}{section*.14}
+\contentsline {subsection}{\numberline {5.9.2}Non-Identity}{53}{subsection.5.9.2}
+\contentsline {subsubsection}{Delete}{53}{section*.14}
 \contentsline {subsubsection}{Decompose}{53}{section*.15}
 \contentsline {subsubsection}{Orient}{53}{section*.16}
 \contentsline {subsubsection}{Eliminate}{53}{section*.17}
-\contentsline {subsection}{\numberline {5.9.3}K Code}{53}{subsection.5.9.3}
+\contentsline {subsection}{\numberline {5.9.3}K Code}{54}{subsection.5.9.3}
 \contentsline {section}{\numberline {5.10}Composition of Substitutions}{55}{section.5.10}
 \contentsline {section}{\numberline {5.11}Example}{56}{section.5.11}
-\contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{58}{chapter.6}
-\contentsline {section}{\numberline {6.1}Algorithm}{58}{section.6.1}
-\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{60}{chapter.7}
-\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{61}{appendix.A}
-\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{73}{appendix.B}
-\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{75}{appendix.C}
-\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{96}{appendix.D}
-\contentsline {chapter}{References}{111}{appendix*.18}
+\contentsline {chapter}{Chapter\ 6\hskip 1em\relax Multiple Module Support}{59}{chapter.6}
+\contentsline {section}{\numberline {6.1}Algorithm}{59}{section.6.1}
+\contentsline {chapter}{Chapter\ 7\hskip 1em\relax Conclusion}{61}{chapter.7}
+\contentsline {chapter}{Appendix\ A\hskip 1em\relax haskell-syntax.k}{62}{appendix.A}
+\contentsline {chapter}{Appendix\ B\hskip 1em\relax haskell-configuration.k}{74}{appendix.B}
+\contentsline {chapter}{Appendix\ C\hskip 1em\relax haskell-preprocessing.k}{76}{appendix.C}
+\contentsline {chapter}{Appendix\ D\hskip 1em\relax haskell-type-inferencing.k}{97}{appendix.D}
+\contentsline {chapter}{References}{112}{appendix*.18}
