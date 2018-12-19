@@ -152,7 +152,7 @@
 \if@thesisdraft\nocopyrightpage\fi
 \msthesis
 \department{Electrical and Computer Engineering}
-\college{Graduate College}
+\college{College of Engineering}
 \def\@schools{}
 \def\@degreeyear{\number\year}
 \newlength{\degree@dept@max}   %% v 3.07

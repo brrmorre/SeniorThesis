@@ -503,8 +503,6 @@ module HASKELL-PREPROCESSING
     rule importListConvert('moduleName(Name:K), 'impDecl(A:K,, Modid:K,, C:K,, D:K)) => ListItem(impObject(Name, Modid))
     rule importListConvert(Name:K, .ImpDecls) => .List
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     /*NEW TODO ALGORITHM
 1. Construct tree for module inclusion
 2. Check tree for cycles
@@ -582,8 +580,6 @@ module HASKELL-PREPROCESSING
     //rule cycleCheck(.K, M:Map, .K, ListItem(impObject(A:K,B:K)) Rest:List) => cycleCheck(ListItem(impObject(A:K,B:K)) Rest:List)
 */
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 //COPY IMPORT GRAPH, NEED SECOND GRAPH FOR RECURSING, ADDITIONAL GRAPH FOR SELECTING IMPORTS FOR ALPHA* AND BETA*
 //DFS for leaf
 //acquire alpha and beta for leaf
@@ -613,8 +609,6 @@ module HASKELL-PREPROCESSING
 //             => cycleCheck(.K,createVisitMap(I, .Map),.List,I) ...</k>
 //         <importTree> I:List </importTree>
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     syntax KItem ::= returnLeafDFS(K,List,Map) [function] //current node, map of all nodes to visited or not, stack, graph
     syntax KItem ::= innerLeafDFS(K,List) [function]
     syntax KItem ::= loadModule(K)
@@ -637,8 +631,6 @@ module HASKELL-PREPROCESSING
 //    returnLeafDFS(Node:KItem,ListItem(impObject(Node,B:KItem)) I:List,M:Map) => returnLeafDFS(B,I,M)
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     //call before Checker Code
 //    rule <k> callInit(S:K) => initPreModule(S) ...</k>
 //         <tempModule> A:K => S </tempModule>
@@ -652,8 +644,6 @@ module HASKELL-PREPROCESSING
          <moduleName> 'moduleName(Mod) </moduleName>
          <moduleTempCode> Code:KItem </moduleTempCode>
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //get alpha and beta
     syntax KItem ::= Module(K, K)
     syntax KItem ::= preModule(K,K) //(alpha, T)
@@ -734,13 +724,9 @@ module HASKELL-PREPROCESSING
     rule getArgSorts('atypeTyVar(A:K)) => .List
     rule getArgSorts(.OptBangATypes) => .List
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     rule <k> preModule(A:K,T:K) => startTTransform ...</k>
          <tempAlpha> OldAlpha:K => A </tempAlpha>
          <tempT> OldT:K => T </tempT>
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // STEP 2 PERFORM CHECKS
 
@@ -945,8 +931,6 @@ module HASKELL-PREPROCESSING
     
     //rule argSortCheck(TList(ListItem(TObject(A:K,B:K,C:K)
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     // STEP 3 Transform T into beta
 
     syntax KItem ::= "startTTransform"
@@ -1023,8 +1007,6 @@ module HASKELL-PREPROCESSING
     rule <k> newBeta(M:Map)
              => .K ...</k>
          <tempBeta> OldBeta:K => M </tempBeta>
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //    syntax KItem ::= "insertAlphaBetaStar"
 
@@ -1317,8 +1299,6 @@ module HASKELL-TYPE-INFERENCING
 
 //    rule listToSet(ListItem(A:KItem) L:List, S:Set) => listToSet(L, SetItem(A) S)
 //    rule listToSet(.List, S:Set) => S
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //Unification
 

@@ -1,5 +1,5 @@
 \chapter{Multiple Module Support}
-The final part of the semantics presented in this paper is the beginning of the support of multiple modules. Similar to including files or objects in other programming languages, Haskell modules can include other modules and use functions, types, and type classes declared in the module.
+The final part of the semantics presented in this thesis is the beginning of the support of multiple modules. Similar to including files or objects in other programming languages, Haskell modules can include other modules and use functions, types, and type classes declared in the module.
 
 When supporting multiple modules, there are several considerations and additional checks that should be made. This again comes from analyzing the behavior of GHC.
 Among them:
@@ -8,9 +8,9 @@ Modules need to be able to include other modules.
 
 There cannot be inclusion cycles.
 
-Modules need to be able to access user defined types from the other modules that are included.
+Modules need to be able to access user-defined types from the other modules that are included.
 
-Since we need to check for module inclusion cycles and also build the set of user defined types for each module and included modules, I decided to use a directed acyclic graph.
+Since we need to check for module inclusion cycles and also build the set of user-defined types for each module and included modules, I decided to use a directed acyclic graph.
 
 \section{Algorithm}
 The algorithm is as follows:
@@ -21,7 +21,7 @@ The algorithm is as follows:
 
 3. Go to each leaf and recursively go up the tree and build \texttt{alpha*} and \texttt{beta*} for the types of the module and the children and desugar the scope so that each type specifies the scope.
 
-Where \texttt{alpha} is the map of type synonyms declared in the current module and \texttt{alpha*} is the map of type synonyms declared in the current module and all the included modules. \texttt{Beta} is the set of user defined types from using \texttt{data} and \texttt{newtype} declared in the current module. \texttt{Beta*} is the set of user defined types from using \texttt{data} and \texttt{newtype} declared in the current module and all the included modules. 
+\texttt{alpha} is the map of type synonyms declared in the current module and \texttt{alpha*} is the map of type synonyms declared in the current module and all the included modules. \texttt{Beta} is the set of user defined types from using \texttt{data} and \texttt{newtype} declared in the current module. \texttt{Beta*} is the set of user defined types from using \texttt{data} and \texttt{newtype} declared in the current module and all the included modules. 
 Desugar the scope means that when the user references a type, desugar the reference to also include the parent module at all times.
 
 The syntax also needed to be changed to allow for multiple modules. The new syntax added is
@@ -32,12 +32,12 @@ The syntax also needed to be changed to allow for multiple modules. The new synt
     syntax ModuleList ::= Module [klabel('modListSingle)] | Module "<NEXTMODULE>" ModuleList [klabel('modList)]
 \end{lstlisting}
 
-This is because K cannot read multiple files. So instead all the included modules for a program are dumped into one file and are separated by the keyword \texttt{<NEXTMODULE>}
+This is because K cannot read multiple files. So instead all the included modules for a program are dumped into one file and are separated by the keyword \texttt{<NEXTMODULE>}.
 This creates a list of modules called \texttt{ModuleList}.
 
-The code for graph construction and checking for cycles is included in Appendix D. Building \texttt{alpha*} and \texttt{beta*}, and desugaring the scope proved difficult and are not included in the semantics presented in this paper.
+The code for graph construction and checking for cycles is included in Appendix D. Building \texttt{alpha*} and \texttt{beta*}, and desugaring the scope proved difficult and are not included in the semantics presented in this thesis.
 
-In the semantics presented in this paper, type constructors must be referenced using both the constructor and the module that it was created in. For instance:
+In the semantics presented in this thesis, type constructors must be referenced using both the constructor and the module that it was created in. For instance:
 
 \begin{lstlisting}
 Simp5.True2
