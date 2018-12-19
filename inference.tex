@@ -1,23 +1,17 @@
 \chapter{Inferencing}
 Once context-sensitive checks are made, the module can now be type inferred. Type inference is used to find the most general type of an expression. This is useful for assigning the most general type to variables and functions. It also is useful for performing type checking if the programmer specifies what type a function should take in or what a variable should be.
-
 A type system is a set of rules that assign a property to various constructs in a programming language called type. A type is a property that allows the programmer to add constraints to programs \cite{Type:Type}.
-
 The Haskell 2010 report says that Haskell's type system is a Hindley-Milner polymorphic type system \cite{TypeSystem:Hindley, TypeSystem:Milner} that has been extended with type classes to account for overloaded functions. The semantics in this paper makes precise what this means with regard to Haskell's specific syntax.
-
 The type inference function infers the type of the expression that is fed into it. A purpose of it is to ensure that all functions and function applications are allowed with regard to the types of the inputs and outputs.
 
 \section{Type theory}
 Type theory was created by Bertrand Russell to prevent Russell's paradox for set theory, introduced by Georg Cantor. The issue was that not specifying a certain property for sets allowed sets to contain themselves in naive set theory. So Bertrand Russell prevented this problem by specifying a property called type for objects, and objects cannot contain their own type \cite{Stanford:TypeTheory}.
-
-Type theory turns out to be useful for solving a number of problems that arise in computer science.
+Type theory turns out to be useful for computer science.
 
 \subsection{Simply Typed Lambda Calculus}
 The Lambda Calculus was created by Alonzo Church as part of his research in foundations of mathematics. However, the Lambda Calculus was logically inconsistent, similar to set theory, shown by the Kleene-Rosser paradox.
 In order to prevent the Kleene-Rosser paradox for the Lambda Calculus, Church introduced the concept of types into the Lambda Calculus. This is the Simply Typed Lambda Calculus \cite{TypeSystem:Simple}.
-
 Later, it was shown that there is a correspondence between programming languages and the Lambda Calculus, which makes the Lambda Calculus a potential abstraction for programming languages.
-
 Later still, it was shown that there is a correspondence between proof calculi and type systems, which links mathematics between formal logic and programs. This is the Curry-Howard correspondence.
 
 \subsection{System F}
